@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WWidget</title>
+    <title>Maszyna WEB</title>
 
     <link rel="stylesheet" href="styles.css">
+
+     <script type="text/javascript" src="./scripts/enums.js"></script>
+     <script type="text/javascript" src="./scripts/register.js"></script>
+
+
+
 </head>
 <body>
 
     <div class="title-box">
         <div class="title">
-            <h1><a href="#">MASZYNA<span>WEB</span></a></h1>
+            <h1><a href="#" id="test-register">MASZYNA<span>WEB</span></a></h1>
         </div>
     </div>
     
@@ -27,6 +33,18 @@
 
     
    </div>
+
+   <script>
+       var registerUI = document.getElementById("test-register");
+        var registerModel = new Register();
+
+        registerModel.display = 4;
+        registerModel.setValue(127);
+        registerUI.innerHTML = registerModel.getDisplayText();
+
+   </script>
+
+
 
 </body>
 </html>
