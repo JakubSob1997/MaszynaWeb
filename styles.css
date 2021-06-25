@@ -1,13 +1,27 @@
 :root{
-    --primary-color: #699cd3;
+    --main-color: #5c5c5c;
+    --support-color: #42ff42;
+    --compliment-color: #ffffff;
+    --font-light: #eeeeee;
+    --font-dark: #222222;
+    --bacground-light: #cccccc;
+    --background-dark:#444444;
+
 }
 
 
+a{
+    color: #dddddd;
+    text-decoration: none;
+}
+
+
+
 body{
-    background: #eeeeee;
+    background: #3b3b3b;
     margin: 0;
     overflow: hidden;
-    display: flex;
+    color: var(--font-light);
 }
 
 ul {
@@ -15,6 +29,18 @@ ul {
     margin: 0;
     padding: 0;
   }
+
+
+.title span{
+    color: var(--support-color);
+}
+
+.title{
+    float: up;
+    display: flex;
+    justify-content: center;
+    background: var(--main-color);
+}
 
 .container{
     width: 100vw;
@@ -43,27 +69,26 @@ ul {
 }
 
 div{
-    border:1px solid black
+    border:1px solid var(--compliment-color)
 }
 
 .header{
-    position: fixed;
+    /*position: fixed;*/
     top: 0;
-    display: flex;
-    justify-content: center;
+
     width: 100%;
 }
 
 .editor{
-    position: fixed;
+    /*position: fixed;*/
     left: 0%;
-    float:  left;
+
     height: 100%;
 }
 
 .inspector{
-    position: fixed;
+    /*position: fixed;*/
     right: 0%;
-    float:  right;
+
     height: 100%;
 }
