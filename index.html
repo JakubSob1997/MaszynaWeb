@@ -8,14 +8,34 @@
 
     <link rel="stylesheet" href="styles.css">
 
-     <script type="text/javascript" src="./scripts/enums.js"></script>
-     <script type="text/javascript" src="./scripts/register.js"></script>
+    <script src="./scripts/Alerter.js"></script>
+     <script src="./scripts/Enums.js"></script>
+     <script src="./scripts/Cyclable.js"></script>
+     <script src="./scripts/Register.js"></script>
+     <script src="./scripts/Memory.js"></script>
+     <script src="./scripts/Bus.js"></script>
+     <script src="./scripts/ArythmeticLogicUnit.js"></script>
+     <script src="./scripts/Settings.js"></script>
+     <script src="./scripts/Signal.js"></script>
+     <script src="./scripts/Machine.js"></script>
+
+
+
 
 
 
 </head>
 <body>
 
+
+
+
+
+
+
+
+
+    <!--
     <div class="title-box">
         <div class="title">
             <h1><a href="#" id="test-register">MASZYNA<span>WEB</span></a></h1>
@@ -33,16 +53,77 @@
 
     
    </div>
+   -->
 
-   <script>
-       var registerUI = document.getElementById("test-register");
-        var registerModel = new Register();
 
-        registerModel.display = 4;
-        registerModel.setValue(127);
-        registerUI.innerHTML = registerModel.getDisplayText();
+   <div class="header">
+       <a href="#">MaszynaWeb</a>
+       <ul>
+           <li>Program</li>
+           <li>Rozkaz</li>
+           <li>Opcje</li>
+       </ul>
 
-   </script>
+
+       <ul>
+           <li><button>Next</button></li>
+       </ul>
+
+   </div>
+
+   <div class="machine-model">
+
+
+    <div class="jal">
+        <h3>Jednostka Arytmetyczno Logiczna</h3>
+    
+    <p>AK</p>
+    <div id="ak-register">0</div>
+
+    <div class="signals">
+        <ul>
+            <li><button class="signal" id="weja">weja</button></li>
+            <li><button class="signal" id="przep">przep</button></li>
+            <li><button class="signal" id="dod">dod</button></li>
+            <li><button class="signal" id="ode">ode</button></li>
+        </ul>
+    </div>
+    </div>
+
+
+    
+
+    <div class="Memory">
+        <h3> Pamiec</h3>
+        <p>Rejestr S</p>
+        <div id="s-register">0</div>
+        <div class="signals">
+            <ul>
+                <li><button class="signal" id="wes">wes</button></li>
+                <li><button class="signal" id="wys">wys</button></li>
+            
+            </ul>
+        </div>
+
+
+        <p> Rejestr A</p>
+        <div id="a-register">0</div>
+        <div class="signals">
+            <ul>
+                <li><button class="signal" id="wea">wea</button></li>
+            </ul>
+        </div>
+    </div>
+    
+
+
+
+
+
+   </div>
+
+
+   <script src="./scripts/MachineUI.js"></script>
 
 
 

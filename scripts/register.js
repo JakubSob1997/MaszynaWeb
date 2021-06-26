@@ -5,19 +5,50 @@
 class  Register {
 
 
-
-
-    constructor(){
+    constructor(_name){
+        this.name = _name;
         this.display = RegisterDisplayEnum.UnsignedDecimal;
+        this.busMatch = MatchRegisterWidthEnum.ToWord;
         this.setBitWidth(8);
         this.value = 0;
+        this.wasWriten=false;
+        this.onUpdateCallbacks = [];
+    }
 
+
+    setDisplay(_displayEnum){
+        this.display = _displayEnum;
+        update();
+    }
+
+    resetState(){
+        this.wasWriten=false;
+    }
+
+    write(_value){
+        if(this.wasWriten==true){
+            Alerter.alert("Register: " + this.name +" was alredy writen into.");
+        }else{
+            this.wasWriten = true;
+            this.setValue(_value);
+        }
+    }
+
+    addOnUpdateCallback(_funk){
+        this.onUpdateCallbacks.push(_funk);
+    }
+
+    update(){
+        this.onUpdateCallbacks.forEach(element => {
+            element(this);
+        });
     }
 
 
     setBitWidth(newWidth){
         this.width= newWidth;
         this.bitmask=this.getBitmask();
+        update();
     }
 
     getBitWidth(){
@@ -27,6 +58,7 @@ class  Register {
 
     setValue(newValue){
         this.value = newValue & this.bitmask;
+        update();
     }
 
     getValue(){

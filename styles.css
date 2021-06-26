@@ -20,10 +20,16 @@ a{
 body{
     background: #3b3b3b;
     margin: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
     color: var(--font-light);
 }
 
+.selected{
+    background: red;
+}
+
+
+/*
 ul {
     list-style-type: none;
     margin: 0;
@@ -71,24 +77,4 @@ ul {
 div{
     border:1px solid var(--compliment-color)
 }
-
-.header{
-    /*position: fixed;*/
-    top: 0;
-
-    width: 100%;
-}
-
-.editor{
-    /*position: fixed;*/
-    left: 0%;
-
-    height: 100%;
-}
-
-.inspector{
-    /*position: fixed;*/
-    right: 0%;
-
-    height: 100%;
-}
+*/
