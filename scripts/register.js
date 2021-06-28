@@ -18,7 +18,7 @@ class  Register {
 
     setDisplay(_displayEnum){
         this.display = _displayEnum;
-        update();
+        this.update();
     }
 
     resetState(){
@@ -34,21 +34,33 @@ class  Register {
         }
     }
 
+    writeFromBus(_bus){
+        if(_bus.hasValue()){
+            this.write(_bus.getValue());
+        }else{
+            Alerter.alert("No Value On Bus");
+        }
+    }
+
+
     addOnUpdateCallback(_funk){
         this.onUpdateCallbacks.push(_funk);
     }
 
     update(){
-        this.onUpdateCallbacks.forEach(element => {
-            element(this);
-        });
+        if(this.onUpdateCallbacks!=null){
+            this.onUpdateCallbacks.forEach(element => {
+                element(this);
+            });
+        }
+        
     }
 
 
     setBitWidth(newWidth){
         this.width= newWidth;
         this.bitmask=this.getBitmask();
-        update();
+        this.update();
     }
 
     getBitWidth(){
@@ -58,7 +70,7 @@ class  Register {
 
     setValue(newValue){
         this.value = newValue & this.bitmask;
-        update();
+        this.update();
     }
 
     getValue(){

@@ -19,11 +19,6 @@
      <script src="./scripts/Signal.js"></script>
      <script src="./scripts/Machine.js"></script>
 
-
-
-
-
-
 </head>
 <body>
 
@@ -54,7 +49,7 @@
     
    </div>
    -->
-
+   <!--
 
    <div class="header">
        <a href="#">MaszynaWeb</a>
@@ -65,13 +60,24 @@
        </ul>
 
 
-       <ul>
-           <li><button>Next</button></li>
-       </ul>
+      
 
    </div>
+   -->
+
+   <ul>
+    <li><button id="next-cycle-button">Takt</button></li>
+    </ul>
+
 
    <div class="machine-model">
+
+    <div class="bus">
+        <p id = "s-bus">Magistrala S</p>
+        <p id = "a-bus">Magistrala A</p>
+    </div>
+
+
 
 
     <div class="jal">
@@ -82,10 +88,17 @@
 
     <div class="signals">
         <ul>
+            <li><button class="signal" id="weak">weak</button></li>
+            <li><button class="signal" id="wyak">wyak</button></li>
             <li><button class="signal" id="weja">weja</button></li>
             <li><button class="signal" id="przep">przep</button></li>
             <li><button class="signal" id="dod">dod</button></li>
             <li><button class="signal" id="ode">ode</button></li>
+        </ul>
+
+        <ul>
+            <li><button class="signal" id="iak">iak</button></li>
+            <li><button class="signal" id="dak">dak</button></li>
         </ul>
     </div>
     </div>
@@ -95,6 +108,13 @@
 
     <div class="Memory">
         <h3> Pamiec</h3>
+
+        <ul>
+            <li><button class="signal" id="czyt">czyt</button></li>
+            <li><button class="signal" id="pisz">pisz</button></li>
+        
+        </ul>
+
         <p>Rejestr S</p>
         <div id="s-register">0</div>
         <div class="signals">
@@ -113,6 +133,32 @@
                 <li><button class="signal" id="wea">wea</button></li>
             </ul>
         </div>
+
+
+        <p> Rejestr L</p>
+        <div id="l-register">0</div>
+        <div class="signals">
+            <ul>
+                <li><button class="signal" id="wyl">wyl</button></li>
+                <li><button class="signal" id="wel">wel</button></li>
+                <li><button class="signal" id="il">il</button></li>
+            </ul>
+        </div>
+
+        <p> Rejestr I</p>
+        <div id="i-register">0</div>
+        <div class="signals">
+            <ul>
+                <li><button class="signal" id="wei">wei</button></li>
+                <li><button class="signal" id="wyad">wyad</button></li>
+                <li><button class="signal" id="stop">stop</button></li>
+            </ul>
+        </div>
+
+
+
+
+
     </div>
     
 

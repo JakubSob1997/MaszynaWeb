@@ -24,8 +24,17 @@ body{
     color: var(--font-light);
 }
 
-.selected{
-    background: red;
+.signal-selected{
+    background: rgb(177, 107, 107);
+}
+
+
+.register-selected{
+    color:rgb(175, 67, 67);
+}
+
+.bus-selected{
+    color:rgb(175, 67, 67);
 }
 
 

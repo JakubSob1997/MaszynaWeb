@@ -8,6 +8,8 @@ var S_bus = new Bus();
 var A_bus = new Bus();
 
 var AK_register= new Register("AK");
+AK_register.display = 2;
+AK_register.setBitWidth(4);
 var S_register = new Register("S");
 var A_register = new Register("A");
 var L_register = new Register("L");
@@ -17,6 +19,7 @@ var JAL = new ArythmeticLogicUnit(AK_register);
 
 var MachineComponents = [
     S_bus,
+    A_bus,
     JAL,
     AK_register,
     S_register,
@@ -34,11 +37,13 @@ var Buses = [
 
 
 
-var singnalDictionary = {
-    addSignal: function(_signal){
-        this[_signal.name] = _signal;
-    }
+
+
+var singnalDictionary ={}
+addSignalToDictioanry= function(_signal){
+    singnalDictionary[_signal.name] = _signal;
 }
+
 
 
 var selectedLongSignals = [];
@@ -60,7 +65,7 @@ var Machine = {
 
     },
 
-    deSelectSitnal: function(_signalName){
+    deSelectSignal: function(_signalName){
 
         if(singnalDictionary.hasOwnProperty(_signalName)){
             let signal= singnalDictionary[_signalName];
@@ -92,22 +97,29 @@ var Machine = {
     },
 
 
+
+    
     doCycle : function(){
+
         MachineComponents.forEach(element => {
             element.resetState();
         });
+        
 
-        selectedLongSignals.entries.forEach(([name,signal])=>{
-            signal.onSignal();
-        });
+        for(const signal in selectedLongSignals){
+            selectedLongSignals[signal].onSignal();
+
+        }
 
         Buses.forEach(bus=>{
             bus.bufferValueForInpulse();
         });
 
-        selectedLongSignals.entries.forEach(([name,signal])=>{
-            signal.onSignal();
-        });
+        for(const signal in slectedImpulseSignals){
+            slectedImpulseSignals[signal].onSignal();
+            
+        }
+
 
     }
 
@@ -123,13 +135,13 @@ var Machine = {
 const wea = new Signal(
     "wea",
     true,
-    ()=>{A_register.write(A_bus.getValue()) ;}
+    ()=>{A_register.writeFromBus(A_bus) ;}
 )
 
 const czyt = new Signal(
     "czyt",
     false,
-    ()=>{S_register.write(MEM.read(A_register.getValue)) ;}
+    ()=>{S_register.write(MEM.read(A_register.getValue())) ;}
 )
 
 const pisz = new Signal(
@@ -141,21 +153,21 @@ const pisz = new Signal(
 const wes = new Signal(
     "wes",
     true,
-    ()=>{S_register.write(S_bus.getCurrentValue()); }
+    ()=>{S_register.writeFromBus(S_bus); }
 )
 const wys = new Signal(
     "wys",
     false,
-    ()=>{S_bus.setSourceRegister(S_register)}
+    function(){S_bus.setSourceRegister(S_register)}
 )
 
 
-singnalDictionary.addSignal(wea);
-singnalDictionary.addSignal(czyt)
-singnalDictionary.addSignal(pisz)
+addSignalToDictioanry(wea);
+addSignalToDictioanry(czyt)
+addSignalToDictioanry(pisz)
 
-singnalDictionary.addSignal(wes);
-singnalDictionary.addSignal(wys);
+addSignalToDictioanry(wes);
+addSignalToDictioanry(wys);
 }
 
 
@@ -194,25 +206,44 @@ const wyak = new Signal(
     ()=>{S_bus.setSourceRegister(AK_register);}
 )
 
-singnalDictionary.addSignal(weja);
+addSignalToDictioanry(weja);
 
-singnalDictionary.addSignal(przep);
-singnalDictionary.addSignal(dod);
-singnalDictionary.addSignal(ode);
+addSignalToDictioanry(przep);
+addSignalToDictioanry(dod);
+addSignalToDictioanry(ode);
 
-singnalDictionary.addSignal(weak);
-singnalDictionary.addSignal(wyak);
+addSignalToDictioanry(weak);
+addSignalToDictioanry(wyak);
+
+
+
+const iak = new Signal(
+    "iak",
+    true,
+    function(){AK_register.write(AK_register.getValue()+1)}
+)
+
+
+const dak = new Signal(
+    "dak",
+    true,
+    function(){AK_register.write(AK_register.getValue()-1)}
+)
+addSignalToDictioanry(iak);
+addSignalToDictioanry(dak);
+
+
 }
 
 {
 //Counter Signals
-const wei = new Signal(
-    "wei",
+const wel = new Signal(
+    "wel",
     true,
-    ()=>{L_register.write(A_bus.getValue())}
+    ()=>{L_register.writeFromBus(A_bus)}
 )
-const wyi = new Signal(
-    "wyi",
+const wyl = new Signal(
+    "wyl",
     false,
     ()=>{A_bus.setSourceRegister(L_register);}
 )
@@ -221,9 +252,9 @@ const il = new Signal(
     true,
     ()=>{L_register.write(L_register.getValue()+1);}
 )
-singnalDictionary.addSignal(wei);
-singnalDictionary.addSignal(wyi);
-singnalDictionary.addSignal(il);
+addSignalToDictioanry(wel);
+addSignalToDictioanry(wyl);
+addSignalToDictioanry(il);
 }
 
 
@@ -232,7 +263,7 @@ singnalDictionary.addSignal(il);
 const wei = new Signal(
     "wei",
     true,
-    ()=>{I_register.write(S_bus.getValue());}
+    ()=>{I_register.writeFromBus(S_bus);}
 )
 const wyad = new Signal(
     "wyad",
@@ -245,9 +276,9 @@ const stop = new Signal(
     ()=>{Alerter.alert("Define Stop Signal");}
 )
 
-singnalDictionary.addSignal(wei);
-singnalDictionary.addSignal(wyad);
-singnalDictionary.addSignal(stop);
+addSignalToDictioanry(wei);
+addSignalToDictioanry(wyad);
+addSignalToDictioanry(stop);
 
 }
 

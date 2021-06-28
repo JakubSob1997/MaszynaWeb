@@ -7,7 +7,10 @@ class Mamory{
 
     constructor(_adressWidth){
         const arrayLength = 1<<(_adressWidth);
+
         this.values= new Array(arrayLength);
+        console.log(this.values);
+
     }
 
     resetState(){
@@ -37,20 +40,22 @@ class Mamory{
 
 
     read(_adress){
-        if(_adress>= this.values||_adress<0){
+        //console.log(this.values);
+        if(_adress>= this.values.length||_adress<0){
             Alerter.alert("Memory out of bounds.");
-            return 0;
         }else{
+            console.log(_adress+this.values[_adress]);
             return this.values[_adress];
         }
     }
 
     write(_adress,_value){
-        if(_adress>= this.values||_adress<0){
+        if(_adress>= this.values.length||_adress<0){
             Alerter.alert("Memory out of bounds.");
         }else{
             this.values[_adress] =_value;
         }
+        console.log(this.values);
     }
 
 

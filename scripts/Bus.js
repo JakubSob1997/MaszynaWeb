@@ -8,6 +8,7 @@ class Bus{
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;
+        this.onUpdateCallbacks = [];
     }
 
     resetState(){
@@ -17,6 +18,18 @@ class Bus{
     }
 
 
+    addOnUpdateCallback(_funk){
+        this.onUpdateCallbacks.push(_funk);
+    }
+
+    update(){
+        if(this.onUpdateCallbacks!=null){
+            this.onUpdateCallbacks.forEach(element => {
+                element(this);
+            });
+        }
+        
+    }
 
 
     setSourceRegister(_referenceRegister){
@@ -35,7 +48,12 @@ class Bus{
         if(this.hasBufferedValue){
             this.bufferValue = this.referenceRegister.getValue();
         }
+        this.update();
 
+    }
+
+    hasValue(){
+        return this.hasBufferedValue;
     }
 
     getValue(){
