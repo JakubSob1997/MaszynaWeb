@@ -2,9 +2,12 @@
 
 
 
-class ArythmeticLogicUnit {
+class ArythmeticLogicUnit extends MachineComponent {
 
     constructor(_AKRegister){
+
+        super();
+
         this.AKRegister =_AKRegister;
 
         this.Operation=JALOperationEnum.Unselected;

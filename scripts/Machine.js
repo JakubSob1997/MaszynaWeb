@@ -4,18 +4,28 @@ var settings = new Settings();
 
 var MEM = new Mamory(settings.adressWidth);
 
+
 var S_bus = new Bus();
 var A_bus = new Bus();
 
 var AK_register= new Register("AK");
-AK_register.display = 2;
-AK_register.setBitWidth(4);
 var S_register = new Register("S");
 var A_register = new Register("A");
 var L_register = new Register("L");
 var I_register = new Register("I");
 
+
+AK_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
+S_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
+A_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
+L_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
+I_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
+
+
+
+
 var JAL = new ArythmeticLogicUnit(AK_register);
+var CntrlUnit = new ControllUnit(I_register);
 
 var MachineComponents = [
     S_bus,
@@ -29,6 +39,8 @@ var MachineComponents = [
     MEM,
 
 ];
+
+MEM.values[0]=32;
   
 var Buses = [
     S_bus,
@@ -36,6 +48,14 @@ var Buses = [
 ];
 
 
+settings.onBusWidthChanged = function(_settings){
+    MachineComponents.forEach(element => {
+        element.onBusWidthChanged(_settings);
+    });
+}
+
+
+settings.setBusWidth(3,5);
 
 
 
@@ -45,11 +65,22 @@ addSignalToDictioanry= function(_signal){
 }
 
 
-
 var selectedLongSignals = [];
 var slectedImpulseSignals =[];
 
+
+var instrictionList = [];
+
+
+
 var Machine = {
+
+    manualControll: false,
+
+
+
+
+
     selectSignal: function(_signalName){
 
         if(singnalDictionary.hasOwnProperty(_signalName)){
@@ -59,6 +90,7 @@ var Machine = {
             }else{
                 selectedLongSignals[_signalName] =signal;
             }
+            signal.update();
         }else{
             Alerter.alert("Undefined signal "+ _signalName);
         }
@@ -74,13 +106,12 @@ var Machine = {
             }else{
                 delete selectedLongSignals[_signalName];
             }
+            signal.update();
         }else{
             Alerter.alert("Undefined signal "+ _signalName);
         }
 
     },
-
-
 
     isSignalSelected: function(_signalName){
         if(singnalDictionary.hasOwnProperty(_signalName)){
@@ -97,6 +128,32 @@ var Machine = {
     },
 
 
+    clearSignals: function(){
+
+
+        for(const signal in selectedLongSignals){
+            let sig = selectedLongSignals[signal];
+            delete selectedLongSignals[signal];
+            sig.update();
+
+        }
+
+        for(const signal in slectedImpulseSignals){
+            let sig = slectedImpulseSignals[signal];
+            delete slectedImpulseSignals[signal];
+            sig.update();
+        }
+        
+        selectedLongSignals=[];
+        slectedImpulseSignals=[];
+    },
+
+    selectSignals: function(_signalNames){
+        _signalNames.forEach(signal => {
+            this.selectSignal(signal);
+        });
+    },
+
 
     
     doCycle : function(){
@@ -105,6 +162,12 @@ var Machine = {
             element.resetState();
         });
         
+
+        if(this.manualControll==false){
+            this.clearSignals();
+            CntrlUnit.doCycle(this,instrictionList,settings);
+        }
+
 
         for(const signal in selectedLongSignals){
             selectedLongSignals[signal].onSignal();
@@ -124,7 +187,57 @@ var Machine = {
     }
 
     
+    
+
+
+
+
+
+
+
 };
+
+
+
+
+//Instructions
+
+
+let STP_inst = new Instruction("STP");
+STP_inst.cycles[0] =new InstrCycle(["czyt","wys","wei","il"]);
+STP_inst.cycles[1]=new InstrCycle(["stop"]);
+
+let DOD_inst = new Instruction("DOD");
+DOD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+DOD_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
+DOD_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","dod","weak"]);
+
+let ODE_inst = new Instruction("ODE");
+ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+ODE_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
+ODE_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","ode","weak"]);
+
+let POB_inst = new Instruction("POB");
+POB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+POB_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
+POB_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","przep","weak"]);
+
+
+let LAD_inst = new Instruction("LAD");
+LAD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+LAD_inst.cycles[1]=new InstrCycle(["wyad","wea","wyak","wes"]);
+LAD_inst.cycles[2]=new InstrCycle(["pisz","wyl","wea"]);
+
+let SOB_inst = new Instruction("SOB");
+SOB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+SOB_inst.cycles[1]=new InstrCycle(["wyad","wel","wea"]);
+
+instrictionList.push(STP_inst);
+instrictionList.push(DOD_inst);
+instrictionList.push(ODE_inst);
+instrictionList.push(POB_inst);
+instrictionList.push(LAD_inst);
+instrictionList.push(SOB_inst);
 
 
 
@@ -273,7 +386,7 @@ const wyad = new Signal(
 const stop = new Signal(
     "stop",
     false,
-    ()=>{Alerter.alert("Define Stop Signal");}
+    ()=>{Alerter.alert("Program Is Stoped");}
 )
 
 addSignalToDictioanry(wei);
@@ -283,8 +396,6 @@ addSignalToDictioanry(stop);
 }
 
 
-console.log(singnalDictionary["wes"]);
-console.log(singnalDictionary["wys"]);
 
 
 

@@ -3,12 +3,21 @@
 
 
 
-class Mamory{
+class Mamory extends MachineComponent{
 
     constructor(_adressWidth){
+
+        super();
+
         const arrayLength = 1<<(_adressWidth);
 
         this.values= new Array(arrayLength);
+
+        for (let index = 0; index < this.values.length; index++) {
+            this.values[index]=0;
+            
+        }
+
         console.log(this.values);
 
     }
@@ -22,6 +31,12 @@ class Mamory{
 
         arrayLength = 1<<(_adressWidth);
         tmp = new Array(arrayLength);
+
+
+        for (let index = 0; index < tmp.length; index++) {
+            values[index]=0;
+            
+        }
 
         for (let index = 0; index < this.values.length; index++) {
 
@@ -44,7 +59,6 @@ class Mamory{
         if(_adress>= this.values.length||_adress<0){
             Alerter.alert("Memory out of bounds.");
         }else{
-            console.log(_adress+this.values[_adress]);
             return this.values[_adress];
         }
     }
@@ -55,7 +69,6 @@ class Mamory{
         }else{
             this.values[_adress] =_value;
         }
-        console.log(this.values);
     }
 
 

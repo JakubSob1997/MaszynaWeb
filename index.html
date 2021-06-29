@@ -8,26 +8,23 @@
 
     <link rel="stylesheet" href="styles.css">
 
+
+
     <script src="./scripts/Alerter.js"></script>
      <script src="./scripts/Enums.js"></script>
-     <script src="./scripts/Cyclable.js"></script>
+     <script src="./scripts/MachineComponent.js"></script>
      <script src="./scripts/Register.js"></script>
      <script src="./scripts/Memory.js"></script>
      <script src="./scripts/Bus.js"></script>
      <script src="./scripts/ArythmeticLogicUnit.js"></script>
      <script src="./scripts/Settings.js"></script>
      <script src="./scripts/Signal.js"></script>
+     <script src="./scripts/Instruction.js"></script>
+     <script src="./scripts/ControllUnit.js"></script>
      <script src="./scripts/Machine.js"></script>
 
 </head>
 <body>
-
-
-
-
-
-
-
 
 
     <!--
@@ -65,9 +62,22 @@
    </div>
    -->
 
+
+   <div class="code-editor">
+    <textarea name="" id="code-textarea" cols="30" rows="10">
+
+    </textarea>
+    </div>
+
    <ul>
+    <li><button id="load-code-button">Ładuj do pamięci</button></li>
     <li><button id="next-cycle-button">Takt</button></li>
     </ul>
+
+
+
+    
+
 
 
    <div class="machine-model">

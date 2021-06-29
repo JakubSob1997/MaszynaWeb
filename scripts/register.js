@@ -2,13 +2,15 @@
 
 
 
-class  Register {
+class  Register extends MachineComponent {
 
 
     constructor(_name){
+        super();
+
         this.name = _name;
         this.display = RegisterDisplayEnum.UnsignedDecimal;
-        this.busMatch = MatchRegisterWidthEnum.ToWord;
+        this.busMatchRule = MatchRegisterWidthEnum.ToWord;
         this.setBitWidth(8);
         this.value = 0;
         this.wasWriten=false;
@@ -24,6 +26,30 @@ class  Register {
     resetState(){
         this.wasWriten=false;
     }
+
+    onBusWidthChanged(_settings){
+
+        switch (this.busMatchRule) {
+            case MatchRegisterWidthEnum.ToAdress:
+                this.setBitWidth(_settings.adressWidth);
+                break;
+            case MatchRegisterWidthEnum.ToCode:
+                this.setBitWidth(_settings.codeWidth);
+                break;
+            case MatchRegisterWidthEnum.ToWord:
+                this.setBitWidth(_settings.codeWidth+_settings.adressWidth);
+                break;
+            case MatchRegisterWidthEnum.DontMatch:
+                break;
+            default:
+                break;
+             
+        }
+        this.update();   
+
+    }
+
+
 
     write(_value){
         if(this.wasWriten==true){

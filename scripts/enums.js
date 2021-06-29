@@ -11,7 +11,7 @@ Object.freeze(RegisterDisplayEnum);
 
 const MatchRegisterWidthEnum = {
     "ToAdress":1,
-    "ToData":2,
+    "ToCode":2,
     "ToWord":3,
     "DontMatch":4,
 }

@@ -1,10 +1,12 @@
 
 
 
-class Bus{
+class Bus extends MachineComponent{
 
 
     constructor(){
+        super();
+
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;

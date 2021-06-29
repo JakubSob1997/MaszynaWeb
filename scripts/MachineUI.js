@@ -1,8 +1,24 @@
 
 
 
-var visuals =[];
 
+
+
+var codeTextArea = document.getElementById("code-textarea");
+var loadCodeButton = document.getElementById("load-code-button");
+//codeTextArea.value="";
+
+loadCodeButton.onclick = ()=>{
+    console.log(codeTextArea.value);
+}
+
+
+
+
+
+
+
+var visuals =[];
 
 function resetVisuals(){
     visuals.registers.forEach(register => {
@@ -13,7 +29,7 @@ function resetVisuals(){
 }
 
 
-var nextCycleButton = document.getElementById("next-cycle-button");
+let nextCycleButton = document.getElementById("next-cycle-button");
 
 nextCycleButton.onclick=function(){
 
@@ -84,6 +100,7 @@ var signalUIs = document.getElementsByClassName("signal");
 visuals.signals = signalUIs;
 
 
+
 for(let signalUI of signalUIs){
     signalUI.onclick =()=>{
         let id = signalUI.id;
@@ -92,18 +109,30 @@ for(let signalUI of signalUIs){
         }else{
             Machine.selectSignal(id);
         }
-
-        if(Machine.isSignalSelected(id)){
-            
-            signalUI.classList.add("signal-selected");
-        }else{
-            signalUI.classList.remove("signal-selected");
-        }
-
-        
     };
 }
 
+
+function signalVisualCallback(_signal){
+    const signalUI = document.getElementById(_signal.name);
+    if(signalUI==null){
+        return;
+    }
+
+    if(Machine.isSignalSelected(_signal.name)){
+            
+        signalUI.classList.add("signal-selected");
+    }else{
+        signalUI.classList.remove("signal-selected");
+    }
+
+
+}
+
+for(const signal in singnalDictionary){
+    singnalDictionary[signal].addOnUpdateCallback(signalVisualCallback);
+
+}
 
 
 
