@@ -4,34 +4,27 @@
 
 
 class ConditionFlag{
-    constructor(_name){
-
+    constructor(_name,_flagCheckFunk){
+        this.name = _name;
+        this.isFlagActive = _flagCheckFunk;
     }
 }
 
-
-
-
-
-
-class ConditionFlags{
+class FlagsUnit{
 
     constructor(_AK_Register){
-        _AK_Register.addOnUpdateCallback(
-            _register=>{
-
-            }
-        )
+        this.AK_register = _AK_Register;
+        this.conditionFlags = [];
     }
 
     addFlag(_conditionFlag){
-
+        this.conditionFlags[_conditionFlag.name] = _conditionFlag;
     }
 
 
-    checkFlags();
-
-
+    checkFlag(_flagName){
+        return this.conditionFlags[_flagName].isFlagActive(this);
+    }
 
 }
 

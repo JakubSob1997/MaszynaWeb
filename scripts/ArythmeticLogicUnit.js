@@ -33,10 +33,7 @@ class ArythmeticLogicUnit extends MachineComponent {
         const _inputval = this.BusReference.getValue();
         const _akval = this.AKRegister.getValue();
 
-        let output
-
-
-        console.log(this.Operation);
+        let output;
 
         switch (this.Operation) {
             case JALOperationEnum.Unselected:

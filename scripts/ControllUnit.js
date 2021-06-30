@@ -5,10 +5,11 @@
 
 class ControllUnit extends MachineComponent{
 
-    constructor(_I_Register){
+    constructor(_I_Register,_FlagUnit){
         super();
 
         this.I_Register =_I_Register;
+        this.FlagUnit = _FlagUnit;
 
 
         this.internalCycleCounter=0;
@@ -18,7 +19,6 @@ class ControllUnit extends MachineComponent{
        
         const opCode =  _Settings.getOpcode(this.I_Register.getValue());
         
-        console.log("Code:" + opCode);
         
         if(_InstructionList.length<=opCode){
             Alerter.alert("Instruction with op code: "+ opCode.toString(2)+" undefined" );
@@ -35,6 +35,21 @@ class ControllUnit extends MachineComponent{
 
         let instrcycle = instruction.cycles[this.internalCycleCounter];
         
+        for (let index = 0; index < instrcycle.branchCondtions.length; index++) {
+            const branchCondition = instrcycle.branchCondtions[index];
+            if(this.FlagUnit.checkFlag(branchCondition.flagName)){
+                
+                if(instruction.cycles.length<= this.internalCycleCounter ){
+                    Alerter.alert("Branched out of instruction scope");
+                }
+
+                this.internalCycleCounter=branchCondition.cycleIfTrue;
+                instrcycle = instruction.cycles[this.internalCycleCounter];
+                break;
+            }
+        }
+
+
 
         _Machine.selectSignals(instrcycle.signals);
 

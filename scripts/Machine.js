@@ -5,6 +5,7 @@ var settings = new Settings();
 var MEM = new Mamory(settings.adressWidth);
 
 
+
 var S_bus = new Bus();
 var A_bus = new Bus();
 
@@ -14,6 +15,8 @@ var A_register = new Register("A");
 var L_register = new Register("L");
 var I_register = new Register("I");
 
+AK_register.display = RegisterDisplayEnum.SignedDecimal;
+I_register.display=RegisterDisplayEnum.Binary;
 
 AK_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
 S_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
@@ -25,7 +28,11 @@ I_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
 
 
 var JAL = new ArythmeticLogicUnit(AK_register);
-var CntrlUnit = new ControllUnit(I_register);
+var flagUnit = new FlagsUnit(AK_register);
+var CntrlUnit = new ControllUnit(I_register,flagUnit);
+
+
+
 
 var MachineComponents = [
     S_bus,
@@ -40,7 +47,7 @@ var MachineComponents = [
 
 ];
 
-MEM.values[0]=32;
+
   
 var Buses = [
     S_bus,
@@ -200,6 +207,28 @@ var Machine = {
 
 
 
+//Flags
+
+// AK==0
+flagUnit.addFlag(
+    new ConditionFlag("ZAK",
+        (_flagUnit)=>{
+            return _flagUnit.AK_register.getValue()==0;
+        }
+    )
+)
+
+// AK sign bit is 1
+flagUnit.addFlag(
+ new ConditionFlag("Z",
+    (_flagUnit)=>{
+        return _flagUnit.AK_register.getSignBit()!=0;
+    }
+ )
+)
+
+
+
 //Instructions
 
 
@@ -232,13 +261,32 @@ let SOB_inst = new Instruction("SOB");
 SOB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
 SOB_inst.cycles[1]=new InstrCycle(["wyad","wel","wea"]);
 
-instrictionList.push(STP_inst);
-instrictionList.push(DOD_inst);
-instrictionList.push(ODE_inst);
-instrictionList.push(POB_inst);
-instrictionList.push(LAD_inst);
-instrictionList.push(SOB_inst);
 
+let SOM_inst =  new Instruction("SOM");
+SOM_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+SOM_inst.cycles[1]=new InstrCycle(["wyl","wea"])
+SOM_inst.cycles[1].isFinal=true;
+SOM_inst.cycles[1].branchCondtions = [new BranchCondition("Z",2)];
+SOM_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
+
+let SOZ_inst =  new Instruction("SOZ");
+SOZ_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+SOZ_inst.cycles[1]=new InstrCycle(["wyl","wea"])
+SOZ_inst.cycles[1].isFinal=true;
+SOZ_inst.cycles[1].branchCondtions = [new BranchCondition("ZAK",2)];
+SOZ_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
+
+
+
+
+instrictionList.push(STP_inst); //000
+instrictionList.push(DOD_inst); //001
+instrictionList.push(ODE_inst); //010
+instrictionList.push(POB_inst); //011
+instrictionList.push(LAD_inst); //100
+instrictionList.push(SOB_inst); //101
+instrictionList.push(SOM_inst); //110
+instrictionList.push(SOZ_inst); //111
 
 
 
