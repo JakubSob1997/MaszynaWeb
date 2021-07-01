@@ -1,4 +1,4 @@
-
+/*
 //NWD
 //Labels
 let a=14;
@@ -29,7 +29,7 @@ MEM.values[14]=120; //a:
 MEM.values[15]=70; //b: 
 
 console.log(MEM.values);
-
+*/
 
 var codeTextArea = document.getElementById("code-textarea");
 var loadCodeButton = document.getElementById("load-code-button");
@@ -42,6 +42,11 @@ loadCodeButton.onclick = ()=>{
 
     const tmp = new AssemblyParser(codeTextArea.value,Machine.settings,Machine.instructionList);
     console.log(tmp);
+
+    if(tmp.parseSuccesful){
+        Machine.setComponentsDefault();
+        MEM.loadMemory(tmp.values);
+    }
 
 }
 

@@ -1,7 +1,68 @@
 
 
 var settings = new Settings();
-var instrictionList = [];
+//Instructions
+
+
+let STP_inst = new Instruction("STP");
+STP_inst.cycles[0] =new InstrCycle(["czyt","wys","wei","il"]);
+STP_inst.cycles[1]=new InstrCycle(["stop"]);
+
+let DOD_inst = new Instruction("DOD");
+DOD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+DOD_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
+DOD_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","dod","weak"]);
+
+let ODE_inst = new Instruction("ODE");
+ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+ODE_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
+ODE_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","ode","weak"]);
+
+let POB_inst = new Instruction("POB");
+POB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+POB_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
+POB_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","przep","weak"]);
+
+
+let LAD_inst = new Instruction("LAD");
+LAD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+LAD_inst.cycles[1]=new InstrCycle(["wyad","wea","wyak","wes"]);
+LAD_inst.cycles[2]=new InstrCycle(["pisz","wyl","wea"]);
+
+let SOB_inst = new Instruction("SOB");
+SOB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+SOB_inst.cycles[1]=new InstrCycle(["wyad","wel","wea"]);
+
+
+let SOM_inst =  new Instruction("SOM");
+SOM_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+SOM_inst.cycles[1]=new InstrCycle(["wyl","wea"])
+SOM_inst.cycles[1].isFinal=true;
+SOM_inst.cycles[1].branchCondtions = [new BranchCondition("Z",2)];
+SOM_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
+
+let SOZ_inst =  new Instruction("SOZ");
+SOZ_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+SOZ_inst.cycles[1]=new InstrCycle(["wyl","wea"])
+SOZ_inst.cycles[1].isFinal=true;
+SOZ_inst.cycles[1].branchCondtions = [new BranchCondition("ZAK",2)];
+SOZ_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
+
+
+
+let instrArray=[];
+instrArray.push(STP_inst); //000
+instrArray.push(DOD_inst); //001
+instrArray.push(ODE_inst); //010
+instrArray.push(POB_inst); //011
+instrArray.push(LAD_inst); //100
+instrArray.push(SOB_inst); //101
+instrArray.push(SOM_inst); //110
+instrArray.push(SOZ_inst); //111
+
+
+instructionList=new InstructionList(instrArray);
+
 
 
 var MEM = new Mamory(settings.adressWidth);
@@ -162,7 +223,11 @@ var Machine = {
         });
     },
 
-
+    setComponentsDefault: function(){
+        MachineComponents.forEach(element => {
+            element.setDefault();
+        });
+    },
     
     doCycle : function(){
 
@@ -173,7 +238,7 @@ var Machine = {
 
         if(this.manualControll==false){
             this.clearSignals();
-            CntrlUnit.doCycle(this,instrictionList,settings);
+            CntrlUnit.doCycle(this,this.instructionList,settings);
         }
 
 
@@ -197,7 +262,7 @@ var Machine = {
 
 
 Machine.settings = settings;
-Machine.instrictionList = instrictionList;
+Machine.instructionList = instructionList;
 
 
 //Flags
@@ -222,67 +287,6 @@ flagUnit.addFlag(
 
 
 
-//Instructions
-
-
-let STP_inst = new Instruction("STP");
-STP_inst.cycles[0] =new InstrCycle(["czyt","wys","wei","il"]);
-STP_inst.cycles[1]=new InstrCycle(["stop"]);
-
-let DOD_inst = new Instruction("DOD");
-DOD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-DOD_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
-DOD_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","dod","weak"]);
-
-let ODE_inst = new Instruction("ODE");
-ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-ODE_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
-ODE_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","ode","weak"]);
-
-let POB_inst = new Instruction("POB");
-POB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-POB_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
-POB_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","przep","weak"]);
-
-
-let LAD_inst = new Instruction("LAD");
-LAD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-LAD_inst.cycles[1]=new InstrCycle(["wyad","wea","wyak","wes"]);
-LAD_inst.cycles[2]=new InstrCycle(["pisz","wyl","wea"]);
-
-let SOB_inst = new Instruction("SOB");
-SOB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-SOB_inst.cycles[1]=new InstrCycle(["wyad","wel","wea"]);
-
-
-let SOM_inst =  new Instruction("SOM");
-SOM_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-SOM_inst.cycles[1]=new InstrCycle(["wyl","wea"])
-SOM_inst.cycles[1].isFinal=true;
-SOM_inst.cycles[1].branchCondtions = [new BranchCondition("Z",2)];
-SOM_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
-
-let SOZ_inst =  new Instruction("SOZ");
-SOZ_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
-SOZ_inst.cycles[1]=new InstrCycle(["wyl","wea"])
-SOZ_inst.cycles[1].isFinal=true;
-SOZ_inst.cycles[1].branchCondtions = [new BranchCondition("ZAK",2)];
-SOZ_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
-
-
-
-let instrArray=[];
-instrArray.push(STP_inst); //000
-instrArray.push(DOD_inst); //001
-instrArray.push(ODE_inst); //010
-instrArray.push(POB_inst); //011
-instrArray.push(LAD_inst); //100
-instrArray.push(SOB_inst); //101
-instrArray.push(SOM_inst); //110
-instrArray.push(SOZ_inst); //111
-
-
-instrictionList=new InstructionList(instrArray);
 
 
 {

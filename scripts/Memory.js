@@ -22,6 +22,13 @@ class Mamory extends MachineComponent{
 
     }
 
+    setDefault(){
+        for (let index = 0; index < this.values.length; index++) {
+            this.values[index]=0;
+            
+        }
+    }
+
     resetState(){
 
     }
@@ -71,7 +78,18 @@ class Mamory extends MachineComponent{
         }
     }
 
+    loadMemory(_newValues){
+        for (let index = 0; index < _newValues.length; index++) {
+            const element = _newValues[index];
+            
+            if(index>=this.values.length){
+                break;
+            }
 
+            this.values[index] = element;
+
+        }
+    }
 
 
 }

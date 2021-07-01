@@ -27,7 +27,7 @@ class Instruction{
         this.name = _name
         this.name.toUpperCase();
         this.cycles = []
-
+        this.argCount = 1;
     }
 }
 
@@ -45,6 +45,11 @@ class InstructionList{
 
     length(){
         return this.instructionArray.length;
+    }
+
+
+    hasInstruction(_indexOrName){
+        return this.getInstructionIndex(_indexOrName)>=0;
     }
 
     getInstruction(_indexOrName){
@@ -90,7 +95,7 @@ class InstructionList{
 
     getInstructionIndexByName(_name){
         if(_name in this.indexDictionary){
-            const index =  this.indexDictionary[_indexOrName];
+            const index =  this.indexDictionary[_name];
             return index;
         }
         return -1;
@@ -100,7 +105,7 @@ class InstructionList{
 
         let index=-1;
         if(typeof _indexOrName =="string"){
-            index =getInstructionIndexByName(_indexOrName);
+            index =this.getInstructionIndexByName(_indexOrName);
         }else
         if(typeof _indexOrName=="number"){
             index = _indexOrName;

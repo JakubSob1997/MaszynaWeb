@@ -14,6 +14,10 @@ class ControllUnit extends MachineComponent{
 
         this.internalCycleCounter=0;
     }
+
+    setDefault(){
+        this.internalCycleCounter=0;
+    }
     
     doCycle(_Machine,_InstructionList,_Settings){
        
