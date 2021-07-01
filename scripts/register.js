@@ -23,6 +23,12 @@ class  Register extends MachineComponent {
         this.update();
     }
 
+
+    setDefault(){
+        this.wasWriten=false;
+        this.setValue(0);
+    }
+
     resetState(){
         this.wasWriten=false;
     }

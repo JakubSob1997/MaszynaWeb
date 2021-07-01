@@ -20,12 +20,12 @@ class ControllUnit extends MachineComponent{
         const opCode =  _Settings.getOpcode(this.I_Register.getValue());
         
         
-        if(_InstructionList.length<=opCode){
+        if(_InstructionList.length()<=opCode){
             Alerter.alert("Instruction with op code: "+ opCode.toString(2)+" undefined" );
             return;
         }
         
-        let instruction = _InstructionList[opCode];
+        let instruction = _InstructionList.getInstruction(opCode);
 
         if(instruction.cycles.length<= this.internalCycleCounter ){
             this.internalCycleCounter=0;

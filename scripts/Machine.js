@@ -1,6 +1,8 @@
 
 
 var settings = new Settings();
+var instrictionList = [];
+
 
 var MEM = new Mamory(settings.adressWidth);
 
@@ -16,7 +18,7 @@ var L_register = new Register("L");
 var I_register = new Register("I");
 
 AK_register.display = RegisterDisplayEnum.SignedDecimal;
-I_register.display=RegisterDisplayEnum.Binary;
+
 
 AK_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
 S_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
@@ -76,14 +78,13 @@ var selectedLongSignals = [];
 var slectedImpulseSignals =[];
 
 
-var instrictionList = [];
+
 
 
 
 var Machine = {
 
     manualControll: false,
-
 
 
 
@@ -192,19 +193,11 @@ var Machine = {
 
 
     }
-
-    
-    
-
-
-
-
-
-
-
 };
 
 
+Machine.settings = settings;
+Machine.instrictionList = instrictionList;
 
 
 //Flags
@@ -278,16 +271,18 @@ SOZ_inst.cycles[2]=new InstrCycle(["wyad","wea","wel"]);
 
 
 
+let instrArray=[];
+instrArray.push(STP_inst); //000
+instrArray.push(DOD_inst); //001
+instrArray.push(ODE_inst); //010
+instrArray.push(POB_inst); //011
+instrArray.push(LAD_inst); //100
+instrArray.push(SOB_inst); //101
+instrArray.push(SOM_inst); //110
+instrArray.push(SOZ_inst); //111
 
-instrictionList.push(STP_inst); //000
-instrictionList.push(DOD_inst); //001
-instrictionList.push(ODE_inst); //010
-instrictionList.push(POB_inst); //011
-instrictionList.push(LAD_inst); //100
-instrictionList.push(SOB_inst); //101
-instrictionList.push(SOM_inst); //110
-instrictionList.push(SOZ_inst); //111
 
+instrictionList=new InstructionList(instrArray);
 
 
 {

@@ -10,33 +10,39 @@ let bMinusA = 6;
 
 MEM.values[0]=(0b011<<5)+a; //aMinusB: POB a
 MEM.values[1]=(0b010<<5)+b; // ODE b
-MEM.values[2]=(0b111<<5)+stop; // SOZ koniec
+MEM.values[2]=(0b111<<5)+stop; // SOZ stop
 MEM.values[3]=(0b110<<5)+bMinusA; // SOM bMinusA
 MEM.values[4]=(0b100<<5)+a;//LAD a
 MEM.values[5]=(0b101<<5)+aMinusB+1; // SOB aMinusB+1
 
 MEM.values[6]=(0b011<<5)+b; //bMinusA: POB b
 MEM.values[7]=(0b010<<5)+a; // ODE a
-MEM.values[8]=(0b111<<5)+stop; // SOZ koniec
-MEM.values[9]=(0b110<<5)+aMinusB; // SOM bMinusA
+MEM.values[8]=(0b111<<5)+stop; // SOZ stop
+MEM.values[9]=(0b110<<5)+aMinusB; // SOM aMinusb
 MEM.values[10]=(0b100<<5)+b;//LAD b
-MEM.values[11]=(0b101<<5)+bMinusA+1; // SOB aMinusB+1
+MEM.values[11]=(0b101<<5)+bMinusA+1; // SOB bMinusA+1
 
-MEM.values[12]=(0b011<<5)+a;//POB a
+MEM.values[12]=(0b001<<5)+a;//stop: DOD a
 MEM.values[13]=0; //STP 0 
 
-MEM.values[14]=23; //a:RST 15
-MEM.values[15]=69; //b: RST 9
+MEM.values[14]=120; //a:
+MEM.values[15]=70; //b: 
 
-
+console.log(MEM.values);
 
 
 var codeTextArea = document.getElementById("code-textarea");
 var loadCodeButton = document.getElementById("load-code-button");
-//codeTextArea.value="";
+
+
+codeTextArea.value=localStorage.getItem("codeTextArea");
 
 loadCodeButton.onclick = ()=>{
-    console.log(codeTextArea.value);
+    localStorage.setItem("codeTextArea",codeTextArea.value);
+
+    const tmp = new AssemblyParser(codeTextArea.value,Machine.settings,Machine.instructionList);
+    console.log(tmp);
+
 }
 
 

@@ -12,6 +12,10 @@ const Alerter = {
         });
     } ,
 
+    instructionAlert: function(_alertMessage){
+        console.log(_alertMessage);
+    },
+
 
     
     addAlertCallback: function(_funk){
