@@ -24,6 +24,7 @@
      <script src="./scripts/AssemblyParser.js"></script>
      <script src="./scripts/ControllUnit.js"></script>
      <script src="./scripts/Machine.js"></script>
+     <script src="./scripts/MachineDefinitions.js"></script>
 
 </head>
 <body>
@@ -74,7 +75,8 @@
    <ul>
     <li><button id="load-code-button">Ładuj do pamięci</button></li>
     <li><button id="next-cycle-button">Takt</button></li>
-    </ul>
+    <li><button id="next-instruction-button">Rozkaz</button></li>
+</ul>
 
 
 
@@ -145,38 +147,27 @@
                 <li><button class="signal" id="wea">wea</button></li>
             </ul>
         </div>
-
-
-        <p> Rejestr L</p>
-        <div id="l-register">0</div>
-        <div class="signals">
-            <ul>
-                <li><button class="signal" id="wyl">wyl</button></li>
-                <li><button class="signal" id="wel">wel</button></li>
-                <li><button class="signal" id="il">il</button></li>
-            </ul>
-        </div>
-
-        <p> Rejestr I</p>
-        <div id="i-register">0</div>
-        <div class="signals">
-            <ul>
-                <li><button class="signal" id="wei">wei</button></li>
-                <li><button class="signal" id="wyad">wyad</button></li>
-                <li><button class="signal" id="stop">stop</button></li>
-            </ul>
-        </div>
-
-
-
-
-
     </div>
-    
 
+    <p> Rejestr L</p>
+    <div id="l-register">0</div>
+    <div class="signals">
+       <ul>
+             <li><button class="signal" id="wyl">wyl</button></li>
+             <li><button class="signal" id="wel">wel</button></li>
+             <li><button class="signal" id="il">il</button></li>
+      </ul>
+    </div>
 
-
-
+    <p> Rejestr I</p>
+    <div id="i-register">0</div>
+    <div class="signals">
+        <ul>
+            <li><button class="signal" id="wei">wei</button></li>
+            <li><button class="signal" id="wyad">wyad</button></li>
+            <li><button class="signal" id="stop">stop</button></li>
+        </ul>
+    </div>
 
    </div>
 

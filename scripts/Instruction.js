@@ -94,6 +94,8 @@ class InstructionList{
 
 
     getInstructionIndexByName(_name){
+        _name=_name.toUpperCase();
+
         if(_name in this.indexDictionary){
             const index =  this.indexDictionary[_name];
             return index;

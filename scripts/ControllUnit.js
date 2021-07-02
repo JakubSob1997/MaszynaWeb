@@ -11,7 +11,7 @@ class ControllUnit extends MachineComponent{
         this.I_Register =_I_Register;
         this.FlagUnit = _FlagUnit;
 
-
+        this.nextInstructionFlag = false;
         this.internalCycleCounter=0;
     }
 
@@ -19,7 +19,7 @@ class ControllUnit extends MachineComponent{
         this.internalCycleCounter=0;
     }
     
-    doCycle(_Machine,_InstructionList,_Settings){
+    selectSinalsForCycle(_Machine,_InstructionList,_Settings){
        
         const opCode =  _Settings.getOpcode(this.I_Register.getValue());
         
@@ -43,9 +43,9 @@ class ControllUnit extends MachineComponent{
             const branchCondition = instrcycle.branchCondtions[index];
             if(this.FlagUnit.checkFlag(branchCondition.flagName)){
                 
-                if(instruction.cycles.length<= this.internalCycleCounter ){
-                    Alerter.alert("Branched out of instruction scope");
-                }
+                //if(instruction.cycles.length<= this.internalCycleCounter ){
+                //    Alerter.alert("Branched out of instruction scope");
+                //}
 
                 this.internalCycleCounter=branchCondition.cycleIfTrue;
                 instrcycle = instruction.cycles[this.internalCycleCounter];
@@ -63,9 +63,10 @@ class ControllUnit extends MachineComponent{
         if(instrcycle.isFinal==false){
             this.internalCycleCounter++;
         }else{
-            this.internalCycleCounter=0;
+            this.internalCycleCounter=instruction.cycles.length+1;
         }
 
+        this.nextInstructionFlag=this.internalCycleCounter>=instruction.cycles.length;
 
         
     }

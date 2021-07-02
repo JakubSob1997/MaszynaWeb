@@ -32,16 +32,19 @@ class Mamory extends MachineComponent{
     resetState(){
 
     }
+    onBusWidthChanged(_settings){
+        this.resize(_settings.adressWidth);
+    }
 
 
     resize(_adressWidth){
 
-        arrayLength = 1<<(_adressWidth);
-        tmp = new Array(arrayLength);
+        const arrayLength = 1<<(_adressWidth);
+        let tmp = new Array(arrayLength);
 
 
         for (let index = 0; index < tmp.length; index++) {
-            values[index]=0;
+            tmp[index]=0;
             
         }
 

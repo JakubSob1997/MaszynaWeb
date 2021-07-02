@@ -40,12 +40,14 @@ codeTextArea.value=localStorage.getItem("codeTextArea");
 loadCodeButton.onclick = ()=>{
     localStorage.setItem("codeTextArea",codeTextArea.value);
 
-    const tmp = new AssemblyParser(codeTextArea.value,Machine.settings,Machine.instructionList);
+    const tmp = new AssemblyParser(codeTextArea.value,M.settings,M.instructionList);
     console.log(tmp);
+    
 
     if(tmp.parseSuccesful){
-        Machine.setComponentsDefault();
-        MEM.loadMemory(tmp.values);
+        M.setComponentsDefault();
+        M.MEM.loadMemory(tmp.values);
+        console.log(M);
     }
 
 }
@@ -67,12 +69,16 @@ function resetVisuals(){
 let nextCycleButton = document.getElementById("next-cycle-button");
 
 nextCycleButton.onclick=function(){
-
-    
     resetVisuals();
-    Machine.doCycle();
-    
+    M.doCycle();
 }
+
+let nextInstructionButton = document.getElementById("next-instruction-button");
+nextInstructionButton.onclick=function(){
+    resetVisuals();
+    M.doInstruction();
+}
+
     
 
 
@@ -98,8 +104,8 @@ function busUpdate(_bus,_busUI){
     }
 }
 
-S_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,S_bus_UI)});
-A_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,A_bus_UI)});
+M.S_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,S_bus_UI)});
+M.A_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,A_bus_UI)});
 
 
 function displayRegister(_register,_registerUI){
@@ -112,19 +118,19 @@ function displayRegister(_register,_registerUI){
 }
 
 
-AK_register.addOnUpdateCallback(
+M.AK_register.addOnUpdateCallback(
     _register=>{displayRegister(_register,AK_Reg_UI);}
 )
-S_register.addOnUpdateCallback(
+M.S_register.addOnUpdateCallback(
     _register=>{displayRegister(_register,S_Reg_UI);}
 )
-A_register.addOnUpdateCallback(
+M.A_register.addOnUpdateCallback(
     _register=>{displayRegister(_register,A_Reg_UI);}
 )
-L_register.addOnUpdateCallback(
+M.L_register.addOnUpdateCallback(
     _register=>{displayRegister(_register,L_Reg_UI);}
 )
-I_register.addOnUpdateCallback(
+M.I_register.addOnUpdateCallback(
     _register=>{displayRegister(_register,I_Reg_UI);}
 )
 
@@ -139,10 +145,10 @@ visuals.signals = signalUIs;
 for(let signalUI of signalUIs){
     signalUI.onclick =()=>{
         let id = signalUI.id;
-        if(Machine.isSignalSelected(id)){
-            Machine.deSelectSignal(id);
+        if(M.isSignalSelected(id)){
+            M.deSelectSignal(id);
         }else{
-            Machine.selectSignal(id);
+            M.selectSignal(id);
         }
     };
 }
@@ -154,7 +160,7 @@ function signalVisualCallback(_signal){
         return;
     }
 
-    if(Machine.isSignalSelected(_signal.name)){
+    if(M.isSignalSelected(_signal.name)){
             
         signalUI.classList.add("signal-selected");
     }else{
@@ -164,8 +170,8 @@ function signalVisualCallback(_signal){
 
 }
 
-for(const signal in singnalDictionary){
-    singnalDictionary[signal].addOnUpdateCallback(signalVisualCallback);
+for(const signal in M.singnalDictionary){
+    M.singnalDictionary[signal].addOnUpdateCallback(signalVisualCallback);
 
 }
 

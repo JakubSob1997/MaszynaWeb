@@ -3,13 +3,16 @@
 const Alerter = {
 
 
-    alertCallbacks: [],
+    alertCallbacks: {},
 
 
     alert: function(_alertMessage){
-        this.alertCallbacks.forEach(callBack => {
-            callBack(_alertMessage);
-        });
+        for (const funk in this.alertCallbacks) {
+            if (Object.hasOwnProperty.call(this.alertCallbacks, funk)) {
+                const element = this.alertCallbacks[funk];
+                element(_alertMessage);
+            }
+        }
     } ,
 
     instructionAlert: function(_alertMessage){
@@ -19,7 +22,13 @@ const Alerter = {
 
     
     addAlertCallback: function(_funk){
-        this.alertCallbacks.push(_funk);
+        this.alertCallbacks[_funk]=_funk;
+    },
+
+    removeAlertCallback: function(_funk){
+        if(this.addAlertCallback.hasOwnProperty(_funk)){
+            delete this.alertCallbacks[_funk];
+        }
     }
 
 
@@ -27,3 +36,4 @@ const Alerter = {
 }
 
 Alerter.addAlertCallback(message=>console.log(message));
+//Alerter.addAlertCallback(message=>{throw message;})

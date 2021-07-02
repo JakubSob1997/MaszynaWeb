@@ -13,15 +13,11 @@ class Settings{
     }
 
     getWordMask(){
-        return this.codeMask&this.adressMask;
+        return this.codeMask|this.adressMask;
     }
 
 
     setBusWidth(_codeWidth,_adressWidth){
-
-
-
-
 
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
