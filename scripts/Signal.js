@@ -4,11 +4,19 @@
 class Signal{
 
 
-    constructor(_name,_isImpulse,_onSignal){
+    constructor(_name,_isImpulse,_onSignal,_extention){
         this.name = _name;
         this.isImpulse =_isImpulse;
         this.onSignal=_onSignal;
         
+        if(_extention == undefined){
+            this.extention =0
+        }else{
+            this.extention=_extention;
+        }
+        
+
+
         this.onUpdateCallbacks = [];
 
     }

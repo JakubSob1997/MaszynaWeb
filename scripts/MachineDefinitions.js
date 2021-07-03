@@ -7,8 +7,6 @@ M.settings.setBusWidth(4,6);
 console.log(M);
 
 //Instructions
-
-
 function getDefaultInstructionList(){
     let STP_inst = new Instruction("STP");
     STP_inst.cycles[0] =new InstrCycle(["czyt","wys","wei","il"]);
@@ -113,23 +111,33 @@ function buildMachine(_Machine){
     let L_register = new Register("L");
     let I_register = new Register("I");
 
-   
-
+    let WS_register=new Register("WS");
+    let X_Register =new Register("X");
+    let Y_Register=new Register("Y");
 
     AK_register.display = RegisterDisplayEnum.SignedDecimal;
-
-
+    
     AK_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
     S_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
     A_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
     L_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
     I_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
 
+    WS_register.busMatchRule=MatchRegisterWidthEnum.ToAdress;
+    X_Register.busMatchRule=MatchRegisterWidthEnum.ToWord;
+    Y_Register.busMatchRule=MatchRegisterWidthEnum.ToWord;
+
+
     _Machine.AK_register=AK_register;
     _Machine.S_register=S_register;
     _Machine.A_register=A_register;
     _Machine.L_register=L_register;
     _Machine.I_register=I_register;
+    
+    _Machine.WS_register=WS_register;
+    _Machine.X_Register=X_Register;
+    _Machine.Y_Register=Y_Register;
+
 
     let JAL = new ArythmeticLogicUnit(AK_register);
     let flagUnit = new FlagsUnit(AK_register);
@@ -152,6 +160,7 @@ function buildMachine(_Machine){
         L_register,
         I_register,
         MEM,
+        WS_register,
     ];
     _Machine.machineComponents= machineComponents;
 
@@ -180,9 +189,15 @@ function buildMachine(_Machine){
 function addAllSignals(_Machine){
     addMemorySignals(_Machine);
     addJALSignals(_Machine);
-    addJALExcrementSignals(_Machine);
     addCounterSignals(_Machine);
     addInstructionSignals(_Machine);
+
+    addAK_IncrementSignals(_Machine);
+    addJAL_LogicSignals(_Machine);
+    addJAL_ExtendedMathSignals(_Machine);
+    addStackSingals(_Machine);
+    addX_RegisterSignals(_Machine);
+    addY_RegisterSignals(_Machine);
 }
 
 
@@ -217,7 +232,7 @@ function addMemorySignals(_Machine){
     const wys = new Signal(
         "wys",
         false,
-        function(_M){_M.S_bus.setSourceRegister(_M.S_register)}
+        (_M)=>{_M.S_bus.setSourceRegister(_M.S_register)}
     )
 
 
@@ -276,23 +291,6 @@ _Machine.addSignalToDictioanry(weak);
 _Machine.addSignalToDictioanry(wyak);
 }
 
-function addJALExcrementSignals(_Machine){
-    const iak = new Signal(
-        "iak",
-        true,
-        function(_M){_M.AK_register.write(_M.AK_register.getValue()+1)}
-    )
-    
-    
-    const dak = new Signal(
-        "dak",
-        true,
-        function(_M){_M.AK_register.write(_M.AK_register.getValue()-1)}
-    )
-    _Machine.addSignalToDictioanry(iak);
-    _Machine.addSignalToDictioanry(dak);
-}
-
 function addCounterSignals(_Machine){
     //Counter Signals
     const wel = new Signal(
@@ -338,3 +336,173 @@ function addInstructionSignals(_Machine){
     _Machine.addSignalToDictioanry(wyad);
     _Machine.addSignalToDictioanry(stop);
 }
+
+
+
+function addAK_IncrementSignals(_Machine){
+    const iak = new Signal(
+        "iak",
+        true,
+        (_M)=>{_M.AK_register.write(_M.AK_register.getValue()+1);},
+        ExtnensionFlags.AK_Increment
+    )
+    
+    
+    const dak = new Signal(
+        "dak",
+        true,
+        (_M)=>{_M.AK_register.write(_M.AK_register.getValue()-1);},
+        ExtnensionFlags.AK_Increment
+    )
+    _Machine.addSignalToDictioanry(iak);
+    _Machine.addSignalToDictioanry(dak);
+}
+
+function addJAL_LogicSignals(_Machine){
+    const neg = new Signal(
+        "neg",
+        false,
+        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.NEG);},
+        ExtnensionFlags.JAL_Logic
+    )
+    
+    
+    const lub = new Signal(
+        "lub",
+        false,
+        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.LUB);},
+        ExtnensionFlags.JAL_Logic
+    )
+
+    const i = new Signal(
+        "i",
+        false,
+        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.I);},
+        ExtnensionFlags.JAL_Logic
+    )
+
+    _Machine.addSignalToDictioanry(neg);
+    _Machine.addSignalToDictioanry(lub);
+    _Machine.addSignalToDictioanry(i);
+
+
+}
+
+function addJAL_ExtendedMathSignals(_Machine){
+    const mno = new Signal(
+        "mno",
+        false,
+        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.MNO);},
+        ExtnensionFlags.JAL_ExtendedMath
+    )
+    
+    
+    const dziel = new Signal(
+        "dziel",
+        false,
+        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.DZIEL);},
+        ExtnensionFlags.JAL_ExtendedMath
+    )
+
+    const shr = new Signal(
+        "shr",
+        false,
+        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.SHR);},
+        ExtnensionFlags.JAL_ExtendedMath
+    )
+
+    _Machine.addSignalToDictioanry(mno);
+    _Machine.addSignalToDictioanry(dziel);
+    _Machine.addSignalToDictioanry(shr);
+
+
+}
+
+function addStackSingals(_Machine){
+    const wyls = new Signal(
+        "wyls",
+        false,
+        (_M)=>{_M.S_bus.setSourceRegister(_M.L_register);},
+        ExtnensionFlags.Stack
+    )
+
+    const iws = new Signal(
+        "iws",
+        true,
+        (_M)=>{_M.WS_register.write(_M.WS_register.getValue()+1);},
+        ExtnensionFlags.Stack
+    )
+    
+    
+    const dws = new Signal(
+        "dws",
+        true,
+        (_M)=>{_M.WS_register.write(_M.WS_register.getValue()-1);},
+        ExtnensionFlags.Stack
+    )
+
+    const wyws = new Signal(
+        "wyws",
+        false,
+        (_M)=>{_M.A_bus.setSourceRegister(_M.WS_register);},
+        ExtnensionFlags.Stack
+    )
+
+    const wews = new Signal(
+        "wews",
+        true,
+        (_M)=>{_M.WS_register.writeFromBus(_M.A_bus) ;},
+        ExtnensionFlags.Stack
+    )
+
+
+    _Machine.addSignalToDictioanry(wyls);
+    _Machine.addSignalToDictioanry(iws);
+    _Machine.addSignalToDictioanry(dws);
+    _Machine.addSignalToDictioanry(wyws);
+    _Machine.addSignalToDictioanry(wews);
+
+
+
+
+
+}
+
+function addX_RegisterSignals(_Machine){
+    const wyx = new Signal(
+        "wyx",
+        false,
+        (_M)=>{_M.S_bus.setSourceRegister(_M.X_Register);},
+        ExtnensionFlags.X_Register
+    )
+
+    const wex = new Signal(
+        "wex",
+        true,
+        (_M)=>{_M.X_Register.writeFromBus(_M.S_bus) ;},
+        ExtnensionFlags.X_Register
+    )
+    _Machine.addSignalToDictioanry(wyx);
+    _Machine.addSignalToDictioanry(wex);
+
+}
+
+function addY_RegisterSignals(_Machine){
+    const wyy = new Signal(
+        "wyy",
+        false,
+        (_M)=>{_M.S_bus.setSourceRegister(_M.Y_Register);},
+        ExtnensionFlags.Y_Register
+    )
+
+    const wey = new Signal(
+        "wey",
+        true,
+        (_M)=>{_M.Y_Register.writeFromBus(_M.S_bus) ;},
+        ExtnensionFlags.Y_Register
+    )
+    _Machine.addSignalToDictioanry(wyy);
+    _Machine.addSignalToDictioanry(wey);
+
+}
+

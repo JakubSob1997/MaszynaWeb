@@ -48,7 +48,23 @@ class ArythmeticLogicUnit extends MachineComponent {
             case JALOperationEnum.ODE:
                 output= _akval-_inputval;
                 break;
-        
+            case JALOperationEnum.NEG:
+                output = ~_inputval;
+                break;
+            case JALOperationEnum.LUB:
+                output = _akval|_inputval;
+                break;
+            case JALOperationEnum.I:
+                output = _akval&_inputval;
+                break;
+            case JALOperationEnum.MNO:
+                output = _akval*_inputval;
+                break;
+            case JALOperationEnum.DZIEL:
+                output = Math.floor(_akval/_inputval);
+                break;
+            case JALOperationEnum.SHR:
+                output = _inputval>>1;
             default:
                 Alerter.alert("Arethmitic Logic Operation Is Undefined")
                 return;
