@@ -1,398 +1,390 @@
-
-
-
-
-
 .container {
-    display: grid;
-    grid-template-columns: repeat(23, 1fr);
-    grid-template-rows: repeat(23, 1fr);
-    grid-auto-columns: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      ". RZ RZ RZ RZ . . . . . . . . . . . . . . . . . ."
-      ". RZ RZ RZ RZ . RP-R RP-R RP-R RP-R . . . . . . . . . . . . ."
-      ". . . . . . . . . . . rint . . . . . . . . . . ."
-      ". RM RM RM RM . AP AP AP AP . eint . . . . . . . . . . ."
-      ". RM RM RM RM . AP AP AP AP . . . . . . . . . . . . ."
-      "S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS"
-      "L L L L L wyad-up AS_BUS as WS WS WS WS WS WS . A A A A A A A ."
-      "L L L L L wyad-up AS_BUS . WS WS WS WS WS WS . A A A A A A A ."
-      "wyls-down . . . . wyad-up AS_BUS . . . . . . . . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down wyls . . . wyad-up AS_BUS . . . . wyak-up wyak-right wyak-right . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down . . . . wyad-up AS_BUS . F F F wyak-up . wyak-down . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down . . . . wyad-up AS_BUS AK AK AK AK AK AK wyak-down wyak MEM MEM MEM MEM MEM MEM MEM czyt"
-      "wyls-down . . . . wyad-up AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . MEM MEM MEM MEM MEM MEM MEM pisz"
-      "wyls-down . stop . . wyad-up AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down . . . . wyad-up AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down . . . . wyad-up AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down . . . wyad wyad-up AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down . . . . wyad-up AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . MEM MEM MEM MEM MEM MEM MEM ."
-      "wyls-down I I I I I AS_BUS JAL JAL JAL JAL JAL JAL wyak-down . S S S S S S S ."
-      "wyls-down I I I I I AS_BUS . . weja weja-up . . wyak-down . S S S S S S S ."
-      "S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS"
-      ". X X X X . Y Y Y Y . . RB RB RB RB . G G G G . ."
-      ". X X X X . Y Y Y Y . . RB RB RB RB . G G G G . .";
-    width: 95%;
-    height: 100%;
-  }
-  
-  .RZ {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "rz-1 rz-2 rz-3 rz-4"
-      "RZ-R RZ-R RZ-R RZ-R";
-    grid-area: RZ;
-  }
-  
-  .RZ-R { grid-area: RZ-R; }
-  
-  .rz-1 { grid-area: rz-1; }
-  
-  .rz-2 { grid-area: rz-2; }
-  
-  .rz-3 { grid-area: rz-3; }
-  
-  .rz-4 { grid-area: rz-4; }
-  
-  .RM {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "RM-R RM-R RM-R RM-R"
-      "wyrm rm-down rm-up werm";
-    grid-area: RM;
-  }
-  
-  .RM-R { grid-area: RM-R; }
-  
-  .rm-down { grid-area: rm-down; }
-  
-  .rm-up { grid-area: rm-up; }
-  
-  .werm { grid-area: werm; }
-  
-  .wyrm { grid-area: wyrm; }
-  
-  .L {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "wyl l-up l-down wel ."
-      "L-R L-R L-R L-R il";
-    grid-area: L;
-  }
-  
-  .L-R { grid-area: L-R; }
-  
-  .il { grid-area: il; }
-  
-  .l-down { grid-area: l-down; }
-  
-  .wel { grid-area: wel; }
-  
-  .l-up { grid-area: l-up; }
-  
-  .wyl { grid-area: wyl; }
-  
-  .AP {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "AP-R AP-R AP-R AP-R"
-      ". wyap ap-down .";
-    grid-area: AP;
-  }
-  
-  .AP-R { grid-area: AP-R; }
-  
-  .ap-down { grid-area: ap-down; }
-  
-  .wyap { grid-area: wyap; }
-  
-  .AS_BUS { grid-area: AS_BUS; }
-  
-  .as { grid-area: as; }
-  
-  .WS {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      ". wyws wyws-up wews-down wews ."
-      "iws WS_R WS_R WS_R WS_R dws";
-    grid-area: WS;
-  }
-  
-  .WS_R { grid-area: WS_R; }
-  
-  .iws { grid-area: iws; }
-  
-  .dws { grid-area: dws; }
-  
-  .wyws { grid-area: wyws; }
-  
-  .wews { grid-area: wews; }
-  
-  .wews-down { grid-area: wews-down; }
-  
-  .wyws-up { grid-area: wyws-up; }
-  
-  .AK {
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "iak AK-R dak";
-    grid-area: AK;
-  }
-  
-  .AK-R { grid-area: AK-R; }
-  
-  .dak { grid-area: dak; }
-  
-  .iak { grid-area: iak; }
-  
-  .JAL {
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: repeat(7, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "weak JAL-budy neg"
-      "dod JAL-budy lub"
-      "ode JAL-budy i"
-      "przep JAL-budy ."
-      "mno JAL-budy ."
-      "dziel JAL-budy ."
-      "shr JAL-budy .";
-    grid-area: JAL;
-  }
-  
-  .weak { grid-area: weak; }
-  
-  .dod { grid-area: dod; }
-  
-  .ode { grid-area: ode; }
-  
-  .przep { grid-area: przep; }
-  
-  .mno { grid-area: mno; }
-  
-  .dziel { grid-area: dziel; }
-  
-  .shr { grid-area: shr; }
-  
-  .neg { grid-area: neg; }
-  
-  .lub { grid-area: lub; }
-  
-  .i { grid-area: i; }
-  
-  .JAL-budy { grid-area: JAL-budy; }
-  
-  .F { grid-area: F; }
-  
-  .wyak-up { grid-area: wyak-up; }
-  
-  .wyak-right { grid-area: wyak-right; }
-  
-  .weja { grid-area: weja; }
-  
-  .wyak-down { grid-area: wyak-down; }
-  
-  .I {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "I-R I-R I-R I-R I-R"
-      ". wei i-up . .";
-    grid-area: I;
-  }
-  
-  .I-R { grid-area: I-R; }
-  
-  .i-up { grid-area: i-up; }
-  
-  .wei { grid-area: wei; }
-  
-  .X {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "wyx x-up x-down wex"
-      "X-R X-R X-R X-R";
-    grid-area: X;
-  }
-  
-  .X-R { grid-area: X-R; }
-  
-  .wex { grid-area: wex; }
-  
-  .wyx { grid-area: wyx; }
-  
-  .x-up { grid-area: x-up; }
-  
-  .x-down { grid-area: x-down; }
-  
-  .Y {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "wyy y-up y-down wey"
-      "Y-R Y-R Y-R Y-R";
-    grid-area: Y;
-  }
-  
-  .Y-R { grid-area: Y-R; }
-  
-  .y-down { grid-area: y-down; }
-  
-  .wey { grid-area: wey; }
-  
-  .y-up { grid-area: y-up; }
-  
-  .wyy { grid-area: wyy; }
-  
-  .wyak { grid-area: wyak; }
-  
-  .A {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      ". . . a-down wea . ."
-      "A-R A-R A-R A-R A-R A-R A-R";
-    grid-area: A;
-  }
-  
-  .A-R { grid-area: A-R; }
-  
-  .wea { grid-area: wea; }
-  
-  .a-down { grid-area: a-down; }
-  
-  .S {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "S-R S-R S-R S-R S-R S-R"
-      ". wys s-down s-up wes .";
-    grid-area: S;
-  }
-  
-  .S-R { grid-area: S-R; }
-  
-  .s-up { grid-area: s-up; }
-  
-  .s-down { grid-area: s-down; }
-  
-  .wes { grid-area: wes; }
-  
-  .wys { grid-area: wys; }
-  
-  .MEM { grid-area: MEM; }
-  
-  .S_BUS { grid-area: S_BUS; }
-  
-  .G {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "wyg g-up g-down start"
-      ". G-R G-R .";
-    grid-area: G;
-  }
-  
-  .start { grid-area: start; }
-  
-  .wyg { grid-area: wyg; }
-  
-  .g-up { grid-area: g-up; }
-  
-  .g-down { grid-area: g-down; }
-  
-  .G-R { grid-area: G-R; }
-  
-  .RB {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "wyrb rb-up rb-down werb"
-      "RB-R RB-R RB-R RB-R";
-    grid-area: RB;
-  }
-  
-  .RB-R { grid-area: RB-R; }
-  
-  .rb-down { grid-area: rb-down; }
-  
-  .rb-up { grid-area: rb-up; }
-  
-  .werb { grid-area: werb; }
-  
-  .wyrb { grid-area: wyrb; }
-  
-  .wyad-up { grid-area: wyad-up; }
-  
-  .wyad { grid-area: wyad; }
-  
-  .wyls-down { grid-area: wyls-down; }
-  
-  .wyls { grid-area: wyls; }
-  
-  .stop { grid-area: stop; }
-  
-  .S-BUS { grid-area: S-BUS; }
-  
-  .czyt { grid-area: czyt; }
-  
-  .pisz { grid-area: pisz; }
-  
-  .weja-up { grid-area: weja-up; }
-  
-  .RP-R { grid-area: RP-R; }
-  
-  .rint { grid-area: rint; }
-  
-  .eint { grid-area: eint; }
-  
+  display: grid;
+  grid-template-columns: repeat(28, 1fr);
+  grid-template-rows: repeat(21, 1fr);
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". RZ RZ RZ RZ . . . . . . . . . . . . . . . . . . . . eint . ."
+    ". RZ RZ RZ RZ . . RP-R RP-R RP-R RP-R . . RM RM RM RM . . AP AP AP AP . . rint . ."
+    ". . . . . . . . . . . . . RM RM RM RM . . AP AP AP AP . . . . ."
+    "S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS"
+    "L L L L L . wyad-up . AS_BUS . . WS WS WS WS WS WS . . . A A A A A A A ."
+    "L L L L L . wyad-up . AS_BUS as . WS WS WS WS WS WS . . . A A A A A A A ."
+    "wyls-down . . . . . wyad-up . AS_BUS . . . . . . . . . . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down wyls . . . . wyad-up . AS_BUS . . . . . wyak-up wyak-right wyak-right wyak-right . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . . . . . wyad-up . AS_BUS . . F F F wyak-up . . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . . . . . wyad-up . AS_BUS . AK AK AK AK AK AK . wyak-down wyak . MEM MEM MEM MEM MEM MEM MEM czyt"
+    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM pisz"
+    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . stop . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . . . . wyad wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
+    "wyls-down . I I I I I . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . S S S S S S S ."
+    "wyls-down . I I I I I . AS_BUS . . . weja-up weja . . . wyak-down . . S S S S S S S ."
+    "S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS S_BUS"
+    ". . X X X X . . Y Y Y Y . . . . RB RB RB RB . . G G G G . ."
+    ". . X X X X . . Y Y Y Y . . . . RB RB RB RB . . G G G G . .";
+  width: 91.6%;
+  height: 57.4%;
+}
+
+.RZ {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "rz-1 rz-2 rz-3 rz-4"
+    "RZ-R RZ-R RZ-R RZ-R";
+  grid-area: RZ;
+}
+
+.RZ-R { grid-area: RZ-R; }
+
+.rz-1 { grid-area: rz-1; }
+
+.rz-2 { grid-area: rz-2; }
+
+.rz-3 { grid-area: rz-3; }
+
+.rz-4 { grid-area: rz-4; }
+
+.RM {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "RM-R RM-R RM-R RM-R"
+    "wyrm rm-down rm-up werm";
+  grid-area: RM;
+}
+
+.RM-R { grid-area: RM-R; }
+
+.rm-down { grid-area: rm-down; }
+
+.rm-up { grid-area: rm-up; }
+
+.werm { grid-area: werm; }
+
+.wyrm { grid-area: wyrm; }
+
+.L {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wyl l-up l-down wel ."
+    "L-R L-R L-R L-R il";
+  grid-area: L;
+}
+
+.L-R { grid-area: L-R; }
+
+.il { grid-area: il; }
+
+.l-down { grid-area: l-down; }
+
+.wel { grid-area: wel; }
+
+.l-up { grid-area: l-up; }
+
+.wyl { grid-area: wyl; }
+
+.AP {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "AP-R AP-R AP-R AP-R"
+    ". wyap ap-down .";
+  grid-area: AP;
+}
+
+.AP-R { grid-area: AP-R; }
+
+.ap-down { grid-area: ap-down; }
+
+.wyap { grid-area: wyap; }
+
+.AS_BUS { grid-area: AS_BUS; }
+
+.as { grid-area: as; }
+
+.WS {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". wyws wyws-up wews-down wews ."
+    "iws WS_R WS_R WS_R WS_R dws";
+  grid-area: WS;
+}
+
+.WS_R { grid-area: WS_R; }
+
+.iws { grid-area: iws; }
+
+.dws { grid-area: dws; }
+
+.wyws { grid-area: wyws; }
+
+.wews { grid-area: wews; }
+
+.wews-down { grid-area: wews-down; }
+
+.wyws-up { grid-area: wyws-up; }
+
+.AK {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "iak AK-R dak";
+  grid-area: AK;
+}
+
+.AK-R { grid-area: AK-R; }
+
+.dak { grid-area: dak; }
+
+.iak { grid-area: iak; }
+
+.JAL {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "weak JAL-body neg"
+    "dod JAL-body lub"
+    "ode JAL-body i"
+    "przep JAL-body ."
+    "mno JAL-body ."
+    "dziel JAL-body ."
+    "shr JAL-body .";
+  grid-area: JAL;
+}
+
+.weak { grid-area: weak; }
+
+.dod { grid-area: dod; }
+
+.ode { grid-area: ode; }
+
+.przep { grid-area: przep; }
+
+.mno { grid-area: mno; }
+
+.dziel { grid-area: dziel; }
+
+.shr { grid-area: shr; }
+
+.neg { grid-area: neg; }
+
+.lub { grid-area: lub; }
+
+.i { grid-area: i; }
+
+.JAL-body { grid-area: JAL-body; }
+
+.F { grid-area: F; }
+
+.wyak-up { grid-area: wyak-up; }
+
+.wyak-right { grid-area: wyak-right; }
+
+.wyak-down { grid-area: wyak-down; }
+
+.I {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "I-R I-R I-R I-R I-R"
+    ". wei i-up . .";
+  grid-area: I;
+}
+
+.I-R { grid-area: I-R; }
+
+.i-up { grid-area: i-up; }
+
+.wei { grid-area: wei; }
+
+.X {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wyx x-up x-down wex"
+    "X-R X-R X-R X-R";
+  grid-area: X;
+}
+
+.X-R { grid-area: X-R; }
+
+.wex { grid-area: wex; }
+
+.wyx { grid-area: wyx; }
+
+.x-up { grid-area: x-up; }
+
+.x-down { grid-area: x-down; }
+
+.Y {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wyy y-up y-down wey"
+    "Y-R Y-R Y-R Y-R";
+  grid-area: Y;
+}
+
+.Y-R { grid-area: Y-R; }
+
+.y-down { grid-area: y-down; }
+
+.wey { grid-area: wey; }
+
+.y-up { grid-area: y-up; }
+
+.wyy { grid-area: wyy; }
+
+.wyak { grid-area: wyak; }
+
+.A {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . . a-down wea . ."
+    "A-R A-R A-R A-R A-R A-R A-R";
+  grid-area: A;
+}
+
+.A-R { grid-area: A-R; }
+
+.wea { grid-area: wea; }
+
+.a-down { grid-area: a-down; }
+
+.S {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "S-R S-R S-R S-R S-R S-R"
+    ". wys s-down s-up wes .";
+  grid-area: S;
+}
+
+.S-R { grid-area: S-R; }
+
+.s-up { grid-area: s-up; }
+
+.s-down { grid-area: s-down; }
+
+.wes { grid-area: wes; }
+
+.wys { grid-area: wys; }
+
+.MEM { grid-area: MEM; }
+
+.S_BUS { grid-area: S_BUS; }
+
+.G {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wyg g-up g-down start"
+    ". G-R G-R .";
+  grid-area: G;
+}
+
+.start { grid-area: start; }
+
+.wyg { grid-area: wyg; }
+
+.g-up { grid-area: g-up; }
+
+.g-down { grid-area: g-down; }
+
+.G-R { grid-area: G-R; }
+
+.RB {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wyrb rb-up rb-down werb"
+    "RB-R RB-R RB-R RB-R";
+  grid-area: RB;
+}
+
+.RB-R { grid-area: RB-R; }
+
+.rb-down { grid-area: rb-down; }
+
+.rb-up { grid-area: rb-up; }
+
+.werb { grid-area: werb; }
+
+.wyrb { grid-area: wyrb; }
+
+.wyad-up { grid-area: wyad-up; }
+
+.wyad { grid-area: wyad; }
+
+.wyls-down { grid-area: wyls-down; }
+
+.wyls { grid-area: wyls; }
+
+.stop { grid-area: stop; }
+
+.S-BUS { grid-area: S-BUS; }
+
+.czyt { grid-area: czyt; }
+
+.pisz { grid-area: pisz; }
+
+.RP-R { grid-area: RP-R; }
+
+.eint { grid-area: eint; }
+
+.rint { grid-area: rint; }
+
+.weja-up { grid-area: weja-up; }
+
+.weja { grid-area: weja; }

@@ -1,8 +1,38 @@
 
+div{
+    border-style: dotted;
+}
 
+.bus{
+    border-style:dashed;
+}
 
+.bus .hor{
 
+}
+
+.bus .vert{
+    border-right: none;
+    border-left-width: 0;
+}
 
 .register{
     background: #CCCCCC;
+}
+
+.signal{
+    background: #DDDDDD;
+}
+
+.signal:hover{
+    background: #BBBBBB;
+}
+
+.MEM{
+    border:solid;
+}
+
+
+.JAL-budy{
+    border: solid;
 }
