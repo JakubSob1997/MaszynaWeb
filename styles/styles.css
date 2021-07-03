@@ -41,6 +41,10 @@ body{
     color:rgb(175, 67, 67);
 }
 
+.machine-wrapper{
+    border-radius: 0.5em;
+}
+
 
 /*
 ul {

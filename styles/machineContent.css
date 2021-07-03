@@ -1,38 +1,60 @@
 
+/*
 div{
     border-style: dotted;
 }
+*/
 
-.bus{
-    border-style:dashed;
+.machine-grid{
+    background: #616161;
+    color: black;
+    font-size: smaller;
 }
 
-.bus .hor{
-
+.machine-grid> .bus-hor{
+    border-style:solid;
+    border-width: thin;
+    
 }
 
-.bus .vert{
-    border-right: none;
-    border-left-width: 0;
+
+.bus-vert{
+    border-style:dotted;
 }
 
 .register{
-    background: #CCCCCC;
+    background: #84abc5;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 0.5em;
+    justify-content: center;
 }
 
 .signal{
     background: #DDDDDD;
+    border-radius: 0.5em;
+    font-size: 15px;
+    justify-content: center;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    border-style:groove;
 }
 
 .signal:hover{
     background: #BBBBBB;
+    border-style: ridge;
 }
 
 .MEM{
     border:solid;
+    border-width: thin;
+    border-radius: 0.5em;
 }
 
 
-.JAL-budy{
+.JAL-body{
     border: solid;
+    border-width: thin;
+    border-radius: 0.5em;
+    background: #ebeaea;
 }

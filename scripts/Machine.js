@@ -30,6 +30,10 @@ class Machine{
         this.singnalDictionary[_signal.name] = _signal;
     }
 
+    hasSignal(_signalName){
+        return this.singnalDictionary.hasOwnProperty(_signalName);
+    }
+
     selectSignal(_signalName){
 
         if(this.singnalDictionary.hasOwnProperty(_signalName)){

@@ -143,14 +143,18 @@ visuals.signals = signalUIs;
 
 
 for(let signalUI of signalUIs){
-    signalUI.onclick =()=>{
-        let id = signalUI.id;
-        if(M.isSignalSelected(id)){
-            M.deSelectSignal(id);
-        }else{
-            M.selectSignal(id);
-        }
-    };
+    let id = signalUI.id;
+    if(M.hasSignal(id)){
+        signalUI.onclick =()=>{
+            let id = signalUI.id;
+            if(M.isSignalSelected(id)){
+                M.deSelectSignal(id);
+            }else{
+                M.selectSignal(id);
+            }
+        };
+    }
+    
 }
 
 
