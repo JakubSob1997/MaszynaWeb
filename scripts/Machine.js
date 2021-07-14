@@ -159,4 +159,12 @@ class Machine{
 
     }
 
+
+    setSettings(_settingsSerializer){
+        this.settings.setupValues(_settingsSerializer);
+    }
+    setInstructionList(_instructionListSerializer){
+        this.instructionList.setupValues(_instructionListSerializer);
+    }
+
 }

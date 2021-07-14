@@ -34,13 +34,18 @@ console.log(MEM.values);
 M=new Machine();
 buildMachine(M);
 M.settings.setBusWidth(4,6);
-console.log(M);
+//console.log(M);
+
+console.log(InstructionList.getDefaultInstructionList());
+
 
 var codeTextArea = document.getElementById("code-textarea");
 var loadCodeButton = document.getElementById("load-code-button");
 
 codeTextArea.value=localStorage.getItem("codeTextArea");
 
+MView = new MachineView(M,new SettingsSerializer(3,5,ExtnensionFlags.Base|ExtnensionFlags.Stack));
+MView.setupMachine();
 
 
 loadCodeButton.onclick = ()=>{
@@ -61,8 +66,7 @@ loadCodeButton.onclick = ()=>{
 
 
 
-var visuals =[];
-
+var visuals =[]
 function resetVisuals(){
     visuals.registers.forEach(register => {
         if(register!=null){
@@ -86,6 +90,8 @@ nextInstructionButton.onclick=function(){
 }
 
     
+
+
 
 
 

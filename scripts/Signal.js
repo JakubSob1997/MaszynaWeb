@@ -10,7 +10,7 @@ class Signal{
         this.onSignal=_onSignal;
         
         if(_extention == undefined){
-            this.extention =0
+            this.extention =ExtnensionFlags.Base;
         }else{
             this.extention=_extention;
         }

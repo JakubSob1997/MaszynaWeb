@@ -1,4 +1,4 @@
-.machine {
+.container {
   display: grid;
   grid-template-columns: 1fr 0.1fr 3.2fr;
   grid-template-rows: 1fr 0.1fr 4fr 0.1fr 01fr;
@@ -329,7 +329,7 @@
   grid-auto-flow: row;
   grid-template-areas:
     ". l-sigs l-sigs l-sigs . wyad-up"
-    "il-s l-t l-t l-t . wyad-up"
+    "il-s l-r l-r l-r . wyad-up"
     ". wyls-down wyad-wyls-stop-area wyad-wyls-stop-area wyad-wyls-stop-area wyad-up"
     ". wyls-down . i-r i-r i-r"
     ". wyls-down . i-sigs i-sigs i-sigs";
@@ -342,7 +342,7 @@
 
 .i-r { grid-area: i-r; }
 
-.l-t { grid-area: l-t; }
+.l-r { grid-area: l-r; }
 
 .wyad-up { grid-area: wyad-up; }
 
@@ -452,13 +452,13 @@
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wys s-down s-up wes";
+    "wys-s s-down s-up wes-s";
   grid-area: s-sigs;
 }
 
-.wys { grid-area: wys; }
+.wys-s { grid-area: wys-s; }
 
-.wes { grid-area: wes; }
+.wes-s { grid-area: wes-s; }
 
 .s-up { grid-area: s-up; }
 

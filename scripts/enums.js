@@ -34,23 +34,22 @@ Object.freeze(JALOperationEnum);
 
 
 const ExtnensionFlags = {
-    "BusConnection" :1<<0,
-    "AK_Increment":1<<1,
-    "JAL_Logic":1<<2,
-    "JAL_ExtendedMath":1<<3,
-    "Stack":1<<4,
-    "X_Register":1<<5,
-    "Y_Register":1<<6,
-    "Interupt":1<<7,
-    "IputOutput":1<<8,
-    "Flags":1<<9,
+    "Base":1<<0,
+    "BusConnection" :1<<1,
+    "AK_Increment":1<<2,
+    "JAL_Logic":1<<3,
+    "JAL_ExtendedMath":1<<4,
+    "Stack":1<<5,
+    "X_Register":1<<6,
+    "Y_Register":1<<7,
+    "Interupt":1<<8,
+    "InputOutput":1<<9,
+    "Flags":1<<10,
 
-    "W":0,
-    "W+":0b1,
-    "L":0b1111111,
-    "EW":0b1111111111,
-
-
+    "W":0b1,
+    "W+":0b11,
+    "L":0b11111111,
+    "EW":0b11111111111,
 }
 Object.freeze(ExtnensionFlags);
 

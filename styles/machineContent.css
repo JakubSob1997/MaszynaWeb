@@ -1,19 +1,19 @@
 /*
-.machine *{
+.container *{
     border: solid;
     border-width: thin;
     border-color: white;
     color: rgb(243, 75, 75);
 }
-
 */
+
 
 .jal-padding{
     height: 2em;
 }
 
-.machine{
-    background: #575757;
+.container{
+    background: #552828;
     color: black;
     font-size: x-large;
 }
@@ -57,7 +57,6 @@
 .sig{
     background: #DDDDDD;
     border-radius: 0.5em;
-    font-size: 15px;
     justify-content: center;
     padding-left: 0.3em;
     padding-right: 0.3em;
@@ -67,6 +66,10 @@
     width: auto;
     height: auto;
     /*height: 100%;*/
+}
+
+.sig-hidden{
+    color: gray;
 }
 
 .sig-selected{

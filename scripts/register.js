@@ -14,7 +14,7 @@ class  Register extends MachineComponent {
         this.setBitWidth(8);
         this.value = 0;
         this.wasWriten=false;
-        this.onUpdateCallbacks = [];
+        this.onUpdateCallbacks = {};
     }
 
 
@@ -76,14 +76,15 @@ class  Register extends MachineComponent {
 
 
     addOnUpdateCallback(_funk){
-        this.onUpdateCallbacks.push(_funk);
+        this.onUpdateCallbacks[_funk]=_funk;
     }
 
     update(){
-        if(this.onUpdateCallbacks!=null){
-            this.onUpdateCallbacks.forEach(element => {
-                element(this);
-            });
+        for (const key in this.onUpdateCallbacks) {
+            if (Object.hasOwnProperty.call(this.onUpdateCallbacks, key)) {
+                const funk = this.onUpdateCallbacks[key];
+                funk(this);
+            }
         }
         
     }
