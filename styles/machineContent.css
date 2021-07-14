@@ -1,36 +1,60 @@
-
 /*
-div{
-    border-style: dotted;
+.machine *{
+    border: solid;
+    border-width: thin;
+    border-color: white;
+    color: rgb(243, 75, 75);
 }
+
 */
 
-.machine-grid{
-    background: #616161;
-    color: black;
-    font-size: smaller;
+.jal-padding{
+    height: 2em;
 }
 
-.machine-grid> .bus-hor{
+.machine{
+    background: #575757;
+    color: black;
+    font-size: x-large;
+}
+
+.bus-hor{
     border-style:solid;
     border-width: thin;
+
+    height: 100%;
     
 }
 
 
 .bus-vert{
     border-style:dotted;
+
+
+    height: 100%;
 }
 
-.register{
+.reg{
     background: #84abc5;
     border-style: solid;
     border-width: thin;
-    border-radius: 0.5em;
+    border-radius: 0.2em;
     justify-content: center;
+
+
+    height: 100%;
+    
 }
 
-.signal{
+
+.sig:hover{
+    background: #BBBBBB;
+    border-style: ridge;
+    cursor: pointer;
+}
+
+
+.sig{
     background: #DDDDDD;
     border-radius: 0.5em;
     font-size: 15px;
@@ -38,18 +62,36 @@ div{
     padding-left: 0.3em;
     padding-right: 0.3em;
     border-style:groove;
+
+    transition: all;
+    width: auto;
+    height: auto;
+    /*height: 100%;*/
 }
 
-.signal:hover{
-    background: #BBBBBB;
-    border-style: ridge;
+.sig-selected{
+    background: red;
+    font-weight: bold;
 }
 
-.MEM{
+
+
+
+.memory{
     border:solid;
     border-width: thin;
     border-radius: 0.5em;
+
+    height: 100%;
 }
+
+
+
+
+span.reg-name{
+    font-weight:bold;
+}
+
 
 
 .JAL-body{

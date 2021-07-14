@@ -1,10 +1,6 @@
 
 
-M=new Machine();
-buildMachine(M);
 
-M.settings.setBusWidth(4,6);
-console.log(M);
 
 //Instructions
 function getDefaultInstructionList(){
@@ -105,15 +101,15 @@ function buildMachine(_Machine){
     let MEM = new Mamory(0);
     _Machine.MEM = MEM;
 
-    let AK_register= new Register("AK");
-    let S_register = new Register("S");
-    let A_register = new Register("A");
-    let L_register = new Register("L");
-    let I_register = new Register("I");
+    let AK_register= new Register("ak");
+    let S_register = new Register("s");
+    let A_register = new Register("a");
+    let L_register = new Register("l");
+    let I_register = new Register("i");
 
-    let WS_register=new Register("WS");
-    let X_Register =new Register("X");
-    let Y_Register=new Register("Y");
+    let WS_register=new Register("ws");
+    let X_Register =new Register("x");
+    let Y_Register=new Register("y");
 
     AK_register.display = RegisterDisplayEnum.SignedDecimal;
     

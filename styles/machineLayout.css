@@ -1,38 +1,50 @@
-.machine-grid {
+.machine {
   display: grid;
-  grid-template-columns: repeat(28, 1fr);
-  grid-template-rows: repeat(22, 1fr);
+  grid-template-columns: 1fr 0.1fr 3.2fr;
+  grid-template-rows: 1fr 0.1fr 4fr 0.1fr 01fr;
   grid-auto-columns: 1fr;
-  grid-auto-rows: 100px;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". RZ RZ RZ RZ . . . . . . . . . . . . . . . . . . . . eint . ."
-    ". RZ RZ RZ RZ . . RP-R RP-R RP-R RP-R . . RM RM RM RM . . AP AP AP AP . . rint . ."
-    ". . . . . . . . . . . . . RM RM RM RM . . AP AP AP AP . . . . ."
-    "A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS A-BUS"
-    "L L L L L . wyad-up . AS_BUS . . WS WS WS WS WS WS . . . A A A A A A A ."
-    "L L L L L . wyad-up . AS_BUS as . WS WS WS WS WS WS . . . A A A A A A A ."
-    "wyls-down . . . . . wyad-up . AS_BUS . . . . . . . . . . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down wyls . . . . wyad-up . AS_BUS . . . . . wyak-up wyak-right wyak-right wyak-right . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . . . . . wyad-up . AS_BUS . . F F F wyak-up . . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . . . . . wyad-up . AS_BUS . AK AK AK AK AK AK . wyak-down wyak . MEM MEM MEM MEM MEM MEM MEM czyt"
-    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM pisz"
-    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . stop . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . . . . wyad wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . . . . . wyad-up . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . MEM MEM MEM MEM MEM MEM MEM ."
-    "wyls-down . I I I I I . AS_BUS . JAL JAL JAL JAL JAL JAL . wyak-down . . S S S S S S S ."
-    "wyls-down . I I I I I . AS_BUS . . . weja-up weja . . . wyak-down . . S S S S S S S ."
-    "S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS S-BUS"
-    ". . X X X X . . Y Y Y Y . . . . RB RB RB RB . . G G G G . ."
-    ". . X X X X . . Y Y Y Y . . . . RB RB RB RB . . G G G G . .";
-  width: 91.6%;
-  height: 57.4%;
+    "up-area up-area up-area"
+    "a-bus a-bus a-bus"
+    "left-area as-bus center-area"
+    "s-bus s-bus s-bus"
+    "down-area down-area down-area";
+  width: 99.6%;
+  height: 100%;
 }
 
-.RZ {
+.as-bus { grid-area: as-bus; }
+
+.s-bus { grid-area: s-bus; }
+
+.a-bus { grid-area: a-bus; }
+
+.up-area {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 0.35fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "rz-area rp-area rm-area ap-area eint-rint-area";
+  grid-area: up-area;
+}
+
+.rz-area {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". rz-center ."
+    ". . .";
+  grid-area: rz-area;
+}
+
+.rz-center {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -40,352 +52,593 @@
   grid-auto-flow: row;
   grid-template-areas:
     "rz-1 rz-2 rz-3 rz-4"
-    "RZ-R RZ-R RZ-R RZ-R";
-  grid-area: RZ;
+    "rz-r rz-r rz-r rz-r";
+  grid-area: rz-center;
 }
 
-.RZ-R { grid-area: RZ-R; }
+.rz-2 { grid-area: rz-2; }
 
 .rz-1 { grid-area: rz-1; }
-
-.rz-2 { grid-area: rz-2; }
 
 .rz-3 { grid-area: rz-3; }
 
 .rz-4 { grid-area: rz-4; }
 
-.RM {
+.rz-r { grid-area: rz-r; }
+
+.rp-area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". rp-r ."
+    ". . .";
+  grid-area: rp-area;
+}
+
+.rp-r { grid-area: rp-r; }
+
+.rm-area {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  grid-template-rows: 1fr 2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". rm-center .";
+  grid-area: rm-area;
+}
+
+.rm-center {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "RM-R RM-R RM-R RM-R"
-    "wyrm rm-down rm-up werm";
-  grid-area: RM;
+    "rm-r rm-r rm-r rm-r"
+    "wyrm-s rm-down rm-up werm-s";
+  grid-area: rm-center;
 }
 
-.RM-R { grid-area: RM-R; }
+.rm-r { grid-area: rm-r; }
+
+.werm-s { grid-area: werm-s; }
+
+.wyrm-s { grid-area: wyrm-s; }
 
 .rm-down { grid-area: rm-down; }
 
 .rm-up { grid-area: rm-up; }
 
-.werm { grid-area: werm; }
-
-.wyrm { grid-area: wyrm; }
-
-.L {
+.ap-area {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 0.1fr 1fr 0.1fr;
+  grid-template-rows: 1fr 2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". ap-center .";
+  grid-area: ap-area;
+}
+
+.ap-center {
+  display: grid;
+  grid-template-columns: repeat(2, 0.2fr 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyl l-up l-down wel ."
-    "L-R L-R L-R L-R il";
-  grid-area: L;
+    "ap-r ap-r ap-r ap-r"
+    ". wyap-s ap-down .";
+  grid-area: ap-center;
 }
 
-.L-R { grid-area: L-R; }
+.ap-r { grid-area: ap-r; }
 
-.il { grid-area: il; }
-
-.l-down { grid-area: l-down; }
-
-.wel { grid-area: wel; }
-
-.l-up { grid-area: l-up; }
-
-.wyl { grid-area: wyl; }
-
-.AP {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "AP-R AP-R AP-R AP-R"
-    ". wyap ap-down .";
-  grid-area: AP;
-}
-
-.AP-R { grid-area: AP-R; }
+.wyap-s { grid-area: wyap-s; }
 
 .ap-down { grid-area: ap-down; }
 
-.wyap { grid-area: wyap; }
-
-.AS_BUS { grid-area: AS_BUS; }
-
-.as { grid-area: as; }
-
-.WS {
+.eint-rint-area {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.8fr repeat(2, 1fr) 0.8fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". wyws wyws-up wews-down wews ."
-    "iws WS_R WS_R WS_R WS_R dws";
-  grid-area: WS;
+    "."
+    "eint-s"
+    "rint-s"
+    ".";
+  grid-area: eint-rint-area;
 }
 
-.WS_R { grid-area: WS_R; }
+.eint-s { grid-area: eint-s; }
 
-.iws { grid-area: iws; }
+.rint-s { grid-area: rint-s; }
 
-.dws { grid-area: dws; }
-
-.wyws { grid-area: wyws; }
-
-.wews { grid-area: wews; }
-
-.wews-down { grid-area: wews-down; }
-
-.wyws-up { grid-area: wyws-up; }
-
-.AK {
+.down-area {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "iak AK-R dak";
-  grid-area: AK;
+    "x-area y-area rb-area g-area";
+  grid-area: down-area;
 }
 
-.AK-R { grid-area: AK-R; }
-
-.dak { grid-area: dak; }
-
-.iak { grid-area: iak; }
-
-.JAL {
+.x-area {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: 0.3fr 2fr 0.3fr;
+  grid-template-rows: 2fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "weak JAL-body neg"
-    "dod JAL-body lub"
-    "ode JAL-body i"
-    "przep JAL-body ."
-    "mno JAL-body ."
-    "dziel JAL-body ."
-    "shr JAL-body .";
-  grid-area: JAL;
+    ". x-center ."
+    ". . .";
+  grid-area: x-area;
 }
 
-.weak { grid-area: weak; }
-
-.dod { grid-area: dod; }
-
-.ode { grid-area: ode; }
-
-.przep { grid-area: przep; }
-
-.mno { grid-area: mno; }
-
-.dziel { grid-area: dziel; }
-
-.shr { grid-area: shr; }
-
-.neg { grid-area: neg; }
-
-.lub { grid-area: lub; }
-
-.i { grid-area: i; }
-
-.JAL-body { grid-area: JAL-body; }
-
-.F { grid-area: F; }
-
-.wyak-up { grid-area: wyak-up; }
-
-.wyak-right { grid-area: wyak-right; }
-
-.wyak-down { grid-area: wyak-down; }
-
-.I {
+.x-center {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "I-R I-R I-R I-R I-R"
-    ". wei i-up . .";
-  grid-area: I;
+    "wyx-s x-up x-down wex-s"
+    "x-r x-r x-r x-r";
+  grid-area: x-center;
 }
 
-.I-R { grid-area: I-R; }
+.x-r { grid-area: x-r; }
 
-.i-up { grid-area: i-up; }
+.wyx-s { grid-area: wyx-s; }
 
-.wei { grid-area: wei; }
-
-.X {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "wyx x-up x-down wex"
-    "X-R X-R X-R X-R";
-  grid-area: X;
-}
-
-.X-R { grid-area: X-R; }
-
-.wex { grid-area: wex; }
-
-.wyx { grid-area: wyx; }
-
-.x-up { grid-area: x-up; }
+.wex-s { grid-area: wex-s; }
 
 .x-down { grid-area: x-down; }
 
-.Y {
+.x-up { grid-area: x-up; }
+
+.y-area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 0.3fr 2fr 0.3fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". y-center ."
+    ". . .";
+  grid-area: y-area;
+}
+
+.y-center {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyy y-up y-down wey"
-    "Y-R Y-R Y-R Y-R";
-  grid-area: Y;
+    "wyy-s y-up y-down wey-s"
+    "y-r y-r y-r y-r";
+  grid-area: y-center;
 }
 
-.Y-R { grid-area: Y-R; }
+.y-r { grid-area: y-r; }
 
 .y-down { grid-area: y-down; }
 
-.wey { grid-area: wey; }
-
 .y-up { grid-area: y-up; }
 
-.wyy { grid-area: wyy; }
+.wyy-s { grid-area: wyy-s; }
 
-.wyak { grid-area: wyak; }
+.wey-s { grid-area: wey-s; }
 
-.A {
+.rb-area {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: 0.3fr 2fr 0.3fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". rb-center ."
+    ". . .";
+  grid-area: rb-area;
+}
+
+.rb-center {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". . . a-down wea . ."
-    "A-R A-R A-R A-R A-R A-R A-R";
-  grid-area: A;
+    "wyrb-s rb-up rb-down werb-s"
+    "rb-r rb-r rb-r rb-r";
+  grid-area: rb-center;
 }
 
-.A-R { grid-area: A-R; }
+.rb-r { grid-area: rb-r; }
 
-.wea { grid-area: wea; }
+.rb-down { grid-area: rb-down; }
 
-.a-down { grid-area: a-down; }
+.werb-s { grid-area: werb-s; }
 
-.S {
+.rb-up { grid-area: rb-up; }
+
+.wyrb-s { grid-area: wyrb-s; }
+
+.g-area {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 0.3fr 2fr 0.3fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". g-center ."
+    ". . .";
+  grid-area: g-area;
+}
+
+.g-center {
+  display: grid;
+  grid-template-columns: 0.7fr 0.3fr repeat(2, 0.2fr) 0.3fr 0.7fr;
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "S-R S-R S-R S-R S-R S-R"
-    ". wys s-down s-up wes .";
-  grid-area: S;
+    "wyg-s wyg-s g-up g-down start-s start-s"
+    ". g-r g-r g-r g-r .";
+  grid-area: g-center;
 }
 
-.S-R { grid-area: S-R; }
+.g-r { grid-area: g-r; }
 
-.s-up { grid-area: s-up; }
+.wyg-s { grid-area: wyg-s; }
 
-.s-down { grid-area: s-down; }
-
-.wes { grid-area: wes; }
-
-.wys { grid-area: wys; }
-
-.MEM { grid-area: MEM; }
-
-.S-BUS { grid-area: S-BUS; }
-
-.G {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "wyg g-up g-down start"
-    ". G-R G-R .";
-  grid-area: G;
-}
-
-.start { grid-area: start; }
-
-.wyg { grid-area: wyg; }
+.start-s { grid-area: start-s; }
 
 .g-up { grid-area: g-up; }
 
 .g-down { grid-area: g-down; }
 
-.G-R { grid-area: G-R; }
-
-.RB {
+.left-area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 30fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". i-l-area .";
+  grid-area: left-area;
+}
+
+.i-l-area {
+  display: grid;
+  grid-template-columns: 1.7fr 0.1fr 0.9fr 3.2fr 1.3fr 0.1fr;
+  grid-template-rows: repeat(2, 0.3fr) 3.2fr 0.3fr 0.4fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". l-sigs l-sigs l-sigs . wyad-up"
+    "il-s l-t l-t l-t . wyad-up"
+    ". wyls-down wyad-wyls-stop-area wyad-wyls-stop-area wyad-wyls-stop-area wyad-up"
+    ". wyls-down . i-r i-r i-r"
+    ". wyls-down . i-sigs i-sigs i-sigs";
+  grid-area: i-l-area;
+}
+
+.il-s { grid-area: il-s; }
+
+.wyls-down { grid-area: wyls-down; }
+
+.i-r { grid-area: i-r; }
+
+.l-t { grid-area: l-t; }
+
+.wyad-up { grid-area: wyad-up; }
+
+.l-sigs {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wyl-s l-up l-down wel-s";
+  grid-area: l-sigs;
+}
+
+.wel-s { grid-area: wel-s; }
+
+.wyl-s { grid-area: wyl-s; }
+
+.l-down { grid-area: l-down; }
+
+.l-up { grid-area: l-up; }
+
+.i-sigs {
+  display: grid;
+  grid-template-columns: repeat(2, 0.2fr 1fr);
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". wei-s i-up .";
+  grid-area: i-sigs;
+}
+
+.wei-s { grid-area: wei-s; }
+
+.i-up { grid-area: i-up; }
+
+.wyad-wyls-stop-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 0.5fr) 2.8fr repeat(2, 0.6fr) 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    "wyls-s wyls-s ."
+    ". . ."
+    "stop-s stop-s ."
+    ". wyad-s wyad-s"
+    ". . .";
+  grid-area: wyad-wyls-stop-area;
+}
+
+.wyad-s { grid-area: wyad-s; }
+
+.wyls-s { grid-area: wyls-s; }
+
+.stop-s { grid-area: stop-s; }
+
+.center-area {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "jal-ws-area mem-Area";
+  grid-area: center-area;
+}
+
+.mem-Area {
+  display: grid;
+  grid-template-columns: 0.2fr 2.6fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". mem-center mem-right";
+  grid-area: mem-Area;
+}
+
+.mem-center {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 0.4fr) 3.6fr 0.4fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "a-sigs"
+    "a-r"
+    "mem-body"
+    "s-r"
+    "s-sigs";
+  grid-area: mem-center;
+}
+
+.a-r { grid-area: a-r; }
+
+.s-r { grid-area: s-r; }
+
+.mem-body { grid-area: mem-body; }
+
+.s-sigs {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr 0.4fr 1.6fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "wys s-down s-up wes";
+  grid-area: s-sigs;
+}
+
+.wys { grid-area: wys; }
+
+.wes { grid-area: wes; }
+
+.s-up { grid-area: s-up; }
+
+.s-down { grid-area: s-down; }
+
+.a-sigs {
+  display: grid;
+  grid-template-columns: 1.7fr 0.4fr 1.6fr 0.3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". a-down wea-s .";
+  grid-area: a-sigs;
+}
+
+.a-down { grid-area: a-down; }
+
+.wea-s { grid-area: wea-s; }
+
+.mem-right {
+  display: grid;
+  grid-template-rows: 1.5fr repeat(2, 0.3fr) 1.9fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-area: mem-right;
+}
+
+.czyt-s { grid-area: 2 / 1 / 3 / 2; }
+
+.pisz-s { grid-area: 3 / 1 / 4 / 2; }
+
+.jal-ws-area {
+  display: grid;
+  grid-template-columns: 1.7fr;
+  grid-template-rows: 0.5fr 1.5fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "ws-area"
+    "jal-area";
+  grid-area: jal-ws-area;
+}
+
+.ws-area {
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr 3fr 0.1fr;
+  grid-template-rows: 1.2fr 0.8fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "as-area . ws-center ."
+    "as-area . . .";
+  grid-area: ws-area;
+}
+
+.ws-center {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) repeat(2, 0.2fr) repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyrb rb-up rb-down werb"
-    "RB-R RB-R RB-R RB-R";
-  grid-area: RB;
+    ". wyws-s ws-up ws-down wews-s ."
+    "iws-s ws-r ws-r ws-r ws-r dws-s";
+  grid-area: ws-center;
 }
 
-.RB-R { grid-area: RB-R; }
+.ws-r { grid-area: ws-r; }
 
-.rb-down { grid-area: rb-down; }
+.iws-s { grid-area: iws-s; }
 
-.rb-up { grid-area: rb-up; }
+.dws-s { grid-area: dws-s; }
 
-.werb { grid-area: werb; }
+.wyws-s { grid-area: wyws-s; }
 
-.wyrb { grid-area: wyrb; }
+.ws-up { grid-area: ws-up; }
 
-.wyad-up { grid-area: wyad-up; }
+.ws-down { grid-area: ws-down; }
 
-.wyad { grid-area: wyad; }
+.wews-s { grid-area: wews-s; }
 
-.wyls-down { grid-area: wyls-down; }
+.as-area {
+  display: grid;
+  grid-template-columns: 1.9fr 0.1fr;
+  grid-template-rows: 0.8fr 1fr 1.2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". ."
+    "as-s ."
+    ". .";
+  grid-area: as-area;
+}
 
-.wyls { grid-area: wyls; }
+.as-s { grid-area: as-s; }
 
-.stop { grid-area: stop; }
+.jal-area {
+  display: grid;
+  grid-template-columns: 0.2fr 3.6fr 0.1fr;
+  grid-template-rows: 2fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". jal-cener .";
+  grid-area: jal-area;
+}
 
-.A-BUS { grid-area: A-BUS; }
+.jal-cener {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 0.5fr repeat(2, 0.2fr) 1fr 0.1fr 0.2fr 1fr;
+  grid-template-rows: 0.2fr repeat(8, 1fr) 1.1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . . . wyak-right wyak-right wyak-right wyak-down ."
+    ". f-r f-r . wyak-up . . wyak-down ."
+    "iak-s ak-r ak-r ak-r ak-r dak-s . wyak-down ."
+    "weak-s jal-body jal-body jal-body jal-body neg-s . wyak-down wyak-s"
+    "dod-s jal-body jal-body jal-body jal-body lub-s . wyak-down ."
+    "ode-s jal-body jal-body jal-body jal-body i-s . wyak-down ."
+    "przep-s jal-body jal-body jal-body jal-body . . wyak-down ."
+    "mno-s jal-body jal-body jal-body jal-body . . wyak-down ."
+    "dziel-s jal-body jal-body jal-body jal-body . . wyak-down ."
+    "shr-s jal-body jal-body jal-body jal-body . . wyak-down ."
+    ". weja-area weja-area weja-area weja-area . . wyak-down .";
+  grid-area: jal-cener;
+}
 
-.czyt { grid-area: czyt; }
+.wyak-down { grid-area: wyak-down; }
 
-.pisz { grid-area: pisz; }
+.wyak-right { grid-area: wyak-right; }
 
-.RP-R { grid-area: RP-R; }
+.wyak-up { grid-area: wyak-up; }
 
-.eint { grid-area: eint; }
+.dak-s { grid-area: dak-s; }
 
-.rint { grid-area: rint; }
+.iak-s { grid-area: iak-s; }
+
+.weak-s { grid-area: weak-s; }
+
+.dod-s { grid-area: dod-s; }
+
+.ode-s { grid-area: ode-s; }
+
+.przep-s { grid-area: przep-s; }
+
+.mno-s { grid-area: mno-s; }
+
+.dziel-s { grid-area: dziel-s; }
+
+.shr-s { grid-area: shr-s; }
+
+.ak-r { grid-area: ak-r; }
+
+.f-r { grid-area: f-r; }
+
+.jal-body { grid-area: jal-body; }
+
+.neg-s { grid-area: neg-s; }
+
+.lub-s { grid-area: lub-s; }
+
+.i-s { grid-area: i-s; }
+
+.weja-area {
+  display: grid;
+  grid-template-columns: repeat(2, 0.4fr 1.6fr);
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". weja-s weja-up .";
+  grid-area: weja-area;
+}
+
+.weja-s { grid-area: weja-s; }
 
 .weja-up { grid-area: weja-up; }
 
-.weja { grid-area: weja; }
+.wyak-s { grid-area: wyak-s; }

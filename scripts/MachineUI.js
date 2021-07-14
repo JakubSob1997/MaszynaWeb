@@ -31,11 +31,17 @@ MEM.values[15]=70; //b:
 console.log(MEM.values);
 */
 
+M=new Machine();
+buildMachine(M);
+M.settings.setBusWidth(4,6);
+console.log(M);
+
 var codeTextArea = document.getElementById("code-textarea");
 var loadCodeButton = document.getElementById("load-code-button");
 
-
 codeTextArea.value=localStorage.getItem("codeTextArea");
+
+
 
 loadCodeButton.onclick = ()=>{
     localStorage.setItem("codeTextArea",codeTextArea.value);
@@ -133,6 +139,12 @@ M.L_register.addOnUpdateCallback(
 M.I_register.addOnUpdateCallback(
     _register=>{displayRegister(_register,I_Reg_UI);}
 )
+
+
+
+
+
+var signalUIs = [];
 
 
 

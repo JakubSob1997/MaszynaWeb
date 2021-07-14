@@ -43,6 +43,13 @@ body{
 
 .machine-wrapper{
     border-radius: 0.5em;
+    max-width: 1200px;
+
+
+
+
+    border:solid;
+
 }
 
 

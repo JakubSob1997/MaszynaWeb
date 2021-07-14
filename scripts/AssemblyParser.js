@@ -291,20 +291,3 @@ class AssemblyParser{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
