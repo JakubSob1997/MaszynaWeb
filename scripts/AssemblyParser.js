@@ -112,7 +112,7 @@ class AssemblyParser{
 
             for (let w = 0; w < newWords.length; w++) {
                 if(newWords[w]!=""){
-                    this.words.push( new Word(newWords[w],l));
+                    this.words.push( new Word(newWords[w].toUpperCase(),l));
                 }
                 
                 
@@ -150,6 +150,7 @@ class AssemblyParser{
                 
             }
 
+            
 
             if(_instructionList.hasInstruction(wordValue)){
                 

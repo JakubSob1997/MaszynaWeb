@@ -46,6 +46,7 @@ class InstructionListSerializer{
 
     static getDefault(){
         let STP_inst = new Instruction("STP");
+        STP_inst.argCount=0;
         STP_inst.cycles[0] =new InstrCycle(["czyt","wys","wei","il"]);
         STP_inst.cycles[1]=new InstrCycle(["stop"]);
     
@@ -199,6 +200,7 @@ class InstructionList{
             index =this.getInstructionIndexByName(_indexOrName);
         }else
         if(typeof _indexOrName=="number"){
+            if(_indexOrName>=0&_indexOrName <this.instructionArray.length)
             index = _indexOrName;
         }
         return index;

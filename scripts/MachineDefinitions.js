@@ -48,7 +48,9 @@ function buildMachine(_Machine){
     let X_Register =new Register("x");
     let Y_Register=new Register("y");
 
-    AK_register.display = RegisterDisplayEnum.SignedDecimal;
+    AK_register.display = ValueDisplayEnum.SignedDecimal;
+    I_register.display = ValueDisplayEnum.OpCodeArgument;
+    S_register.display = ValueDisplayEnum.OpCodeArgument;
     
     AK_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
     S_register.busMatchRule = MatchRegisterWidthEnum.ToWord;

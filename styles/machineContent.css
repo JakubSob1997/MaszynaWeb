@@ -69,6 +69,12 @@
 }
 
 .sig-hidden{
+    background: transparent;
+    color: gray;
+}
+
+.sig-hidden:hover{
+    background: transparent;
     color: gray;
 }
 
@@ -80,26 +86,32 @@
 
 
 
-.memory{
+.mem{
+    background: white;
     border:solid;
     border-width: thin;
     border-radius: 0.5em;
 
-    height: 100%;
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    height: 13.5em;
+
 }
 
+.mem-entry{
+    color: blue;
+}
+
+.mem-entry-selected{
+    background: green;
+}
 
 
 
 span.reg-name{
     font-weight:bold;
+    
 }
 
-
-
-.JAL-body{
-    border: solid;
-    border-width: thin;
-    border-radius: 0.5em;
-    background: #ebeaea;
-}

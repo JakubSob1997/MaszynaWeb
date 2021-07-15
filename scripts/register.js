@@ -9,12 +9,15 @@ class  Register extends MachineComponent {
         super();
 
         this.name = _name;
-        this.display = RegisterDisplayEnum.UnsignedDecimal;
+        this.display = ValueDisplayEnum.UnsignedDecimal;
         this.busMatchRule = MatchRegisterWidthEnum.ToWord;
+
+        this.width=0;
+        this.bitmask=0;
         this.setBitWidth(8);
         this.value = 0;
         this.wasWriten=false;
-        this.onUpdateCallbacks = {};
+        this.onUpdateCallbacks = [];
     }
 
 
@@ -31,6 +34,7 @@ class  Register extends MachineComponent {
 
     resetState(){
         this.wasWriten=false;
+        this.update();
     }
 
     onBusWidthChanged(_settings){
@@ -55,7 +59,9 @@ class  Register extends MachineComponent {
 
     }
 
-
+    getSignBit(){
+        return this.value & 1<< (this.width-1);
+    }
 
     write(_value){
         if(this.wasWriten==true){
@@ -76,16 +82,18 @@ class  Register extends MachineComponent {
 
 
     addOnUpdateCallback(_funk){
-        this.onUpdateCallbacks[_funk]=_funk;
+        this.onUpdateCallbacks.push(_funk);
     }
 
     update(){
-        for (const key in this.onUpdateCallbacks) {
-            if (Object.hasOwnProperty.call(this.onUpdateCallbacks, key)) {
-                const funk = this.onUpdateCallbacks[key];
+        
+        if(this.onUpdateCallbacks===undefined==false){
+            this.onUpdateCallbacks.forEach(funk => {
                 funk(this);
-            }
+            });
         }
+
+        
         
     }
 
@@ -123,9 +131,7 @@ class  Register extends MachineComponent {
     }
 
 
-    getSignBit(){
-        return this.value & 1<< (this.width-1);
-    }
+    
 
 
     toSignedDecimal(){
@@ -145,20 +151,8 @@ class  Register extends MachineComponent {
 
     getDisplayText(){
 
-        switch (this.display) {
-            case RegisterDisplayEnum.UnsignedDecimal:
-                return this.value.toString(10);
-            case RegisterDisplayEnum.SignedDecimal:
-                return this.toSignedDecimal();
-            case RegisterDisplayEnum.Binary:
-                return this.value.toString(2);
-            case RegisterDisplayEnum.HexaDecimal:
-                return this.value.toString(16);
-            default:
-                return "err";
-
-        }
-
+        
+        return "useValueDsplayer";
         
     }
 

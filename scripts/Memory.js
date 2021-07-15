@@ -18,9 +18,46 @@ class Mamory extends MachineComponent{
             
         }
 
-        console.log(this.values);
+        this.onValueChangedCalbacks = [];
+        this.onMemoryChangedCallbacks=[];
+        this.onResizedCallbacks={};
+
+
 
     }
+
+
+    length(){
+        return this.values.length;
+    }
+
+    getValue(_adress){
+        return this.values[_adress];
+    }
+
+    addOnValueChangedCallback(_funk){
+        this.onValueChangedCalbacks.push(_funk);
+    }
+
+    valueChanged(_index){
+        this.onValueChangedCalbacks.forEach(funk => {
+            funk(this,_index);
+        });
+    }
+
+    addOnMemoryChangedCallback(_funk){
+        this.onMemoryChangedCallbacks.push(_funk);
+    }
+
+    meomoryChanged(){
+
+        this.onMemoryChangedCallbacks.forEach(funk => {
+            funk(this);
+        });
+
+    }
+
+
 
     setDefault(){
         for (let index = 0; index < this.values.length; index++) {
@@ -59,7 +96,7 @@ class Mamory extends MachineComponent{
         }
         delete this.values;
         this.values = tmp;
-
+        this.meomoryChanged();
 
     }
 
@@ -78,6 +115,7 @@ class Mamory extends MachineComponent{
             Alerter.alert("Memory out of bounds.");
         }else{
             this.values[_adress] =_value;
+            this.valueChanged(_adress);
         }
     }
 
@@ -92,6 +130,7 @@ class Mamory extends MachineComponent{
             this.values[index] = element;
 
         }
+        this.meomoryChanged();
     }
 
 

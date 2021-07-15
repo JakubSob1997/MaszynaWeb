@@ -9,7 +9,7 @@ class SettingsSerializer{
     }
 
     static getDefault(){
-        return new SettingsSerializer(3,5,ExtnensionFlags.W);
+        return new SettingsSerializer(3,5,ExtnensionFlags.EW);
     }
 
     static getSerializer(_settings){

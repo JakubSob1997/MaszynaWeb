@@ -44,7 +44,7 @@ var loadCodeButton = document.getElementById("load-code-button");
 
 codeTextArea.value=localStorage.getItem("codeTextArea");
 
-MView = new MachineView(M,new SettingsSerializer(3,5,ExtnensionFlags.Base|ExtnensionFlags.Stack));
+MView = new MachineView(M);
 MView.setupMachine();
 
 
@@ -66,42 +66,25 @@ loadCodeButton.onclick = ()=>{
 
 
 
-var visuals =[]
-function resetVisuals(){
-    visuals.registers.forEach(register => {
-        if(register!=null){
-            register.classList.remove("register-selected");
-        }
-    });
-}
+
 
 
 let nextCycleButton = document.getElementById("next-cycle-button");
 
 nextCycleButton.onclick=function(){
-    resetVisuals();
+
     M.doCycle();
 }
 
 let nextInstructionButton = document.getElementById("next-instruction-button");
 nextInstructionButton.onclick=function(){
-    resetVisuals();
+
     M.doInstruction();
 }
 
     
 
 
-
-
-
-var AK_Reg_UI = document.getElementById("ak-register");
-var S_Reg_UI = document.getElementById("s-register");
-var A_Reg_UI = document.getElementById("a-register");
-var L_Reg_UI = document.getElementById("l-register");
-var I_Reg_UI = document.getElementById("i-register");
-
-visuals.registers = [AK_Reg_UI,S_Reg_UI,A_Reg_UI,L_Reg_UI,I_Reg_UI]
 
 
 
@@ -120,32 +103,6 @@ M.S_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,S_bus_UI)});
 M.A_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,A_bus_UI)});
 
 
-function displayRegister(_register,_registerUI){
-    _registerUI.innerHTML=_register.getDisplayText();
-    if(_register.wasWriten){
-        _registerUI.classList.add("register-selected");
-    }else{
-        _registerUI.classList.remove("register-selected");
-    }
-}
-
-
-M.AK_register.addOnUpdateCallback(
-    _register=>{displayRegister(_register,AK_Reg_UI);}
-)
-M.S_register.addOnUpdateCallback(
-    _register=>{displayRegister(_register,S_Reg_UI);}
-)
-M.A_register.addOnUpdateCallback(
-    _register=>{displayRegister(_register,A_Reg_UI);}
-)
-M.L_register.addOnUpdateCallback(
-    _register=>{displayRegister(_register,L_Reg_UI);}
-)
-M.I_register.addOnUpdateCallback(
-    _register=>{displayRegister(_register,I_Reg_UI);}
-)
-
 
 
 
@@ -156,7 +113,6 @@ var signalUIs = [];
 
 var signalUIs = document.getElementsByClassName("signal");
 
-visuals.signals = signalUIs;
 
 
 
