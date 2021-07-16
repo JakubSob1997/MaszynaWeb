@@ -8,6 +8,11 @@
 */
 
 
+:root{
+    --seleced-color: rgb(175, 67, 67);
+}
+
+
 .jal-padding{
     height: 2em;
 }
@@ -40,11 +45,21 @@
     border-width: thin;
     border-radius: 0.2em;
     justify-content: center;
-
+    white-space: nowrap;
 
     height: 100%;
     
 }
+
+
+.reg-selected{
+    color:var(--seleced-color);
+}
+.reg-hidden{
+    background: transparent;
+    color: gray;
+}
+
 
 
 .sig:hover{
@@ -68,6 +83,12 @@
     /*height: 100%;*/
 }
 
+
+
+.sig-selected{
+    background: rgb(177, 107, 107);
+}
+
 .sig-hidden{
     background: transparent;
     color: gray;
@@ -78,10 +99,13 @@
     color: gray;
 }
 
-.sig-selected{
-    background: red;
-    font-weight: bold;
+
+
+
+.bus-selected{
+    color:var(--seleced-color);
 }
+
 
 
 
@@ -92,6 +116,7 @@
     border-width: thin;
     border-radius: 0.5em;
 
+
     overflow-y: scroll;
 
     display: flex;
@@ -100,8 +125,11 @@
 
 }
 
+
 .mem-entry{
     color: blue;
+    white-space: nowrap;
+
 }
 
 .mem-entry-selected{

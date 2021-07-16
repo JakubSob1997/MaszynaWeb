@@ -15,10 +15,12 @@ class Signal{
             this.extention=_extention;
         }
         
-
-
         this.onUpdateCallbacks = [];
 
+    }
+
+    getExtention(){
+        return this.extention;
     }
 
 

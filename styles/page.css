@@ -28,28 +28,17 @@ body{
     color: var(--font-light);
 }
 
-.signal-selected{
-    background: rgb(177, 107, 107);
-}
 
-
-.register-selected{
-    color:rgb(175, 67, 67);
-}
-
-.bus-selected{
-    color:rgb(175, 67, 67);
-}
 
 .machine-wrapper{
     border-radius: 0.5em;
     max-width: 1200px;
-
-
-
-
     border:solid;
 
+}
+
+.selected{
+    background-color: red;
 }
 
 

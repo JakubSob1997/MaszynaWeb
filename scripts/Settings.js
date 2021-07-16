@@ -2,14 +2,19 @@
 
 
 class SettingsSerializer{
-    constructor(_codeWidth,_adressWidth,_extentionFlags){
+    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList){
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
         this.extentionFlags = _extentionFlags;
     }
 
     static getDefault(){
-        return new SettingsSerializer(3,5,ExtnensionFlags.EW);
+        return new SettingsSerializer(
+            3,
+            5,
+            ExtnensionFlags.EW,
+            [1,2,3,4]
+            );
     }
 
     static getSerializer(_settings){
@@ -25,7 +30,7 @@ class Settings{
         this.codeWidth=3;
         this.adressWidth=5;
         this.extentionFlags  = ExtnensionFlags.W;
-
+        this.intAdressList=[1,2,3,4];
 
 
         this.onBusWidthChanged = function(_settings){};
@@ -38,7 +43,7 @@ class Settings{
     setupValues(_settingsSerializer){
         this.setBusWidth(_settingsSerializer.codeWidth,_settingsSerializer.adressWidth);
         this.setExtentionFlags(_settingsSerializer.extentionFlags);
-    
+        this.intAdressList = _settingsSerializer._intAdressList;
     }
 
     setExtentionFlags(_flags){
@@ -49,6 +54,9 @@ class Settings{
 
     getWordMask(){
         return this.codeMask|this.adressMask;
+    }
+    getWordWidth(){
+        return this.codeWidth+this.adressWidth;
     }
 
 

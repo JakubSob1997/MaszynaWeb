@@ -33,7 +33,6 @@ console.log(MEM.values);
 
 M=new Machine();
 buildMachine(M);
-M.settings.setBusWidth(4,6);
 //console.log(M);
 
 console.log(InstructionList.getDefaultInstructionList());
@@ -48,25 +47,20 @@ MView = new MachineView(M);
 MView.setupMachine();
 
 
+console.log(M);
+
 loadCodeButton.onclick = ()=>{
     localStorage.setItem("codeTextArea",codeTextArea.value);
 
     const tmp = new AssemblyParser(codeTextArea.value,M.settings,M.instructionList);
-    console.log(tmp);
     
 
     if(tmp.parseSuccesful){
         M.setComponentsDefault();
         M.MEM.loadMemory(tmp.values);
-        console.log(M);
     }
 
 }
-
-
-
-
-
 
 
 let nextCycleButton = document.getElementById("next-cycle-button");
@@ -87,7 +81,7 @@ nextInstructionButton.onclick=function(){
 
 
 
-
+/*
 var A_bus_UI = document.getElementById("a-bus");
 var S_bus_UI = document.getElementById("s-bus");
 
@@ -102,55 +96,6 @@ function busUpdate(_bus,_busUI){
 M.S_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,S_bus_UI)});
 M.A_bus.addOnUpdateCallback(_bus=>{busUpdate(_bus,A_bus_UI)});
 
-
-
-
-
-
-var signalUIs = [];
-
-
-
-var signalUIs = document.getElementsByClassName("signal");
-
-
-
-
-for(let signalUI of signalUIs){
-    let id = signalUI.id;
-    if(M.hasSignal(id)){
-        signalUI.onclick =()=>{
-            let id = signalUI.id;
-            if(M.isSignalSelected(id)){
-                M.deSelectSignal(id);
-            }else{
-                M.selectSignal(id);
-            }
-        };
-    }
-    
-}
-
-
-function signalVisualCallback(_signal){
-    const signalUI = document.getElementById(_signal.name);
-    if(signalUI==null){
-        return;
-    }
-
-    if(M.isSignalSelected(_signal.name)){
-            
-        signalUI.classList.add("signal-selected");
-    }else{
-        signalUI.classList.remove("signal-selected");
-    }
-
-
-}
-
-for(const signal in M.singnalDictionary){
-    M.singnalDictionary[signal].addOnUpdateCallback(signalVisualCallback);
-
-}
+*/
 
 

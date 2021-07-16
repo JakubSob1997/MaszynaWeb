@@ -5,7 +5,7 @@
 class  Register extends MachineComponent {
 
 
-    constructor(_name){
+    constructor(_name,_extention){
         super();
 
         this.name = _name;
@@ -18,6 +18,11 @@ class  Register extends MachineComponent {
         this.value = 0;
         this.wasWriten=false;
         this.onUpdateCallbacks = [];
+        this.extention = _extention?? ExtnensionFlags.Base;
+    }
+
+    getExtention(){
+        return this.extention;
     }
 
 
@@ -39,6 +44,7 @@ class  Register extends MachineComponent {
 
     onBusWidthChanged(_settings){
 
+        
         switch (this.busMatchRule) {
             case MatchRegisterWidthEnum.ToAdress:
                 this.setBitWidth(_settings.adressWidth);

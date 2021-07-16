@@ -66,6 +66,13 @@ class Machine{
 
     }
 
+    selectSignalManual(_siganlName){
+        this.selectSignal(_siganlName);
+    }
+    deSelectSignalManual(_siganlName){
+        this.deSelectSignal(_siganlName)
+    }
+
     isSignalSelected(_signalName){
         if(this.singnalDictionary.hasOwnProperty(_signalName)){
             let signal= this.singnalDictionary[_signalName];

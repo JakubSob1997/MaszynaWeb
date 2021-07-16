@@ -70,15 +70,8 @@ class ControllUnit extends MachineComponent{
 
         
     }
-    
-
-
-
-
-
 
 }
-
 
 
 

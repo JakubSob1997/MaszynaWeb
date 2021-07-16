@@ -18,7 +18,6 @@ class ValueDisplayer{
         if(this.getSignBit(_value,_bitWidth)==0){
             return _value.toString(10);
         }else{
-            console.log(_bitmask);
             let neg = ((~_value)+1)&_bitmask;
             return "-"+neg.toString(10);
         }
@@ -34,7 +33,6 @@ class ValueDisplayer{
         let code;
         let arg;
         if(this.instructionList.hasInstruction(opcode)){
-            console.log(this.instructionList.getInstructionIndex(opcode));
             code = this.instructionList.getInstruction(opcode).name;
         }else{
             code="???"
@@ -56,6 +54,16 @@ class ValueDisplayer{
     }
 
 
+    wordToString(_value,_displayMode){
+        return this.valueToString(
+            _value,
+            _displayMode,
+            this.settings.getWordWidth(),
+            this.settings.getWordMask()
+            )
+    }
+
+
     valueToString(_value,_displayMode,_bitWidth,_bitmask){
 
 
@@ -65,9 +73,9 @@ class ValueDisplayer{
             case ValueDisplayEnum.SignedDecimal:
                 return this.toSignedDecimal(_value,_bitWidth,_bitmask);
             case ValueDisplayEnum.Binary:
-                return _value.toString(2);
+                return "%"+_value.toString(2);
             case ValueDisplayEnum.HexaDecimal:
-                return _value.toString(16);
+                return "#"+_value.toString(16);
             case ValueDisplayEnum.OpCodeArgument:
                 return this.toOpCodeArgument(_value,_bitWidth,_bitmask);
             default:

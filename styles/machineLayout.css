@@ -3,7 +3,6 @@
   grid-template-columns: 1fr 0.1fr 3.2fr;
   grid-template-rows: 1fr 0.1fr 4fr 0.1fr 01fr;
   grid-auto-columns: 1fr;
-
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -12,7 +11,7 @@
     "left-area as-bus center-area"
     "s-bus s-bus s-bus"
     "down-area down-area down-area";
-  width: 100%;
+  width: 99.6%;
   height: 100%;
 }
 
@@ -154,13 +153,13 @@
   grid-auto-flow: row;
   grid-template-areas:
     "."
-    "eint-s"
+    "eni-s"
     "rint-s"
     ".";
   grid-area: eint-rint-area;
 }
 
-.eint-s { grid-area: eint-s; }
+.eni-s { grid-area: eni-s; }
 
 .rint-s { grid-area: rint-s; }
 
@@ -444,9 +443,7 @@
 
 .s-r { grid-area: s-r; }
 
-.mem-body { 
-  grid-area: mem-body; 
-}
+.mem-body { grid-area: mem-body; }
 
 .s-sigs {
   display: grid;

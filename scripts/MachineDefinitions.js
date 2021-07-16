@@ -24,10 +24,16 @@ function setupFlagUnit(_flagUnit){
             }
         )
     )
+
 }
 
 
 function buildMachine(_Machine){
+
+
+    _Machine.settings = new Settings();
+    _Machine.settings.onBusWidthChanged =(_set)=>{ _Machine.onBusWidthChanged(_set)};
+    
 
 
     let S_bus = new Bus();
@@ -38,20 +44,35 @@ function buildMachine(_Machine){
     let MEM = new Mamory(0);
     _Machine.MEM = MEM;
 
+
+    //Init registers
     let AK_register= new Register("ak");
     let S_register = new Register("s");
     let A_register = new Register("a");
     let L_register = new Register("l");
     let I_register = new Register("i");
 
-    let WS_register=new Register("ws");
-    let X_Register =new Register("x");
-    let Y_Register=new Register("y");
+    let WS_register=new Register("ws",ExtnensionFlags.Stack);
 
+    let X_register =new Register("x" , ExtnensionFlags.X_Register);
+    let Y_register=new Register("y",ExtnensionFlags.Y_Register);
+
+    let RZ_register = new Register("rz",ExtnensionFlags.Interupt);
+    let RM_register = new Register("rm",ExtnensionFlags.Interupt);
+    let RP_register=new Register("rp",ExtnensionFlags.Interupt);
+    let AP_register=new Register("ap",ExtnensionFlags.Interupt);
+
+
+    
+    //Set default display
     AK_register.display = ValueDisplayEnum.SignedDecimal;
     I_register.display = ValueDisplayEnum.OpCodeArgument;
-    S_register.display = ValueDisplayEnum.OpCodeArgument;
-    
+    RZ_register.display = ValueDisplayEnum.Binary;
+    RP_register.display=   ValueDisplayEnum.Binary;
+    RM_register.display = ValueDisplayEnum.Binary;
+
+
+    //Set bus match rule and bus width
     AK_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
     S_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
     A_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
@@ -59,10 +80,10 @@ function buildMachine(_Machine){
     I_register.busMatchRule = MatchRegisterWidthEnum.ToWord;
 
     WS_register.busMatchRule=MatchRegisterWidthEnum.ToAdress;
-    X_Register.busMatchRule=MatchRegisterWidthEnum.ToWord;
-    Y_Register.busMatchRule=MatchRegisterWidthEnum.ToWord;
+    X_register.busMatchRule=MatchRegisterWidthEnum.ToWord;
+    Y_register.busMatchRule=MatchRegisterWidthEnum.ToWord;
 
-
+    //Set registers
     _Machine.AK_register=AK_register;
     _Machine.S_register=S_register;
     _Machine.A_register=A_register;
@@ -70,24 +91,31 @@ function buildMachine(_Machine){
     _Machine.I_register=I_register;
     
     _Machine.WS_register=WS_register;
-    _Machine.X_Register=X_Register;
-    _Machine.Y_Register=Y_Register;
+    _Machine.X_register=X_register;
+    _Machine.Y_register=Y_register;
 
+    _Machine.RZ_register=RZ_register;
+    _Machine.RM_register=RM_register;
+    _Machine.RP_register=RP_register;
+    _Machine.AP_register=AP_register;
 
+    //Define Units
     let JAL = new ArythmeticLogicUnit(AK_register);
     let flagUnit = new FlagsUnit(AK_register);
     setupFlagUnit(flagUnit);
-
     let CntrlUnit = new ControllUnit(I_register,flagUnit);
+    let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
 
 
     _Machine.controllUnit=CntrlUnit;
     _Machine.JAL=JAL
     _Machine.flagUnit=flagUnit;
+    _Machine.interuptUnit = InteruptUnt;
         
     let machineComponents = [
         JAL,
         MEM,
+        InteruptUnt,
 
         S_bus,
         A_bus,
@@ -98,8 +126,12 @@ function buildMachine(_Machine){
         L_register,
         I_register,
         WS_register,
-        X_Register,
-        Y_Register,
+        X_register,
+        Y_register,
+        RZ_register,
+        RM_register,
+        RP_register,
+        AP_register,
     ];
     _Machine.machineComponents= machineComponents;
 
@@ -111,8 +143,12 @@ function buildMachine(_Machine){
         L_register,
         I_register,
         WS_register,
-        X_Register,
-        Y_Register,
+        X_register,
+        Y_register,
+        RZ_register,
+        RM_register,
+        RP_register,
+        AP_register,
     ];
 
     _Machine.registers= registers;
@@ -124,8 +160,6 @@ function buildMachine(_Machine){
     ];
     _Machine.buses = buses;
     
-    _Machine.settings = new Settings();
-    _Machine.settings.onBusWidthChanged =(_set)=>{ _Machine.onBusWidthChanged(_set)};
     
     _Machine.settings.setBusWidth(3,5);
 
@@ -150,6 +184,7 @@ function addAllSignals(_Machine){
     addStackSingals(_Machine);
     addX_RegisterSignals(_Machine);
     addY_RegisterSignals(_Machine);
+    addInteruptSignals(_Machine);
 }
 
 
@@ -413,25 +448,20 @@ function addStackSingals(_Machine){
     _Machine.addSignalToDictioanry(dws);
     _Machine.addSignalToDictioanry(wyws);
     _Machine.addSignalToDictioanry(wews);
-
-
-
-
-
 }
 
 function addX_RegisterSignals(_Machine){
     const wyx = new Signal(
         "wyx",
         false,
-        (_M)=>{_M.S_bus.setSourceRegister(_M.X_Register);},
+        (_M)=>{_M.S_bus.setSourceRegister(_M.X_register);},
         ExtnensionFlags.X_Register
     )
 
     const wex = new Signal(
         "wex",
         true,
-        (_M)=>{_M.X_Register.writeFromBus(_M.S_bus) ;},
+        (_M)=>{_M.X_register.writeFromBus(_M.S_bus) ;},
         ExtnensionFlags.X_Register
     )
     _Machine.addSignalToDictioanry(wyx);
@@ -443,14 +473,14 @@ function addY_RegisterSignals(_Machine){
     const wyy = new Signal(
         "wyy",
         false,
-        (_M)=>{_M.S_bus.setSourceRegister(_M.Y_Register);},
+        (_M)=>{_M.S_bus.setSourceRegister(_M.Y_register);},
         ExtnensionFlags.Y_Register
     )
 
     const wey = new Signal(
         "wey",
         true,
-        (_M)=>{_M.Y_Register.writeFromBus(_M.S_bus) ;},
+        (_M)=>{_M.Y_register.writeFromBus(_M.S_bus) ;},
         ExtnensionFlags.Y_Register
     )
     _Machine.addSignalToDictioanry(wyy);
@@ -458,3 +488,47 @@ function addY_RegisterSignals(_Machine){
 
 }
 
+function addInteruptSignals(_Machine){
+    const wyrm = new Signal(
+        "wyrm",
+        false,
+        (_M)=>{_M.A_bus.setSourceRegister(_M.RM_register);},
+        ExtnensionFlags.Interupt
+    )
+
+    const werm = new Signal(
+        "werm",
+        true,
+        (_M)=>{_M.RM_register.writeFromBus(_M.A_bus);},
+        ExtnensionFlags.Interupt
+    )
+
+    const wyap = new Signal(
+        "wyap",
+        false,
+        (_M)=>{_M.A_bus.setSourceRegister(_M.AP_register);},
+        ExtnensionFlags.Interupt
+    )
+    
+    const eni = new Signal(
+        "eni",
+        true,
+        (_M)=>{_M.interuptUnit.doEni();},
+        ExtnensionFlags.Interupt
+    )
+
+    const rint = new Signal(
+        "rint",
+        true,
+        (_M)=>{_M.interuptUnit.doRint();},
+        ExtnensionFlags.Interupt
+    )
+
+
+    _Machine.addSignalToDictioanry(wyrm);
+    _Machine.addSignalToDictioanry(werm);
+    _Machine.addSignalToDictioanry(wyap);
+    _Machine.addSignalToDictioanry(eni);
+    _Machine.addSignalToDictioanry(rint);
+
+}

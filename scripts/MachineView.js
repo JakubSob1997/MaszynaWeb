@@ -1,9 +1,5 @@
 
 
-
-
-
-
 class MachineView{
 
     constructor(_Machine , _settingsSerializer,_instructionListSerializer){
@@ -34,57 +30,58 @@ class MachineView{
     }
 
 
-
-
     setupMachine(){
         this.setupRegisterViews(this.M.registers);
         this.setupSignalViews(this.M.singnalDictionary);
 
+        
         this.setupMemoryViews(this.M.MEM)
         this.memViews.forEach(view => {
             this.fillMemoryView(this.M.MEM,view);
         });
+        
+
     }
 
 
-
-
-    displayRegister(_register){
+    displayRegister(_register,_element){
         const regName = _register.name;
         const value = this.valueDusplayer.registerToString(_register)
 
-        return regName + ": " +value;
 
+        _element.innerHTML=regName + ": " +value;
+        if(_register.wasWriten){
+            _element.classList.add("reg-selected");
+        }else{
+            _element.classList.remove("reg-selected");
+        }
 
-        
+    
+        if((this.M.settings.extentionFlags &_register.getExtention())===0){
+            
+            _element.classList.add("reg-hidden");
+        }else{
+            
+            _element.classList.remove("reg-hidden");
+        }
+
     }
 
 
     createRegisterElement(_register){
         let element  = document.createElement("div")
         element.classList.add("reg");
-        element.innerHTML=this.displayRegister(_register);
+        element.innerHTML=this.displayRegister(_register,element);
 
 
         _register.addOnUpdateCallback(_reg=>{
-                element.innerHTML=this.displayRegister(_reg);
-                if(_reg.wasWriten){
-                    element.classList.add("register-selected");
-                }else{
-                    element.classList.remove("register-selected");
-                }
+                this.displayRegister(_reg,element);
             }
         );
+
+        _register.update();
         return element;
     }
-
-    
-   
-
-    
-
-
-
 
     setupRegisterViews(_registers){
         _registers.forEach(reg => {
@@ -111,7 +108,7 @@ class MachineView{
 
         _signal.addOnUpdateCallback(_sig=>{
 
-            if((this.M.settings.extentionFlags & _sig.extention) === 0 ){
+            if((this.M.settings.extentionFlags & _sig.getExtention()) === 0 ){
                 element.classList.add("sig-hidden");
             }else{
                 element.classList.remove("sig-hidden");
@@ -119,11 +116,22 @@ class MachineView{
 
             if(this.M.isSignalSelected(_signal.name)){
             
-                element.classList.add("signal-selected");
+                element.classList.add("sig-selected");
             }else{
-                element.classList.remove("signal-selected");
+                element.classList.remove("sig-selected");
             }
         });
+
+
+        element.onclick =()=>{
+            let name = _signal.name;
+            if(M.isSignalSelected(name)){
+                M.deSelectSignalManual(name);
+            }else{
+                M.selectSignalManual(name);
+            }
+        };
+
         
         _signal.update();
         return element;
@@ -150,6 +158,17 @@ class MachineView{
 
 
 
+    displayMemoryEntry(_memory,_adress){
+        const val = _memory.getValue(_adress);
+
+        const decimal =this.valueDusplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
+
+        const code =this.valueDusplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
+
+        return _adress+": "+decimal+" "+code;
+
+    }
+
     createMemoryBodyElement(_memory){
         let element  = document.createElement("div")
         element.classList.add("mem");
@@ -159,30 +178,11 @@ class MachineView{
     createMemoryEntryElement(_memory,_adress){
         let element  = document.createElement("div")
         element.classList.add("mem-entry");
-        element.innerHTML=_memory.getValue(_adress);
-
-        _memory.addOnValueChangedCallback((_mem,_adr)=>{
-            if(_adr==_adress){
-                element.innerHTML=_memory.getValue(_adress);
-            }
-        });
-
-        _memory.addOnMemoryChangedCallback((_mem)=>{
-            element.innerHTML=_memory.getValue(_adress);
-            
-        });
-
-
-        this.M.A_register.addOnUpdateCallback(_reg=>{
-            if(_adress==_reg.getValue()){
-                element.classList.add("mem-entry-selected");
-            }else{
-                element.classList.remove("mem-entry-selected");
-            }
-
-        })
+        element.innerHTML=this.displayMemoryEntry(_memory,_adress);
 
         
+         
+       
         return element;
     }
 
@@ -199,32 +199,57 @@ class MachineView{
             this.memViews.push(element);
             wrapper.appendChild(element);
 
-            
+            _memory.addOnValueChangedCallback((_mem,_adr)=>{
+                element.children[_adr].innerHTML=this.displayMemoryEntry(_mem,_adr);
+            });
+
+            _memory.addOnMemoryChangedCallback((_mem)=>{
+                for (let index = 0; index < element.children.length; index++) {
+                    const child = element.children[index];
+                    child.innerHTML=this.displayMemoryEntry(_mem,index);
+                }
+                
+            });
+            element.highlight = 0;
+            this.M.A_register.addOnUpdateCallback(_reg=>{
+                const adr = _reg.getValue();
+                element.children[element.highlight].classList.remove("mem-entry-selected");
+                element.children[adr].classList.add("mem-entry-selected");
+                element.highlight = adr;
+
+            })
         }
     }
 
 
     fillMemoryView(_memory, _view){
+
+        
+
         for (let adress = 0; adress < _memory.length(); adress++) {
             const element = this.createMemoryEntryElement(_memory,adress);
+
             _view.appendChild(element);
+            
         }
     }
 
-    clearMemoryView(){
 
+
+    createBusHorizontal(){
+        let element  = document.createElement("div")
+        element.classList.add("bus-hor");
+        return element;
     }
 
+    createBusVertical(){
+        let element  = document.createElement("div")
+        element.classList.add("bus-vert");
+        return element;
+    }
 
 
 
 
 }
-
-
-
-
-
-
-
 
