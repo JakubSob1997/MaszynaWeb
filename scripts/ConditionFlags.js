@@ -12,8 +12,7 @@ class ConditionFlag{
 
 class FlagsUnit{
 
-    constructor(_AK_Register){
-        this.AK_register = _AK_Register;
+    constructor(){
         this.conditionFlags = [];
     }
 
@@ -22,8 +21,8 @@ class FlagsUnit{
     }
 
 
-    checkFlag(_flagName){
-        return this.conditionFlags[_flagName].isFlagActive(this);
+    checkFlag(_flagName,_Machine){
+        return this.conditionFlags[_flagName].isFlagActive(_Machine);
     }
 
 }

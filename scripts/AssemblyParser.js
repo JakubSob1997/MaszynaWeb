@@ -283,11 +283,8 @@ class AssemblyParser{
                 
                 this.values[index] = opcode|argVal;
             }
-            
         }
     }
-
-
 }
 
 

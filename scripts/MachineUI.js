@@ -76,7 +76,15 @@ nextInstructionButton.onclick=function(){
     M.doInstruction();
 }
 
-    
+let toggleManualButton = document.getElementById("toggle-manual-button");
+toggleManualButton.onclick = ()=>{
+    M.manualControll = !M.manualControll;
+    if(M.manualControll){
+        toggleManualButton.classList.add("selected")
+    }else{
+        toggleManualButton.classList.remove("selected")
+    }
+}
 
 
 

@@ -25,6 +25,15 @@ function setupFlagUnit(_flagUnit){
         )
     )
 
+    // RP!=0
+    _flagUnit.addFlag(
+        new ConditionFlag("INT",
+            (_Machine)=>{
+                return _Machine.RP_register.getValue()!=0;
+            }
+        )
+    )
+
 }
 
 
@@ -82,6 +91,16 @@ function buildMachine(_Machine){
     WS_register.busMatchRule=MatchRegisterWidthEnum.ToAdress;
     X_register.busMatchRule=MatchRegisterWidthEnum.ToWord;
     Y_register.busMatchRule=MatchRegisterWidthEnum.ToWord;
+
+    RZ_register.busMatchRule = MatchRegisterWidthEnum.DontMatch;
+    RZ_register.setBitWidth(4);
+    RM_register.busMatchRule = MatchRegisterWidthEnum.DontMatch;
+    RM_register.setBitWidth(4);
+    RZ_register.busMatchRule = MatchRegisterWidthEnum.DontMatch;
+    RZ_register.setBitWidth(4);
+    RP_register.busMatchRule = MatchRegisterWidthEnum.DontMatch;
+    RP_register.setBitWidth(4);
+    AP_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
 
     //Set registers
     _Machine.AK_register=AK_register;

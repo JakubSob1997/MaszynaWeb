@@ -65,6 +65,7 @@ class ArythmeticLogicUnit extends MachineComponent {
                 break;
             case JALOperationEnum.SHR:
                 output = _inputval>>1;
+                break;
             default:
                 Alerter.alert("Arethmitic Logic Operation Is Undefined")
                 return;

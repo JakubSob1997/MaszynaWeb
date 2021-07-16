@@ -6,6 +6,7 @@ class SettingsSerializer{
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
         this.extentionFlags = _extentionFlags;
+        this.intAdressList = _intAdressList;
     }
 
     static getDefault(){
@@ -43,7 +44,7 @@ class Settings{
     setupValues(_settingsSerializer){
         this.setBusWidth(_settingsSerializer.codeWidth,_settingsSerializer.adressWidth);
         this.setExtentionFlags(_settingsSerializer.extentionFlags);
-        this.intAdressList = _settingsSerializer._intAdressList;
+        this.intAdressList = _settingsSerializer.intAdressList;
     }
 
     setExtentionFlags(_flags){

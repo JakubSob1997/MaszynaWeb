@@ -41,6 +41,9 @@ class MachineView{
         });
         
 
+        this.setRZButtons(this.M.RZ_register);
+
+
     }
 
 
@@ -246,6 +249,41 @@ class MachineView{
         let element  = document.createElement("div")
         element.classList.add("bus-vert");
         return element;
+    }
+
+
+    createRZButton(_RZreg,_index,_label){
+        let element  = document.createElement("button")
+        element.onclick=()=>{
+            _RZreg.value = _RZreg.getValue()|(1<<(_RZreg.width-1))>>_index;
+            _RZreg.update();
+        };
+        element.innerHTML=_label;
+        return element;
+    }
+
+
+    setRZButtons(_RZreg){
+        let buttonWrappers = document.getElementsByClassName("rz-1");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            wrapper.appendChild(this.createRZButton(_RZreg,0,1));
+        }
+        buttonWrappers = document.getElementsByClassName("rz-2");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            wrapper.appendChild(this.createRZButton(_RZreg,1,2));
+        }
+        buttonWrappers = document.getElementsByClassName("rz-3");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            wrapper.appendChild(this.createRZButton(_RZreg,2,3));
+        }
+        buttonWrappers = document.getElementsByClassName("rz-4");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            wrapper.appendChild(this.createRZButton(_RZreg,3,4));
+        }
     }
 
 
