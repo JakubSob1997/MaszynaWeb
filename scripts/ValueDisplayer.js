@@ -24,6 +24,15 @@ class ValueDisplayer{
     }
 
 
+    toBinary(_value,_bitWidth,_bitmask){
+        const zero="0";
+        let output=_value.toString(2);
+        output="%"+zero.repeat(_bitWidth-output.length)+output;
+        return output;
+        
+    }
+
+
     toOpCodeArgument(_value,_bitWidth,_bitmask){
         if(this.settings.codeMask&&_bitmask == 0){
             return _value.toString(10);
@@ -73,7 +82,7 @@ class ValueDisplayer{
             case ValueDisplayEnum.SignedDecimal:
                 return this.toSignedDecimal(_value,_bitWidth,_bitmask);
             case ValueDisplayEnum.Binary:
-                return "%"+_value.toString(2);
+                return this.toBinary(_value,_bitWidth,_bitmask);
             case ValueDisplayEnum.HexaDecimal:
                 return "#"+_value.toString(16);
             case ValueDisplayEnum.OpCodeArgument:

@@ -119,7 +119,7 @@
 
     overflow-y: scroll;
 
-    display: flex;
+    display: fixed;
     flex-direction: column;
     height: 13.5em;
 
@@ -143,3 +143,10 @@ span.reg-name{
     
 }
 
+.rz-button{
+    width: 90%;
+    height: 90%;
+    position: relative;
+    left:  5%;
+    top: 5%;
+}

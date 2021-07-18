@@ -44,6 +44,7 @@ class MachineView{
         this.setRZButtons(this.M.RZ_register);
 
 
+
     }
 
 
@@ -239,19 +240,6 @@ class MachineView{
 
 
 
-    createBusHorizontal(){
-        let element  = document.createElement("div")
-        element.classList.add("bus-hor");
-        return element;
-    }
-
-    createBusVertical(){
-        let element  = document.createElement("div")
-        element.classList.add("bus-vert");
-        return element;
-    }
-
-
     createRZButton(_RZreg,_index,_label){
         let element  = document.createElement("button")
         element.onclick=()=>{
@@ -259,6 +247,7 @@ class MachineView{
             _RZreg.update();
         };
         element.innerHTML=_label;
+        element.classList.add("rz-button");
         return element;
     }
 
@@ -288,6 +277,28 @@ class MachineView{
 
 
 
+    
+
+    createBusHorizontal(){
+        let element  = document.createElement("div")
+        element.classList.add("bus-hor");
+        return element;
+    }
+
+    createBusVertical(){
+        let element  = document.createElement("div")
+        element.classList.add("bus-vert");
+        return element;
+    }
+
+
+    setupBusHorizontal(_bus,_wrapperClassName){
+
+    }
+
+    setupBusVertical(_bus, _wrapperClassName){
+
+    }
 
 }
 

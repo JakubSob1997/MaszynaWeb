@@ -25,6 +25,7 @@ class InstrCycle{
 class Instruction{
     constructor(_name){
         this.name = _name.toUpperCase();
+        this.source ="";
         this.cycles = []
         this.argCount = 1;
     }
@@ -49,17 +50,51 @@ class InstructionListSerializer{
         STP_inst.argCount=0;
         STP_inst.cycles[0] =new InstrCycle(["czyt","wys","wei","il"]);
         STP_inst.cycles[1]=new InstrCycle(["stop"]);
+        STP_inst.source = 
+        "ROZKAZ STP;\n"+
+        "BEZARG;\n"+
+        "czyt wys wei il;\n"+
+        "stop;"
     
         let DOD_inst = new Instruction("DOD");
         DOD_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
         DOD_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
         DOD_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","dod","weak"]);
-    
+        DOD_inst.source =
+            "ROZKAZ DOD;\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea;\n"+
+            "wel wea czyt wys weja dod weak;";
+
+        /*
         let ODE_inst = new Instruction("ODE");
         ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
         ODE_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
         ODE_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","ode","weak"]);
-    
+        */
+
+        let ODE_inst = new Instruction("ODE");
+        ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
+        ODE_inst.cycles[1]=new InstrCycle(["wyad","wea","eni"]);
+        ODE_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","ode","weak"]);
+        ODE_inst.cycles[2].isFinal=true;
+        ODE_inst.cycles[2].branchCondtions = [new BranchCondition("INT",3)];
+        ODE_inst.cycles[3]=new InstrCycle(["dws","czyt","wys","weja","ode","weak"]);
+        ODE_inst.cycles[4]=new InstrCycle(["wyls","wes","wyws","wea"]);
+        ODE_inst.cycles[5]=new InstrCycle(["pisz","wyap","wel","wea","rint"]);
+
+        ODE_inst.source=
+            "ROZKAZ ODE\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea eni;\n"+
+            "JEZELI INT @przerw;\n"+
+            "wyl wea czyt wys weja ode weak wyl KONIEC;\n"+
+            "@przerw wyls wes wyws wea;\n"+
+            "pisz wyap wel wea rint";
+
+
+
+
         let POB_inst = new Instruction("POB");
         POB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
         POB_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
@@ -135,6 +170,17 @@ class InstructionList{
 
     length(){
         return this.instructionArray.length;
+    }
+
+    swap(_indexOrName1,_indexOrName2){
+        let index1 = this.getInstructionIndex(_indexOrName1);
+        let index2 = this.getInstructionIndex(_indexOrName2);
+
+        let tmp = this.instructionArray[index1];
+        this.instructionArray[index1]= this.instructionArray[index2];
+        this.instructionArray[index2]=tmp;
+        this.reindexDictionary();
+
     }
 
 

@@ -45,9 +45,14 @@ codeTextArea.value=localStorage.getItem("codeTextArea");
 
 MView = new MachineView(M);
 MView.setupMachine();
-
-
 console.log(M);
+
+const insInsepctor = new InstructionInspector(M.instructionList);
+const insEditor =  new InstructionEditor();
+
+insInsepctor.addInstructionSelectedCallback((_instr)=>{insEditor.populateEditor(_instr)})
+
+
 
 loadCodeButton.onclick = ()=>{
     localStorage.setItem("codeTextArea",codeTextArea.value);
