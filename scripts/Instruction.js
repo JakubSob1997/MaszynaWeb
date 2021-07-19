@@ -3,9 +3,10 @@
 
 
 class BranchCondition{
-    constructor(_flagName,_cycleIfTrue){
+    constructor(_flagName,_targetCycle,_negate){
         this.flagName = _flagName;
-        this.cycleIfTrue = _cycleIfTrue;
+        this.targetCycle = _targetCycle;
+        this.negate = _negate??false;
     }
 }
 
@@ -84,17 +85,13 @@ class InstructionListSerializer{
         ODE_inst.cycles[5]=new InstrCycle(["pisz","wyap","wel","wea","rint"]);
 
         ODE_inst.source=
-            "ROZKAZ ODE\n"+
+            "ROZKAZ ODE;\n"+
             "czyt wys wei il;\n"+
             "wyad wea eni;\n"+
             "JEZELI INT @przerw;\n"+
             "wyl wea czyt wys weja ode weak wyl KONIEC;\n"+
             "@przerw wyls wes wyws wea;\n"+
             "pisz wyap wel wea rint";
-
-
-
-
         let POB_inst = new Instruction("POB");
         POB_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
         POB_inst.cycles[1]=new InstrCycle(["wyad","wea"]);

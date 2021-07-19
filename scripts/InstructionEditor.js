@@ -30,6 +30,15 @@ class InstructionEditor{
         this.instrName.innerHTML = _instruction.name;
         this.textField.value=_instruction.source;
 
+        this.addCallbacks(_instruction);
+
+    }
+
+    addCallbacks(_instruction){
+        this.button.onclick = ()=>{
+            const parser = new InstrcutionParser(this.textField.value);
+            console.log(parser);
+        }
     }
 
     getHTMLElement(){

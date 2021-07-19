@@ -41,13 +41,13 @@ class ControllUnit extends MachineComponent{
         
         for (let index = 0; index < instrcycle.branchCondtions.length; index++) {
             const branchCondition = instrcycle.branchCondtions[index];
-            if(this.FlagUnit.checkFlag(branchCondition.flagName,_Machine)){
+            if(this.FlagUnit.checkFlag(branchCondition.flagName,_Machine)!=branchCondition.negate){
                 
                 //if(instruction.cycles.length<= this.internalCycleCounter ){
                 //    Alerter.alert("Branched out of instruction scope");
                 //}
 
-                this.internalCycleCounter=branchCondition.cycleIfTrue;
+                this.internalCycleCounter=branchCondition.targetCycle;
                 instrcycle = instruction.cycles[this.internalCycleCounter];
                 break;
             }
