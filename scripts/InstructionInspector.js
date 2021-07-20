@@ -79,7 +79,17 @@ class InstructionInspector{
 
     build(_instructionList){
         this.wrpper=document.createElement("div");
-        this.createInstructionElments(_instructionList,this.wrpper)
+        this.instructionListElement = document.createElement("ul");
+        this.addInstructionButton = document.createElement("button");
+        this.loadDefaultButton=document.createElement("button");
+        this.createInstructionElments(_instructionList,this.instructionListElement);
+
+        this.addInstructionButton.innerHTML="Add";
+        this.loadDefaultButton.innerHTML="Load Default";
+
+        this.wrpper.appendChild(this.loadDefaultButton);
+        this.wrpper.appendChild(this.instructionListElement);
+        this.wrpper.appendChild(this.addInstructionButton);
     }
 
     onUpButton(_index){

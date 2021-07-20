@@ -91,6 +91,7 @@ class  Register extends MachineComponent {
         this.onUpdateCallbacks.push(_funk);
     }
 
+
     update(){
         
         if(this.onUpdateCallbacks===undefined==false){
@@ -153,15 +154,6 @@ class  Register extends MachineComponent {
 
         }
     }
-
-
-    getDisplayText(){
-
-        
-        return "useValueDsplayer";
-        
-    }
-
 
 
 }

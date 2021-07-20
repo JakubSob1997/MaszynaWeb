@@ -1,26 +1,23 @@
 
 
 
-class Insperctor{
+class Inspector{
     constructor(){
 
     }
-    drawInspectorForRegister(_reg){
+
+
+    hide(){
 
     }
-
-    drawInspectorForInstructionList(_instructionList){
+    show(){
         
     }
-    
-    drawInspectorForSettings(_settings){
 
+
+    getHTMLElement(){
+        return null;
     }
-
-    drawInspectorForMemEntry(_mem,_adress){
-
-    }
-
 
 
 }

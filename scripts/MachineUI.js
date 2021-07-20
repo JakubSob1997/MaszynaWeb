@@ -47,8 +47,13 @@ MView = new MachineView(M);
 MView.setupMachine();
 console.log(M);
 
-const insInsepctor = new InstructionInspector(M.instructionList);
-const insEditor =  new InstructionEditor();
+var insInsepctor = new InstructionInspector(M.instructionList);
+var insEditor =  new InstructionEditor();
+var regInsepector = new RegisterInspector();
+
+MView.addOnRegisterSelectedCallback((_reg)=>{
+    regInsepector.selectRegister(_reg);
+});
 
 insInsepctor.addInstructionSelectedCallback((_instr)=>{insEditor.populateEditor(_instr)})
 

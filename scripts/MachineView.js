@@ -27,6 +27,21 @@ class MachineView{
         this.memViews = [];
 
 
+        this.registerSelectedCallbacks = [];
+
+
+    }
+
+
+    addOnRegisterSelectedCallback(_funk){
+        this.registerSelectedCallbacks.push(_funk);
+    }
+
+    selectRegister(_reg){
+        for (let index = 0; index < this.registerSelectedCallbacks.length; index++) {
+            const funk = this.registerSelectedCallbacks[index];
+            funk(_reg);
+        }
     }
 
 
@@ -82,6 +97,10 @@ class MachineView{
                 this.displayRegister(_reg,element);
             }
         );
+
+        element.onclick = ()=>{
+            this.selectRegister(_register);
+        }
 
         _register.update();
         return element;
@@ -185,8 +204,6 @@ class MachineView{
         element.innerHTML=this.displayMemoryEntry(_memory,_adress);
 
         
-         
-       
         return element;
     }
 
@@ -227,8 +244,6 @@ class MachineView{
 
 
     fillMemoryView(_memory, _view){
-
-        
 
         for (let adress = 0; adress < _memory.length(); adress++) {
             const element = this.createMemoryEntryElement(_memory,adress);

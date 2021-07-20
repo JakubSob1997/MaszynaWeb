@@ -337,11 +337,6 @@ class InstrcutionParser{
         }
 
         return instruction;
-        /*
-        this.settingLines=[];
-        this.branchLines=[];
-        this.instructionLines=[];
-        */
     }
 
 }
