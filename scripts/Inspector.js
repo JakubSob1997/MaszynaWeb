@@ -2,19 +2,9 @@
 
 
 class Inspector{
-    constructor(){
-
-    }
-
-
-    hide(){
-
-    }
-    show(){
-        
-    }
-
-
+    constructor(){}
+    hide(){}
+    show(){}
     getHTMLElement(){
         return null;
     }

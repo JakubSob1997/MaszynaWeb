@@ -50,7 +50,7 @@ function buildMachine(_Machine){
     _Machine.S_bus=S_bus;
     _Machine.A_bus=A_bus;
 
-    let MEM = new Mamory(0);
+    let MEM = new Mamory(_Machine.settings);
     _Machine.MEM = MEM;
 
 

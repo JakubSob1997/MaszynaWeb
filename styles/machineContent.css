@@ -51,6 +51,11 @@
     
 }
 
+.reg:hover{
+    background: #7395cc;
+    cursor: pointer;
+}
+
 
 .reg-selected{
     color:var(--seleced-color);
@@ -130,6 +135,11 @@
     color: blue;
     white-space: nowrap;
 
+}
+
+.mem-entry:hover{
+    cursor: pointer;
+    background: cyan;
 }
 
 .mem-entry-selected{

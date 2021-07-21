@@ -42,6 +42,20 @@ body{
 }
 
 
+#flow-control{
+    background: rgb(221, 221, 106);
+}
+
+#inspector{
+    background: darkcyan;
+}
+
+
+#editor{
+    background: darkgreen;
+}
+
+
 /*
 ul {
     list-style-type: none;

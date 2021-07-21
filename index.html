@@ -36,11 +36,20 @@
      <script src="./scripts/MachineDefinitions.js"></script>
      <script src="./scripts/MachineView.js"></script>
 
+     <script src="./scripts/ValueView.js"></script>
+
      <script src="./scripts/InstructionInspector.js"></script>
      <script src="./scripts/InstructionEditor.js"></script>
      <script src="./scripts/InstructionParser.js"></script>
 
      <script src="./scripts/RegisterInspector.js"></script>
+
+     <script src="./scripts/AssemblyEditor.js"></script>
+
+     <script src="./scripts/MemorySlotInspector.js"></script>
+
+     <script src="./scripts/InspectorManager.js"></script>
+
 
 </head>
 <body>
@@ -82,21 +91,23 @@
    -->
 
 
-   <div class="code-editor">
-    <textarea wrap="soft" name="" id="code-textarea" cols="30" rows="10">
 
-    </textarea>
-    </div>
 
-   <ul>
+<div id="navbar">
+  <button id ="asm-nav">asm</button>
+  <button id ="instruction-list-nav">instr</button>
+</div>
+
+<ul id="flow-control">
     <li><button id="toggle-manual-button">Manual</button></li>
-    <li><button id="load-code-button">Ładuj do pamięci</button></li>
     <li><button id="next-cycle-button">Takt</button></li>
     <li><button id="next-instruction-button">Rozkaz</button></li>
 </ul>
 
 
+<div id="inspector">aaa</div>
 
+<div id="editor">aaa</div>
     
 <div class="machine-wrapper">
   <div class="container">
@@ -270,10 +281,15 @@
 
 
 
+<div id="mem-slot-inspector"></div>
+
+<div id="assembly-editor"></div>
 <div id="register-inspector"></div>
 <div id ="instr-editor-test"></div>
 
 <div id="instr-list-test"></div>
+
+
 
 
    <script src="./scripts/MachineUI.js"></script>

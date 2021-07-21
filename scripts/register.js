@@ -150,8 +150,6 @@ class  Register extends MachineComponent {
 
             return "-"+neg.toString(10);
 
-
-
         }
     }
 

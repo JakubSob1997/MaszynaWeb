@@ -26,7 +26,7 @@ class AssemblyParserError{
     }
 
     toString(){
-        return(this.message+ +" - "+this.word.value+" at line: "+this.word.ogIndex.toString());
+        return(this.message+ " - "+this.word.value+" at line: "+this.word.ogIndex.toString());
     }
 }
 
@@ -39,9 +39,9 @@ class AssemblyMapperError{
 
     toString(){
         return (this.message +
-            ": "+this.instruction.code+
-            " arg: "+this.instruction.args.join(" ")+
-            " at line:"+this.instruction.ogIndex );
+            " instruction: "+this.instruction.code+
+            " argument: "+this.instruction.args.join(" ")+
+            " at line: "+this.instruction.ogIndex );
     }
 }
 
@@ -75,7 +75,7 @@ class AssemblyParser{
             this.parseSuccesful=true;
         } catch (error) {
             this.parseSuccesful=false;
-            console.log(error.toString());
+            this.errorMessage = error.toString();
         }
         
 
@@ -112,7 +112,7 @@ class AssemblyParser{
 
             for (let w = 0; w < newWords.length; w++) {
                 if(newWords[w]!=""){
-                    this.words.push( new Word(newWords[w].toUpperCase(),l));
+                    this.words.push( new Word(newWords[w],l));
                 }
                 
                 

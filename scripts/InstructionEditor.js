@@ -12,7 +12,7 @@ class InstructionEditor{
         this.button = document.createElement("button");
         this.buildEditor();
 
-        document.getElementById("instr-editor-test").appendChild(this.getHTMLElement());
+        
 
     }
 
@@ -46,9 +46,3 @@ class InstructionEditor{
     }
 
 }
-
-
-
-
-
-

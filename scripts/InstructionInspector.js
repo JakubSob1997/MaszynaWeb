@@ -56,9 +56,9 @@ class InstructionInspector{
         this.onInstructionSelectedCallbacks=[];
 
 
-        const elee = document.getElementById("instr-list-test");
         this.build(_instructionList);
-        elee.appendChild(this.wrpper);
+
+        
 
 
     }
@@ -136,21 +136,3 @@ class InstructionInspector{
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

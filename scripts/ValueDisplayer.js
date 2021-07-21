@@ -73,6 +73,30 @@ class ValueDisplayer{
     }
 
 
+    stringToValue(_string,_bitmask){
+
+        let trimed = _string.trim();
+        console.log(trimed);
+        let output = NaN;
+        if(trimed[0]=="%"){
+            output =parseInt(trimed.substring(1,trimed.length),2);
+            return output;
+        }
+        if(trimed[0]=="#"){
+            return parseInt(trimed.substring(1,trimed.length),16);
+        }
+        output = parseInt(trimed,10);
+        if(isNaN(output)==false){
+            return output;
+        }
+
+        //trimed=trimed.replaceAll(/\s+/g," ");
+        //let words=trimed.split(/\s/);
+
+        return output;
+    }
+
+
     valueToString(_value,_displayMode,_bitWidth,_bitmask){
 
 
@@ -93,26 +117,3 @@ class ValueDisplayer{
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

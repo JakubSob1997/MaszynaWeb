@@ -16,7 +16,7 @@ class MachineView{
         this.M.setInstructionList(_instructionListSerializer);
 
 
-        this.valueDusplayer = new ValueDisplayer(this.M.settings,this.M.instructionList);
+        this.valueDisplayer = new ValueDisplayer(this.M.settings,this.M.instructionList);
 
 
         this.registerViews = [];
@@ -28,6 +28,7 @@ class MachineView{
 
 
         this.registerSelectedCallbacks = [];
+        this.memorySlotSellectedCallbacks = [];
 
 
     }
@@ -43,6 +44,18 @@ class MachineView{
             funk(_reg);
         }
     }
+
+    addOnMemorySlotSellectedCallback(_funk){
+        this.memorySlotSellectedCallbacks.push(_funk);
+    }
+
+    selectMemorySlot(_index){
+        for (let index = 0; index < this.memorySlotSellectedCallbacks.length; index++) {
+            const funk = this.memorySlotSellectedCallbacks[index];
+            funk(_index);
+        }
+    }
+
 
 
     setupMachine(){
@@ -65,7 +78,7 @@ class MachineView{
 
     displayRegister(_register,_element){
         const regName = _register.name;
-        const value = this.valueDusplayer.registerToString(_register)
+        const value = this.valueDisplayer.registerToString(_register)
 
 
         _element.innerHTML=regName + ": " +value;
@@ -184,9 +197,9 @@ class MachineView{
     displayMemoryEntry(_memory,_adress){
         const val = _memory.getValue(_adress);
 
-        const decimal =this.valueDusplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
+        const decimal =this.valueDisplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
 
-        const code =this.valueDusplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
+        const code =this.valueDisplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
 
         return _adress+": "+decimal+" "+code;
 
@@ -202,7 +215,7 @@ class MachineView{
         let element  = document.createElement("div")
         element.classList.add("mem-entry");
         element.innerHTML=this.displayMemoryEntry(_memory,_adress);
-
+        element.onclick = ()=>{this.selectMemorySlot(_adress)};
         
         return element;
     }

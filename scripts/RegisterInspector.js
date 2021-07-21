@@ -3,17 +3,13 @@
 
 class RegisterInspector{
 
-    constructor(){
+    constructor(_valueDisplayer){
 
         this.wrapper = document.createElement("div");
 
         this.registerName =document.createElement("div");
 
-        this.vlaueWrapper = document.createElement("div");
-        this.valueField=document.createElement("input");
-        this.plusOneButton=document.createElement("button");
-        this.minusOneButton=document.createElement("button");
-        this.setZeroButton=document.createElement("button");
+        this.valueView = new ValueView(_valueDisplayer);
 
 
         this.displaySelect=document.createElement("select");
@@ -26,44 +22,53 @@ class RegisterInspector{
 
         this.pastRegisters={};
         this.currentRegister=null;
-        this.valueDisplayer = undefined;
         
         this.build();
         this.addCallbacks();
 
 
-        const ele = document.getElementById("register-inspector");
-        ele.appendChild(this.getHTMLElement());
+
 
 
     }
 
     build(){
         this.wrapper.appendChild(this.registerName);
-        this.wrapper.appendChild(this.vlaueWrapper);
+        const valueEle =this.valueView.getHTMLElement();
+        this.wrapper.appendChild(valueEle);
         this.wrapper.appendChild(this.displaySelect);
 
-        this.vlaueWrapper.appendChild(this.valueField);
-        this.plusOneButton.innerHTML="+1";
-        this.vlaueWrapper.appendChild(this.plusOneButton);
-        this.minusOneButton.innerHTML="-1";
-        this.vlaueWrapper.appendChild(this.minusOneButton);
-        this.setZeroButton.innerHTML="0"
-        this.vlaueWrapper.appendChild(this.setZeroButton);
 
+        
+
+        this.unsignedDecimal.innerHTML = "Dziesiętny Bez Znaku"
+        this.unsignedDecimal.value=ValueDisplayEnum.UnsignedDecimal;
         this.displaySelect.appendChild(this.unsignedDecimal);
+
+        this.signedDecimal.innerHTML = "Dziesiętny Ze Zankiem";;
+        this.signedDecimal.value=ValueDisplayEnum.SignedDecimal;
         this.displaySelect.appendChild(this.signedDecimal);
+
+        this.binary.innerHTML = "Biinarny";
+        this.binary.value=ValueDisplayEnum.Binary;
         this.displaySelect.appendChild(this.binary);
+
+        this.hexaDecimal.innerHTML = "Heksadecymalny";
+        this.hexaDecimal.value=ValueDisplayEnum.HexaDecimal;
         this.displaySelect.appendChild(this.hexaDecimal);
+
+        this.instruction.innerHTML = "Instrukcja";
+        this.instruction.value=ValueDisplayEnum.OpCodeArgument;
         this.displaySelect.appendChild(this.instruction);        
 
     }
 
     addCallbacks(){
-        this.plusOneButton.onclick=()=>{this.onPlusOneButton();};
-        this.minusOneButton.onclick=()=>{this.onMinusOneButon();};
-        this.setZeroButton.onclick=()=>{ this.onSetZeroButton();};
-        this.valueField.oninput=()=>{this.onValueInput();};
+        this.valueView.setOnPlusOneButton(()=>{this.onPlusOneButton();});
+        this.valueView.setOnMinusOneButton(()=>{this.onMinusOneButon();});
+        this.valueView.setOnSetZeroButton(()=>{ this.onSetZeroButton();});
+        this.valueView.setOnWriteButton(()=>{this.onValueInput();});
+        this.displaySelect.oninput=()=>{this.onDisplaySelect();};
     }
 
     onPlusOneButton(){
@@ -83,14 +88,17 @@ class RegisterInspector{
     }
 
     onValueInput(){
-        if(this.valueDisplayer===undefined){
-            const stringVal = this.valueField.value;
-            const intVal = parseInt(stringVal,10);
-            if(intVal !=NaN){
+        const intVal = this.valueView.getValue();
+            if(isNaN(intVal)==false){
                 this.currentRegister.setValue(intVal);
                 this.currentRegister.update();
             }
-        }
+    }
+
+    onDisplaySelect(){
+        console.log(this.displaySelect);
+        const display = parseInt(this.displaySelect.value,10);
+        this.currentRegister.setDisplay(display);
     }
 
     selectRegister(_register){
@@ -114,10 +122,10 @@ class RegisterInspector{
 
 
     populateInspector(_register){
-        this.registerName.innerHTML=_register.name;
-        if(this.valueDisplayer===undefined){
-            this.valueField.value=_register.getValue();
-        }
+        this.registerName.innerHTML="Rejestr: "+_register.name.toUpperCase();
+        this.valueView.populateRegister(_register);
+
+        this.displaySelect.value = _register.display;
         
     }
 

@@ -35,46 +35,50 @@ M=new Machine();
 buildMachine(M);
 //console.log(M);
 
-console.log(InstructionList.getDefaultInstructionList());
 
 
-var codeTextArea = document.getElementById("code-textarea");
 var loadCodeButton = document.getElementById("load-code-button");
 
-codeTextArea.value=localStorage.getItem("codeTextArea");
 
 MView = new MachineView(M);
 MView.setupMachine();
 console.log(M);
 
+
+
+
+const inspectorElement = document.getElementById("inspector");
+var inspectorManager = new InsperctorManger(inspectorElement,M,MView);
+
+
+/*
 var insInsepctor = new InstructionInspector(M.instructionList);
+const elee = document.getElementById("instr-list-test");
+elee.appendChild(insInsepctor.getHTMLElement());
+
+
 var insEditor =  new InstructionEditor();
-var regInsepector = new RegisterInspector();
+document.getElementById("instr-editor-test").appendChild(insEditor.getHTMLElement());
 
-MView.addOnRegisterSelectedCallback((_reg)=>{
-    regInsepector.selectRegister(_reg);
-});
+var assemblyEditor = new AssemblyEditor(M);
 
-insInsepctor.addInstructionSelectedCallback((_instr)=>{insEditor.populateEditor(_instr)})
+*/
 
 
 
-loadCodeButton.onclick = ()=>{
-    localStorage.setItem("codeTextArea",codeTextArea.value);
-
-    const tmp = new AssemblyParser(codeTextArea.value,M.settings,M.instructionList);
+let showAsmButton = document.getElementById("asm-nav");
+showAsmButton.onclick=()=>{
     
-
-    if(tmp.parseSuccesful){
-        M.setComponentsDefault();
-        M.MEM.loadMemory(tmp.values);
-    }
-
+}
+let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
+showInstrInspectorButton.onclick=()=>{
+    inspectorManager. drawInspectorForInstructionList();
 }
 
 
-let nextCycleButton = document.getElementById("next-cycle-button");
 
+let nextCycleButton = document.getElementById("next-cycle-button");
+console.log(nextCycleButton);
 nextCycleButton.onclick=function(){
 
     M.doCycle();
