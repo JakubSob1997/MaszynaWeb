@@ -59,6 +59,8 @@ class ValueView{
     populateRegister(_reg){
         if(this.valueDisplayer===undefined){
             this.valueField.value=_reg.getValue().toString(10);
+        }else{
+            this.valueField.value=this.valueDisplayer.registerToString(_reg)
         }
     }
 

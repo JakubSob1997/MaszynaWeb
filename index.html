@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maszyna WEB</title>
 
-    
-
     <link rel="stylesheet" href="./styles/machineLayout.css">
     <link rel="stylesheet" href="./styles/machineContent.css">
     
@@ -49,65 +47,45 @@
      <script src="./scripts/MemorySlotInspector.js"></script>
 
      <script src="./scripts/InspectorManager.js"></script>
+     <script src="./scripts/EditorManager.js"></script>
 
 
 </head>
 <body>
 
 
-    <!--
-    <div class="title-box">
-        <div class="title">
-            <h1><a href="#" id="test-register">MASZYNA<span>WEB</span></a></h1>
-        </div>
-    </div>
-    
+<header>
 
+  <a href="#" class="logo">Mashyna Web</a>
 
-   <div class="facade">
-       <div class="toolbar">ToolBar</div>
-       <div class="editor">Editor</div>
-       <div class="inspector">Inspector</div>
-   </div>
-   <div class="machin">
-
-    
-   </div>
-   -->
-   <!--
-
-   <div class="header">
-       <a href="#">MaszynaWeb</a>
-       <ul>
-           <li>Program</li>
-           <li>Rozkaz</li>
-           <li>Opcje</li>
-       </ul>
-
-
-      
-
-   </div>
-   -->
+  <div id="navbar">
+    <button id ="asm-nav">asm</button>
+    <button id ="instruction-list-nav">instr</button>
+  </div>
+  
+  <ul id="flow-control">
+      <li><button id="toggle-manual-button">Manual</button></li>
+      <li><button id="next-cycle-button">Takt</button></li>
+      <li><button id="next-instruction-button">Rozkaz</button></li>
+  </ul>
+</header>
 
 
 
 
-<div id="navbar">
-  <button id ="asm-nav">asm</button>
-  <button id ="instruction-list-nav">instr</button>
+
+
+
+<div class="left-side-bar">
+  <div id="editor" class="bar">aaa</div>
 </div>
 
-<ul id="flow-control">
-    <li><button id="toggle-manual-button">Manual</button></li>
-    <li><button id="next-cycle-button">Takt</button></li>
-    <li><button id="next-instruction-button">Rozkaz</button></li>
-</ul>
+<div class="right-side-bar">
+  <div id="inspector" class="bar">aaa</div>
+</div>
 
 
-<div id="inspector">aaa</div>
 
-<div id="editor">aaa</div>
     
 <div class="machine-wrapper">
   <div class="container">

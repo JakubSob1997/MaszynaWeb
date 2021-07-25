@@ -34,7 +34,7 @@ class ValueDisplayer{
 
 
     toOpCodeArgument(_value,_bitWidth,_bitmask){
-        if(this.settings.codeMask&&_bitmask == 0){
+        if((this.settings.codeMask&_bitmask) == 0){
             return _value.toString(10);
         }
 
@@ -80,19 +80,15 @@ class ValueDisplayer{
         let output = NaN;
         if(trimed[0]=="%"){
             output =parseInt(trimed.substring(1,trimed.length),2);
+            console.log("%"+"output");
             return output;
         }
         if(trimed[0]=="#"){
-            return parseInt(trimed.substring(1,trimed.length),16);
-        }
-        output = parseInt(trimed,10);
-        if(isNaN(output)==false){
+
+            output=parseInt(trimed.substring(1,trimed.length),16);
             return output;
         }
-
-        //trimed=trimed.replaceAll(/\s+/g," ");
-        //let words=trimed.split(/\s/);
-
+        output = parseInt(trimed,10);
         return output;
     }
 

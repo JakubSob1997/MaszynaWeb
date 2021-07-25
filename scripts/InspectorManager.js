@@ -11,8 +11,8 @@ class InsperctorManger{
         this.inspectorElement = _Element;
 
         this.instructionInspector = new InstructionInspector(_Machine.instructionList);
-        this.registerInspector = new RegisterInspector(_MachineView.valueDusplayer);
-        this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDusplayer);
+        this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
+        this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
 
 
         _MachineView.addOnMemorySlotSellectedCallback((_index)=>{

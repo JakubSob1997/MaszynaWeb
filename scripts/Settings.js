@@ -89,10 +89,8 @@ class Settings{
 
 
     getOpcode(_value){
-
         const masked = (_value&this.codeMask)
         return masked>>this.adressWidth;
-
     }
 
 

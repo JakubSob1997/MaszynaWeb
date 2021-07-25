@@ -50,6 +50,13 @@ console.log(M);
 const inspectorElement = document.getElementById("inspector");
 var inspectorManager = new InsperctorManger(inspectorElement,M,MView);
 
+const editorElement = document.getElementById("editor");
+var editorManager = new EditorManager(editorElement,M,MView);
+
+inspectorManager.instructionInspector.addInstructionSelectedCallback((_instruction)=>{
+    editorManager.drawEditorForInstruction(_instruction);
+})
+
 
 /*
 var insInsepctor = new InstructionInspector(M.instructionList);
@@ -68,7 +75,7 @@ var assemblyEditor = new AssemblyEditor(M);
 
 let showAsmButton = document.getElementById("asm-nav");
 showAsmButton.onclick=()=>{
-    
+    editorManager.drawEditorForAssembly()
 }
 let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
 showInstrInspectorButton.onclick=()=>{

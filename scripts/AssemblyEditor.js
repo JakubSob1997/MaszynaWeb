@@ -18,13 +18,13 @@ class AssemblyEditor{
         this.addCallbacks();
 
         let editor = document.getElementById("assembly-editor");
-        editor.appendChild(this.getHTMLElment());
+        editor.appendChild(this.getHTMLElement());
 
         this.load();
 
     }
 
-    getHTMLElment(){
+    getHTMLElement(){
         return this.wrapper;
     }
 
@@ -67,6 +67,7 @@ class AssemblyEditor{
         }
 
     }
+
 
 }
 
