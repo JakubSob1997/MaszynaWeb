@@ -1,9 +1,11 @@
 
 
 
-class RegisterInspector{
+class RegisterInspector extends SidebarContent{
 
     constructor(_valueDisplayer){
+
+        super();
 
         this.wrapper = document.createElement("div");
 

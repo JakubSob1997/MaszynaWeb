@@ -10,8 +10,16 @@ class SidebarContent{
 
     }
 
-    hide();
-    show();
+    hide(){
+        
+    }
+    show(){
+
+    }
+    getHTMLElement(){
+        return null;
+    }
+
     
 
 

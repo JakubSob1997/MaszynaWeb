@@ -2,8 +2,10 @@
 
 
 
-class AssemblyEditor{
+class AssemblyEditor extends SidebarContent{
     constructor(_machine){
+
+        super();
         this.wrapper = document.createElement("div");
         this.title=document.createElement("h1");
         this.textArea =document.createElement("textarea");

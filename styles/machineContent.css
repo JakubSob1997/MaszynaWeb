@@ -20,7 +20,7 @@
 .container{
     background: #552828;
     color: black;
-    font-size: x-large;
+    font-size: medium;
 }
 
 .bus-hor{
@@ -44,10 +44,14 @@
     border-style: solid;
     border-width: thin;
     border-radius: 0.2em;
-    justify-content: center;
+    
     white-space: nowrap;
 
     height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
 }
 

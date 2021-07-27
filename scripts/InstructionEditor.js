@@ -2,10 +2,12 @@
 
 
 
-class InstructionEditor{
+class InstructionEditor extends SidebarContent{
 
     constructor(){
 
+
+        super();
         this.wrapper= document.createElement("div");
         this.instrName = document.createElement("div");
         this.textField = document.createElement("textarea");

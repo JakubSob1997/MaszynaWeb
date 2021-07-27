@@ -34,7 +34,10 @@
      <script src="./scripts/MachineDefinitions.js"></script>
      <script src="./scripts/MachineView.js"></script>
 
+
+     <script src="./scripts/SidebarContent.js"></script>
      <script src="./scripts/ValueView.js"></script>
+
 
      <script src="./scripts/InstructionInspector.js"></script>
      <script src="./scripts/InstructionEditor.js"></script>
@@ -54,210 +57,222 @@
 <body>
 
 
-<header>
+<div class="main">
+  <header>
 
-  <a href="#" class="logo">Mashyna Web</a>
-
-  <div id="navbar">
-    <button id ="asm-nav">asm</button>
-    <button id ="instruction-list-nav">instr</button>
+    <a href="#" class="logo"><span class="logo-prefix">Maszyna W</span>eb</a>
+  
+    <div id="navbar">
+      <button id ="asm-nav">asm</button>
+      <button id ="instruction-list-nav">instr</button>
+    </div>
+    
+    <ul id="flow-control">
+        <li><button id="toggle-manual-button">Manual</button></li>
+        <li><button id="next-cycle-button">Takt</button></li>
+        <li><button id="next-instruction-button">Rozkaz</button></li>
+    </ul>
+  </header>
+  
+  
+  
+  
+  <div class="page">
+    
+  <div class="left-side-bar">
+    <div id="editor" class="bar">aaa</div>
+    <div class="left-drag-handle handle-ew"></div>
   </div>
   
-  <ul id="flow-control">
-      <li><button id="toggle-manual-button">Manual</button></li>
-      <li><button id="next-cycle-button">Takt</button></li>
-      <li><button id="next-instruction-button">Rozkaz</button></li>
-  </ul>
-</header>
-
-
-
-
-
-
-
-<div class="left-side-bar">
-  <div id="editor" class="bar">aaa</div>
+  
+  <div class="center">
+  
+    <div class="machine-wrapper">
+      <div class="container">
+        <div class="as-bus"></div>
+        <div class="s-bus"></div>
+        <div class="a-bus"></div>
+        <div class="up-area">
+          <div class="rz-area">
+            <div class="rz-center">
+              <div class="rz-2"></div>
+              <div class="rz-1"></div>
+              <div class="rz-3"></div>
+              <div class="rz-4"></div>
+              <div class="rz-r"></div>
+            </div>
+          </div>
+          <div class="rp-area">
+            <div class="rp-r"></div>
+          </div>
+          <div class="rm-area">
+            <div class="rm-center">
+              <div class="rm-r"></div>
+              <div class="werm-s"></div>
+              <div class="wyrm-s"></div>
+              <div class="rm-down"></div>
+              <div class="rm-up"></div>
+            </div>
+          </div>
+          <div class="ap-area">
+            <div class="ap-center">
+              <div class="ap-r"></div>
+              <div class="wyap-s"></div>
+              <div class="ap-down"></div>
+            </div>
+          </div>
+          <div class="eint-rint-area">
+            <div class="eni-s"></div>
+            <div class="rint-s"></div>
+          </div>
+        </div>
+        <div class="down-area">
+          <div class="x-area">
+            <div class="x-center">
+              <div class="x-r"></div>
+              <div class="wyx-s"></div>
+              <div class="wex-s"></div>
+              <div class="x-down"></div>
+              <div class="x-up"></div>
+            </div>
+          </div>
+          <div class="y-area">
+            <div class="y-center">
+              <div class="y-r"></div>
+              <div class="y-down"></div>
+              <div class="y-up"></div>
+              <div class="wyy-s"></div>
+              <div class="wey-s"></div>
+            </div>
+          </div>
+          <div class="rb-area">
+            <div class="rb-center">
+              <div class="rb-r"></div>
+              <div class="rb-down"></div>
+              <div class="werb-s"></div>
+              <div class="rb-up"></div>
+              <div class="wyrb-s"></div>
+            </div>
+          </div>
+          <div class="g-area">
+            <div class="g-center">
+              <div class="g-r"></div>
+              <div class="wyg-s"></div>
+              <div class="start-s"></div>
+              <div class="g-up"></div>
+              <div class="g-down"></div>
+            </div>
+          </div>
+        </div>
+        <div class="left-area">
+          <div class="i-l-area">
+            <div class="il-s"></div>
+            <div class="wyls-down"></div>
+            <div class="i-r"></div>
+            <div class="l-r"></div>
+            <div class="wyad-up"></div>
+            <div class="l-sigs">
+              <div class="wel-s"></div>
+              <div class="wyl-s"></div>
+              <div class="l-down"></div>
+              <div class="l-up"></div>
+            </div>
+            <div class="i-sigs">
+              <div class="wei-s"></div>
+              <div class="i-up"></div>
+            </div>
+            <div class="wyad-wyls-stop-area">
+              <div class="wyad-s"></div>
+              <div class="wyls-s"></div>
+              <div class="stop-s"></div>
+            </div>
+          </div>
+        </div>
+        <div class="center-area">
+          <div class="mem-Area">
+            <div class="mem-center">
+              <div class="a-r"></div>
+              <div class="s-r"></div>
+              <div class="mem-body"></div>
+              <div class="s-sigs">
+                <div class="wys-s"></div>
+                <div class="wes-s"></div>
+                <div class="s-up"></div>
+                <div class="s-down"></div>
+              </div>
+              <div class="a-sigs">
+                <div class="a-down"></div>
+                <div class="wea-s"></div>
+              </div>
+            </div>
+            <div class="mem-right">
+              <div class="czyt-s"></div>
+              <div class="pisz-s"></div>
+            </div>
+          </div>
+          <div class="jal-ws-area">
+            <div class="ws-area">
+              <div class="ws-center">
+                <div class="ws-r"></div>
+                <div class="iws-s"></div>
+                <div class="dws-s"></div>
+                <div class="wyws-s"></div>
+                <div class="ws-up"></div>
+                <div class="ws-down"></div>
+                <div class="wews-s"></div>
+              </div>
+              <div class="as-area">
+                <div class="as-s"></div>
+              </div>
+            </div>
+            <div class="jal-area">
+              <div class="jal-cener">
+                <div class="wyak-down"></div>
+                <div class="wyak-right"></div>
+                <div class="wyak-up"></div>
+                <div class="dak-s"></div>
+                <div class="iak-s"></div>
+                <div class="weak-s"></div>
+                <div class="dod-s"></div>
+                <div class="ode-s"></div>
+                <div class="przep-s"></div>
+                <div class="mno-s"></div>
+                <div class="dziel-s"></div>
+                <div class="shr-s"></div>
+                <div class="ak-r"></div>
+                <div class="f-r"></div>
+                <div class="jal-body"></div>
+                <div class="neg-s"></div>
+                <div class="lub-s"></div>
+                <div class="i-s"></div>
+                <div class="weja-area">
+                  <div class="weja-s"></div>
+                  <div class="weja-up"></div>
+                </div>
+                <div class="wyak-s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+  
+  
+  <div class="right-side-bar">
+    <div id="inspector" class="bar">aaa</div>
+    <div class="right-drag-handle handle-ew"></div>
+  </div>
+  
+  </div>
+  
+  
 </div>
-
-<div class="right-side-bar">
-  <div id="inspector" class="bar">aaa</div>
-</div>
-
 
 
     
-<div class="machine-wrapper">
-  <div class="container">
-    <div class="as-bus"></div>
-    <div class="s-bus"></div>
-    <div class="a-bus"></div>
-    <div class="up-area">
-      <div class="rz-area">
-        <div class="rz-center">
-          <div class="rz-2"></div>
-          <div class="rz-1"></div>
-          <div class="rz-3"></div>
-          <div class="rz-4"></div>
-          <div class="rz-r"></div>
-        </div>
-      </div>
-      <div class="rp-area">
-        <div class="rp-r"></div>
-      </div>
-      <div class="rm-area">
-        <div class="rm-center">
-          <div class="rm-r"></div>
-          <div class="werm-s"></div>
-          <div class="wyrm-s"></div>
-          <div class="rm-down"></div>
-          <div class="rm-up"></div>
-        </div>
-      </div>
-      <div class="ap-area">
-        <div class="ap-center">
-          <div class="ap-r"></div>
-          <div class="wyap-s"></div>
-          <div class="ap-down"></div>
-        </div>
-      </div>
-      <div class="eint-rint-area">
-        <div class="eni-s"></div>
-        <div class="rint-s"></div>
-      </div>
-    </div>
-    <div class="down-area">
-      <div class="x-area">
-        <div class="x-center">
-          <div class="x-r"></div>
-          <div class="wyx-s"></div>
-          <div class="wex-s"></div>
-          <div class="x-down"></div>
-          <div class="x-up"></div>
-        </div>
-      </div>
-      <div class="y-area">
-        <div class="y-center">
-          <div class="y-r"></div>
-          <div class="y-down"></div>
-          <div class="y-up"></div>
-          <div class="wyy-s"></div>
-          <div class="wey-s"></div>
-        </div>
-      </div>
-      <div class="rb-area">
-        <div class="rb-center">
-          <div class="rb-r"></div>
-          <div class="rb-down"></div>
-          <div class="werb-s"></div>
-          <div class="rb-up"></div>
-          <div class="wyrb-s"></div>
-        </div>
-      </div>
-      <div class="g-area">
-        <div class="g-center">
-          <div class="g-r"></div>
-          <div class="wyg-s"></div>
-          <div class="start-s"></div>
-          <div class="g-up"></div>
-          <div class="g-down"></div>
-        </div>
-      </div>
-    </div>
-    <div class="left-area">
-      <div class="i-l-area">
-        <div class="il-s"></div>
-        <div class="wyls-down"></div>
-        <div class="i-r"></div>
-        <div class="l-r"></div>
-        <div class="wyad-up"></div>
-        <div class="l-sigs">
-          <div class="wel-s"></div>
-          <div class="wyl-s"></div>
-          <div class="l-down"></div>
-          <div class="l-up"></div>
-        </div>
-        <div class="i-sigs">
-          <div class="wei-s"></div>
-          <div class="i-up"></div>
-        </div>
-        <div class="wyad-wyls-stop-area">
-          <div class="wyad-s"></div>
-          <div class="wyls-s"></div>
-          <div class="stop-s"></div>
-        </div>
-      </div>
-    </div>
-    <div class="center-area">
-      <div class="mem-Area">
-        <div class="mem-center">
-          <div class="a-r"></div>
-          <div class="s-r"></div>
-          <div class="mem-body"></div>
-          <div class="s-sigs">
-            <div class="wys-s"></div>
-            <div class="wes-s"></div>
-            <div class="s-up"></div>
-            <div class="s-down"></div>
-          </div>
-          <div class="a-sigs">
-            <div class="a-down"></div>
-            <div class="wea-s"></div>
-          </div>
-        </div>
-        <div class="mem-right">
-          <div class="czyt-s"></div>
-          <div class="pisz-s"></div>
-        </div>
-      </div>
-      <div class="jal-ws-area">
-        <div class="ws-area">
-          <div class="ws-center">
-            <div class="ws-r"></div>
-            <div class="iws-s"></div>
-            <div class="dws-s"></div>
-            <div class="wyws-s"></div>
-            <div class="ws-up"></div>
-            <div class="ws-down"></div>
-            <div class="wews-s"></div>
-          </div>
-          <div class="as-area">
-            <div class="as-s"></div>
-          </div>
-        </div>
-        <div class="jal-area">
-          <div class="jal-cener">
-            <div class="wyak-down"></div>
-            <div class="wyak-right"></div>
-            <div class="wyak-up"></div>
-            <div class="dak-s"></div>
-            <div class="iak-s"></div>
-            <div class="weak-s"></div>
-            <div class="dod-s"></div>
-            <div class="ode-s"></div>
-            <div class="przep-s"></div>
-            <div class="mno-s"></div>
-            <div class="dziel-s"></div>
-            <div class="shr-s"></div>
-            <div class="ak-r"></div>
-            <div class="f-r"></div>
-            <div class="jal-body"></div>
-            <div class="neg-s"></div>
-            <div class="lub-s"></div>
-            <div class="i-s"></div>
-            <div class="weja-area">
-              <div class="weja-s"></div>
-              <div class="weja-up"></div>
-            </div>
-            <div class="wyak-s"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 <div id="mem-slot-inspector"></div>
 
