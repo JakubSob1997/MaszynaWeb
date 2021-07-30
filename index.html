@@ -14,7 +14,6 @@
 
 
 
-    <script src="/scripts/Cookies.js"></script>
     <script src="./scripts/Alerter.js"></script>
      <script src="./scripts/Enums.js"></script>
      <script src="./scripts/MachineComponent.js"></script>
@@ -53,6 +52,9 @@
      <script src="./scripts/EditorManager.js"></script>
 
 
+     
+
+
 </head>
 <body>
 
@@ -79,10 +81,7 @@
   
   <div class="page">
     
-  <div class="left-side-bar">
-    <div id="editor" class="bar">aaa</div>
-    <div class="left-drag-handle handle-ew"></div>
-  </div>
+ 
   
   
   <div class="center">
@@ -261,9 +260,14 @@
   </div>
   
   
+  <div class="left-side-bar">
+    <div id="editor" class="bar">aaa</div>
+    <div id="left-handle" class="left-drag-handle handle-ew"></div>
+  </div>
+
   <div class="right-side-bar">
     <div id="inspector" class="bar">aaa</div>
-    <div class="right-drag-handle handle-ew"></div>
+    <div id="right-handle" class="right-drag-handle handle-ew"></div>
   </div>
   
   </div>
@@ -285,8 +289,8 @@
 
 
 
-   <script src="./scripts/MachineUI.js"></script>
-
+  <script src="./scripts/MachineUI.js"></script>
+  <script src="./scripts/BarScrolling.js"></script>
 
 
 </body>
