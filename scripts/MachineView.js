@@ -71,7 +71,9 @@ class MachineView{
 
         this.setRZButtons(this.M.RZ_register);
 
-
+        this.setupBusHorizontal(this.M.S_bus,"s-bus")
+        this.setupBusHorizontal(this.M.A_bus,"a-bus")
+        this.setupBusVertical(this.M.S_bus,"as-bus")
 
     }
 
@@ -305,27 +307,58 @@ class MachineView{
 
 
 
-    
+    displayBus(_bus,_busElement){
+        if(_bus.hasValue()){
+            _busElement.classList.add("bus-selected");
+        }else{
+            
+            _busElement.classList.remove("bus-selected");
+        }
+    }
 
-    createBusHorizontal(){
+    createBusHorizontal(_bus){
         let element  = document.createElement("div")
         element.classList.add("bus-hor");
+        this.displayBus(_bus,element);
+
+        _bus.addOnUpdateCallback((_b)=>{
+            this.displayBus(_b,element);
+        })
+
+
         return element;
     }
 
-    createBusVertical(){
+    createBusVertical(_bus){
         let element  = document.createElement("div")
         element.classList.add("bus-vert");
+
+        _bus.addOnUpdateCallback((_b)=>{
+            this.displayBus(_b,element);
+        })
+
+        this.displayBus(_bus,element);
         return element;
     }
 
 
     setupBusHorizontal(_bus,_wrapperClassName){
-
+        const wrappers = document.getElementsByClassName(_wrapperClassName);
+        for (let i = 0; i < wrappers.length; i++) {
+            const element = wrappers[i];
+            const busele = this.createBusHorizontal(_bus);
+            element.appendChild ( busele);
+        }
     }
 
     setupBusVertical(_bus, _wrapperClassName){
-
+        const wrappers = document.getElementsByClassName(_wrapperClassName);
+        for (let i = 0; i < wrappers.length; i++) {
+            const element = wrappers[i];
+            const busele = this.createBusVertical(_bus);
+            element.appendChild ( busele);
+            
+        }
     }
 
 }

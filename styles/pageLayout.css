@@ -130,23 +130,30 @@ span .logo-prefix{
     top: var(--header-height);
     bottom: 0;
 
-    display: flex;
-    justify-content: center;
-
-    overflow: scroll;
+    overflow: auto;
+    
     
     
 }
 
-
+.machine-flex{
+    
+    
+    min-width: 800px;
+    display: flex;
+    justify-content: center;
+    
+    align-items: center;
+}
 
 
 .machine-wrapper{
+
     border-radius: 0.5em;
     min-width: 800px;
     max-width: 1200px;
     max-height: 600px;
-    border:solid;
+
 
     position: relative;
 }
@@ -161,13 +168,13 @@ span .logo-prefix{
 #editor{
     background: darkgreen;
     padding: 10px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 #inspector{
     background: darkcyan;
     padding: 10px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 

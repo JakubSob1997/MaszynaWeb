@@ -1,7 +1,7 @@
 
 
-const minBarWidth = 10;
-const minpageWidth=10;
+const minBarWidth = 12;
+const minpageWidth=18;
 const maxBarWidth = 100-minBarWidth-minpageWidth;
 
 
@@ -21,8 +21,8 @@ const rightWidthVar= "--inspector-width"
 
 function scrollLeft(_newWidth){
 
-    if(_newWidth<minpageWidth){
-        _newWidth=minpageWidth;
+    if(_newWidth<minBarWidth){
+        _newWidth=minBarWidth;
     }
     let pageWidth = 100 - _newWidth - rightWidth;
     
@@ -51,8 +51,8 @@ function scrollLeft(_newWidth){
 
 function scrollRight(_newWidth){
 
-    if(_newWidth<minpageWidth){
-        _newWidth=minpageWidth;
+    if(_newWidth<minBarWidth){
+        _newWidth=minBarWidth;
     }
     let pageWidth = 100 - _newWidth - leftWidth;
     
