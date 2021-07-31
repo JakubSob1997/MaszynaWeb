@@ -43,7 +43,7 @@ function buildMachine(_Machine){
     _Machine.settings = new Settings();
     _Machine.settings.onBusWidthChanged =(_set)=>{ _Machine.onBusWidthChanged(_set)};
     
-
+    let AS_bus = new BusConnection();
 
     let S_bus = new Bus();
     let A_bus = new Bus();

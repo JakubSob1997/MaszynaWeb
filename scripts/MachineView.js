@@ -140,6 +140,10 @@ class MachineView{
     createSignalElement(_signal){
         let element  = document.createElement("div")
         element.classList.add("sig");
+
+        if(_signal.isImpulse){
+            element.classList.add("sig-impulse");
+        }
         element.innerHTML=_signal.name;
 
 

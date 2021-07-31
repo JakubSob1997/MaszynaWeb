@@ -9,7 +9,18 @@
 
 
 :root{
-    --seleced-color: rgb(175, 67, 67)
+    --primary-color:#faeaea;
+    --seleced-color: #fa7272;
+    --dark-selected-color:#f84640;
+    --selected-compliment: #0f0f0f;
+
+
+
+
+    --reg-color:#7272fa;
+    --reg-hover: #4045BB;
+    --mem-pointer-color: #72fa72;
+   
 }
 
 
@@ -26,8 +37,7 @@
 
 
 .container{
-    /*background: #552828*/
-    color: black;
+    color: var(--primary-color);
     font-size: medium;
     
     
@@ -64,10 +74,9 @@
 
 
 .reg{
-    background: #6f91df;
-    border-style: solid;
+    background: var(--reg-color);
     border-width: thin;
-    border-radius: 0.4em;
+    border-radius: 0.2em;
     
     white-space: nowrap;
 
@@ -82,14 +91,18 @@
     
 }
 
-.reg:hover{
-    background: #5673b6;
-    cursor: pointer;
-}
+
 
 
 .reg-selected{
-    color:var(--seleced-color);
+    
+    color:var( --dark-selected-color);
+
+}
+
+.reg:hover{
+    background: var( --reg-hover);
+    cursor: pointer;
 }
 .reg-hidden{
     background: transparent;
@@ -99,28 +112,41 @@
 
 
 .sig:hover{
-    background: #BBBBBB;
+    background: var(--primary-color);
+    color: black;
     cursor: pointer;
 }
 
 
 .sig{
-    background: #DDDDDD;
-    border-radius: 0.5em;
+    color: var(--primary-color);
     justify-content: center;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    border-style:groove;
+    padding: 0.3em;
+    border-radius: 0.2em;
+
 
     width: auto;
     height: auto;
     /*height: 100%;*/
 }
 
+.sig-impulse{
+    text-decoration-line: overline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0.1em;
+    
+}   
+
 
 
 .sig-selected{
-    background: rgb(177, 107, 107);
+    color:  var( --seleced-color);
+    
+}
+
+.sig-selected:hover{
+    color: var(--selected-compliment);
+    background: var( --seleced-color);
 }
 
 .sig-hidden{
@@ -169,11 +195,11 @@
 
 .mem-entry:hover{
     cursor: pointer;
-    background: cyan;
+    background: var(--seleced-color);
 }
 
 .mem-entry-selected{
-    background: green;
+    background: var(--mem-pointer-color);
 }
 
 
