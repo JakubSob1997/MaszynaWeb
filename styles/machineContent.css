@@ -8,20 +8,6 @@
 */
 
 
-:root{
-    --primary-color:#faeaea;
-    --seleced-color: #fa7272;
-    --dark-selected-color:#f84640;
-    --selected-compliment: #0f0f0f;
-
-
-
-
-    --reg-color:#7272fa;
-    --reg-hover: #4045BB;
-    --mem-pointer-color: #72fa72;
-   
-}
 
 
 
@@ -37,7 +23,6 @@
 
 
 .container{
-    color: var(--primary-color);
     font-size: medium;
     
     
@@ -50,7 +35,7 @@
     border-bottom: solid;
     border-width: medium;
 
-    color: white;
+    color: var(--font-color);
     
 
     height: 1em;
@@ -63,7 +48,7 @@
     border-right: solid;
     border-width: medium;
 
-    color: white;
+    color: var(--font-color);
 
     height: 100%;
 }
@@ -74,7 +59,7 @@
 
 
 .reg{
-    background: var(--reg-color);
+    background: var(--primary-color);
     border-width: thin;
     border-radius: 0.2em;
     
@@ -96,7 +81,7 @@
 
 .reg-selected{
     
-    color:var( --dark-selected-color);
+    color:var( --secondary-color);
 
 }
 
@@ -112,14 +97,15 @@
 
 
 .sig:hover{
-    background: var(--primary-color);
-    color: black;
+    background: var(--font-color);
+    color: var(--contrast-font-color);
     cursor: pointer;
 }
 
 
 .sig{
-    color: var(--primary-color);
+
+    color: var(--font-color);
     justify-content: center;
     padding: 0.3em;
     border-radius: 0.2em;
@@ -140,13 +126,13 @@
 
 
 .sig-selected{
-    color:  var( --seleced-color);
+    color:  var( --secondary-color);
     
 }
 
 .sig-selected:hover{
-    color: var(--selected-compliment);
-    background: var( --seleced-color);
+    color: var(--contrast-font-color);
+    background:var( --secondary-color);
 }
 
 .sig-hidden{
@@ -173,7 +159,8 @@
     height: 21em;
 
 
-    background: rgb(215, 217, 240);
+    background: var(--font-color);
+    color: var(--contrast-font-color);
     border:solid;
     border-width: thin;
     border-radius: 0.5em;
@@ -188,19 +175,26 @@
 
 
 .mem-entry{
-    color: rgb(35, 35, 36);
     white-space: nowrap;
 
 }
 
 .mem-entry:hover{
     cursor: pointer;
-    background: var(--seleced-color);
+    background: var(--primary-color);
+    color: var(--font-color);
 }
 
 .mem-entry-selected{
-    background: var(--mem-pointer-color);
+    
+    background: var(--secondary-color);
 }
+
+.mem-entry-selected:hover{
+    color: var(--secondary-color);
+    background: var(--primary-color);
+}
+
 
 
 

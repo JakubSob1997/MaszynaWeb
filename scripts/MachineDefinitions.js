@@ -44,6 +44,7 @@ function buildMachine(_Machine){
     _Machine.settings.onBusWidthChanged =(_set)=>{ _Machine.onBusWidthChanged(_set)};
     
     let AS_bus = new BusConnection();
+    _Machine.AS_bus=AS_bus;
 
     let S_bus = new Bus();
     let A_bus = new Bus();
@@ -138,6 +139,7 @@ function buildMachine(_Machine){
 
         S_bus,
         A_bus,
+        AS_bus,
         
         AK_register,
         S_register,
@@ -197,6 +199,7 @@ function addAllSignals(_Machine){
     addCounterSignals(_Machine);
     addInstructionSignals(_Machine);
 
+    add_BusConnectionSignals(_Machine);
     addAK_IncrementSignals(_Machine);
     addJAL_LogicSignals(_Machine);
     addJAL_ExtendedMathSignals(_Machine);
@@ -343,6 +346,21 @@ function addInstructionSignals(_Machine){
     _Machine.addSignalToDictioanry(stop);
 }
 
+
+
+function add_BusConnectionSignals(_Machine){
+    const as = new Signal(
+        "as",
+        false,
+        (_M)=>{
+            _M.AS_bus.addBusToConnection(_M.S_bus);
+            _M.AS_bus.addBusToConnection(_M.A_bus);
+        },
+        ExtnensionFlags.BusConnection
+    )
+
+    _Machine.addSignalToDictioanry(as);
+}
 
 
 function addAK_IncrementSignals(_Machine){

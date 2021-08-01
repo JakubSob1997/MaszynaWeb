@@ -178,14 +178,14 @@ class AssemblyParser{
 
             }
 
-            if(word.value=="RPA"){
+            if(word.value.toUpperCase()=="RPA"){
                 this.instructions[instrCounter]= 
                     new AssemblyInstruction("RPA",[],wordOgIndex);
                 instrCounter++;
                 continue;
             }
 
-            if(word.value=="RST"){
+            if(word.value.toUpperCase()=="RST"){
                 index++;
                 
 

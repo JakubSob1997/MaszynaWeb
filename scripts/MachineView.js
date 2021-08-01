@@ -73,7 +73,7 @@ class MachineView{
 
         this.setupBusHorizontal(this.M.S_bus,"s-bus")
         this.setupBusHorizontal(this.M.A_bus,"a-bus")
-        this.setupBusVertical(this.M.S_bus,"as-bus")
+        this.setupBusVertical(this.M.AS_bus,"as-bus")
 
     }
 

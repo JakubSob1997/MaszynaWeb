@@ -1,7 +1,7 @@
 
 
-const minBarWidth = 12;
-const minpageWidth=18;
+const minBarWidth = 8;
+const minpageWidth=12;
 const maxBarWidth = 100-minBarWidth-minpageWidth;
 
 

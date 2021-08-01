@@ -144,6 +144,10 @@ class Machine{
 
         }
 
+        if(this.AS_bus!=undefined){
+            this.AS_bus.linkBusses();
+        }
+
         this.buses.forEach(bus=>{
             bus.bufferValueForInpulse();
         });
