@@ -12,8 +12,7 @@
 
 
 .container  * {
-    transition: color 350ms,background-color 350ms;
-    
+    transition: color 350ms,background-color 350ms,font-weight 300ms;
 }
 
 
@@ -54,7 +53,7 @@
 }
 
 .bus-selected{
-    color:var(--seleced-color);
+    color:var(--secondary-color);
 }
 
 
@@ -114,6 +113,8 @@
     width: auto;
     height: auto;
     /*height: 100%;*/
+
+    
 }
 
 .sig-impulse{
@@ -127,6 +128,7 @@
 
 .sig-selected{
     color:  var( --secondary-color);
+    font-weight: bold;
     
 }
 

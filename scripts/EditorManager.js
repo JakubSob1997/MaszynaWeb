@@ -11,8 +11,10 @@ class EditorManager{
         this.assemblyEditor = new AssemblyEditor(_Machine);
         this.instructionEditor = new InstructionEditor();
 
-        this.assemblyEditor.hide();
-        this.instructionEditor.hide();
+        editorElement.appendChild(this.instructionEditor.getHTMLElement());
+        editorElement.innerHTML="";
+        editorElement.appendChild(this.assemblyEditor.getHTMLElement());
+
     }
 
     selectCurrentEditor(_editor){

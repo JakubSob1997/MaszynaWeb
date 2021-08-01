@@ -58,7 +58,7 @@ class AssemblyEditor extends SidebarContent{
 
     onLoadButton(){
         
-    
+        this.save();
         this.parser = new AssemblyParser(this.textArea.value,this.M.settings,this.M.instructionList);
         if( this.parser.parseSuccesful){
             this.M.setComponentsDefault();

@@ -83,7 +83,7 @@ class MachineView{
         const value = this.valueDisplayer.registerToString(_register)
 
 
-        _element.innerHTML=regName + ": " +value;
+        _element.innerHTML=regName.toUpperCase() + ": " +value;
         if(_register.wasWriten){
             _element.classList.add("reg-selected");
         }else{

@@ -35,7 +35,10 @@ body{
     color: var(--font-color);
 }
 
-
+a{
+    color: var(--font-color);
+    text-decoration: none;
+}
 
 
 ul{
@@ -67,7 +70,7 @@ header{
 }
 
 .logo{
-    font-weight: 600;
+    font-weight: 700;
     font-size: 130%;
 }
 
@@ -211,10 +214,7 @@ header{
 
 
 
-a{
-    color: #dddddd;
-    text-decoration: none;
-}
+
 
 textarea {
     white-space: pre;
@@ -231,7 +231,7 @@ textarea {
 
 
 .selected{
-    background-color: red;
+    background-color: var(--secondary-color);
 }
 
 
