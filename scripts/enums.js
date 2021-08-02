@@ -54,7 +54,12 @@ const ExtnensionFlags = {
 Object.freeze(ExtnensionFlags);
 
 
-
+const SignalOrientation ={
+    "None" : 1,
+    "Left" : 2,
+    "Right": 3,
+}
+Object.freeze(SignalOrientation);
 
 
 

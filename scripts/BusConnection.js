@@ -45,7 +45,10 @@ class BusConnection extends MachineComponent{
 
     linkBusses(){
 
-        if(this.isaActive==false) return;
+        if(this.isaActive==false){
+            this.update(this);
+            return;
+        }
 
         this.referenceRegister = null;
         for (let i = 0; i < this.connectedBusses.length; i++) {

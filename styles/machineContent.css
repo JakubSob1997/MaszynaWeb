@@ -108,19 +108,22 @@
 .sig{
 
     color: var(--font-color);
-    justify-content: center;
     padding: 0.3em;
     border-radius: 0.2em;
     font-weight: normal;
-
+    display: block;
 
     width: auto;
     height: auto;
     
     /*height: 100%;*/
-
+    text-align: center;
+    white-space: nowrap;
     
 }
+
+
+
 
 
 .sig-impulse{
@@ -129,6 +132,28 @@
     text-decoration-thickness: 0.1em;
     
 }
+
+
+.sig-left{
+    text-align: left;
+}
+
+.sig-left::before{
+    display: inline-block;
+    content: "←";
+    text-decoration:none;
+}
+
+.sig-right{
+    text-align: right;
+}
+
+.sig-right::after{
+    display: inline-block;
+    content: "→";
+    text-decoration:none;
+}
+
 
 .sig:hover{
     background: var(--font-color);
@@ -158,6 +183,8 @@
     color: var(--secondary-color);
     background:transparent;
 }
+
+
 
 
 .sig-hidden{

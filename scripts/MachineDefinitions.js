@@ -221,30 +221,41 @@ function addMemorySignals(_Machine){
     const wea = new Signal(
         "wea",
         true,
-        (_M)=>{_M.A_register.writeFromBus(_M.A_bus) ;}
+        (_M)=>{_M.A_register.writeFromBus(_M.A_bus) ;},
+        ExtnensionFlags.Base,
+        SignalOrientation.Left
+
     )
 
     const czyt = new Signal(
         "czyt",
         false,
-        (_M)=>{_M.S_register.write(_M.MEM.read(_M.A_register.getValue())) ;}
+        (_M)=>{_M.S_register.write(_M.MEM.read(_M.A_register.getValue())) ;},
+        ExtnensionFlags.Base,
+        SignalOrientation.Left
     )
 
     const pisz = new Signal(
         "pisz",
         false,
-        (_M)=>{_M.MEM.write(_M.A_register.getValue(),_M.S_register.getValue());}
+        (_M)=>{_M.MEM.write(_M.A_register.getValue(),_M.S_register.getValue());},
+        ExtnensionFlags.Base,
+        SignalOrientation.Left
     )
 
     const wes = new Signal(
         "wes",
         true,
-        (_M)=>{_M.S_register.writeFromBus(_M.S_bus); }
+        (_M)=>{_M.S_register.writeFromBus(_M.S_bus); },
+        ExtnensionFlags.Base,
+        SignalOrientation.Left
     )
     const wys = new Signal(
         "wys",
         false,
-        (_M)=>{_M.S_bus.setSourceRegister(_M.S_register)}
+        (_M)=>{_M.S_bus.setSourceRegister(_M.S_register)},
+        ExtnensionFlags.Base,
+        SignalOrientation.Right
     )
 
 
@@ -263,34 +274,46 @@ function addJALSignals(_Machine){
 const weja = new Signal(
     "weja",
     false,
-    (_M)=>{_M.JAL.BusReference = _M.S_bus;}
+    (_M)=>{_M.JAL.BusReference = _M.S_bus;},
+    ExtnensionFlags.Base,
+    SignalOrientation.Right
 )
 
 const przep = new Signal(
     "przep",
     false,
-    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.PRZEP);}
+    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.PRZEP);},
+    ExtnensionFlags.Base,
+    SignalOrientation.Right
 )
 const dod = new Signal(
     "dod",
     false,
-    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.DOD);}
+    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.DOD);},
+    ExtnensionFlags.Base,
+    SignalOrientation.Right
 )
 const ode = new Signal(
     "ode",
     false,
-    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.ODE);}
+    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.ODE);},
+    ExtnensionFlags.Base,
+    SignalOrientation.Right
 )
 
 const weak = new Signal(
     "weak",
     true,
-    (_M)=>{_M.JAL.writeOperation();}
+    (_M)=>{_M.JAL.writeOperation();},
+    ExtnensionFlags.Base,
+    SignalOrientation.Right
 )
 const wyak = new Signal(
     "wyak",
     false,
-    (_M)=>{_M.S_bus.setSourceRegister(_M.AK_register);}
+    (_M)=>{_M.S_bus.setSourceRegister(_M.AK_register);},
+    ExtnensionFlags.Base,
+    SignalOrientation.Left
 )
 
 _Machine.addSignalToDictioanry(weja);
@@ -308,17 +331,23 @@ function addCounterSignals(_Machine){
     const wel = new Signal(
         "wel",
         true,
-        (_M)=>{_M.L_register.writeFromBus(_M.A_bus)}
+        (_M)=>{_M.L_register.writeFromBus(_M.A_bus)},
+        ExtnensionFlags.Base,
+        SignalOrientation.Left
     )
     const wyl = new Signal(
         "wyl",
         false,
-        (_M)=>{_M.A_bus.setSourceRegister(_M.L_register);}
+        (_M)=>{_M.A_bus.setSourceRegister(_M.L_register);},
+        ExtnensionFlags.Base,
+        SignalOrientation.Right
     )
     const il = new Signal(
         "il",
         true,
-        (_M)=>{_M.L_register.write(_M.L_register.getValue()+1);}
+        (_M)=>{_M.L_register.write(_M.L_register.getValue()+1);},
+        ExtnensionFlags.Base,
+        SignalOrientation.Right
     )
     _Machine.addSignalToDictioanry(wel);
     _Machine.addSignalToDictioanry(wyl);
@@ -331,17 +360,23 @@ function addInstructionSignals(_Machine){
     const wei = new Signal(
         "wei",
         true,
-        (_M)=>{_M.I_register.writeFromBus(_M.S_bus);}
+        (_M)=>{_M.I_register.writeFromBus(_M.S_bus);},
+        ExtnensionFlags.Base,
+        SignalOrientation.Right
     )
     const wyad = new Signal(
         "wyad",
         false,
-        (_M)=>{_M.A_bus.setSourceRegister(_M.I_register);}
+        (_M)=>{_M.A_bus.setSourceRegister(_M.I_register);},
+        ExtnensionFlags.Base,
+        SignalOrientation.Right
     )
     const stop = new Signal(
         "stop",
         false,
-        (_M)=>{Alerter.alert("Program Is Stoped");}
+        (_M)=>{Alerter.alert("Program Is Stoped");},
+        ExtnensionFlags.Base,
+        SignalOrientation.None
     )
 
     _Machine.addSignalToDictioanry(wei);
@@ -358,7 +393,8 @@ function add_BusConnectionSignals(_Machine){
         (_M)=>{
             _M.AS_bus.activateConnection();
         },
-        ExtnensionFlags.BusConnection
+        ExtnensionFlags.BusConnection,
+        SignalOrientation.Left
     )
 
     _Machine.addSignalToDictioanry(as);
@@ -370,7 +406,8 @@ function addAK_IncrementSignals(_Machine){
         "iak",
         true,
         (_M)=>{_M.AK_register.write(_M.AK_register.getValue()+1);},
-        ExtnensionFlags.AK_Increment
+        ExtnensionFlags.AK_Increment,
+        SignalOrientation.Right
     )
     
     
@@ -378,7 +415,8 @@ function addAK_IncrementSignals(_Machine){
         "dak",
         true,
         (_M)=>{_M.AK_register.write(_M.AK_register.getValue()-1);},
-        ExtnensionFlags.AK_Increment
+        ExtnensionFlags.AK_Increment,
+        SignalOrientation.Left
     )
     _Machine.addSignalToDictioanry(iak);
     _Machine.addSignalToDictioanry(dak);
@@ -389,7 +427,8 @@ function addJAL_LogicSignals(_Machine){
         "neg",
         false,
         (_M)=>{_M.JAL.SetOperation(JALOperationEnum.NEG);},
-        ExtnensionFlags.JAL_Logic
+        ExtnensionFlags.JAL_Logic,
+        SignalOrientation.Left
     )
     
     
@@ -397,14 +436,16 @@ function addJAL_LogicSignals(_Machine){
         "lub",
         false,
         (_M)=>{_M.JAL.SetOperation(JALOperationEnum.LUB);},
-        ExtnensionFlags.JAL_Logic
+        ExtnensionFlags.JAL_Logic,
+        SignalOrientation.Left
     )
 
     const i = new Signal(
         "i",
         false,
         (_M)=>{_M.JAL.SetOperation(JALOperationEnum.I);},
-        ExtnensionFlags.JAL_Logic
+        ExtnensionFlags.JAL_Logic,
+        SignalOrientation.Left
     )
 
     _Machine.addSignalToDictioanry(neg);
@@ -419,7 +460,8 @@ function addJAL_ExtendedMathSignals(_Machine){
         "mno",
         false,
         (_M)=>{_M.JAL.SetOperation(JALOperationEnum.MNO);},
-        ExtnensionFlags.JAL_ExtendedMath
+        ExtnensionFlags.JAL_ExtendedMath,
+        SignalOrientation.Right
     )
     
     
@@ -427,14 +469,16 @@ function addJAL_ExtendedMathSignals(_Machine){
         "dziel",
         false,
         (_M)=>{_M.JAL.SetOperation(JALOperationEnum.DZIEL);},
-        ExtnensionFlags.JAL_ExtendedMath
+        ExtnensionFlags.JAL_ExtendedMath,
+        SignalOrientation.Right
     )
 
     const shr = new Signal(
         "shr",
         false,
         (_M)=>{_M.JAL.SetOperation(JALOperationEnum.SHR);},
-        ExtnensionFlags.JAL_ExtendedMath
+        ExtnensionFlags.JAL_ExtendedMath,
+        SignalOrientation.Right
     )
 
     _Machine.addSignalToDictioanry(mno);
@@ -449,14 +493,16 @@ function addStackSingals(_Machine){
         "wyls",
         false,
         (_M)=>{_M.S_bus.setSourceRegister(_M.L_register);},
-        ExtnensionFlags.Stack
+        ExtnensionFlags.Stack,
+        SignalOrientation.Left
     )
 
     const iws = new Signal(
         "iws",
         true,
         (_M)=>{_M.WS_register.write(_M.WS_register.getValue()+1);},
-        ExtnensionFlags.Stack
+        ExtnensionFlags.Stack,
+        SignalOrientation.Right
     )
     
     
@@ -464,21 +510,24 @@ function addStackSingals(_Machine){
         "dws",
         true,
         (_M)=>{_M.WS_register.write(_M.WS_register.getValue()-1);},
-        ExtnensionFlags.Stack
+        ExtnensionFlags.Stack,
+        SignalOrientation.Left
     )
 
     const wyws = new Signal(
         "wyws",
         false,
         (_M)=>{_M.A_bus.setSourceRegister(_M.WS_register);},
-        ExtnensionFlags.Stack
+        ExtnensionFlags.Stack,
+        SignalOrientation.Right
     )
 
     const wews = new Signal(
         "wews",
         true,
         (_M)=>{_M.WS_register.writeFromBus(_M.A_bus) ;},
-        ExtnensionFlags.Stack
+        ExtnensionFlags.Stack,
+        SignalOrientation.Left
     )
 
 
@@ -494,14 +543,16 @@ function addX_RegisterSignals(_Machine){
         "wyx",
         false,
         (_M)=>{_M.S_bus.setSourceRegister(_M.X_register);},
-        ExtnensionFlags.X_Register
+        ExtnensionFlags.X_Register,
+        SignalOrientation.Right
     )
 
     const wex = new Signal(
         "wex",
         true,
         (_M)=>{_M.X_register.writeFromBus(_M.S_bus) ;},
-        ExtnensionFlags.X_Register
+        ExtnensionFlags.X_Register,
+        SignalOrientation.Left
     )
     _Machine.addSignalToDictioanry(wyx);
     _Machine.addSignalToDictioanry(wex);
@@ -513,14 +564,16 @@ function addY_RegisterSignals(_Machine){
         "wyy",
         false,
         (_M)=>{_M.S_bus.setSourceRegister(_M.Y_register);},
-        ExtnensionFlags.Y_Register
+        ExtnensionFlags.Y_Register,
+        SignalOrientation.Right
     )
 
     const wey = new Signal(
         "wey",
         true,
         (_M)=>{_M.Y_register.writeFromBus(_M.S_bus) ;},
-        ExtnensionFlags.Y_Register
+        ExtnensionFlags.Y_Register,
+        SignalOrientation.Left
     )
     _Machine.addSignalToDictioanry(wyy);
     _Machine.addSignalToDictioanry(wey);
@@ -532,35 +585,40 @@ function addInteruptSignals(_Machine){
         "wyrm",
         false,
         (_M)=>{_M.A_bus.setSourceRegister(_M.RM_register);},
-        ExtnensionFlags.Interupt
+        ExtnensionFlags.Interupt,
+        SignalOrientation.Right
     )
 
     const werm = new Signal(
         "werm",
         true,
         (_M)=>{_M.RM_register.writeFromBus(_M.A_bus);},
-        ExtnensionFlags.Interupt
+        ExtnensionFlags.Interupt,
+        SignalOrientation.Left
     )
 
     const wyap = new Signal(
         "wyap",
         false,
         (_M)=>{_M.A_bus.setSourceRegister(_M.AP_register);},
-        ExtnensionFlags.Interupt
+        ExtnensionFlags.Interupt,
+        SignalOrientation.Right
     )
     
     const eni = new Signal(
         "eni",
         true,
         (_M)=>{_M.interuptUnit.doEni();},
-        ExtnensionFlags.Interupt
+        ExtnensionFlags.Interupt,
+        SignalOrientation.None
     )
 
     const rint = new Signal(
         "rint",
         true,
         (_M)=>{_M.interuptUnit.doRint();},
-        ExtnensionFlags.Interupt
+        ExtnensionFlags.Interupt,
+        SignalOrientation.None
     )
 
 

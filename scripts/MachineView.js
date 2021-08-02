@@ -147,6 +147,12 @@ class MachineView{
         if(_signal.isImpulse){
             element.classList.add("sig-impulse");
         }
+
+        if(_signal.orientation==SignalOrientation.Right){
+            element.classList.add("sig-right");
+        }else if(_signal.orientation==SignalOrientation.Left){
+            element.classList.add("sig-left");
+        }
         element.innerHTML=_signal.name;
 
 

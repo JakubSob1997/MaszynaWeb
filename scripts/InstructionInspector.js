@@ -7,8 +7,10 @@ class InstructionRecord{
         this.name = document.createElement("div");
         this.removeButton = document.createElement("button")
         this.upDownButtons = document.createElement("div");
-        this.upButton= document.createElement("button");
-        this.downButton=document.createElement("button")
+        this.upButton= document.createElement("div");
+        this.downButton=document.createElement("div")
+
+
 
         this.buildRecord();
         this.attachCallbacks(_inspector,_index);
@@ -22,24 +24,26 @@ class InstructionRecord{
         this.record.appendChild(this.name);
         this.record.appendChild(this.removeButton);
         this.record.appendChild(this.upDownButtons);
-        this.upDownButtons.appendChild(this.upButton);
-        this.upDownButtons.appendChild(this.downButton);
+        this.record.appendChild(this.upButton);
+        this.record.appendChild(this.downButton);
 
         this.name.classList.add("instr-name");
+        this.upButton.classList.add("custom-btn");
+        this.downButton.classList.add("custom-btn");
     }
 
     populateRecord(_instruction){
         this.name.innerHTML = _instruction.name;
         this.removeButton.innerHTML = "delete";
-        this.upButton.innerHTML = "up";
-        this.downButton.innerHTML = "down";
+        this.upButton.innerHTML = "▲";
+        this.downButton.innerHTML = "▼";
 
     }
 
     attachCallbacks(_inspector,_index){
         this.upButton.onclick = ()=>{_inspector.onUpButton(_index)};
         this.downButton.onclick = ()=>{_inspector.onDownButton(_index)};
-        this.record.onclick=()=>(_inspector.onRecordClicked(_index));
+        this.name.onclick=()=>(_inspector.onRecordClicked(_index));
     }
 
     getHTMLElement(){
