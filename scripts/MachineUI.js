@@ -99,12 +99,17 @@ nextInstructionButton.onclick=function(){
 
 let toggleManualButton = document.getElementById("toggle-manual-button");
 toggleManualButton.onclick = ()=>{
-    M.manualControll = !M.manualControll;
+
+    M.toggleManualMode();
     if(M.manualControll){
-        toggleManualButton.classList.add("selected")
+        toggleManualButton.classList.add("manual-selected")
+        
     }else{
-        toggleManualButton.classList.remove("selected")
+        toggleManualButton.classList.remove("manual-selected")
     }
+
+    
+
 }
 
 

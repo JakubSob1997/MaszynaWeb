@@ -17,11 +17,15 @@ class InstructionRecord{
     }
 
     buildRecord(){
+        this.record.classList.add("instr-entry");
+
         this.record.appendChild(this.name);
         this.record.appendChild(this.removeButton);
         this.record.appendChild(this.upDownButtons);
         this.upDownButtons.appendChild(this.upButton);
         this.upDownButtons.appendChild(this.downButton);
+
+        this.name.classList.add("instr-name");
     }
 
     populateRecord(_instruction){
@@ -83,6 +87,9 @@ class InstructionInspector{
         this.addInstructionButton = document.createElement("button");
         this.loadDefaultButton=document.createElement("button");
         this.createInstructionElments(_instructionList,this.instructionListElement);
+
+        this.instructionListElement.classList.add("instr-list");
+
 
         this.addInstructionButton.innerHTML="Add";
         this.loadDefaultButton.innerHTML="Load Default";

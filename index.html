@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styles/machineContent.css">
     
     <link rel="stylesheet" href="./styles/pageLayout.css">
-  
+    <link rel="stylesheet" href="./styles/pageContent.css">
 
 
 
@@ -64,17 +64,19 @@
 <div class="main">
   <header>
 
-    <a href="#" class="logo"><span class="logo-prefix">Maszyna W</span>eb</a>
+    <a href="#" class="logo unselectable"><span class="logo-prefix">Maszyna W</span>eb</a>
   
-    <div id="navbar">
-      <button id ="asm-nav">asm</button>
-      <button id ="instruction-list-nav">instr</button>
-    </div>
+    <nav id="navbar">
+      <div class="nav-button unselectable" id ="asm-nav">Program</div>
+      <div class="nav-button unselectable"  id ="instruction-list-nav">Rozkazy</div>
+      <div class="nav-button unselectable"  id ="settings-nav">Ustawienia</div>
+      <div class="nav-button unselectable"  id ="io-nav">I/O</div>
+    </nav>
     
     <ul id="flow-control">
-        <li><button id="toggle-manual-button">Manual</button></li>
-        <li><button id="next-cycle-button">Takt</button></li>
-        <li><button id="next-instruction-button">Rozkaz</button></li>
+        <li class="flow-button unselectable" id="toggle-manual-button"> Manual</li>
+        <li class="flow-button unselectable" id="next-cycle-button">Takt</li>
+        <li class="flow-button unselectable" id="next-instruction-button">Rozkaz</li>
     </ul>
   </header>
   
@@ -258,9 +260,7 @@
           </div>
         </div>
       </div>
-  
-  
-  
+    
     </div>
     
   </div>

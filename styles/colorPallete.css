@@ -1,7 +1,7 @@
-:root{
 
+  /*
+        Styling for colors used in stylesheet
 
-    /*
         for best expirience
 
         --primary-color
@@ -21,15 +21,22 @@
 
 
 
+:root{
 
-    --primary-color:#445ce2de;
-    --secondary-color: #eeb448;
+
+  
+
+    --primary-color:#445ce2;
+    --secondary-color: #FFB619;
 
     --font-color: #e4e4e4;
     --contrast-font-color: #0f0f0f;
 
     --body-color: #3b3b3b;
     --panel-color:  #4e4d4d;
+
+    --even-list-color: #525050;
+    --odd-list-color: #626262;
     
     
 

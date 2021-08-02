@@ -105,8 +105,9 @@ class MachineView{
     createRegisterElement(_register){
         let element  = document.createElement("div")
         element.classList.add("reg");
+        element.setAttribute("tabindex","0")
         element.innerHTML=this.displayRegister(_register,element);
-
+        
 
         _register.addOnUpdateCallback(_reg=>{
                 this.displayRegister(_reg,element);
@@ -116,6 +117,8 @@ class MachineView{
         element.onclick = ()=>{
             this.selectRegister(_register);
         }
+
+
 
         _register.update();
         return element;
@@ -167,11 +170,15 @@ class MachineView{
 
         element.onclick =()=>{
             let name = _signal.name;
-            if(M.isSignalSelected(name)){
-                M.deSelectSignalManual(name);
-            }else{
-                M.selectSignalManual(name);
+            if(M.manualControll){
+                if(M.isSignalSelected(name)){
+                    M.deSelectSignalManual(name);
+                }else{
+                    M.selectSignalManual(name);
+                }
             }
+
+            
         };
 
         
@@ -258,6 +265,7 @@ class MachineView{
                 element.highlight = adr;
 
             })
+            
         }
     }
 

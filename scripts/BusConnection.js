@@ -2,25 +2,29 @@
 
 
 class BusConnection extends MachineComponent{
-    constructor(){
+    constructor(_busArray){
         super();
 
         this.referenceRegister=null;
-        this.connectedBusses = [];
+        this.connectedBusses = _busArray;
         
         this.hasConnection=false;
         this.onUpdateCallbacks = [];
-
+        this.isaActive=false;
 
     }
 
     resetState(){
-        this.connectedBusses=[];
         this.referenceRegister=null;
         this.hasConnection=false;
+        this.isaActive=false;
     }
 
     getExtention(){return ExtnensionFlags.BusConnection}
+
+    activateConnection(){
+        this.isaActive=true;
+    }
 
     addBusToConnection(_bus){
         this.connectedBusses.push(_bus);
@@ -40,6 +44,8 @@ class BusConnection extends MachineComponent{
     }
 
     linkBusses(){
+
+        if(this.isaActive==false) return;
 
         this.referenceRegister = null;
         for (let i = 0; i < this.connectedBusses.length; i++) {

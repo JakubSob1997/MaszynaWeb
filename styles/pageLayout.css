@@ -1,5 +1,12 @@
+
+
+/*
+    Styling for layout of the webpage
+*/
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@;300;400;500;600;700&display=swap');
 
 
 :root{
@@ -13,7 +20,13 @@
 
 }
 
-
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
 
 
 *{
@@ -23,6 +36,9 @@
     box-sizing: border-box;
 
     
+}
+* {
+    transition:  color 350ms,background-color 350ms,font-weight 300ms;
 }
 
 
@@ -44,7 +60,6 @@ a{
 ul{
     list-style: none;
 }
-
 
 
 
@@ -72,14 +87,89 @@ header{
 .logo{
     font-weight: 700;
     font-size: 130%;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-shrink: 1;
+    min-width: 5vw;
 }
+
+nav{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    overflow: auto;
+    flex-shrink: 3;
+    min-width: 20vw;
+}
+
+.nav-button{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+
+    transition: padding 50ms, color 250ms,background-color 250ms,font-weight 300ms;
+
+}
+.nav-button:hover{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
+.nav-button:active{
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+}
+
+
+
 
 #flow-control{
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
+    height: 100%;
+    align-items: center;
 }
 
+.flow-button{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
 
+    transition: padding 100ms, color 350ms,background-color 100ms,font-weight 300ms;
+
+}
+
+.flow-button:hover{
+    color: var(--secondary-color);
+}
+
+.flow-button:active{
+    background-color: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
+.manual-selected{
+    background-color: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
+.manual-selected:hover{
+    color: var(--primary-color);
+}
+
+.manual-selected:active{
+    background-color:transparent;
+    color: var(--font-color);
+}
 
 
 
@@ -115,7 +205,7 @@ header{
 
 .handle-ew{
     background: transparent;
-    border-color: lightslategrey;
+    color: var(--font-color);
     
 
     cursor: ew-resize;
@@ -230,23 +320,6 @@ textarea {
 
 
 
-.selected{
-    background-color: var(--secondary-color);
-}
-
-
-#flow-control{
-    background: rgb(221, 221, 106);
-}
-
-
-
-
-
-#navbar{
-    background: darkmagenta;
-    display: flex;
-}
 
 
 

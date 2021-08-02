@@ -126,11 +126,22 @@ class Machine{
         });
     }
     
-    doCycle(){
 
+
+    resetComponetsState(){
         this.machineComponents.forEach(element => {
             element.resetState();
         });
+    }
+    updateComponents(){
+        this.machineComponents.forEach(element => {
+            element.update();
+        });
+    }
+
+    doCycle(){
+
+        this.resetComponetsState();
         
 
         if(this.manualControll==false){
@@ -176,6 +187,24 @@ class Machine{
     }
     setInstructionList(_instructionListSerializer){
         this.instructionList.setupValues(_instructionListSerializer);
+    }
+
+
+    toggleManualMode(){
+        if(this.manualControll){
+            this.manualControll=false;
+            
+            
+        }else{
+            this.manualControll=true;
+            this.clearSignals();
+            this.resetComponetsState();
+            this.updateComponents();
+            this.controllUnit.setDefault();
+
+        }
+
+        return this.manualControll;
     }
 
 }

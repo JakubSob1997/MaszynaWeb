@@ -1,0 +1,75 @@
+
+/*
+    Styling for aotu-generated content on the webpage
+*/
+
+/*
+
+.instr-list{
+}
+*/
+
+
+.instr-list >.instr-entry:nth-child(odd){
+    background: var(--odd-list-color);
+
+}
+
+.instr-list >.instr-entry:nth-child(even){
+    background: var( --even-list-color);
+    
+}
+
+.instr-list >.instr-entry:nth-child(even):hover{
+    background: var(--primary-color);
+    
+}
+
+.instr-list >.instr-entry:nth-child(odd):hover{
+    background: var(--primary-color);
+    
+}
+
+.instr-list >.instr-entry:nth-child(even):active{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
+.instr-list >.instr-entry:nth-child(odd):active{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+    
+}
+
+.instr-entry{
+    cursor: pointer;
+
+    display: flex;
+    height: 2em;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 0.4em;
+    flex-wrap:nowrap;
+   
+}
+.instr-entry>*{
+    cursor: pointer;
+
+    padding-left: 1em;
+    padding-right: 1em;
+      
+}
+
+.instr-entry .instr-name{
+    font-weight: 500;
+    font-size: 110%;
+}
+
+.instr-list *{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}

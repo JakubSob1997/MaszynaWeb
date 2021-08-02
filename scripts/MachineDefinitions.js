@@ -43,13 +43,16 @@ function buildMachine(_Machine){
     _Machine.settings = new Settings();
     _Machine.settings.onBusWidthChanged =(_set)=>{ _Machine.onBusWidthChanged(_set)};
     
-    let AS_bus = new BusConnection();
-    _Machine.AS_bus=AS_bus;
+    
 
     let S_bus = new Bus();
     let A_bus = new Bus();
     _Machine.S_bus=S_bus;
     _Machine.A_bus=A_bus;
+
+
+    let AS_bus = new BusConnection([S_bus,A_bus]);
+    _Machine.AS_bus=AS_bus;
 
     let MEM = new Mamory(_Machine.settings);
     _Machine.MEM = MEM;
@@ -353,8 +356,7 @@ function add_BusConnectionSignals(_Machine){
         "as",
         false,
         (_M)=>{
-            _M.AS_bus.addBusToConnection(_M.S_bus);
-            _M.AS_bus.addBusToConnection(_M.A_bus);
+            _M.AS_bus.activateConnection();
         },
         ExtnensionFlags.BusConnection
     )
