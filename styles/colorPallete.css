@@ -38,7 +38,7 @@
     --even-list-color: #525050;
     --odd-list-color: #626262;
     
-    
+    --button-background:var(--font-color);
 
 
     --reg-hover: #2c30a7;

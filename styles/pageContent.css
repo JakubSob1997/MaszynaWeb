@@ -9,9 +9,7 @@
 }
 */
 
-.custom-btn:hover{
-    background: black;
-}
+
 
 
 
@@ -55,16 +53,19 @@
     align-items: center;
     justify-content: space-between;
 
-    border-radius: 0.2em;
+    border-radius: 0.3em;
+    min-width: min-content;
+    
    
 }
 .instr-entry>*{
     cursor: pointer;
     margin-left: 0.2em;
     margin-right: 0.2em;
-    height: 2em;
+    
     display: flex;
     align-items: center;
+    height: 80%;
     
 }
 
@@ -77,6 +78,8 @@
     flex-grow:  1;;
     padding-left: 1em;
     margin-left: 0;
+    min-width: 6em;
+    height: 100%;
 }
 
 .instr-list *{

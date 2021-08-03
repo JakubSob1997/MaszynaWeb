@@ -250,6 +250,30 @@ class InstructionList{
     }
 
 
+    createEmptyInstruction(_prefix){
+        const prefix = _prefix??"ROZ";
+        let postfix = 0;
+
+
+        let newName = prefix+postfix.toString();
+
+        while (this.hasInstruction(newName)==true) {
+            postfix++;
+            newName = prefix+postfix.toString();
+        }
+
+        let instructionCode = 
+        "ROZKAZ "+newName+";\n"+
+        "czyt wys wei il;\n"+
+        "wyl wea;\n";
+
+        const parser = new InstrcutionParser(instructionCode);
+
+        return parser.toInstruction();
+
+    }
+
+
 }
 
 

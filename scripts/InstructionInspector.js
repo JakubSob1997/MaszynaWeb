@@ -5,8 +5,7 @@ class InstructionRecord{
     constructor(_instruction,_inspector,_index){
         this.record = document.createElement("li");
         this.name = document.createElement("div");
-        this.removeButton = document.createElement("button")
-        this.upDownButtons = document.createElement("div");
+        this.removeButton = document.createElement("div")
         this.upButton= document.createElement("div");
         this.downButton=document.createElement("div")
 
@@ -23,10 +22,11 @@ class InstructionRecord{
 
         this.record.appendChild(this.name);
         this.record.appendChild(this.removeButton);
-        this.record.appendChild(this.upDownButtons);
         this.record.appendChild(this.upButton);
         this.record.appendChild(this.downButton);
 
+
+        this.removeButton.classList.add("custom-btn")
         this.name.classList.add("instr-name");
         this.upButton.classList.add("custom-btn");
         this.downButton.classList.add("custom-btn");
@@ -34,7 +34,7 @@ class InstructionRecord{
 
     populateRecord(_instruction){
         this.name.innerHTML = _instruction.name;
-        this.removeButton.innerHTML = "delete";
+        this.removeButton.innerHTML = "Delete";
         this.upButton.innerHTML = "▲";
         this.downButton.innerHTML = "▼";
 
@@ -66,7 +66,7 @@ class InstructionInspector{
 
         this.build(_instructionList);
 
-        
+        this.addCallbacks();
 
 
     }
@@ -103,6 +103,12 @@ class InstructionInspector{
         this.wrpper.appendChild(this.addInstructionButton);
     }
 
+    addCallbacks(){
+        this.addInstructionButton.addEventListener("click",()=>{
+            this.onAddButton(this.instructionList);
+        })
+    }
+
     onUpButton(_index){
         if(_index==0)return;
 
@@ -129,6 +135,21 @@ class InstructionInspector{
     onRecordClicked(_index){
         this.selectInstruction(this.instructionList.getInstruction(_index));
     }
+
+
+    onAddButton(_instructionList){
+        const instr = _instructionList.createEmptyInstruction();
+        _instructionList.addInstruction(instr);
+
+
+        let record = new InstructionRecord(instr,this,_instructionList.length()-1);
+        this.recordList.push(record);
+        this.instructionListElement.appendChild(record.getHTMLElement());
+
+        this.selectInstruction(instr);
+
+    }
+    
 
 
     createInstructionElments(_instructionList,_parentDiv){
