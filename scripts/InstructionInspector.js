@@ -8,7 +8,7 @@ class InstructionRecord{
         this.removeButton = document.createElement("div")
         this.upButton= document.createElement("div");
         this.downButton=document.createElement("div")
-
+        this.tmpBtn = new ConfirmButton()
 
 
         this.buildRecord();
@@ -21,11 +21,12 @@ class InstructionRecord{
         this.record.classList.add("instr-entry");
 
         this.record.appendChild(this.name);
+        this.record.appendChild( this.tmpBtn.getHTMLElement());
         this.record.appendChild(this.removeButton);
         this.record.appendChild(this.upButton);
         this.record.appendChild(this.downButton);
 
-
+        
         this.removeButton.classList.add("custom-btn")
         this.name.classList.add("instr-name");
         this.upButton.classList.add("custom-btn");
@@ -37,6 +38,7 @@ class InstructionRecord{
         this.removeButton.innerHTML = "Delete";
         this.upButton.innerHTML = "▲";
         this.downButton.innerHTML = "▼";
+        this.tmpBtn.getHTMLElement().innerHTML="Delete?";
 
     }
 
@@ -45,6 +47,7 @@ class InstructionRecord{
         this.downButton.onclick = ()=>{_inspector.onDownButton(_index)};
         this.name.onclick=()=>(_inspector.onRecordClicked(_index));
         this.removeButton.onclick=()=>{_inspector.onDeleteButton(_index)};
+        this.tmpBtn.addOnClickHandler(()=>{_inspector.onDeleteButton(_index)})
     }
 
     getHTMLElement(){
@@ -100,8 +103,9 @@ class InstructionInspector{
         this.loadDefaultButton.innerHTML="Load Default";
 
         this.wrpper.appendChild(this.loadDefaultButton);
-        this.wrpper.appendChild(this.instructionListElement);
         this.wrpper.appendChild(this.addInstructionButton);
+        this.wrpper.appendChild(this.instructionListElement);
+        
     }
 
     addCallbacks(){

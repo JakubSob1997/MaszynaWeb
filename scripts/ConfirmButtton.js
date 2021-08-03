@@ -2,16 +2,65 @@
 
 
 
-function clickEventListener()
 
 
 class ConfirmButton extends CustomElement{
 
     constructor(){
         super();
+
+        this.element = document.createElement("div");
+
+        this.isReady=false;
+        this.element.classList.add("confirm-btn");
+
+
+        this.element.addEventListener("click",(e)=>{this.onClick(e)})
+        this.element.addEventListener("mouseleave",(e)=>{this.onMouseLeave(e)})
+        this.element.addEventListener("onfocusout",(e)=>{this.onMouseLeave(e)})
+
+        this.onclickHandlers = [];
+
     }
+
+    onClick(_e){
+       
+        if(this.isReady){
+            this.onclickHandlers.forEach(funk => {
+                funk(_e);
+            });
+        }
+
+
+        this.setReady(!this.isReady);
+    }
+    onMouseLeave(_e){
+        if(this.isReady){
+            this.setReady(false);
+        }
+    }
+
+
+    setReady(_isReady){
+        this.isReady=_isReady;
+
+        if(this.isReady){
+            this.element.classList.add("confirm-btn-ready");
+        }else{
+            this.element.classList.remove("confirm-btn-ready");
+        }
+
+    }
+
+
+
     getHTMLElement(){
-        return null;
+        return  this.element;
+    }
+
+
+    addOnClickHandler(_funk){
+        this.onclickHandlers.push(_funk);
     }
 
 

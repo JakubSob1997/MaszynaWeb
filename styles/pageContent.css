@@ -9,8 +9,17 @@
 }
 */
 
+.confirm-btn{
+    background: green;
+}
 
+.confirm-btn-ready{
+    background: red;
+}
 
+.confirm-btn-ready::after{
+    content: "?";
+}
 
 
 
