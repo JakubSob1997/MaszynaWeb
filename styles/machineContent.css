@@ -26,8 +26,13 @@
 }
 
 
-.jal-padding{
-    height: 2em;
+
+.jal-body{
+    background: var(--font-color);
+    color: var(--contrast-font-color);
+    border:solid;
+    border-width: thin;
+    border-radius: 0.5em;
 }
 
 

@@ -201,11 +201,11 @@ class InstructionList{
 
 
     removeInstruction(_indexOrName){
-        let index = getInstructionIndex(_indexOrName);
+        let index = this.getInstructionIndex(_indexOrName);
         if(index>=0&& index<this.length()){
 
             this.instructionArray.splice(index,1);
-            reindexDictionary();
+            this.reindexDictionary();
 
             return true;
         }

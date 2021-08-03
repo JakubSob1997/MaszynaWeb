@@ -11,8 +11,7 @@ class EditorManager{
         this.assemblyEditor = new AssemblyEditor(_Machine);
         this.instructionEditor = new InstructionEditor();
 
-        editorElement.appendChild(this.instructionEditor.getHTMLElement());
-        editorElement.innerHTML="";
+
         editorElement.appendChild(this.assemblyEditor.getHTMLElement());
 
     }

@@ -191,18 +191,16 @@ class Machine{
 
 
     toggleManualMode(){
-        if(this.manualControll){
-            this.manualControll=false;
-            
-            
-        }else{
-            this.manualControll=true;
-            this.clearSignals();
-            this.resetComponetsState();
-            this.updateComponents();
-            this.controllUnit.setDefault();
+        
+        this.clearSignals();
+        this.resetComponetsState();
+        this.updateComponents();
+        this.controllUnit.setDefault();
 
-        }
+
+        this.manualControll= !this.manualControll;
+
+
 
         return this.manualControll;
     }

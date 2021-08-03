@@ -44,6 +44,7 @@ class InstructionRecord{
         this.upButton.onclick = ()=>{_inspector.onUpButton(_index)};
         this.downButton.onclick = ()=>{_inspector.onDownButton(_index)};
         this.name.onclick=()=>(_inspector.onRecordClicked(_index));
+        this.removeButton.onclick=()=>{_inspector.onDeleteButton(_index)};
     }
 
     getHTMLElement(){
@@ -105,7 +106,7 @@ class InstructionInspector{
 
     addCallbacks(){
         this.addInstructionButton.addEventListener("click",()=>{
-            this.onAddButton(this.instructionList);
+            this.onAddButton();
         })
     }
 
@@ -137,12 +138,26 @@ class InstructionInspector{
     }
 
 
-    onAddButton(_instructionList){
-        const instr = _instructionList.createEmptyInstruction();
-        _instructionList.addInstruction(instr);
+    onDeleteButton(_index){
+        this.instructionList.removeInstruction(_index);
+        this.recordList.splice(-1)
+        this.instructionListElement.removeChild(this.instructionListElement.lastChild);
+
+        for (let i = 0; i < this.recordList.length; i++) {
+            const record = this.recordList[i];
+            record.populateRecord(this.instructionList.getInstruction(i));
+            
+        }
+
+    }
 
 
-        let record = new InstructionRecord(instr,this,_instructionList.length()-1);
+    onAddButton(){
+        const instr = this.instructionList.createEmptyInstruction();
+        this.instructionList.addInstruction(instr);
+
+
+        let record = new InstructionRecord(instr,this, this.instructionList.length()-1);
         this.recordList.push(record);
         this.instructionListElement.appendChild(record.getHTMLElement());
 

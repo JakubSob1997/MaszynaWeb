@@ -19,9 +19,6 @@ class AssemblyEditor extends SidebarContent{
 
         this.addCallbacks();
 
-        let editor = document.getElementById("assembly-editor");
-        editor.appendChild(this.getHTMLElement());
-
         this.load();
 
     }
