@@ -9,7 +9,7 @@ class EditorManager{
         this.currentEditor =null;
 
         this.assemblyEditor = new AssemblyEditor(_Machine);
-        this.instructionEditor = new InstructionEditor();
+        this.instructionEditor = new InstructionEditor(_Machine.instructionList);
 
 
         editorElement.appendChild(this.assemblyEditor.getHTMLElement());

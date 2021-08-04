@@ -1,11 +1,6 @@
 
 class InstructionList{
 
-    constructor(_instrArray){
-        this.indexDictionary=[];
-        this.instructionArray = _instrArray;
-        this.reindexDictionary();
-    }
 
     static getDeserializedList(_instructionListSerializer){
         return new InstructionList(_instructionListSerializer.instructionArray);
@@ -15,6 +10,27 @@ class InstructionList{
     static getDefaultInstructionList(){
         return new InstructionList(InstructionListSerializer.getDefault().instructionArray);
     }
+
+    constructor(_instrArray){
+        this.indexDictionary=[];
+        this.instructionArray = _instrArray;
+        this.reindexDictionary();
+
+        this.onInstructionDeletedCallbacks=[];
+    }
+
+
+    addOnInstructionDeletedCallback(_funk){
+        this.onInstructionDeletedCallbacks.push(_funk);
+    }
+
+    invokeInstructionDeleted(_instrname,_index){
+        this.onInstructionDeletedCallbacks.forEach(funk => {
+            funk(_instrname,_index);
+        });
+    }
+
+    
 
 
     setupValues(_instructionListSerializer){
@@ -59,11 +75,14 @@ class InstructionList{
 
     removeInstruction(_indexOrName){
         let index = this.getInstructionIndex(_indexOrName);
-        if(index>=0&& index<this.length()){
+        
 
+        if(index>=0&& index<this.length()){
+            const name = this.instructionArray[index].name;
             this.instructionArray.splice(index,1);
             this.reindexDictionary();
 
+            this.invokeInstructionDeleted(name,index);
             return true;
         }
         return false;

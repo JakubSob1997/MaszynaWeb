@@ -56,6 +56,7 @@ var loadCodeButton = document.getElementById("load-code-button");
 
 MView = new MachineView(M);
 MView.setupMachine();
+M.A_register.update();
 console.log(M);
 
 

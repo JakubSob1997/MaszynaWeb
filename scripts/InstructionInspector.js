@@ -31,7 +31,7 @@ class InstructionRecord{
 
     populateRecord(_instruction){
         this.name.innerHTML = _instruction.name;
-        this.removeButton.getHTMLElement().innerHTML="Delete";
+        this.removeButton.getHTMLElement().innerHTML="Usuń";
         this.upButton.innerHTML = "▲";
         this.downButton.innerHTML = "▼";
 
@@ -64,6 +64,8 @@ class InstructionInspector extends SidebarContent{
         this.recordList= []
         this.onInstructionSelectedCallbacks=[];
 
+
+        
 
         this.build(_instructionList);
 
@@ -112,6 +114,11 @@ class InstructionInspector extends SidebarContent{
         this.wrpper.appendChild(this.heading);
         this.wrpper.appendChild(this.addInstructionButton);
         this.wrpper.appendChild(this.instructionListElement);
+
+
+        this.instructionList.addOnInstructionDeletedCallback((_instrname,_index)=>{
+            this.onDeleteUpdate(_instrname,_index);
+        })
         
     }
 
@@ -155,6 +162,11 @@ class InstructionInspector extends SidebarContent{
 
     onDeleteButton(_index){
         this.instructionList.removeInstruction(_index);
+        
+
+    }
+
+    onDeleteUpdate(_instr,_index){
         this.recordList.splice(-1)
         this.instructionListElement.removeChild(this.instructionListElement.lastChild);
 
@@ -163,8 +175,7 @@ class InstructionInspector extends SidebarContent{
             record.populateRecord(this.instructionList.getInstruction(i));
             
         }
-
-    }
+    }  
 
 
     onAddButton(){
