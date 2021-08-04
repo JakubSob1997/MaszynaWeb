@@ -7,7 +7,7 @@ class AssemblyEditor extends SidebarContent{
 
         super();
         this.wrapper = document.createElement("div");
-        this.title=document.createElement("h1");
+        this.title=document.createElement("h3");
         this.textArea =document.createElement("textarea");
         this.loadButton = document.createElement("button");
         this.copyButton = document.createElement("button");
@@ -26,14 +26,24 @@ class AssemblyEditor extends SidebarContent{
     getHTMLElement(){
         return this.wrapper;
     }
+    focus(){
+        this.title.focus();
+    }
 
 
     build(){
+        this.title.setAttribute("tabindex",-1);
+
         this.wrapper.appendChild(this.title);
         this.wrapper.appendChild(this.textArea);
-        this.loadButton.innerHTML="Ładuj";
+        
         this.wrapper.appendChild(this.loadButton);
         this.wrapper.appendChild(this.warningArea);
+
+        this.title.innerHTML="Program"
+        this.loadButton.innerHTML="Ładuj";
+
+        this.loadButton.classList.add("custom-btn");
     }
 
     addCallbacks(){

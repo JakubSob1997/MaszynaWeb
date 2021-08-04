@@ -13,7 +13,9 @@ class InsperctorManger{
         this.instructionInspector = new InstructionInspector(_Machine.instructionList);
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
-
+        this.inputOutputnspector = new InputOutputInspector();
+        this.settingsInspector = new SettingsInspector();
+        this.fileInspector = new FileSInspector();
 
         _MachineView.addOnMemorySlotSellectedCallback((_index)=>{
             this.drawInspectorForMorySlot(_index)
@@ -36,6 +38,7 @@ class InsperctorManger{
             this.currentInspector=_inspector;
             this.inspectorElement.appendChild(_inspector.getHTMLElement());
         }
+        _inspector.focus();
 
         
     }
@@ -51,7 +54,15 @@ class InsperctorManger{
     }
     
     drawInspectorForSettings(_settings){
+        this.selectCurrentInspector(this.settingsInspector);
+    }
 
+    drawInspectorForInputOutput(){
+        this.selectCurrentInspector(this.inputOutputnspector);
+    }
+
+    drawInspectorForFile(){
+        this.selectCurrentInspector(this.fileInspector)
     }
 
     drawInspectorForMorySlot(_adress){

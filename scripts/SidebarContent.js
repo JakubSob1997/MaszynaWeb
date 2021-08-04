@@ -20,6 +20,10 @@ class SidebarContent{
         return null;
     }
 
+    focus(){
+        
+    }
+
     
 
 

@@ -20,11 +20,11 @@ class EditorManager{
         if(this.currentEditor !=_editor){
             this.editorElement.innerHTML="";
             this.currentEditor=_editor;
-            console.log(_editor.getHTMLElement);
             this.editorElement.appendChild(_editor.getHTMLElement());
+            
         }
 
-        
+        _editor.focus();   
     }
 
 

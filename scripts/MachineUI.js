@@ -37,6 +37,20 @@ buildMachine(M);
 
 
 
+M.addOnManualToggleCallback((_isManual)=>{
+    const signals = document.querySelectorAll("button.sig");
+    signals.forEach(element => {
+        
+        if(_isManual){
+            element.removeAttribute("disabled")
+        }else{
+            element.setAttribute("disabled","")
+        }
+
+    });
+})
+
+
 var loadCodeButton = document.getElementById("load-code-button");
 
 
@@ -79,8 +93,27 @@ showAsmButton.onclick=()=>{
 }
 let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
 showInstrInspectorButton.onclick=()=>{
-    inspectorManager. drawInspectorForInstructionList();
+    inspectorManager.drawInspectorForInstructionList();
 }
+
+let showSettingsButon = document.getElementById("settings-nav")
+showSettingsButon.onclick=()=>{
+    inspectorManager.drawInspectorForSettings();
+}
+
+let showIOButton =  document.getElementById("io-nav")
+showIOButton.onclick=()=>{
+    inspectorManager.drawInspectorForInputOutput();
+}
+
+let showFileButton =  document.getElementById("file-nav")
+showFileButton.onclick=()=>{
+    inspectorManager.drawInspectorForFile();
+}
+
+
+//settings-nav
+//
 
 
 

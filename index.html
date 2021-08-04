@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maszyna WEB</title>
-
+    
     <link rel="stylesheet" href="./styles/colorPallete.css">
     <link rel="stylesheet" href="./styles/machineLayout.css">
     <link rel="stylesheet" href="./styles/machineContent.css">
@@ -25,13 +25,16 @@
      <script src="./scripts/ArythmeticLogicUnit.js"></script>
      <script src="./scripts/Settings.js"></script>
      <script src="./scripts/InteruptUnit.js"></script>
+     <script src="./scripts/InputOutputUnit.js"></script>
      <script src="./scripts/ConditionFlags.js"></script>
      <script src="./scripts/Signal.js"></script>
      <script src="./scripts/Instruction.js"></script>
+     <script src="./scripts/InstructionList.js"></script>
      <script src="./scripts/ValueDisplayer.js"></script>
      <script src="./scripts/AssemblyParser.js"></script>
      <script src="./scripts/ControllUnit.js"></script>
      <script src="./scripts/Machine.js"></script>
+     <script src="./scripts/SignalDefinitions.js"></script>
      <script src="./scripts/MachineDefinitions.js"></script>
      <script src="./scripts/MachineView.js"></script>
 
@@ -42,7 +45,9 @@
      <script src="./scripts//ConfirmButtton.js"></script>
      <script src="./scripts/ValueView.js"></script>
 
-
+     <script src="./scripts/FileInspector.js"></script>
+     <script src="./scripts/InputOutputInspector.js"></script>
+     <script src="./scripts/SettingsInspector.js"></script>
      <script src="./scripts/InstructionInspector.js"></script>
      <script src="./scripts/InstructionEditor.js"></script>
      <script src="./scripts/InstructionParser.js"></script>
@@ -70,17 +75,19 @@
     <a href="#" class="logo unselectable"><span class="logo-prefix">Maszyna W</span>eb</a>
   
     <nav id="navbar">
-      <div class="nav-button" id ="asm-nav">Program</div>
-      <div class="nav-button"  id ="instruction-list-nav">Rozkazy</div>
-      <div class="nav-button"  id ="settings-nav">Ustawienia</div>
-      <div class="nav-button"  id ="io-nav">I/O</div>
+      <button class="nav-button" id ="asm-nav">Program</button>
+      <button class="nav-button"  id ="instruction-list-nav">Rozkazy</button>
+      <button class="nav-button"  id ="settings-nav">Ustawienia</button>
+      <button class="nav-button"  id ="io-nav">We/Wy</button>
+      <button class="nav-button"  id ="file-nav">Plik</button>
+
     </nav>
     
-    <ul id="flow-control">
-        <li class="flow-button " id="toggle-manual-button"> Manual</li>
-        <li class="flow-button " id="next-cycle-button">Takt</li>
-        <li class="flow-button " id="next-instruction-button">Rozkaz</li>
-    </ul>
+    <list id="flow-control">
+      <button class="flow-button " id="toggle-manual-button"> Manual</button>
+      <button class="flow-button " id="next-cycle-button">Takt</button>
+      <button class="flow-button " id="next-instruction-button">Rozkaz</button>
+    </list>
   </header>
   
   
@@ -103,8 +110,8 @@
         <div class="up-area">
           <div class="rz-area">
             <div class="rz-center">
-              <div class="rz-2"></div>
               <div class="rz-1"></div>
+              <div class="rz-2"></div>
               <div class="rz-3"></div>
               <div class="rz-4"></div>
               <div class="rz-r"></div>
@@ -272,13 +279,13 @@
   
   
   <div class="left-side-bar">
-    <div id="editor" class="bar"></div>
     <div id="left-handle" class="left-drag-handle handle-ew"></div>
+    <div id="editor" class="bar"></div>
   </div>
 
   <div class="right-side-bar">
-    <div id="inspector" class="bar"></div>
     <div id="right-handle" class="right-drag-handle handle-ew"></div>
+    <div id="inspector" class="bar"></div>
   </div>
   
   </div>

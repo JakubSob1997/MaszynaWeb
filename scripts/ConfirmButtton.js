@@ -9,7 +9,7 @@ class ConfirmButton extends CustomElement{
     constructor(){
         super();
 
-        this.element = document.createElement("div");
+        this.element = document.createElement("button");
 
         this.isReady=false;
         this.element.classList.add("confirm-btn");
@@ -17,7 +17,7 @@ class ConfirmButton extends CustomElement{
 
         this.element.addEventListener("click",(e)=>{this.onClick(e)})
         this.element.addEventListener("mouseleave",(e)=>{this.onMouseLeave(e)})
-        this.element.addEventListener("onfocusout",(e)=>{this.onMouseLeave(e)})
+        this.element.addEventListener("blur",(e)=>{this.onMouseLeave(e)})
 
         this.onclickHandlers = [];
 
@@ -38,6 +38,7 @@ class ConfirmButton extends CustomElement{
         if(this.isReady){
             this.setReady(false);
         }
+        this.element.blur();
     }
 
 

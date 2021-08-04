@@ -2,17 +2,16 @@
 
 class MemorySlotInspector{
     constructor(_memory,_valueDisplayer){
-        this.wrapper = document.createElement("div");
-        this.label = document.createElement("div");
 
-        this.valueView = new ValueView(_valueDisplayer);
-
-        this.currentIndex=0;
         this.memmory=_memory;
+        this.currentIndex=0;
 
+        this.wrapper;
+        this.label;
+        this.valueView;
+        
 
-
-        this.build();
+        this.build(_valueDisplayer);
         this.addCallbacks();
 
 
@@ -26,14 +25,29 @@ class MemorySlotInspector{
 
     }
 
-    build(){
+    focus(){
+        this.label.focus();
+    }
+
+    build(_valueDisplayer){
+
+        
+        this.valueView = new ValueView(_valueDisplayer);
+        this.wrapper = document.createElement("div");
+        this.label = document.createElement("h3");
+        
+
+        this.label.setAttribute("tabindex",0)
+
+        this.currentIndex=0;
+
         this.wrapper.appendChild(this.label);
         this.wrapper.appendChild(this.valueView.getHTMLElement());
 
     }
 
     populate(_memoryIndex){
-        this.label.innerHTML="["+_memoryIndex.toString(10)+"]";
+        this.label.innerHTML="Pamięć: "+"["+_memoryIndex.toString(10)+"]";
         this.valueView.populateWord(this.memmory.getValue(_memoryIndex));
     }
 

@@ -19,7 +19,8 @@
 
 
 }
-/*
+
+
 button, input[type="submit"], input[type="reset"]{
 	background: none;
 	color: inherit;
@@ -28,7 +29,8 @@ button, input[type="submit"], input[type="reset"]{
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-}*/
+}
+
 
 .custom-btn{
     border: none;
@@ -38,21 +40,33 @@ button, input[type="submit"], input[type="reset"]{
     border-radius: 0.3em;
     background: var(--button-background);
     color: var(--contrast-font-color);
-    height: auto;
+    font:inherit;
+    cursor: pointer;
+    outline: inherit;
  
 }
 
 .custom-btn:hover,.custom-btn:focus{
-    background: var(--primary-color);
-    color: var(--font-color);
-}
-
-.custom-btn:active{
     background: var(--secondary-color);
     color: var(--contrast-font-color);
 }
 
+.custom-btn:active{
+    background: var(--primary-color);
+    color: var(--font-color);
 
+    
+}
+
+h1:focus,h2:focus,h3:focus,h4:focus,h5:focus,h6:focus{
+    color: var(--secondary-color);
+    border: none;
+    outline: inherit;
+}
+
+h3{
+    white-space: nowrap;
+}
 
 
 
@@ -277,7 +291,7 @@ nav{
     border-width:thick;
 }
 
-.handle-ew:hover{
+.handle-ew:hover, .handle-ew:focus{
     border-width: thick;
 }
 

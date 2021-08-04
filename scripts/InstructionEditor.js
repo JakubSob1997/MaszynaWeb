@@ -9,7 +9,7 @@ class InstructionEditor extends SidebarContent{
 
         super();
         this.wrapper= document.createElement("div");
-        this.instrName = document.createElement("div");
+        this.instrName = document.createElement("h3");
         this.textField = document.createElement("textarea");
         this.button = document.createElement("button");
         this.buildEditor();
@@ -18,13 +18,24 @@ class InstructionEditor extends SidebarContent{
 
     }
 
+    focus(){
+        this.instrName .focus();
+    }
+
     buildEditor(){
+
+        this.instrName.setAttribute("tabindex",-1);
 
         this.wrapper.appendChild(this.instrName);
         this.wrapper.appendChild(this.textField);
         this.wrapper.appendChild(this.button);
-        this.instrName.innerHTML="inst"
-        this.button.innerHTML="save"
+        this.instrName.innerHTML="inst"     
+        this.button.innerHTML="Zapisz"
+
+
+        this.wrapper.classList.add("instr-editor")
+        this.button.classList.add("custom-btn");                    
+        
     }
 
     populateEditor(_instruction){

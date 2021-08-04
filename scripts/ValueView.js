@@ -18,7 +18,7 @@ class ValueView{
     }
 
     setOnWriteButton(_funk){
-        this.writeButton.onclick=_funk;
+        this.writeButton.addEventListener("click",_funk);
     }
     setOnPlusOneButton(_funk){
         this.plusOneButton.onclick=_funk;
@@ -45,14 +45,23 @@ class ValueView{
 
     build(){
         this.mainWrapper.appendChild(this.valueField);
-        this.writeButton.innerHTML="Pisz";
         this.mainWrapper.appendChild(this.writeButton);
-        this.plusOneButton.innerHTML="+1";
         this.mainWrapper.appendChild(this.plusOneButton);
-        this.minusOneButton.innerHTML="-1";
         this.mainWrapper.appendChild(this.minusOneButton);
-        this.setZeroButton.innerHTML="0"
         this.mainWrapper.appendChild(this.setZeroButton);
+
+        this.writeButton.innerHTML="Pisz";
+        this.plusOneButton.innerHTML="+1";
+        this.minusOneButton.innerHTML="-1";
+        this.setZeroButton.innerHTML="0";
+
+        this.writeButton.classList.add("custom-btn");
+        this.plusOneButton.classList.add("custom-btn");
+        this.minusOneButton.classList.add("custom-btn");
+        this.setZeroButton.classList.add("custom-btn");
+
+        this.writeButton.addEventListener("click",()=>{this.valueField.focus();});
+
     }
 
 

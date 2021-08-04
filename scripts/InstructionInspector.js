@@ -4,12 +4,10 @@ class InstructionRecord{
 
     constructor(_instruction,_inspector,_index){
         this.record = document.createElement("li");
-        this.name = document.createElement("div");
-        this.removeButton = document.createElement("div")
-        this.upButton= document.createElement("div");
-        this.downButton=document.createElement("div")
-        this.tmpBtn = new ConfirmButton()
-
+        this.name = document.createElement("button");
+        this.removeButton  = new ConfirmButton()
+        this.upButton= document.createElement("button");
+        this.downButton=document.createElement("button")
 
         this.buildRecord();
         this.attachCallbacks(_inspector,_index);
@@ -21,13 +19,11 @@ class InstructionRecord{
         this.record.classList.add("instr-entry");
 
         this.record.appendChild(this.name);
-        this.record.appendChild( this.tmpBtn.getHTMLElement());
-        this.record.appendChild(this.removeButton);
+        this.record.appendChild( this.removeButton.getHTMLElement());
         this.record.appendChild(this.upButton);
         this.record.appendChild(this.downButton);
 
         
-        this.removeButton.classList.add("custom-btn")
         this.name.classList.add("instr-name");
         this.upButton.classList.add("custom-btn");
         this.downButton.classList.add("custom-btn");
@@ -35,10 +31,10 @@ class InstructionRecord{
 
     populateRecord(_instruction){
         this.name.innerHTML = _instruction.name;
-        this.removeButton.innerHTML = "Delete";
+        this.removeButton.getHTMLElement().innerHTML="Delete";
         this.upButton.innerHTML = "▲";
         this.downButton.innerHTML = "▼";
-        this.tmpBtn.getHTMLElement().innerHTML="Delete?";
+
 
     }
 
@@ -46,8 +42,7 @@ class InstructionRecord{
         this.upButton.onclick = ()=>{_inspector.onUpButton(_index)};
         this.downButton.onclick = ()=>{_inspector.onDownButton(_index)};
         this.name.onclick=()=>(_inspector.onRecordClicked(_index));
-        this.removeButton.onclick=()=>{_inspector.onDeleteButton(_index)};
-        this.tmpBtn.addOnClickHandler(()=>{_inspector.onDeleteButton(_index)})
+        this.removeButton.addOnClickHandler(()=>{_inspector.onDeleteButton(_index)})
     }
 
     getHTMLElement(){
@@ -59,10 +54,12 @@ class InstructionRecord{
 
 
 
-class InstructionInspector{
+class InstructionInspector extends SidebarContent{
     constructor(_instructionList){
 
+        super();
         this.wrpper;
+        this.heading;
         this.instructionList =_instructionList;;
         this.recordList= []
         this.onInstructionSelectedCallbacks=[];
@@ -73,6 +70,10 @@ class InstructionInspector{
         this.addCallbacks();
 
 
+    }
+
+    focus(){
+        this.heading.focus();
     }
 
 
@@ -91,18 +92,24 @@ class InstructionInspector{
 
     build(_instructionList){
         this.wrpper=document.createElement("div");
+        this.heading = document.createElement("h3");
         this.instructionListElement = document.createElement("ul");
         this.addInstructionButton = document.createElement("button");
-        this.loadDefaultButton=document.createElement("button");
         this.createInstructionElments(_instructionList,this.instructionListElement);
+
+
+        this.wrpper.classList.add("instr-inspector");
 
         this.instructionListElement.classList.add("instr-list");
 
 
-        this.addInstructionButton.innerHTML="Add";
-        this.loadDefaultButton.innerHTML="Load Default";
+        this.addInstructionButton.innerHTML="Nowy Rozkaz";
+        this.addInstructionButton.classList.add("custom-btn");
 
-        this.wrpper.appendChild(this.loadDefaultButton);
+        this.heading.setAttribute("tabindex",-1)
+        this.heading.innerHTML = "Lista Rozkazów"
+
+        this.wrpper.appendChild(this.heading);
         this.wrpper.appendChild(this.addInstructionButton);
         this.wrpper.appendChild(this.instructionListElement);
         
@@ -122,6 +129,8 @@ class InstructionInspector{
         this.recordList[_index].populateRecord( this.instructionList.getInstruction(_index))
         this.recordList[_index-1].populateRecord(this.instructionList.getInstruction(_index-1))
 
+        this.recordList[_index-1].upButton.focus();
+
         
     }
 
@@ -133,6 +142,8 @@ class InstructionInspector{
 
         this.recordList[_index].populateRecord( this.instructionList.getInstruction(_index))
         this.recordList[_index+1].populateRecord(this.instructionList.getInstruction(_index+1))
+
+        this.recordList[_index+1].downButton.focus();
 
     }
 

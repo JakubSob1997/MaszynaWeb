@@ -22,6 +22,12 @@ class Machine{
         this.instructionList;
         this.settings;
 
+        this.onManualToggleCallbacks = [];
+
+    }
+
+    addOnManualToggleCallback(_funk){
+        this.onManualToggleCallbacks.push(_funk);
     }
 
 
@@ -200,7 +206,9 @@ class Machine{
 
         this.manualControll= !this.manualControll;
 
-
+        this.onManualToggleCallbacks.forEach(funk => {
+            funk(this.manualControll);
+        });
 
         return this.manualControll;
     }

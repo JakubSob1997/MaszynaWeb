@@ -9,7 +9,7 @@ class RegisterInspector extends SidebarContent{
 
         this.wrapper = document.createElement("div");
 
-        this.registerName =document.createElement("div");
+        this.registerName =document.createElement("h3");
 
         this.valueView = new ValueView(_valueDisplayer);
 
@@ -28,13 +28,15 @@ class RegisterInspector extends SidebarContent{
         this.build();
         this.addCallbacks();
 
-
-
-
-
+    }
+    focus(){
+        this.registerName.focus();
     }
 
     build(){
+
+        this.registerName.setAttribute("tabindex",-1);
+
         this.wrapper.appendChild(this.registerName);
         const valueEle =this.valueView.getHTMLElement();
         this.wrapper.appendChild(valueEle);

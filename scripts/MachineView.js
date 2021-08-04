@@ -103,9 +103,8 @@ class MachineView{
 
 
     createRegisterElement(_register){
-        let element  = document.createElement("div")
+        let element  = document.createElement("button")
         element.classList.add("reg");
-        element.setAttribute("tabindex","0")
         element.innerHTML=this.displayRegister(_register,element);
         
 
@@ -141,7 +140,12 @@ class MachineView{
 
 
     createSignalElement(_signal){
-        let element  = document.createElement("div")
+        let element  = document.createElement("button")
+
+        if(this.M.manualControll==false){
+            element.setAttribute("disabled","true");
+        }
+        
         element.classList.add("sig");
 
         if(_signal.isImpulse){
@@ -296,6 +300,7 @@ class MachineView{
         };
         element.innerHTML=_label;
         element.classList.add("rz-button");
+        element.classList.add("custom-btn");
         return element;
     }
 

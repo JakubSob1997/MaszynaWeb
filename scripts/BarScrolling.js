@@ -4,6 +4,8 @@ const minBarWidth = 8;
 const minpageWidth=12;
 const maxBarWidth = 100-minBarWidth-minpageWidth;
 
+const keyboardScroll=2.5;
+
 
 let leftWidth=20;
 let rightWidth=20;
@@ -15,6 +17,10 @@ const rightBarHandle = document.getElementById("right-handle");
 
 const leftWidthVar= "--editor-width"
 const rightWidthVar= "--inspector-width"
+
+
+leftBarHandle.setAttribute("tabindex",0),
+rightBarHandle.setAttribute("tabindex",0)
 
 
 
@@ -90,6 +96,36 @@ function pauseEvent(e){
     return false;
 }
 
+
+leftBarHandle.addEventListener("keydown",(e)=>{
+
+    
+    if(e.which==37){
+        //Left Arrow
+        scrollLeft(leftWidth-keyboardScroll);
+    }else if(e.which==39){
+        //Right Arrow
+        scrollLeft(leftWidth+keyboardScroll);
+
+    }
+
+
+})
+
+
+rightBarHandle.addEventListener("keydown",(e)=>{
+
+
+    
+    if(e.which==37){
+        //Left Arrow
+        scrollRight(rightWidth+keyboardScroll);
+    }else if(e.which==39){
+        //Right Arrow
+        scrollRight(rightWidth-keyboardScroll);
+
+    }
+})
 
 
 leftBarHandle.addEventListener("mousedown",(e)=>{

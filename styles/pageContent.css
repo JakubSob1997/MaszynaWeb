@@ -9,12 +9,41 @@
 }
 */
 
+
 .confirm-btn{
-    background: green;
+    border: none;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    text-align: center;
+    border-radius: 0.3em;
+    background: var(--button-background);
+    color: var(--contrast-font-color);
+    font:inherit;
+    cursor: pointer;
+    outline: inherit;
+ 
 }
 
-.confirm-btn-ready{
-    background: red;
+.confirm-btn:hover,.confirm-btn:focus{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
+.confirm-btn:active{
+    background: var(--primary-color);
+    color: var(--font-color);
+}
+
+
+
+.confirm-btn.confirm-btn-ready{
+    background: var(--primary-color);
+    color: var(--font-color);
+}
+
+.confirm-btn.confirm-btn-ready:active{
+    background: var(--contrast-font-color);
+    color: var(--font-color);
 }
 
 .confirm-btn-ready::after{
@@ -33,26 +62,21 @@
     
 }
 
-.instr-list >.instr-entry:nth-child(even)>.instr-name:hover{
-    background: var(--primary-color);
-    
+
+
+.instr-inspector>*{
+    margin-bottom:0.5em;
+    white-space: nowrap;
 }
 
-.instr-list >.instr-entry:nth-child(odd)>.instr-name:hover{
-    background: var(--primary-color);
-    
+.instr-inspector>button{
+    min-width: 3em;
+    min-height: 2em;
 }
 
-.instr-list >.instr-entry:nth-child(even)>.instr-name:active{
-    background: var(--secondary-color);
-    color: var(--contrast-font-color);
-}
 
-.instr-list >.instr-entry:nth-child(odd)>.instr-name:active{
-    background: var(--secondary-color);
-    color: var(--contrast-font-color);
-    
-}
+
+
 
 .instr-entry{
     cursor: pointer;
@@ -91,10 +115,32 @@
     height: 100%;
 }
 
+
+.instr-entry .instr-name:hover,.instr-entry .instr-name:focus {
+    background: var(--primary-color);
+    
+}
+
+.instr-entry .instr-name:active{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
 .instr-list *{
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
+}
+
+
+
+.instr-editor>*{
+    margin-bottom: 0.5em;
+}
+
+.instr-editor>button{
+    min-width: 3em;
+    min-height: 2em;
 }
