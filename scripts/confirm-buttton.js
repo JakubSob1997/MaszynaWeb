@@ -1,10 +1,10 @@
 
 
 
+import CustomElement from "./custom-element.js";
 
 
-
-class ConfirmButton extends CustomElement{
+export default class ConfirmButton extends CustomElement{
 
     constructor(){
         super();

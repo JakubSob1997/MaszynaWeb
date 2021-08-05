@@ -1,11 +1,11 @@
 
 
+import SidebarContent from "./sidebar-content.js";
 
 
 
 
-
-class FileSInspector extends SidebarContent{
+export default class InputOutputInspector extends SidebarContent{
     constructor(){
         super();
 
@@ -21,7 +21,7 @@ class FileSInspector extends SidebarContent{
         this.wrapper = document.createElement("div");
         this.header = document.createElement("h3")
 
-        this.header.innerHTML="Plik"
+        this.header.innerHTML="Wejście / Wyjście"
 
         this.header.setAttribute("tabindex",-1);
 
@@ -33,7 +33,15 @@ class FileSInspector extends SidebarContent{
         return this.wrapper;
     }
     
+
+
+
 }
+
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 
 
-const Alerter = {
+ const Alerter = {
 
 
     alertCallbacks: {},
@@ -36,4 +36,9 @@ const Alerter = {
 }
 
 Alerter.addAlertCallback(message=>console.log(message));
-//Alerter.addAlertCallback(message=>{throw message;})
+
+
+export default Alerter;
+
+
+

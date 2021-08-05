@@ -1,7 +1,9 @@
 
 
+import MachineComponent from "./machine-component.js";
 
-class InputOutputUnit extends MachineComponent{
+
+export default class InputOutputUnit extends MachineComponent{
 
     constructor(_RB_register,_G_register){
         super();

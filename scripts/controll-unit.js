@@ -1,9 +1,9 @@
 
 
 
+import MachineComponent from "./machine-component.js";
 
-
-class ControllUnit extends MachineComponent{
+export default class ControllUnit extends MachineComponent{
 
     constructor(_I_Register,_FlagUnit){
         super();

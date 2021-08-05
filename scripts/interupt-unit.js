@@ -3,12 +3,12 @@
 
 
 
+import MachineComponent from "./machine-component.js";
 
 
 
 
-
-class InteruptUnit extends MachineComponent{
+export default class InteruptUnit extends MachineComponent{
 
     constructor(_RZreg,_RMreg,_RPreg,_APreg,_settings){
         super()

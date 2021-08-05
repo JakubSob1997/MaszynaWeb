@@ -1,4 +1,6 @@
 
+import Instruction,{InstrCycle,BranchCondition} from "./instruction.js";
+
 
 
 class InstructionLine{
@@ -159,7 +161,7 @@ class InstructionLabel{
 }
 
 
-class InstrcutionParser{
+export default class InstrcutionParser{
 
     constructor(_sourceCode){
         this.source= _sourceCode;

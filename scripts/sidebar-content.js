@@ -4,7 +4,7 @@
 
 
 
-class SidebarContent{
+export default class SidebarContent{
 
     constructor(){
 

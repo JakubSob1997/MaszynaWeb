@@ -1,7 +1,9 @@
 
 
+import MachineComponent from "./machine-component.js";
 
-class BusConnection extends MachineComponent{
+
+export default class BusConnection extends MachineComponent{
     constructor(_busArray){
         super();
 

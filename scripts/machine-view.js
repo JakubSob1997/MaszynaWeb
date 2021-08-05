@@ -1,19 +1,12 @@
+import ValueDisplayer from "./value-displayer.js"
+import { SignalOrientation,ValueDisplayEnum } from "./enums.js";
 
+export default class MachineView{
 
-class MachineView{
-
-    constructor(_Machine , _settingsSerializer,_instructionListSerializer){
+    constructor(_Machine){
 
         this.M =  _Machine;
 
-        if(_settingsSerializer==null){
-            _settingsSerializer= SettingsSerializer.getDefault();
-        }
-        if(_instructionListSerializer ==null){
-            _instructionListSerializer = InstructionListSerializer.getDefault();
-        }
-        this.M.setSettings(_settingsSerializer);
-        this.M.setInstructionList(_instructionListSerializer);
 
 
         this.valueDisplayer = new ValueDisplayer(this.M.settings,this.M.instructionList);

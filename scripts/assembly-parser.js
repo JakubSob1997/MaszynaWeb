@@ -48,7 +48,7 @@ class AssemblyMapperError{
 
 
 
-class AssemblyParser{
+export default class AssemblyParser{
 
 
     constructor(_assemblyCode,_settings,_instructionList){

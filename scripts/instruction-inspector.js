@@ -1,4 +1,7 @@
 
+import SidebarContent from "./sidebar-content.js"
+import ConfirmButton from "./confirm-buttton.js";
+import InstructionList from "./instruction-list.js";
 
 class InstructionRecord{
 
@@ -54,22 +57,23 @@ class InstructionRecord{
 
 
 
-class InstructionInspector extends SidebarContent{
-    constructor(_instructionList){
-
+export default class InstructionInspector extends SidebarContent{
+    constructor(_Machine){
+        
         super();
         this.wrpper;
         this.heading;
-        this.instructionList =_instructionList;;
+        this.instructionList =_Machine.instructionList;
         this.recordList= []
         this.onInstructionSelectedCallbacks=[];
 
 
         
 
-        this.build(_instructionList);
+        this.build(_Machine.instructionList);
 
         this.addCallbacks();
+        
 
 
     }
@@ -97,6 +101,7 @@ class InstructionInspector extends SidebarContent{
         this.heading = document.createElement("h3");
         this.instructionListElement = document.createElement("ul");
         this.addInstructionButton = document.createElement("button");
+
         this.createInstructionElments(_instructionList,this.instructionListElement);
 
 
@@ -194,6 +199,7 @@ class InstructionInspector extends SidebarContent{
 
 
     createInstructionElments(_instructionList,_parentDiv){
+        
         for (let index = 0; index < _instructionList.length(); index++) {
             const instruction = _instructionList.getInstruction(index);
 
