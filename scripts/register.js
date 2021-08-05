@@ -4,6 +4,8 @@
 
 import MachineComponent from "./machine-component.js"
 import { ValueDisplayEnum,MatchRegisterWidthEnum,ExtnensionFlags } from "./enums.js";
+import Alerter from "./alerter.js"
+
 
 export default class  Register extends MachineComponent {
 

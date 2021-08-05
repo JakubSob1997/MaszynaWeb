@@ -2,6 +2,8 @@
 
 import MachineComponent from "./machine-component.js";
 import { JALOperationEnum } from "./enums.js";
+import Alerter from "./alerter.js"
+
 
 export default class ArythmeticLogicUnit extends MachineComponent {
 

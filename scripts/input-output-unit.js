@@ -1,7 +1,7 @@
 
 
 import MachineComponent from "./machine-component.js";
-
+import Alerter from "./alerter.js"
 
 export default class InputOutputUnit extends MachineComponent{
 

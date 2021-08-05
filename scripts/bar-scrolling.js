@@ -136,7 +136,8 @@ leftBarHandle.addEventListener("mousedown",(e)=>{
 
     window.addEventListener("mousemove", leftBarMove);
     window.addEventListener("mouseup", leftBarUp);
-
+    
+    leftBarHandle.focus();
 
     let prevX = e.clientX;
     let prevY = e.clientY;
@@ -175,6 +176,7 @@ rightBarHandle.addEventListener("mousedown",(e)=>{
     window.addEventListener("mousemove", rightBarMove);
     window.addEventListener("mouseup", rightBarUp);
 
+    rightBarHandle.focus();
 
     let prevX = e.clientX;
     let prevY = e.clientY;

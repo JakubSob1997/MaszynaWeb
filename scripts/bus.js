@@ -1,5 +1,6 @@
 
 import MachineComponent from "./machine-component.js";
+import Alerter from "./alerter.js"
 
 export default class Bus extends MachineComponent{
 
