@@ -11,7 +11,7 @@ export default class EditorManager{
         this.currentEditor =null;
 
         this.assemblyEditor = new AssemblyEditor(_Machine);
-        this.instructionEditor = new InstructionEditor(_Machine.instructionList);
+        this.instructionEditor = new InstructionEditor(_Machine.instructionList,this);
 
         this.editorElement.appendChild(this.assemblyEditor.getHTMLElement());
 
@@ -36,6 +36,17 @@ export default class EditorManager{
     drawEditorForInstruction(_instruction){
         this.instructionEditor.populateEditor(_instruction);
         this.selectCurrentEditor(this.instructionEditor);
+    }
+
+    hideContent(_conetentToHide){
+        if(this.currentEditor ===_conetentToHide){
+            this.getHTMLElement().innerHTML="";
+            this.currentEditor = null;
+        }
+    }
+
+    getHTMLElement(){
+        return this.editorElement;
     }
 }
 

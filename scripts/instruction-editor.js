@@ -7,10 +7,13 @@ import InstrcutionParser from "./instruction-parser.js";
 
 export default class InstructionEditor extends SidebarContent{
 
-    constructor(_instructionList){
-
+    constructor(_instructionList,_parentContainer){
 
         super();
+
+
+        this.hackParentContainer = _parentContainer;
+
         this.wrapper;
         this.header;
         this.textField;
@@ -18,7 +21,7 @@ export default class InstructionEditor extends SidebarContent{
         this.deleteButon;
 
 
-        this.buildEditor(_instructionList);
+        this.buildEditor(_instructionList,_parentContainer);
 
         this.instrName;
 
@@ -27,7 +30,7 @@ export default class InstructionEditor extends SidebarContent{
     }
 
     focus(){
-        this.header .focus();
+        this.header.focus();
     }
 
     buildEditor(_instructionList){
@@ -82,7 +85,7 @@ export default class InstructionEditor extends SidebarContent{
 
     onInstrDeleted(_name,_index){
         if(_name===this.instrName){
-            this.textField.value="DELETED";
+            this.hackParentContainer.hideContent(this);
         }
     }
 

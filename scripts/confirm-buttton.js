@@ -26,13 +26,16 @@ export default class ConfirmButton extends CustomElement{
     onClick(_e){
        
         if(this.isReady){
+            this.setReady(false);
             this.onclickHandlers.forEach(funk => {
                 funk(_e);
             });
+        }else{
+            this.setReady(true);
         }
 
 
-        this.setReady(!this.isReady);
+        
     }
     onMouseLeave(_e){
         if(this.isReady){

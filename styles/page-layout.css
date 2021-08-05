@@ -13,7 +13,7 @@
 
 
 
-    --header-height:2.5em;
+    --header-height:3em;
     --editor-width:20vw;
     --inspector-width:20vw;
 
@@ -142,7 +142,7 @@ header{
 
 .logo{
     font-weight: 700;
-    font-size: 130%;
+    font-size: 150%;
     white-space: nowrap;
     overflow: hidden;
     flex-shrink: 1;
@@ -166,6 +166,7 @@ nav{
     align-items: center;
     cursor: pointer;
     font-weight: 500;
+    font-size: 110%;
 
     transition: padding 50ms, color 250ms,background-color 250ms,font-weight 300ms;
 
@@ -323,6 +324,7 @@ nav{
     display: flex;
     flex-direction: column;
     align-items: baseline;
+
 }
 
 
@@ -337,12 +339,16 @@ nav{
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: nowrap;
+    min-height: 2em;
 }
 
 
 .alert-text{
     flex-basis: 0;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
 .alert-close-button{
@@ -352,8 +358,8 @@ nav{
 }
 
 .alert-close-button:hover{
-    font-size: 100%;
-    font-weight: bold;
+
+    font-weight: 700;
 }
 
 .alert-close-button:focus{
