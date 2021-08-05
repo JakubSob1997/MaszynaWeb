@@ -1,8 +1,9 @@
 
 
+import SidebarContent from "./sidebar-content.js";
+import AssemblyParser from "./assembly-parser.js"
 
-
-class AssemblyEditor extends SidebarContent{
+export default class AssemblyEditor extends SidebarContent{
     constructor(_machine){
 
         super();

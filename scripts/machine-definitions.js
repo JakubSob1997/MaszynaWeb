@@ -1,6 +1,17 @@
 
-
-
+import Settings from "./settings.js"
+import Bus from "./bus.js";
+import BusConnection from "./bus-connection.js"
+import Mamory from "./memory.js";
+import Register from "./register.js";
+import { ValueDisplayEnum,MatchRegisterWidthEnum,ExtnensionFlags } from "./enums.js";
+import ArythmeticLogicUnit from "./arythmetic-logicUnit.js";
+import FlagsUnit, {ConditionFlag} from "./condition-flags.js";
+import ControllUnit from "./controll-unit.js";
+import InteruptUnit from "./interupt-unit.js";
+import InputOutputUnit from "./input-output-unit.js";
+import InstructionList from "./instruction-list.js"
+import addAllSignals from "./signal-definitions.js";
 
 
 function setupFlagUnit(_flagUnit){
@@ -37,7 +48,7 @@ function setupFlagUnit(_flagUnit){
 }
 
 
-function buildMachine(_Machine){
+export default function buildMachine(_Machine){
 
 
     _Machine.settings = new Settings();

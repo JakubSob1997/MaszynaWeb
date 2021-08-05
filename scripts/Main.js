@@ -1,41 +1,19 @@
-/*
-//NWD
-//Labels
-let a=14;
-let b=15;
-let stop = 12;
-let aMinusB = 0;
-let bMinusA = 6;
 
+import Machine from "./machine.js";
+import buildMachine from"./machine-definitions.js";
+import MachineView from "./machine-view.js";
+import { SettingsSerializer } from "./settings.js";
+import {InstructionListSerializer} from "./instruction-list.js";
+import InsperctorManger from "./inspector-manager.js";
+import EditorManager from "./editor-manager.js";
 
-MEM.values[0]=(0b011<<5)+a; //aMinusB: POB a
-MEM.values[1]=(0b010<<5)+b; // ODE b
-MEM.values[2]=(0b111<<5)+stop; // SOZ stop
-MEM.values[3]=(0b110<<5)+bMinusA; // SOM bMinusA
-MEM.values[4]=(0b100<<5)+a;//LAD a
-MEM.values[5]=(0b101<<5)+aMinusB+1; // SOB aMinusB+1
-
-MEM.values[6]=(0b011<<5)+b; //bMinusA: POB b
-MEM.values[7]=(0b010<<5)+a; // ODE a
-MEM.values[8]=(0b111<<5)+stop; // SOZ stop
-MEM.values[9]=(0b110<<5)+aMinusB; // SOM aMinusb
-MEM.values[10]=(0b100<<5)+b;//LAD b
-MEM.values[11]=(0b101<<5)+bMinusA+1; // SOB bMinusA+1
-
-MEM.values[12]=(0b001<<5)+a;//stop: DOD a
-MEM.values[13]=0; //STP 0 
-
-MEM.values[14]=120; //a:
-MEM.values[15]=70; //b: 
-
-console.log(MEM.values);
-*/
-
-M=new Machine();
+const M=new Machine();
 buildMachine(M);
-//console.log(M);
 
 
+
+M.setSettings( SettingsSerializer.getDefault());
+M.setInstructionList(InstructionListSerializer.getDefault());
 
 M.addOnManualToggleCallback((_isManual)=>{
     const signals = document.querySelectorAll("button.sig");
@@ -54,7 +32,7 @@ M.addOnManualToggleCallback((_isManual)=>{
 var loadCodeButton = document.getElementById("load-code-button");
 
 
-MView = new MachineView(M);
+const MView = new MachineView(M);
 MView.setupMachine();
 M.A_register.update();
 console.log(M);

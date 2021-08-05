@@ -1,7 +1,7 @@
 
 
 
-class Signal{
+export default class Signal{
 
 
     constructor(_name,_isImpulse,_onSignal,_extention,_orientation){

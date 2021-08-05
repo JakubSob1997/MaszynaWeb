@@ -1,7 +1,7 @@
 
+import { ValueDisplayEnum } from "./enums.js";
 
-
-class ValueView{
+export default class ValueView{
     constructor(_valueDisplayer){
 
         this.valueDisplayer = _valueDisplayer;

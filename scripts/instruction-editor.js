@@ -1,8 +1,10 @@
 
 
 
+import SidebarContent from "./sidebar-content.js";
+import ConfirmButton from "./confirm-buttton.js";
 
-class InstructionEditor extends SidebarContent{
+export default class InstructionEditor extends SidebarContent{
 
     constructor(_instructionList){
 

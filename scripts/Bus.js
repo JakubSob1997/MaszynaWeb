@@ -1,7 +1,7 @@
 
+import MachineComponent from "./machine-component.js";
 
-
-class Bus extends MachineComponent{
+export default class Bus extends MachineComponent{
 
 
     constructor(){

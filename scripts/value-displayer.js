@@ -1,8 +1,8 @@
 
 
+import { ValueDisplayEnum } from "./enums.js";
 
-
-class ValueDisplayer{
+export default class ValueDisplayer{
 
     constructor(_settings,_instructionList){
         this.settings = _settings;

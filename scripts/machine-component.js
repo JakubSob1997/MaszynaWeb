@@ -1,7 +1,7 @@
 
+import { ExtnensionFlags } from "./enums.js"
 
-
-class MachineComponent{
+export default class MachineComponent{
 
     setDefault(){}
     update(){}

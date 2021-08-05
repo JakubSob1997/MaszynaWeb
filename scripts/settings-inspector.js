@@ -1,8 +1,8 @@
 
 
+import SidebarContent from "./sidebar-content.js";
 
-
-class SettingsInspector extends SidebarContent{
+export default class SettingsInspector extends SidebarContent{
     constructor(){
         super();
 

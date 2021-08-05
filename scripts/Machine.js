@@ -3,7 +3,7 @@
 
 
 
-class Machine{
+export default class Machine{
 
 
     constructor(){

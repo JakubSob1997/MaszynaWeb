@@ -1,5 +1,9 @@
 
-function addAllSignals(_Machine){
+import Signal from "./signal.js"
+import { ExtnensionFlags, SignalOrientation} from "./enums.js";
+
+
+export default function addAllSignals(_Machine){
     addMemorySignals(_Machine);
     addJALSignals(_Machine);
     addCounterSignals(_Machine);

@@ -1,6 +1,8 @@
 
 
-class MemorySlotInspector{
+import ValueView from "./value-view.js";
+
+export default class MemorySlotInspector{
     constructor(_memory,_valueDisplayer){
 
         this.memmory=_memory;

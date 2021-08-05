@@ -1,7 +1,9 @@
 
+import SidebarContent from "./sidebar-content.js";
+import ValueView from "./value-view.js"
+import { ValueDisplayEnum } from "./enums.js";
 
-
-class RegisterInspector extends SidebarContent{
+export default class RegisterInspector extends SidebarContent{
 
     constructor(_valueDisplayer){
 

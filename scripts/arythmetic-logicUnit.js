@@ -1,8 +1,9 @@
 
 
+import MachineComponent from "./machine-component.js";
+import { JALOperationEnum } from "./enums.js";
 
-
-class ArythmeticLogicUnit extends MachineComponent {
+export default class ArythmeticLogicUnit extends MachineComponent {
 
     constructor(_AKRegister){
 
@@ -95,3 +96,4 @@ class ArythmeticLogicUnit extends MachineComponent {
 
 
 }
+

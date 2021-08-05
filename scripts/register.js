@@ -2,7 +2,10 @@
 
 
 
-class  Register extends MachineComponent {
+import MachineComponent from "./machine-component.js"
+import { ValueDisplayEnum,MatchRegisterWidthEnum,ExtnensionFlags } from "./enums.js";
+
+export default class  Register extends MachineComponent {
 
 
     constructor(_name,_extention){

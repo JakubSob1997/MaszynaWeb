@@ -1,6 +1,6 @@
 
 
-class CustomElement {
+export default  class CustomElement {
     constructor(){
 
     }

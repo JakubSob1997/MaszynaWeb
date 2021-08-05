@@ -1,7 +1,9 @@
 
+import { ExtnensionFlags } from "./enums.js";
 
 
-class SettingsSerializer{
+
+export class SettingsSerializer{
     constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList){
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
@@ -26,7 +28,7 @@ class SettingsSerializer{
 
 
 
-class Settings{
+export default class Settings{
     constructor(){
         this.codeWidth=3;
         this.adressWidth=5;

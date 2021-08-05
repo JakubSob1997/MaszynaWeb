@@ -1,9 +1,9 @@
 
+import MachineComponent from "./machine-component.js";
 
 
 
-
-class Mamory extends MachineComponent{
+export default class Mamory extends MachineComponent{
 
     constructor(_settings){
 

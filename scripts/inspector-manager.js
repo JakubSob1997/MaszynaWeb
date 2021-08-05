@@ -1,19 +1,27 @@
 
 
 
+import InstructionInspector from "./instruction-inspector.js";
+import RegisterInspector from "./register-inspector.js";
+import MemorySlotInspector from "./memory-slot-inspector.js";
+import InputOutputInspector from "./input-output-inspector.js";
+import SettingsInspector from "./settings-inspector.js";
+import FileSInspector from "./file-inspector.js";
 
 
 
 
-
-class InsperctorManger{
+export default class InsperctorManger{
     constructor(_Element,_Machine,_MachineView){
-        this.inspectorElement = _Element;
 
-        this.instructionInspector = new InstructionInspector(_Machine.instructionList);
+        
+
+        this.inspectorElement = _Element;
+        this.instructionInspector = new InstructionInspector(_Machine);
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
-        this.inputOutputnspector = new InputOutputInspector();
+        this.inputOutputInspector = new InputOutputInspector();
+        console.log(this.InputOutputInspector);
         this.settingsInspector = new SettingsInspector();
         this.fileInspector = new FileSInspector();
 
@@ -58,7 +66,7 @@ class InsperctorManger{
     }
 
     drawInspectorForInputOutput(){
-        this.selectCurrentInspector(this.inputOutputnspector);
+        this.selectCurrentInspector(this.inputOutputInspector);
     }
 
     drawInspectorForFile(){

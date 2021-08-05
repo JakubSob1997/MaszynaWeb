@@ -3,14 +3,14 @@
 
 
 
-class ConditionFlag{
+export class ConditionFlag{
     constructor(_name,_flagCheckFunk){
         this.name = _name;
         this.isFlagActive = _flagCheckFunk;
     }
 }
 
-class FlagsUnit{
+export default class FlagsUnit{
 
     constructor(){
         this.conditionFlags = [];
