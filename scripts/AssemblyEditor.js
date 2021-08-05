@@ -69,6 +69,8 @@ class AssemblyEditor extends SidebarContent{
         this.parser = new AssemblyParser(this.textArea.value,this.M.settings,this.M.instructionList);
         if( this.parser.parseSuccesful){
             this.M.setComponentsDefault();
+            this.M.resetInternalState();
+            
             this.M.MEM.loadMemory( this.parser.values);
             this.warningArea.innerHTML ="Succes";
         }else{

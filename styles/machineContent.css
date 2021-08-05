@@ -132,14 +132,16 @@
     border-radius: 0.2em;
     font-weight: normal;
     display: block;
-
-    width: 100%;
+    
+    width:  100%;
     height: 100%;
     
-    /*height: 100%;*/
-    text-align: center;
+
+    text-align: center;     
     white-space: nowrap;
     overflow: visible;
+    
+
     
 }
 
@@ -170,6 +172,7 @@
 .sig-right{
     text-align: right;
     padding-right: 0.3em;
+    float:right;
 }
 
 .sig-right::after{
@@ -179,8 +182,13 @@
     overflow: visible;
 }
 
+.sig:focus{     
+    outline-style: solid;
+    outline-width: thin;
 
-.sig:hover,.sig:focus{
+}
+
+.sig:hover{
     background: var(--font-color);
     color: var(--contrast-font-color);
     cursor: pointer;
@@ -199,7 +207,7 @@
     
 }
 
-.sig-selected:hover,.sig-selected:focus{
+.sig-selected:hover{
     color: var(--contrast-font-color);
     background:var( --secondary-color);
 }

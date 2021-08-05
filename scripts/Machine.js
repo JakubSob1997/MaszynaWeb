@@ -26,6 +26,13 @@ class Machine{
 
     }
 
+    resetInternalState(){
+        this.clearSignals();
+        this.resetComponetsState();
+        this.updateComponents();
+        this.controllUnit.setDefault();
+    }
+
     addOnManualToggleCallback(_funk){
         this.onManualToggleCallbacks.push(_funk);
     }
@@ -198,11 +205,8 @@ class Machine{
 
     toggleManualMode(){
         
-        this.clearSignals();
-        this.resetComponetsState();
-        this.updateComponents();
-        this.controllUnit.setDefault();
-
+        
+        this.resetInternalState();
 
         this.manualControll= !this.manualControll;
 

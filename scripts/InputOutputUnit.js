@@ -11,6 +11,6 @@ class InputOutputUnit extends MachineComponent{
     }
 
     doStart(){
-
+        
     }
 }

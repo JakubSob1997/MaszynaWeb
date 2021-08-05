@@ -33,7 +33,7 @@ button, input[type="submit"], input[type="reset"]{
 
 
 .custom-btn{
-    border: none;
+    border-style: none;
     padding-left: 0.4em;
     padding-right: 0.4em;
     text-align: center;
@@ -115,7 +115,7 @@ ul{
 }
 
 * {
-    transition:  color 250ms,background-color 250ms,font-weight 300ms;
+    transition:  color 250ms,background-color 250ms;
 }
 
 

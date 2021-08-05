@@ -1,6 +1,6 @@
 
 
-const ValueDisplayEnum = {
+var ValueDisplayEnum = {
     "UnsignedDecimal":1,
     "SignedDecimal":2,
     "Binary":3,
@@ -9,7 +9,7 @@ const ValueDisplayEnum = {
 }
 Object.freeze(ValueDisplayEnum);
 
-const MatchRegisterWidthEnum = {
+var MatchRegisterWidthEnum = {
     "ToAdress":1,
     "ToCode":2,
     "ToWord":3,
@@ -17,7 +17,7 @@ const MatchRegisterWidthEnum = {
 }
 Object.freeze(MatchRegisterWidthEnum);
 
-const JALOperationEnum = {
+var JALOperationEnum = {
     "Unselected":0,
     "PRZEP":1,
     "DOD":2,
@@ -33,7 +33,7 @@ Object.freeze(JALOperationEnum);
 
 
 
-const ExtnensionFlags = {
+var ExtnensionFlags = {
     "Base":1<<0,
     "BusConnection" :1<<1,
     "AK_Increment":1<<2,
@@ -54,7 +54,7 @@ const ExtnensionFlags = {
 Object.freeze(ExtnensionFlags);
 
 
-const SignalOrientation ={
+var SignalOrientation ={
     "None" : 1,
     "Left" : 2,
     "Right": 3,
