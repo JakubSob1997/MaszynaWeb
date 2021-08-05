@@ -39,11 +39,7 @@ export default class ControllUnit extends MachineComponent{
 
         let instrcycle = instruction.cycles[this.internalCycleCounter];
         
-        console.log(instrcycle);
-        if( instrcycle.branchCondtions.length>0){
-            console.log(this.FlagUnit);
-
-        }
+    
 
         for (let index = 0; index < instrcycle.branchCondtions.length; index++) {
             

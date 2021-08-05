@@ -317,16 +317,54 @@ nav{
 .alert-area{
     background: var(--secondary-color);
     color: var(--contrast-font-color);
-    padding-left: 2em;
-    padding-right: 2em;
+ 
     margin-bottom: 0.5em;
-    flex-grow: 1;
-    display: flex;
-    align-items: baseline;
     position: relative;
-
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 }
 
+
+.alert-area>.alert-entry:nth-child(even){
+    background: var(--even-alert-color);
+}
+
+.alert-entry{
+    width: 100%;
+    padding-left: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+
+.alert-text{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.alert-close-button{
+    flex-shrink: 0;
+    width: 3em;
+    text-align: center;
+}
+
+.alert-close-button:hover{
+    font-size: 100%;
+    font-weight: bold;
+}
+
+.alert-close-button:focus{
+    border-width: thin;
+    border: dashed;
+}
+
+.alert-close-button:active{
+    color: var(--primary-color);
+
+}
 
 .machine-flex{
     
