@@ -314,10 +314,25 @@ nav{
     
 }
 
+.alert-area{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-bottom: 0.5em;
+    flex-grow: 1;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+
+}
+
+
 .machine-flex{
     
     min-width: 1000px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     
     align-items: center;

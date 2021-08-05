@@ -58,19 +58,19 @@ class InstructionRecord{
 
 
 export default class InstructionInspector extends SidebarContent{
-    constructor(_Machine){
-        
+    constructor(_instrList){
+        console.log(_instrList)
         super();
         this.wrpper;
         this.heading;
-        this.instructionList =_Machine.instructionList;
+        this.instructionList =_instrList;
         this.recordList= []
         this.onInstructionSelectedCallbacks=[];
 
 
         
 
-        this.build(_Machine.instructionList);
+        this.build(_instrList);
 
         this.addCallbacks();
         

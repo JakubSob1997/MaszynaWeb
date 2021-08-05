@@ -1,6 +1,6 @@
 
 
-
+import InstructionList from "./instruction-list.js";
 
 
 export default class Machine{
@@ -199,7 +199,11 @@ export default class Machine{
         this.settings.setupValues(_settingsSerializer);
     }
     setInstructionList(_instructionListSerializer){
+        if(this.instructionList==undefined){
+            this.instructionList=new InstructionList()
+        }
         this.instructionList.setupValues(_instructionListSerializer);
+        console.log(this.instructionList);
     }
 
 

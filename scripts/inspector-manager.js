@@ -17,11 +17,10 @@ export default class InsperctorManger{
         
 
         this.inspectorElement = _Element;
-        this.instructionInspector = new InstructionInspector(_Machine);
+        this.instructionInspector = new InstructionInspector(_Machine.instructionList);
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
         this.inputOutputInspector = new InputOutputInspector();
-        console.log(this.InputOutputInspector);
         this.settingsInspector = new SettingsInspector();
         this.fileInspector = new FileSInspector();
 

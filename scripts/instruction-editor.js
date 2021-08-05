@@ -3,6 +3,7 @@
 
 import SidebarContent from "./sidebar-content.js";
 import ConfirmButton from "./confirm-buttton.js";
+import InstrcutionParser from "./instruction-parser.js";
 
 export default class InstructionEditor extends SidebarContent{
 

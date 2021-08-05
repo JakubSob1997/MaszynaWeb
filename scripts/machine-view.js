@@ -173,11 +173,11 @@ export default class MachineView{
 
         element.onclick =()=>{
             let name = _signal.name;
-            if(M.manualControll){
-                if(M.isSignalSelected(name)){
-                    M.deSelectSignalManual(name);
+            if(this.M.manualControll){
+                if(this.M.isSignalSelected(name)){
+                    this.M.deSelectSignalManual(name);
                 }else{
-                    M.selectSignalManual(name);
+                    this.M.selectSignalManual(name);
                 }
             }
 

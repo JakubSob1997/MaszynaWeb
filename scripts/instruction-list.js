@@ -5,18 +5,40 @@ import InstrcutionParser from "./instruction-parser.js";
 export default class InstructionList{
 
 
-    static getDeserializedList(_instructionListSerializer){
-        return new InstructionList(_instructionListSerializer.instructionArray);
+    static getDeserializedList(_instructionListSerializer,_singnalDictionary){
+        
+        let instrList =  new InstructionList();
+        instrList.setupValues(_instructionListSerializer,_singnalDictionary);
+        
     }
 
 
-    static getDefaultInstructionList(){
-        return new InstructionList(InstructionListSerializer.getDefault().instructionArray);
+    static getDefaultInstructionList(_singnalDictionary){
+        return InstructionList.getDeserializedList(InstructionListSerializer.getDefault(),_singnalDictionary);
     }
 
-    constructor(_instrArray){
+
+    
+
+    setupValues(_instructionListSerializer,_singnalDictionary){
+
+        const sourceArr  =_instructionListSerializer.instructionArray
+
+        this.instructionArray=[];
+
+        for (let i = 0; i < sourceArr.length; i++) {
+            const source = sourceArr[i];
+
+            const parseResult = new InstrcutionParser(source);
+            this.instructionArray.push(parseResult.toInstruction());
+        }
+
+        this.reindexDictionary();
+    }
+
+    constructor(){
         this.indexDictionary=[];
-        this.instructionArray = _instrArray;
+        this.instructionArray =[];
         this.reindexDictionary();
 
         this.onInstructionDeletedCallbacks=[];
@@ -35,11 +57,6 @@ export default class InstructionList{
 
     
 
-
-    setupValues(_instructionListSerializer){
-        this.instructionArray = _instructionListSerializer.instructionArray;
-        this.reindexDictionary();
-    }
 
     length(){
         return this.instructionArray.length;
@@ -158,8 +175,8 @@ export default class InstructionList{
 
 
 export class InstructionListSerializer{
-    constructor(_instrArray){
-        this.instructionArray = _instrArray;
+    constructor(_instrSourceArray){
+        this.instructionArray = _instrSourceArray;
     }
 
     
@@ -169,6 +186,71 @@ export class InstructionListSerializer{
     }
 
 
+    static getDefault(){
+
+ 
+
+        const STP  = 
+            "ROZKAZ STP;\n"+
+            "BEZARG;\n"+
+            "czyt wys wei il;\n"+
+            "stop;\n"
+        
+        const DOD = 
+            "ROZKAZ DOD;\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea;\n"+
+            "wyl wea czyt wys weja dod weak;\n";
+
+        const ODE = 
+            "ROZKAZ ODE;\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea;\n"+
+            "wyl wea czyt wys weja ode weak;\n";
+        
+        const POB = 
+            "ROZKAZ POB;\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea;\n"+
+            "wyl wea czyt wys weja przep weak;\n";
+        
+        const LAD = 
+            "ROZKAZ LAD;\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea wyak wes;\n"+
+            "pisz wyl wea;\n";
+        
+
+        const SOB=
+            "ROZKAZ SOB;\n"+
+            "czyt wys wei il;\n"+
+            "wyad wea wel;\n";
+        
+        const SOM=
+            "ROZKAZ SOM;\n"+
+            "czyt wys wei il;\n"+
+            "JEZELI Z @skok;\n"+
+            "wyl wea KONIEC;\n"+
+            "@skok wyad wea wel;\n";
+
+        const SOZ=
+            "ROZKAZ SOZ;\n"+
+            "czyt wys wei il;\n"+
+            "JEZELI ZAK @skok;\n"+
+            "wyl wea KONIEC;\n"+
+            "@skok wyad wea wel;\n";
+
+        const sourceCodes = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ]
+
+        return new InstructionListSerializer(sourceCodes)
+    }
+
+
+}
+
+
+
+    /*
     static getDefault(){
         let STP_inst = new Instruction("STP");
         STP_inst.argCount=0;
@@ -190,12 +272,12 @@ export class InstructionListSerializer{
             "wyad wea;\n"+
             "wel wea czyt wys weja dod weak;";
 
-        /*
+        
         let ODE_inst = new Instruction("ODE");
         ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
         ODE_inst.cycles[1]=new InstrCycle(["wyad","wea"]);
         ODE_inst.cycles[2]=new InstrCycle(["wyl","wea","czyt","wys","weja","ode","weak"]);
-        */
+        
 
         let ODE_inst = new Instruction("ODE");
         ODE_inst.cycles[0]=new InstrCycle(["czyt","wys","wei","il"]);
@@ -260,6 +342,4 @@ export class InstructionListSerializer{
     
         return new InstructionListSerializer(instrArray);
     }
-
-}
-
+    */

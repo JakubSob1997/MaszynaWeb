@@ -179,7 +179,6 @@ export default class InstrcutionParser{
         this.splitIntoLines(compentless);
         //this.lines = splitIntoLines(_sourceCode);
         this.parseLines();
-        console.log(this.toInstruction());
 
     }
 
@@ -329,12 +328,14 @@ export default class InstrcutionParser{
             let targetIndex = this.labels[branchLine.label].index;
 
             
-            instruction.cycles[branchLine.instrIndex].branchCondtions=
+            instruction.cycles[branchLine.instrIndex].branchCondtions.push(
                 new BranchCondition(
                     branchLine.flagName,
                     targetIndex,
                     branchLine.negate
-                    );
+                    )
+            )
+               
             
         }
 
