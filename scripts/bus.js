@@ -5,19 +5,22 @@ import Alerter from "./alerter.js"
 export default class Bus extends MachineComponent{
 
 
-    constructor(){
+    constructor(_busMask){
         super();
 
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;
         this.onUpdateCallbacks = [];
+        this.busMask=_busMask;
+        this.tmpMask=null;
     }
 
     resetState(){
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;
+        this.tmpMask=null;
     }
 
 
@@ -58,10 +61,15 @@ export default class Bus extends MachineComponent{
     hasValue(){
         return this.hasBufferedValue;
     }
+    setTmpMask(_mask){
+        this.tmpMask=_mask;
+        Alerter.alert(this.tmpMask);
+    }
 
     getValue(){
         if(this.hasBufferedValue){
-            return this.bufferValue;
+            
+            return (this.tmpMask??this.busMask)&this.bufferValue;
         }else{
             Alerter.alert("Undefined value on the BUS")
         }

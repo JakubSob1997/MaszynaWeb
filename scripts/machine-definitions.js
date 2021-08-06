@@ -56,8 +56,8 @@ export default function buildMachine(_Machine){
     
     
 
-    let S_bus = new Bus();
-    let A_bus = new Bus();
+    let S_bus = new Bus(~0);
+    let A_bus = new Bus(0b11111);
     _Machine.S_bus=S_bus;
     _Machine.A_bus=A_bus;
 

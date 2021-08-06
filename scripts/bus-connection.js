@@ -13,6 +13,7 @@ export default class BusConnection extends MachineComponent{
         this.hasConnection=false;
         this.onUpdateCallbacks = [];
         this.isaActive=false;
+        this.busMask=0;;
 
     }
 
@@ -20,6 +21,7 @@ export default class BusConnection extends MachineComponent{
         this.referenceRegister=null;
         this.hasConnection=false;
         this.isaActive=false;
+        this.busMask=0;
     }
 
     getExtention(){return ExtnensionFlags.BusConnection}
@@ -58,6 +60,7 @@ export default class BusConnection extends MachineComponent{
             if(bus.referenceRegister!=null){
                 if( this.referenceRegister==null){
                     this.referenceRegister=bus.referenceRegister;
+                    this.busMask=bus.busMask;
                 }else{
                     Alerter.alert("Both connected busses active");
                     return;
@@ -72,6 +75,7 @@ export default class BusConnection extends MachineComponent{
             const bus = this.connectedBusses[i];
             if(bus.referenceRegister==null){
                 bus.setSourceRegister(this.referenceRegister);
+                bus.setTmpMask(this.busMask);
             }
             
         }
