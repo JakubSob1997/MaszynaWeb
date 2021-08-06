@@ -25,7 +25,7 @@
 
 
 .alert-succes::before{
-    content: "👍🏿";
+    content: "💎";
     font-size: 130%;
     padding-right: 0.5em;
 }
