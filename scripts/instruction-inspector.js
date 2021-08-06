@@ -2,6 +2,7 @@
 import SidebarContent from "./sidebar-content.js"
 import ConfirmButton from "./confirm-buttton.js";
 import InstructionList from "./instruction-list.js";
+import Alerter from "./alerter.js";
 
 class InstructionRecord{
 
@@ -124,6 +125,11 @@ export default class InstructionInspector extends SidebarContent{
         this.instructionList.addOnInstructionDeletedCallback((_instrname,_index)=>{
             this.onDeleteUpdate(_instrname,_index);
         })
+
+        this.instructionList.addOnInstuctionChangedCallback(
+            (_oldName,_newName,_index)=>{
+                this.onInstructionUpdate(_oldName,_newName,_index)
+            });
         
     }
 
@@ -180,7 +186,11 @@ export default class InstructionInspector extends SidebarContent{
             record.populateRecord(this.instructionList.getInstruction(i));
             
         }
-    }  
+    } 
+
+    onInstructionUpdate(_oldName,_newName,_index){
+        this.recordList[_index].populateRecord(this.instructionList.getInstruction(_index));
+    }
 
 
     onAddButton(){
@@ -192,6 +202,7 @@ export default class InstructionInspector extends SidebarContent{
         this.recordList.push(record);
         this.instructionListElement.appendChild(record.getHTMLElement());
 
+        
         this.selectInstruction(instr);
 
     }

@@ -11,7 +11,7 @@ export default class EditorManager{
         this.currentEditor =null;
 
         this.assemblyEditor = new AssemblyEditor(_Machine);
-        this.instructionEditor = new InstructionEditor(_Machine.instructionList,this);
+        this.instructionEditor = new InstructionEditor(_Machine,this);
 
         this.editorElement.appendChild(this.assemblyEditor.getHTMLElement());
 
@@ -49,11 +49,4 @@ export default class EditorManager{
         return this.editorElement;
     }
 }
-
-
-
-
-
-
-
 

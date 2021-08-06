@@ -2,18 +2,31 @@
 
 
 
-import Alerter from "./alerter.js";
+import Alerter,{IAlertReciever} from "./alerter.js";
+import { AlertStyleEnum } from "./enums.js";
 
 
-export default class AlertWindow{
+export default class AlertWindow extends IAlertReciever{
     
     constructor(_windowElement){
         
+        super();
         this.wrapper = _windowElement;
 
-
+        Alerter.addAlertReciever(this);
 
     }
+
+    alert(_message){
+        this.createMessage(_message,AlertStyleEnum.Warning);
+    }
+
+    sendMessage(_message,_style){
+        this.createMessage(_message,_style);
+    }
+    
+
+
 
     createMessage(_message,_style){
         const entry = new AlertEntry(this,_message,_style);
@@ -22,8 +35,10 @@ export default class AlertWindow{
 
 
     }
-    clearMesseges(){
-
+    clearMessages(){
+        while(this.wrapper.firstChild!=null){
+            this.wrapper.removeChild(this.wrapper.firstChild);
+        }
     }
 
 
@@ -36,7 +51,10 @@ export default class AlertWindow{
         if(nextFocus!=null){
             nextFocus.lastChild.focus();
         }
+
         this.wrapper.removeChild(element)
+
+        
 
     }
 

@@ -25,7 +25,7 @@ export class InstrCycle{
 
 export default class Instruction{
     constructor(_name){
-        this.name = _name.toUpperCase();
+        this.name = _name?.toUpperCase();
         this.source ="";
         this.cycles = []
         this.argCount = 1;

@@ -15,12 +15,7 @@ const alertAreaELement = document.getElementById("alert-area");
 
 const alertWindow =  new  AlertWindow(alertAreaELement)
 
-alertWindow.createMessage("adf");
-alertWindow.createMessage("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also th","alert-warning");
-alertWindow.createMessage("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","alert-warning");
-alertWindow.createMessage("aLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has","alert-warning");
-alertWindow.createMessage("Lorem Ipsum is simply dummy tex","alert-warning");
-alertWindow.createMessage("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web p","alert-warning");
+alertWindow.createMessage("Witaj!");
 
 const M=new Machine();
 buildMachine(M);

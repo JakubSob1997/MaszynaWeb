@@ -127,12 +127,13 @@ export default class InstructionList{
     updateInstruction(_indexOrName,_newInstructionObject){
         let index = this.getInstructionIndex(_indexOrName);
 
+        
         if(index>=0&& index<this.length()){
 
             const newName =_newInstructionObject.name;
+            const checkIndex = this.getInstructionIndex(newName);
 
-
-            if(this.getInstructionIndex(newName)!=index){
+            if(checkIndex!=index&&checkIndex>=0&& checkIndex<this.length()){
                 return false;
             }
 

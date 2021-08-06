@@ -65,6 +65,8 @@ Object.freeze(SignalOrientation);
 
 export const AlertStyleEnum={
     "Warning":"alert-warning",
+    "SyntaxError":"alert-syntax-error",
+    "Succes":"alert-succes",
 }
 Object.freeze(AlertStyleEnum);
 

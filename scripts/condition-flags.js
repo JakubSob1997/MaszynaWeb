@@ -13,7 +13,7 @@ export class ConditionFlag{
 export default class FlagsUnit{
 
     constructor(){
-        this.conditionFlags = [];
+        this.conditionFlags = {};
     }
 
     addFlag(_conditionFlag){

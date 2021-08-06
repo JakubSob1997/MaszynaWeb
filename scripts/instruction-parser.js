@@ -13,7 +13,7 @@ class InstructionLine{
         this.isBranchPlaceholder=false;
         this.signals=null;
 
-        this.warnings = [];
+        this.warning;
 
         this.parseSuccesful=this.parseIntructionLine(_words);
     }
@@ -42,11 +42,13 @@ class InstructionLine{
         }
 
         if(endIndex - startIndex <=0){
-            this.warnings.push("No signals defined in a cycle");
+            this.signals=[]
+        }else{
+            this.signals = _words.slice(startIndex,endIndex);
         }
 
-        this.signals = _words.slice(startIndex,endIndex);
-
+       
+        return true;
     }
 
 }
@@ -55,7 +57,7 @@ class BranchLine{
     constructor(_words,_instrIndex){
        // this.words = _words;
         this.instrIndex=_instrIndex;
-        this.warnings = [];
+        this.warning =null;
         this.negate=false;
         this.flagName=null;
         this.label=null;
@@ -65,7 +67,7 @@ class BranchLine{
 
 
     logWarning(_string){
-        this.warnings.push(_string);
+        this.warning=_string;
     }
 
     parseBranch(_words){
@@ -116,8 +118,15 @@ class SettingsLine{
         this.noArgs=false;
         this.name=null;
 
+        this.parseSuccesful=true;
+        this.warning=null;
+
         this.parse(_words);
 
+    }
+
+    logWarning(_string){
+       this.warning=_string;
     }
 
     parse(_words){
@@ -127,7 +136,9 @@ class SettingsLine{
 
         if(_words[0].toUpperCase()=="ROZKAZ"){
             if(_words.length==2){
-                this.name=_words[1];
+                this.name=_words[1].toUpperCase();
+            }else{
+                this.logWarning("Expected instruction name after: "+ _words[0])
             }
         }
     }
@@ -174,20 +185,91 @@ export default class InstrcutionParser{
 
         this.labels={};
 
+        this.parseSuccesful = false;
+        this.errorList=[];
 
-        let compentless = this.removeComents(_sourceCode);
-        this.splitIntoLines(compentless);
-        //this.lines = splitIntoLines(_sourceCode);
+
+        const comentless = this.removeComents(_sourceCode);
+        this.splitIntoLines(comentless);
         this.parseLines();
 
     }
 
-    validateBranches(_flagDictionary){
+
+    validateSettings(){
+        let expectedName = null;
+        for (let i = 0; i < this.settingLines.length; i++) {
+            const setting = this.settingLines[i];
+            expectedName = setting.name ?? expectedName;
+            if(setting.parseSuccesful==false){
+                this.parseSuccesful=false;
+            }
+
+            
+        }
+        if(expectedName==null){
+            this.errorList.push("Expected: ROZKAZ (name)");
+            this.parseSuccesful=false;
+        }
+
+        for (let i = 0; i < this.settingLines.length; i++) {
+            const setting = this.settingLines[i];
+            if(setting.warning!=null){
+                this.errorList.push(setting.warning)
+            }
+        }
 
     }
 
-    validateSignals(_signalDictionary){
+    validateBranches(_flagDictionary){
+        for (let i = 0; i < this.branchLines.length; i++) {
+            const branch = this.branchLines[i];
 
+            
+            if(branch.warning!=null){
+                this.errorList.push(branch.warning);
+            }
+            
+            if(branch.parseSuccesful==false){
+                this.parseSuccesful=false;
+                continue;
+            }
+
+            if(this.labels.hasOwnProperty(branch.label)==false){
+                this.parseSuccesful=false;
+                this.errorList.push("Undefined label: "+branch.label);
+            }
+
+            if(_flagDictionary.hasOwnProperty(branch.flagName)==false){
+                this.parseSuccesful=false;
+                this.errorList.push("Undefined flag: "+branch.flagName);
+            }
+            
+
+        }
+    }
+
+    validateSignals(_signalDictionary){
+        for (let i = 0; i < this.instructionLines.length; i++) {
+            const line = this.instructionLines[i];
+
+            for (let j = 0; j < line.signals.length; j++) {
+                const signal = line.signals[j];
+                if(_signalDictionary.hasOwnProperty(signal)==false){
+                    this.parseSuccesful=false;
+                    this.errorList.push("Undefined signal: "+ signal);
+                }
+            }
+            
+        }
+    }
+
+    validate(_Machine){
+        this.parseSuccesful=true;
+        this.validateSettings();
+        this.validateBranches(_Machine.flagUnit.conditionFlags);
+        this.validateSignals(_Machine.singnalDictionary)
+        return this.parseSuccesful;
     }
 
 
@@ -298,7 +380,7 @@ export default class InstrcutionParser{
     }
 
     toInstruction(){
-        let instruction = new Instruction("")
+        let instruction = new Instruction(null)
         instruction.source=this.source;
 
         for (let index = 0; index < this.settingLines.length; index++) {

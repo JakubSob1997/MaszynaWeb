@@ -355,7 +355,7 @@ nav{
     flex-basis: 0;
     flex-grow: 1;
     display: inline-block;
-    
+    padding-top: 0.2em;
     overflow: auto;
     overflow-wrap: break-word;
 

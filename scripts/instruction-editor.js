@@ -4,10 +4,12 @@
 import SidebarContent from "./sidebar-content.js";
 import ConfirmButton from "./confirm-buttton.js";
 import InstrcutionParser from "./instruction-parser.js";
+import Alerter from "./alerter.js";
+import { AlertStyleEnum } from "./enums.js";
 
 export default class InstructionEditor extends SidebarContent{
 
-    constructor(_instructionList,_parentContainer){
+    constructor(_Machine,_parentContainer){
 
         super();
 
@@ -21,8 +23,8 @@ export default class InstructionEditor extends SidebarContent{
         this.deleteButon;
 
 
-        this.buildEditor(_instructionList,_parentContainer);
-
+        this.buildEditor();
+        this.addCallbacks(_Machine);
         this.instrName;
 
         
@@ -33,7 +35,7 @@ export default class InstructionEditor extends SidebarContent{
         this.header.focus();
     }
 
-    buildEditor(_instructionList){
+    buildEditor(){
 
         this.wrapper= document.createElement("div");
         this.header = document.createElement("h3");
@@ -42,6 +44,7 @@ export default class InstructionEditor extends SidebarContent{
         this.deleteButon= new ConfirmButton();
 
         this.header.setAttribute("tabindex",-1);
+        this.textField.setAttribute("spellcheck","false");
 
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.textField);
@@ -55,20 +58,8 @@ export default class InstructionEditor extends SidebarContent{
         this.wrapper.classList.add("instr-editor")
         this.saveButon.classList.add("custom-btn");        
         
+
         
-        console.log(_instructionList);
-
-        if( _instructionList!=null ){
-
-            this.deleteButon.addOnClickHandler((e)=>{
-                _instructionList.removeInstruction(this.instrName);
-            })
-
-
-            _instructionList.addOnInstructionDeletedCallback((_name,_index)=>{
-                this.onInstrDeleted(_name,_index);
-            })
-        }
 
         
     }
@@ -79,7 +70,7 @@ export default class InstructionEditor extends SidebarContent{
         this.header.innerHTML = "Rozkaz: "+_instruction.name;
         this.textField.value=_instruction.source;
 
-        this.addCallbacks(_instruction);
+        
 
     }
 
@@ -89,13 +80,66 @@ export default class InstructionEditor extends SidebarContent{
         }
     }
 
-    addCallbacks(_instruction){
+    onInstrChanged(_old,_new,_index,_list){
+        if(_old===this.instrName){
+            this.populateEditor(_list.getInstruction(_index));
+        }
+    }
+
+    addCallbacks(_Machine){
         
 
-        this.saveButon.onclick = ()=>{
-            const parser = new InstrcutionParser(this.textField.value);
-            console.log(parser);
+        if( _Machine!=null ){
+
+            this.deleteButon.addOnClickHandler((e)=>{
+                _Machine.instructionList.removeInstruction(this.instrName);
+            })
+
+
+
+
+            _Machine.instructionList.addOnInstructionDeletedCallback((_name,_index)=>{
+                this.onInstrDeleted(_name,_index);
+            })
+
+            _Machine.instructionList.addOnInstuctionChangedCallback(
+                (_old,_new,_index)=>{
+                    this.onInstrChanged(_old,_new,_index,_Machine.instructionList);
+                }
+            )
+
+
+            this.saveButon.onclick = ()=>{
+                const parser = new InstrcutionParser(this.textField.value);
+                parser.validate(_Machine);
+
+
+                console.log(parser.parseSuccesful);
+
+                if(parser.parseSuccesful==true){
+
+                    const instr = parser.toInstruction();
+
+                    if(_Machine.instructionList.updateInstruction(this.instrName,instr)){
+                        Alerter.sendMessage("Rozkaz "+instr.name+" został poprawnie zapisany!",AlertStyleEnum.Succes);
+                    }else{
+                        Alerter.sendMessage("Już istnieje rozkaz "+instr.name+" w liście instrukcji!",AlertStyleEnum.SyntaxError);
+                    }
+                    
+                }else{
+                    parser.errorList.forEach(error => {
+                        Alerter.sendMessage(error,AlertStyleEnum.SyntaxError);
+                    });
+                }
+
+                
+
+                //console.log(parser);
+            }
         }
+
+
+       
     }
 
     getHTMLElement(){

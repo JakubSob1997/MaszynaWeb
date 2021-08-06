@@ -3,42 +3,58 @@
  const Alerter = {
 
 
-    alertCallbacks: {},
+    alertRecievers:[],
 
 
     alert: function(_alertMessage){
-        for (const funk in this.alertCallbacks) {
-            if (Object.hasOwnProperty.call(this.alertCallbacks, funk)) {
-                const element = this.alertCallbacks[funk];
-                element(_alertMessage);
-            }
-        }
-    } ,
-
-    instructionAlert: function(_alertMessage){
-        console.log(_alertMessage);
+        this.alertRecievers.forEach((alertReciever) => {
+            alertReciever.alert(_alertMessage);
+        });
     },
 
 
-    
-    addAlertCallback: function(_funk){
-        this.alertCallbacks[_funk]=_funk;
+    sendMessage: function(_message,_style){
+        this.alertRecievers.forEach((alertReciever)=>{
+            alertReciever.sendMessage(_message,_style);
+        });
     },
 
-    removeAlertCallback: function(_funk){
-        if(this.addAlertCallback.hasOwnProperty(_funk)){
-            delete this.alertCallbacks[_funk];
-        }
+    clearMessages: function(){
+        this.alertRecievers.forEach((alertReciever)=>{
+            alertReciever.clearMessages();
+        });
+    },
+
+
+
+    addAlertReciever(_reciever){
+        this.alertRecievers.push(_reciever)
     }
 
 
 
 }
-
-Alerter.addAlertCallback(message=>console.log(message));
-
-
 export default Alerter;
+
+export class IAlertReciever{
+    alert(_message){
+        console.log("overide me(alert): "+_message);
+    }
+
+    sendMessage(_message,_style){
+        console.log("overide me(message): "+_message);
+    }
+
+    clearMessages(){
+        console.log("overide me(clrscrn");
+    }
+}
+
+
+
+
+
+
 
 
 
