@@ -63,7 +63,6 @@ export default class Bus extends MachineComponent{
     }
     setTmpMask(_mask){
         this.tmpMask=_mask;
-        Alerter.alert(this.tmpMask);
     }
 
     getValue(){
