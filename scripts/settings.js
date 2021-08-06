@@ -13,7 +13,7 @@ export class SettingsSerializer{
 
     static getDefault(){
         return new SettingsSerializer(
-            3,
+            4,
             5,
             ExtnensionFlags.EW,
             [1,2,3,4]
