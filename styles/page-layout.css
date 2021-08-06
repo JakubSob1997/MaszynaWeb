@@ -320,11 +320,16 @@ nav{
     color: var(--contrast-font-color);
  
     margin-bottom: 0.5em;
-    position: relative;
+    position: sticky;
     display: flex;
     flex-direction: column;
     align-items: baseline;
+    left: 0;
 
+}
+
+.alert-area *{
+    transition: none;
 }
 
 
@@ -334,21 +339,26 @@ nav{
 
 .alert-entry{
     width: 100%;
-    padding-left: 2em;
+    padding-left: 1.2em;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: nowrap;
     min-height: 2em;
+
+    
+
 }
 
 
 .alert-text{
     flex-basis: 0;
     flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+    display: inline-block;
+    
+    overflow: auto;
+    overflow-wrap: break-word;
+
 }
 
 .alert-close-button{

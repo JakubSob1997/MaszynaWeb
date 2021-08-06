@@ -63,5 +63,8 @@ Object.freeze(SignalOrientation);
 
 
 
-
+export const AlertStyleEnum={
+    "Warning":"alert-warning",
+}
+Object.freeze(AlertStyleEnum);
 
