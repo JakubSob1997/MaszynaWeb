@@ -12,7 +12,7 @@ export default class InputOutputUnit extends MachineComponent{
         this.G_register = _G_register;
         this.I_register=_I_register
 
-        this.adressMask=~0;
+        this.adressMask= ~0;
         
     }
 

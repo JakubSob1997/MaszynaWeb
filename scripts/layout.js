@@ -1,4 +1,6 @@
 
+import LayoutMediator from "./layout-mediator.js";
+
 
 
 const minBarWidth = 8;
@@ -7,8 +9,16 @@ const maxBarWidth = 100-minBarWidth-minpageWidth;
 const widthTouchTreshold=30;
 
 
+const desktopShowPanelWidth=30;
+const mobileShowWPanelidth=100;
+const desktopShowCenterWdths=15;
+const mobileShowCenterWidths=0;
+
 const keyboardScroll=2.5;
 
+let isMobile=false;
+
+window.addEventListener("touchstart",(e)=>{isMobile=true},{once:true});
 
 let leftWidth=20;
 let rightWidth=20;
@@ -96,6 +106,44 @@ function scrollRight(_newWidth){
 }
 
 
+function showLeftPanel (){
+    if(isMobile==false){
+        scrollLeft(desktopShowPanelWidth);
+    }else{
+        scrollLeft(mobileShowWPanelidth);
+    }
+}
+
+function showRightPanel(){
+    if(isMobile==false){
+        scrollRight(desktopShowPanelWidth);
+    }else{
+        scrollRight(mobileShowWPanelidth);
+    }
+}
+
+function showCenter(){
+    let targetWidth;
+    if(isMobile==false){
+        
+        targetWidth=desktopShowCenterWdths;
+    }else{
+        targetWidth=mobileShowCenterWidths;
+    }
+
+    if(targetWidth<leftWidth){
+        scrollLeft(targetWidth);
+    }
+    if(targetWidth<rightWidth){
+        scrollRight(targetWidth);
+    }
+    
+}
+
+
+LayoutMediator.showLeftPanel=showLeftPanel;
+LayoutMediator.showRightPanel=showRightPanel;
+LayoutMediator.showCenter=showCenter;
 
 
 function pauseEvent(e){
@@ -113,7 +161,7 @@ function onLeftPanelTouched(e){
         pauseEvent(e)
     }
 
-    scrollLeft(100);
+    showLeftPanel();
 }
 
 function onRightPanelTouched(e){
@@ -121,7 +169,7 @@ function onRightPanelTouched(e){
         pauseEvent(e)
     }
 
-    scrollRight(100);
+    showRightPanel();
 }
 
 function onCenterTouched(e){
@@ -133,8 +181,7 @@ function onCenterTouched(e){
         pauseEvent(e)
     }
 
-    scrollLeft(0);
-    scrollRight(0);
+    showCenter();
 }
 
 

@@ -1,7 +1,7 @@
 
 import AssemblyEditor from "./assembly-editor.js"
 import InstructionEditor from "./instruction-editor.js";
-
+import LayoutMediator from "./layout-mediator.js";
 
 export default class EditorManager{
 
@@ -26,7 +26,7 @@ export default class EditorManager{
             this.editorElement.appendChild(_editor.getHTMLElement());
             
         }
-
+        LayoutMediator.showLeftPanel();
         _editor.focus();   
     }
 

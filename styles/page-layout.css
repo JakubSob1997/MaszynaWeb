@@ -271,7 +271,7 @@ nav{
     background: transparent;
     color: var(--font-color);
     
-
+    border: hidden;
     cursor: ew-resize;
     width: 0.5vw;
 }

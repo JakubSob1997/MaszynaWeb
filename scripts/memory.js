@@ -24,8 +24,6 @@ export default class Mamory extends MachineComponent{
         this.onMemoryChangedCallbacks=[];
         this.onResizedCallbacks={};
 
-
-
     }
 
 

@@ -25,8 +25,6 @@
         });
     },
 
-
-
     addAlertReciever(_reciever){
         this.alertRecievers.push(_reciever)
     }

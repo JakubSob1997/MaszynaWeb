@@ -7,7 +7,7 @@ import MemorySlotInspector from "./memory-slot-inspector.js";
 import InputOutputInspector from "./input-output-inspector.js";
 import SettingsInspector from "./settings-inspector.js";
 import FileSInspector from "./file-inspector.js";
-
+import LayoutMediator from "./layout-mediator.js";
 
 
 
@@ -45,6 +45,8 @@ export default class InsperctorManger{
             this.currentInspector=_inspector;
             this.inspectorElement.appendChild(_inspector.getHTMLElement());
         }
+        console.log(LayoutMediator);
+        LayoutMediator.showRightPanel();
         _inspector.focus();
 
         

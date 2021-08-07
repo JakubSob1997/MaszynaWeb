@@ -4,6 +4,7 @@
 
 import Alerter,{IAlertReciever} from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
+import LayoutMediator from "./layout-mediator.js";
 
 
 export default class AlertWindow extends IAlertReciever{
@@ -38,6 +39,7 @@ export default class AlertWindow extends IAlertReciever{
         this.wrapper.appendChild(entry.getHTMLElement())
         if(this.importantStyles.hasOwnProperty(_style)){
             entry.focus();
+            LayoutMediator.showCenter();
         }
 
 
