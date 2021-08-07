@@ -44,6 +44,7 @@ export default class EditorManager{
         if(this.currentEditor ===_conetentToHide){
             this.getHTMLElement().innerHTML="";
             this.currentEditor = null;
+            LayoutMediator.hideLeftPanel();
         }
     }
 

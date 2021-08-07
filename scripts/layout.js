@@ -153,10 +153,20 @@ function showCenter(){
     
 }
 
+function hideLeftPanel(){
+    scrollLeft(0);
+}
+
+function hideRightPanel(){
+    scrollRight(0);
+}
+
 
 LayoutMediator.showLeftPanel=showLeftPanel;
 LayoutMediator.showRightPanel=showRightPanel;
 LayoutMediator.showCenter=showCenter;
+LayoutMediator.hideLeftPanel=hideLeftPanel;
+LayoutMediator.hideRightPanel=hideRightPanel;
 
 
 function pauseEvent(e){
