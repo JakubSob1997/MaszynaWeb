@@ -9,9 +9,9 @@ const maxBarWidth = 100-minBarWidth-minpageWidth;
 const widthTouchTreshold=30;
 
 
-const desktopShowPanelWidth=30;
+const desktopShowPanelWidth=25;
 const mobileShowWPanelidth=100;
-const desktopShowCenterWdths=15;
+const desktopShowCenterWdths=20;
 const mobileShowCenterWidths=0;
 
 const keyboardScroll=2.5;
@@ -20,8 +20,8 @@ let isMobile=false;
 
 window.addEventListener("touchstart",(e)=>{isMobile=true},{once:true});
 
-let leftWidth=20;
-let rightWidth=20;
+let leftWidth=18;
+let rightWidth=18;
 
 
 
@@ -107,18 +107,31 @@ function scrollRight(_newWidth){
 
 
 function showLeftPanel (){
+
+    let targetWidth;
+
     if(isMobile==false){
-        scrollLeft(desktopShowPanelWidth);
+        targetWidth=desktopShowPanelWidth;
     }else{
-        scrollLeft(mobileShowWPanelidth);
+        targetWidth=mobileShowWPanelidth;
     }
+
+    if(leftWidth<targetWidth){
+        scrollLeft(targetWidth);
+    }
+
 }
 
 function showRightPanel(){
+    let targetWidth;
     if(isMobile==false){
-        scrollRight(desktopShowPanelWidth);
+        targetWidth=desktopShowPanelWidth;
     }else{
-        scrollRight(mobileShowWPanelidth);
+        targetWidth=mobileShowWPanelidth;
+    }
+
+    if(rightWidth<targetWidth){
+        scrollRight(targetWidth);
     }
 }
 

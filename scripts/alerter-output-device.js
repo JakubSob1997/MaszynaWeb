@@ -3,7 +3,7 @@
 import { IODeviceEnum } from "./enums.js";
 import InputOutputDevice from "./input-output-device.js";
 
-export default class AlerterOutput extends InputOutputDevice{
+export default class AlerterOutputDevice extends InputOutputDevice{
 
     constructor(_ioDriver){
         super(_ioDriver);
