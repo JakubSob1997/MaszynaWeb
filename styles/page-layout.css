@@ -5,9 +5,7 @@
 */
 
 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root{
 
@@ -121,7 +119,12 @@ ul{
     transition:  color 250ms,background-color 250ms;
 }
 
-
+footer{
+    width: 100%;
+    
+    text-align: right;
+    padding-right: 6em;
+}
 
 
 header{
@@ -359,7 +362,7 @@ nav{
     flex-basis: 0;
     flex-grow: 1;
     display: inline-block;
-    padding-top: 0.2em;
+    padding-top: 0.1em;
     overflow: auto;
     overflow-wrap: break-word;
 
@@ -401,7 +404,7 @@ nav{
 
     min-width: 1000px;
     max-width: 1600px;
-    max-height: 600px;
+ 
 
 
     position: relative;

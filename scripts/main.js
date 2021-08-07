@@ -7,6 +7,7 @@ import {InstructionListSerializer} from "./instruction-list.js";
 import InsperctorManger from "./inspector-manager.js";
 import EditorManager from "./editor-manager.js";
 import AlertWindow from "./alert-window.js";
+import { AlertStyleEnum } from "./enums.js";
 
 
 
@@ -15,7 +16,7 @@ const alertAreaELement = document.getElementById("alert-area");
 
 const alertWindow =  new  AlertWindow(alertAreaELement)
 
-alertWindow.createMessage("Witaj!");
+alertWindow.createMessage("Witaj!",AlertStyleEnum.Large);
 
 const M=new Machine();
 buildMachine(M);

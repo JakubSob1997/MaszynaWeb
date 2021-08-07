@@ -1,6 +1,23 @@
 
 
 
+.alert-large{
+    font-size: 130%;
+}
+
+
+.alert-machine-response{
+    font-style: italic;
+}
+
+.alert-machine-response::before{
+    content: "🤖";
+    font-size: 130%;
+    padding-right: 0.5em;
+    font-style: normal;
+}
+
+
 .alert-warning{
     font-weight: bold;
     color: var(--primary-color);
@@ -25,7 +42,7 @@
 
 
 .alert-succes::before{
-    content: "💎";
+    content: "👍🏿";
     font-size: 130%;
     padding-right: 0.5em;
 }

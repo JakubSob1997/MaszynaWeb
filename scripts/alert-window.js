@@ -13,6 +13,10 @@ export default class AlertWindow extends IAlertReciever{
         super();
         this.wrapper = _windowElement;
 
+
+        this.importantStyles={};
+        this.importantStyles[AlertStyleEnum.Succes]=true;
+
         Alerter.addAlertReciever(this);
 
     }
@@ -32,6 +36,9 @@ export default class AlertWindow extends IAlertReciever{
         const entry = new AlertEntry(this,_message,_style);
 
         this.wrapper.appendChild(entry.getHTMLElement())
+        if(this.importantStyles.hasOwnProperty(_style)){
+            entry.focus();
+        }
 
 
     }

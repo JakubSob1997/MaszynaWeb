@@ -112,7 +112,7 @@ export default class RegisterInspector extends SidebarContent{
         this.populateInspector(_register);
         this.currentRegister=_register;
 
-        console.log(this.pastRegisters);
+
 
         if(this.pastRegisters.hasOwnProperty(_register.name)==false){
             this.pastRegisters[_register.name]=_register;

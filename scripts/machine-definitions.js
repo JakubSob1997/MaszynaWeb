@@ -12,7 +12,7 @@ import InteruptUnit from "./interupt-unit.js";
 import InputOutputUnit from "./input-output-unit.js";
 import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
-
+import AlerterOutputDevice from "./alerter-output-device.js";
 
 function setupFlagUnit(_flagUnit){
     

@@ -67,6 +67,16 @@ export const AlertStyleEnum={
     "Warning":"alert-warning",
     "SyntaxError":"alert-syntax-error",
     "Succes":"alert-succes",
+    "Large":"alert-large",
+    "Machine":"alert-machine-response"
 }
 Object.freeze(AlertStyleEnum);
 
+
+
+export const IODeviceEnum={
+    "Undefined":1,
+    "Input":2,
+    "Output":3,
+}
+Object.freeze(IODeviceEnum);

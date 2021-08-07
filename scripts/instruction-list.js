@@ -274,7 +274,6 @@ export class InstructionListSerializer{
             "@skok wyad wea wel;\n";
 
         const SOZ=
-            "//Skok przy zerze [Jump if zero] \n"+
             "ROZKAZ SOZ;\n"+
             "czyt wys wei il;\n"+
             "JEZELI ZAK @skok;\n"+
