@@ -1,26 +1,47 @@
 
 import MachineComponent from "./machine-component.js";
 import Alerter from "./alerter.js"
+import { MatchRegisterWidthEnum } from "./enums.js";
 
 export default class Bus extends MachineComponent{
 
 
-    constructor(_busMask){
+    constructor(_busMathcRule){
         super();
 
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;
         this.onUpdateCallbacks = [];
-        this.busMask=_busMask;
-        this.tmpMask=null;
+
+        this.busMatchRule=_busMathcRule;
+        this.busMask=~0;
+
+        this.tmpMask= ~0;
     }
 
     resetState(){
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;
-        this.tmpMask=null;
+        this.tmpMask= ~0;
+    }
+
+    onBusWidthChanged(_settings){
+        switch (this.busMatchRule) {
+            case MatchRegisterWidthEnum.ToAdress:
+                this.busMask=_settings.adressMask;
+                break;
+            case MatchRegisterWidthEnum.ToWord:
+                this.busMask=_settings.getWordMask();
+                break;
+            case MatchRegisterWidthEnum.ToCode:
+                this.busMask=_settings.codeMask;
+                break;
+        
+            default:
+                break;
+        }
     }
 
 
@@ -68,7 +89,7 @@ export default class Bus extends MachineComponent{
     getValue(){
         if(this.hasBufferedValue){
             
-            return (this.tmpMask??this.busMask)&this.bufferValue;
+            return (this.tmpMask&this.busMask)&this.bufferValue;
         }else{
             Alerter.alert("Undefined value on the BUS")
         }

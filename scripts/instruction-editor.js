@@ -114,12 +114,11 @@ export default class InstructionEditor extends SidebarContent{
                 parser.validate(_Machine);
 
 
-                console.log(parser.parseSuccesful);
 
                 if(parser.parseSuccesful==true){
 
                     const instr = parser.toInstruction();
-
+                    console.log(instr);
                     if(_Machine.instructionList.updateInstruction(this.instrName,instr)){
                         Alerter.sendMessage("Rozkaz "+instr.name+" został poprawnie zapisany!",AlertStyleEnum.Succes);
                     }else{

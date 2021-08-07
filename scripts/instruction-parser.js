@@ -61,6 +61,7 @@ class BranchLine{
         this.negate=false;
         this.flagName=null;
         this.label=null;
+        this.words=_words;
 
         this.parseSuccesful= this.parseBranch(_words);
     }
@@ -187,6 +188,7 @@ export default class InstrcutionParser{
 
         this.parseSuccesful = false;
         this.errorList=[];
+        this.name=null;
 
 
         const comentless = this.removeComents(_sourceCode);
@@ -218,6 +220,7 @@ export default class InstrcutionParser{
                 this.errorList.push(setting.warning)
             }
         }
+        this.name=expectedName;
 
     }
 
@@ -227,7 +230,7 @@ export default class InstrcutionParser{
 
             
             if(branch.warning!=null){
-                this.errorList.push(branch.warning);
+                this.errorList.push(branch.warning +" - "+branch.words.join(" "));
             }
             
             if(branch.parseSuccesful==false){
@@ -237,12 +240,12 @@ export default class InstrcutionParser{
 
             if(this.labels.hasOwnProperty(branch.label)==false){
                 this.parseSuccesful=false;
-                this.errorList.push("Undefined label: "+branch.label);
+                this.errorList.push("Undefined label: "+branch.label+" - "+branch.words.join(" "));
             }
 
             if(_flagDictionary.hasOwnProperty(branch.flagName)==false){
                 this.parseSuccesful=false;
-                this.errorList.push("Undefined flag: "+branch.flagName);
+                this.errorList.push("Undefined flag: "+branch.flagName+" - "+branch.words.join(" "));
             }
             
 
@@ -257,7 +260,7 @@ export default class InstrcutionParser{
                 const signal = line.signals[j];
                 if(_signalDictionary.hasOwnProperty(signal)==false){
                     this.parseSuccesful=false;
-                    this.errorList.push("Undefined signal: "+ signal);
+                    this.errorList.push("Undefined signal: "+ signal+" - "+line.words.join(" "));
                 }
             }
             
@@ -410,6 +413,14 @@ export default class InstrcutionParser{
             let targetIndex = this.labels[branchLine.label].index;
 
             
+            
+            if(branchLine.instrIndex>=instruction.cycles.length){
+
+                const placeholderCycle = new InstrCycle([]);
+                placeholderCycle.isBranchPlaceholder=true;
+                instruction.cycles.push(placeholderCycle);
+            }
+
             instruction.cycles[branchLine.instrIndex].branchCondtions.push(
                 new BranchCondition(
                     branchLine.flagName,

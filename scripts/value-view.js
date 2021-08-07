@@ -6,6 +6,8 @@ export default class ValueView{
 
         this.valueDisplayer = _valueDisplayer;
 
+        this.submitFunks=[];
+
 
         this.mainWrapper=document.createElement("div");
         this.valueField=document.createElement("input");
@@ -17,8 +19,15 @@ export default class ValueView{
         this.build();
     }
 
+    onSubmit(e){
+        this.submitFunks.forEach(funk => {
+            funk(e);
+        });
+    }
+
     setOnWriteButton(_funk){
-        this.writeButton.addEventListener("click",_funk);
+        
+        this.submitFunks.push(_funk)
     }
     setOnPlusOneButton(_funk){
         this.plusOneButton.onclick=_funk;
@@ -60,7 +69,18 @@ export default class ValueView{
         this.minusOneButton.classList.add("custom-btn");
         this.setZeroButton.classList.add("custom-btn");
 
-        this.writeButton.addEventListener("click",()=>{this.valueField.focus();});
+        this.writeButton.addEventListener("click",(e)=>{
+            this.onSubmit(e);
+        });
+
+        this.valueField.addEventListener("keydown",(e)=>{
+
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                this.onSubmit(e);
+              }
+           
+        });
 
     }
 

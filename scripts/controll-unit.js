@@ -31,7 +31,7 @@ export default class ControllUnit extends MachineComponent{
         
         let instruction = _InstructionList.getInstruction(opCode);
 
-        if(instruction.cycles.length<= this.internalCycleCounter ){
+        if(instruction.cycles.length<= this.internalCycleCounter||instruction.isBranchPlaceHolder ){
             this.internalCycleCounter=0;
         }
         

@@ -18,9 +18,9 @@
     --inspector-width:20vw;
 
     --width-transition:
-        width 100ms ease-out,
-        left 100ms ease-out,
-        right 100ms ease-out ;
+        width 70ms ease-out,
+        left 70ms ease-out,
+        right 70ms ease-out ;
 }
 
 
