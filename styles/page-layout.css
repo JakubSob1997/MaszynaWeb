@@ -17,7 +17,10 @@
     --editor-width:20vw;
     --inspector-width:20vw;
 
-
+    --width-transition:
+        width 100ms ease-out,
+        left 100ms ease-out,
+        right 100ms ease-out ;
 }
 
 
@@ -243,9 +246,10 @@ nav{
     left:0;
     bottom: 0;
     width: var(--editor-width);
+    border-right: solid;
+    border-right: thin;
 
-
-    
+    transition: var(--width-transition);
 }
 
 .right-side-bar{
@@ -255,8 +259,8 @@ nav{
     right:0;
     bottom: 0;
     width: var(--inspector-width);
-
-
+    
+    transition: var(--width-transition);
     
 }
 
@@ -310,7 +314,7 @@ nav{
 
 
     overflow: auto;
-    
+    transition: var(--width-transition);
     
     
 }

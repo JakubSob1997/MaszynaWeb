@@ -2,6 +2,7 @@
 import AssemblyEditor from "./assembly-editor.js"
 import InstructionEditor from "./instruction-editor.js";
 
+
 export default class EditorManager{
 
     constructor(_Element,_Machine,_MachineView){
@@ -14,6 +15,7 @@ export default class EditorManager{
         this.instructionEditor = new InstructionEditor(_Machine,this);
 
         this.editorElement.appendChild(this.assemblyEditor.getHTMLElement());
+
 
     }
 

@@ -1,8 +1,11 @@
 
 
+
 const minBarWidth = 8;
 const minpageWidth=12;
 const maxBarWidth = 100-minBarWidth-minpageWidth;
+const widthTouchTreshold=30;
+
 
 const keyboardScroll=2.5;
 
@@ -12,20 +15,27 @@ let rightWidth=20;
 
 
 
-const leftBarHandle= document.getElementById("left-handle")
+const leftBarHandle= document.getElementById("left-handle");
 const rightBarHandle = document.getElementById("right-handle");
 
-const leftWidthVar= "--editor-width"
-const rightWidthVar= "--inspector-width"
+
+const leftPanel = document.getElementById("left-panel");
+const rightPanel = document.getElementById("right-panel");
+const center=document.getElementById("center")
+
+const leftWidthVar= "--editor-width";
+const rightWidthVar= "--inspector-width";
 
 
-leftBarHandle.setAttribute("tabindex",0),
-rightBarHandle.setAttribute("tabindex",0)
+leftBarHandle.setAttribute("tabindex",0);
+rightBarHandle.setAttribute("tabindex",0);
 
 
 
 
 function scrollLeft(_newWidth){
+
+
 
     if(_newWidth<minBarWidth){
         _newWidth=minBarWidth;
@@ -97,6 +107,43 @@ function pauseEvent(e){
 }
 
 
+function onLeftPanelTouched(e){
+    
+    if(leftWidth<minBarWidth+minpageWidth){
+        pauseEvent(e)
+    }
+
+    scrollLeft(100);
+}
+
+function onRightPanelTouched(e){
+    if(rightWidth<minBarWidth+minpageWidth){
+        pauseEvent(e)
+    }
+
+    scrollRight(100);
+}
+
+function onCenterTouched(e){
+    if(rightWidth>minBarWidth+minpageWidth){
+        pauseEvent(e)
+    }
+
+    if(leftWidth>minBarWidth+minpageWidth){
+        pauseEvent(e)
+    }
+
+    scrollLeft(0);
+    scrollRight(0);
+}
+
+
+leftPanel.addEventListener("touchend",onLeftPanelTouched)
+
+rightPanel.addEventListener("touchend",onRightPanelTouched)
+
+center.addEventListener("touchend",onCenterTouched);
+
 leftBarHandle.addEventListener("keydown",(e)=>{
 
     
@@ -129,7 +176,6 @@ rightBarHandle.addEventListener("keydown",(e)=>{
 
 
 leftBarHandle.addEventListener("mousedown",(e)=>{
-
 
     e=e || window.event;
     pauseEvent(e);
