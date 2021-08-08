@@ -65,5 +65,6 @@ export default class InputOutputUnit extends MachineComponent/*extends IODriver 
 
     confirm(){
         this.G_register.value = 1;
+        this.G_register.update();
     }
 }

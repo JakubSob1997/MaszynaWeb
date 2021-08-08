@@ -46,3 +46,22 @@
     font-size: 130%;
     padding-right: 0.5em;
 }
+
+
+
+.alert-unhandled-exception::before{
+    content: "🤡";
+    padding-right: 0.5em;
+    font-size: 130%;
+}
+
+.alert-unhandled-exception::after{
+    content: "🤡";
+    padding-left: 0.5em;
+    font-size: 130%;
+}
+.alert-unhandled-exception{
+    font-size: 115%;
+    font-weight: bolder;
+
+}

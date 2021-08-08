@@ -8,16 +8,18 @@ import InsperctorManger from "./inspector-manager.js";
 import EditorManager from "./editor-manager.js";
 import AlertWindow from "./alert-window.js";
 import { AlertStyleEnum } from "./enums.js";
+import Alerter from "./alerter.js";
 
 
 
 
 const alertAreaELement = document.getElementById("alert-area");
-
 const alertWindow =  new  AlertWindow(alertAreaELement)
-
 alertWindow.createMessage("Witaj!",AlertStyleEnum.Large);
 
+try {
+    
+    
 const M=new Machine();
 buildMachine(M);
 
@@ -133,6 +135,13 @@ toggleManualButton.onclick = ()=>{
 
     
 
+}
+
+
+
+
+} catch (error) {
+    Alerter.sendMessage("UNHANDLED EXCEPTION! - "+error,AlertStyleEnum.UnhandledException)
 }
 
 

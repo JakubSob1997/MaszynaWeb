@@ -55,7 +55,7 @@ export default class InstructionEditor extends SidebarContent{
         this.deleteButon.getHTMLElement().innerHTML="Usuń";
 
 
-        this.wrapper.classList.add("instr-editor")
+        this.wrapper.classList.add("generic-inspector")
         this.saveButon.classList.add("custom-btn");        
         
 

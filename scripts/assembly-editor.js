@@ -9,11 +9,13 @@ export default class AssemblyEditor extends SidebarContent{
     constructor(_machine){
 
         super();
-        this.wrapper = document.createElement("div");
-        this.title=document.createElement("h3");
-        this.textArea =document.createElement("textarea");
-        this.loadButton = document.createElement("button");
-        this.copyButton = document.createElement("button");
+        
+
+        this.wrapper;
+        this.title;
+        this.textArea;
+        this.loadButton;
+        this.copyButton;
 
         this.M = _machine;
 
@@ -32,20 +34,34 @@ export default class AssemblyEditor extends SidebarContent{
 
 
     build(){
+
+
+        this.wrapper = document.createElement("div");
+        this.title=document.createElement("h3");
+        this.textArea =document.createElement("textarea");
+        this.loadButton = document.createElement("button");
+        this.copyButton = document.createElement("button");
+
         this.title.setAttribute("tabindex",-1);
         this.textArea.setAttribute("spellcheck","false");
 
+
+
+
+        this.wrapper.classList.add("generic-inspector")
+        this.loadButton.classList.add("custom-btn");
+        
+        this.title.innerHTML="Program"
+        this.loadButton.innerHTML="Ładuj do pamięci";
+
+
         this.wrapper.appendChild(this.title);
         this.wrapper.appendChild(this.textArea);
-        
         this.wrapper.appendChild(this.loadButton);
 
         
 
-        this.title.innerHTML="Program"
-        this.loadButton.innerHTML="Ładuj do pamięci";
 
-        this.loadButton.classList.add("custom-btn");
     }
 
     addCallbacks(){

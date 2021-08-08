@@ -1,0 +1,16 @@
+
+.generic-inspector>*{
+    margin-bottom:0.5em;
+    margin-right: 0.3em;
+}
+
+
+.generic-inspector>div,button,h3{
+    
+    white-space: nowrap;
+}
+
+.generic-inspector>button{
+    min-width: 4em;
+    min-height: 2em;
+}

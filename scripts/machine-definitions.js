@@ -12,7 +12,7 @@ import InteruptUnit from "./interupt-unit.js";
 import InputOutputUnit from "./input-output-unit.js";
 import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
-import AlerterOutputDevice from "./alerter-output-device.js";
+import AlerterDevice from "./alerter-device.js";
 
 function setupFlagUnit(_flagUnit){
     
@@ -151,14 +151,10 @@ export default function buildMachine(_Machine){
 
 
     //IO
-    let alerterOutputDevice = new AlerterOutputDevice()
-    inputOutputUnit.addIODevice(alerterOutputDevice,1);
-    inputOutputUnit.addIODevice(alerterOutputDevice,2);
-    inputOutputUnit.addIODevice(alerterOutputDevice,3);
-    inputOutputUnit.addIODevice(alerterOutputDevice,4);
-    inputOutputUnit.addIODevice(alerterOutputDevice,5);
-    inputOutputUnit.addIODevice(alerterOutputDevice,6);
-    inputOutputUnit.addIODevice(alerterOutputDevice,7);
+    let alerterDevice = new AlerterDevice()
+    inputOutputUnit.addIODevice(alerterDevice.printDevice,1);
+    inputOutputUnit.addIODevice(alerterDevice.clearDevice,2);
+
 
 
 

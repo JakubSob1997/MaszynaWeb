@@ -106,6 +106,7 @@ export default class InstructionInspector extends SidebarContent{
 
 
         this.wrpper.classList.add("instr-inspector");
+        this.wrpper.classList.add("generic-inspector");
 
         this.instructionListElement.classList.add("instr-list");
 
