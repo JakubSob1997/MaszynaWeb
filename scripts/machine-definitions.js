@@ -152,9 +152,20 @@ export default function buildMachine(_Machine){
 
     //IO
     let alerterOutputDevice = new AlerterOutputDevice()
-    _Machine,alerterOutputDevice=alerterOutputDevice;
-
     inputOutputUnit.addIODevice(alerterOutputDevice,1);
+    inputOutputUnit.addIODevice(alerterOutputDevice,2);
+    inputOutputUnit.addIODevice(alerterOutputDevice,3);
+    inputOutputUnit.addIODevice(alerterOutputDevice,4);
+    inputOutputUnit.addIODevice(alerterOutputDevice,5);
+    inputOutputUnit.addIODevice(alerterOutputDevice,6);
+    inputOutputUnit.addIODevice(alerterOutputDevice,7);
+
+
+
+
+
+
+
 
     _Machine.controllUnit=CntrlUnit;
     _Machine.JAL=JAL

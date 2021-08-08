@@ -11,6 +11,10 @@ export default class IODevice{
         _IODriver.confirm();
     }
 
+    getDescription(){
+        return "I am a generic IO device";
+    }
+
 
 
 }

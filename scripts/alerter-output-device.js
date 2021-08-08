@@ -17,8 +17,12 @@ export default class AlerterOutputDevice extends IODevice{
             console.log("No io driver provided");
         }
         const val =_IODriver.write();
-        Alerter.sendMessage("Komunikat maszyny W wartość: "+val,AlertStyleEnum.Machine);
+        Alerter.sendMessage("Komunikat Maszyny W wartość: "+val,AlertStyleEnum.Machine);
         _IODriver.confirm();
+    }
+
+    getDescription(){
+        return "Wyjście powiadomień";
     }
 
 

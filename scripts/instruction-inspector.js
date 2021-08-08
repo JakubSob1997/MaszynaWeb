@@ -60,7 +60,6 @@ class InstructionRecord{
 
 export default class InstructionInspector extends SidebarContent{
     constructor(_instrList){
-        console.log(_instrList)
         super();
         this.wrpper;
         this.heading;

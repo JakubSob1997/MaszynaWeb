@@ -185,6 +185,7 @@ function onLeftPanelTouched(e){
     }
 
     showLeftPanel();
+    leftPanel.focus();
 }
 
 function onRightPanelTouched(e){
@@ -193,6 +194,7 @@ function onRightPanelTouched(e){
     }
 
     showRightPanel();
+    rightPanel.focus();
 }
 
 function onCenterTouched(e){
@@ -205,6 +207,7 @@ function onCenterTouched(e){
     }
 
     showCenter();
+    center.focus();
 }
 
 
