@@ -4,7 +4,7 @@ import Instruction,{InstrCycle,BranchCondition} from "./instruction.js";
 
 
 class InstructionLine{
-    constructor(_words,_instrIndex){
+    constructor(_instrIndex,_words){
         this.words = _words;
         this.instrIndex = _instrIndex;
 
@@ -53,8 +53,69 @@ class InstructionLine{
 
 }
 
+
+class LongBranchLine{
+    constructor(_instrIndex,_words){
+        // this.words = _words;
+         this.instrIndex=_instrIndex;
+         this.warning =null;
+
+         this.flagName=null;
+         this.yesLabel=null;
+         this.noLabel=null;
+         this.words=_words;
+ 
+         this.parseSuccesful= this.parseBranch(_words);
+     }
+
+     static isLongBranch(_words){
+        if(_words.length<7)return false;
+        if(_words[0].toUpperCase()=="JEZELI"==false)return false;
+        if(_words[2].toUpperCase()=="TO"==false)return false;
+        if(_words[4].toUpperCase()=="GDY"==false)return false;
+        if(_words[5].toUpperCase()=="NIE"==false)return false;
+        return true;
+    }
+
+
+     parseBranch(_words){
+        if(_words.length!=7 ){
+            this.warning ="Invalid long branch sattment"
+            return false;
+        }
+
+        this.flagName=_words[1].toUpperCase();
+        this.yesLabel=_words[3];
+        this.noLabel=_words[6];
+     }
+
+  
+     extractBranchLInes(){
+         let yesBranch = new BranchLine(this.instrIndex);
+         let noBranch = new BranchLine(this.instrIndex);
+
+         yesBranch.instrIndex=this.instrIndex;
+         noBranch.instrIndex=this.instrIndex;
+
+         yesBranch.flagName=this.flagName;
+         noBranch.flagName=this.flagName;
+
+         yesBranch.label=this.yesLabel;
+         noBranch.label=this.noLabel;
+
+         yesBranch.negate=false;
+         noBranch.negate=true;
+
+         return [yesBranch,noBranch];
+     }
+}
+
+
+
+
+
 class BranchLine{
-    constructor(_words,_instrIndex){
+    constructor(_instrIndex,_words){
        // this.words = _words;
         this.instrIndex=_instrIndex;
         this.warning =null;
@@ -63,7 +124,12 @@ class BranchLine{
         this.label=null;
         this.words=_words;
 
-        this.parseSuccesful= this.parseBranch(_words);
+        if(_words!=null){
+            this.parseSuccesful= this.parseBranch(_words);
+        }else{
+            this.parseSuccesful=false;
+        }
+        
     }
 
 
@@ -73,7 +139,10 @@ class BranchLine{
 
     parseBranch(_words){
 
-        if(_words.length<3){return false;}
+        if(_words.length<3){
+            this.logWarning("Invalid branch statment")
+            return false;
+        }
 
 
         let wordIndex = 0;
@@ -84,7 +153,7 @@ class BranchLine{
         wordIndex++;
 
 
-        if(_words[wordIndex]=="NIE"){
+        if(_words[wordIndex].toUpperCase()=="NIE"){
             if(_words.length!=4){
                 this.logWarning("Invalid branch statment")
                 return false;
@@ -101,7 +170,7 @@ class BranchLine{
             this.negate=false;
         }
 
-        this.flagName=_words[wordIndex];
+        this.flagName=_words[wordIndex].toUpperCase();
         wordIndex++;
 
 
@@ -166,11 +235,16 @@ class SettingsLine{
 }
 
 class InstructionLabel{
-    constructor(_labelName,_instrIndex){
+    constructor(_instrIndex,_labelName){
         this.name=_labelName;
         this.index=_instrIndex;
     }
 }
+
+
+
+
+
 
 
 export default class InstrcutionParser{
@@ -181,6 +255,7 @@ export default class InstrcutionParser{
 
 
         this.settingLines=[];
+        this.longBranchLines=[];
         this.branchLines=[];
         this.instructionLines=[];
 
@@ -252,6 +327,40 @@ export default class InstrcutionParser{
         }
     }
 
+
+    validateLongBranches(_flagDictionary){
+        for (let i = 0; i < this.longBranchLines.length; i++) {
+            const branch = this.longBranchLines[i];
+
+            
+            if(branch.warning!=null){
+                this.errorList.push(branch.warning +" - "+branch.words.join(" "));
+            }
+            
+            if(branch.parseSuccesful==false){
+                this.parseSuccesful=false;
+                continue;
+            }
+
+            if(this.labels.hasOwnProperty(branch.yesLabel)==false){
+                this.parseSuccesful=false;
+                this.errorList.push("Undefined label: "+branch.label+" - "+branch.words.join(" "));
+            }
+
+            if(this.labels.hasOwnProperty(branch.noLabel)==false){
+                this.parseSuccesful=false;
+                this.errorList.push("Undefined label: "+branch.label+" - "+branch.words.join(" "));
+            }
+
+            if(_flagDictionary.hasOwnProperty(branch.flagName)==false){
+                this.parseSuccesful=false;
+                this.errorList.push("Undefined flag: "+branch.flagName+" - "+branch.words.join(" "));
+            }
+            
+
+        }
+    }
+
     validateSignals(_signalDictionary){
         for (let i = 0; i < this.instructionLines.length; i++) {
             const line = this.instructionLines[i];
@@ -270,6 +379,7 @@ export default class InstrcutionParser{
     validate(_Machine){
         this.parseSuccesful=true;
         this.validateSettings();
+        this.validateLongBranches(_Machine.flagUnit.conditionFlags)
         this.validateBranches(_Machine.flagUnit.conditionFlags);
         this.validateSignals(_Machine.singnalDictionary)
         return this.parseSuccesful;
@@ -361,16 +471,21 @@ export default class InstrcutionParser{
             return _nextInstrIndex;
         }
 
+        if(LongBranchLine.isLongBranch(_wordArry)){
+            this.longBranchLines.push(new LongBranchLine(_nextInstrIndex,_wordArry));
+            return _nextInstrIndex;
+        }
+
         if(this.isBranchLine(_wordArry)){
-            this.branchLines.push(new BranchLine(_wordArry,_nextInstrIndex))
+            this.branchLines.push(new BranchLine(_nextInstrIndex,_wordArry))
             return _nextInstrIndex;
         }
 
         if(this.isLabel(_wordArry[0])){
-            this.labels[_wordArry[0]]=new InstructionLabel(_wordArry[0],_nextInstrIndex);
+            this.labels[_wordArry[0]]=new InstructionLabel(_nextInstrIndex,_wordArry[0]);
         }
 
-        this.instructionLines.push(new InstructionLine(_wordArry,_nextInstrIndex));
+        this.instructionLines.push(new InstructionLine(_nextInstrIndex,_wordArry));
         return _nextInstrIndex+1;
     }
 
@@ -382,26 +497,35 @@ export default class InstrcutionParser{
         }
     }
 
-    toInstruction(){
-        let instruction = new Instruction(null)
-        instruction.source=this.source;
 
+    extractBranchesFromLong(){
+        for (let i = 0; i < this.longBranchLines.length; i++) {
+            const longBranch = this.longBranchLines[i];
+            this.branchLines=this.branchLines.concat(longBranch.extractBranchLInes());
+        }
+    }
+
+
+    applySettings(_instruction){
         for (let index = 0; index < this.settingLines.length; index++) {
             const setting = this.settingLines[index];
 
-            setting.applySetting(instruction);
+            setting.applySetting(_instruction);
             
         }
+    }
 
-
-
+    applyCycles(_instruction){
         for (let index = 0; index < this.instructionLines.length; index++) {
             const line = this.instructionLines[index];
-            instruction.cycles[index]= new InstrCycle(line.signals);
-            instruction.cycles[index].isFinal=line.isFinal;
+            _instruction.cycles[index]= new InstrCycle(line.signals);
+            _instruction.cycles[index].isFinal=line.isFinal;
             
         }
 
+    }
+
+    applyBranchConditions(_instruction){
         for (let index = 0; index < this.branchLines.length; index++) {
             const branchLine = this.branchLines[index];
             const label =  this.labels[branchLine.label];
@@ -412,16 +536,13 @@ export default class InstrcutionParser{
 
             let targetIndex = this.labels[branchLine.label].index;
 
-            
-            
-            if(branchLine.instrIndex>=instruction.cycles.length){
+            if(branchLine.instrIndex>=_instruction.cycles.length){
 
                 const placeholderCycle = new InstrCycle([]);
                 placeholderCycle.isBranchPlaceholder=true;
-                instruction.cycles.push(placeholderCycle);
+                _instruction.cycles.push(placeholderCycle);
             }
-
-            instruction.cycles[branchLine.instrIndex].branchCondtions.push(
+            _instruction.cycles[branchLine.instrIndex].branchCondtions.push(
                 new BranchCondition(
                     branchLine.flagName,
                     targetIndex,
@@ -431,6 +552,20 @@ export default class InstrcutionParser{
                
             
         }
+    }
+
+
+    toInstruction(){
+        let instruction = new Instruction(null)
+        instruction.source=this.source;
+        
+        this.extractBranchesFromLong();
+        this.applySettings(instruction);
+        this.applyCycles(instruction)
+        this.applyBranchConditions(instruction)
+
+        
+        
 
         return instruction;
     }

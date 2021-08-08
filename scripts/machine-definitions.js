@@ -147,7 +147,14 @@ export default function buildMachine(_Machine){
     setupFlagUnit(flagUnit);
     let CntrlUnit = new ControllUnit(I_register,flagUnit);
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
-    let inputOutputUnit = new InputOutputUnit(RB_register,G_register);
+    let inputOutputUnit = new InputOutputUnit(RB_register,G_register,I_register);
+
+
+    //IO
+    let alerterOutputDevice = new AlerterOutputDevice()
+    _Machine,alerterOutputDevice=alerterOutputDevice;
+
+    inputOutputUnit.addIODevice(alerterOutputDevice,1);
 
     _Machine.controllUnit=CntrlUnit;
     _Machine.JAL=JAL
@@ -159,6 +166,7 @@ export default function buildMachine(_Machine){
         JAL,
         MEM,
         InteruptUnt,
+        inputOutputUnit,
 
         S_bus,
         A_bus,

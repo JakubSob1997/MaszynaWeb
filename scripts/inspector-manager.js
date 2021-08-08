@@ -45,7 +45,6 @@ export default class InsperctorManger{
             this.currentInspector=_inspector;
             this.inspectorElement.appendChild(_inspector.getHTMLElement());
         }
-        console.log(LayoutMediator);
         LayoutMediator.showRightPanel();
         _inspector.focus();
 

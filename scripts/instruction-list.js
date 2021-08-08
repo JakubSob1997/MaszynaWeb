@@ -280,7 +280,11 @@ export class InstructionListSerializer{
             "wyl wea KONIEC;\n"+
             "@skok wyad wea wel;\n";
 
-        const sourceCodes = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ]
+
+        const IN ="\nROZKAZ IN;\nczyt wys wei il;\nwyak weja ode weak start;\n@wait wyg weja ode weak;\nJEzELI Z TO @done GDY NIE @wait;\n@done wyrb weja przep weak wyl wea;"
+        const OUT  = "\n\nROZKAZ OUT;\nczyt wys wei il;\nwyak werb wes weja ode weak start;\n@wait wyg weja ode weak;\nJezeli z to @done gdy nie @wait;\n@done wys weja przep weak wyl wea;";
+        
+        const sourceCodes = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ,IN,OUT]
 
         return new InstructionListSerializer(sourceCodes)
     }

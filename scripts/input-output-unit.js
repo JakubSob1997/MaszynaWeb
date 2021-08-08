@@ -1,9 +1,10 @@
 
 
+import Alerter from "./alerter.js";
 import MachineComponent from "./machine-component.js";
-import Alerter from "./alerter.js"
 
-export default class InputOutputUnit extends MachineComponent{
+
+export default class InputOutputUnit extends MachineComponent/*extends IODriver */{
 
     constructor(_RB_register,_G_register,_I_register){
         super();
@@ -13,22 +14,56 @@ export default class InputOutputUnit extends MachineComponent{
         this.I_register=_I_register
 
         this.adressMask= ~0;
+
+        this.devices={};
         
+    }
+
+
+    doStart(){
+        console.log("start");
+        this.init(this.getCurrentAddres());
+    }
+
+    getCurrentAddres(){
+        return this.I_register.getValue()&this.adressMask;
     }
 
     onBusWidthChanged(_settings){
-        this.adressMask=_settings.adressMask;
-    }
-
-    addIODevice(_IODevice){
-        _IODevice.driver = this;
-    }
-
-    confirmOutput(){
-        this.G_register.setValue(1);
-    }
-
-    doStart(){
         
+        this.adressMask=_settings.adressMask;
+        console.log(this.adressMask.toString(2))
+    }
+
+    addIODevice(_IODevice,_adress){
+        this.devices[_adress]=_IODevice;
+    }
+
+
+    getDevice(_adress){
+        return this.devices[_adress]
+    }
+
+    init(_adress){
+        let device = this.getDevice(_adress);
+        if(device==null){
+            Alerter.alert("Undefined device at adress: "+_adress);
+            return;
+        }
+        this.G_register.setValue(0);
+        device.start(this);
+        
+    }
+
+    write(){
+        return this.RB_register.getValue();
+    }
+
+    read(_value){
+        this.RB_register.setValue(_value);
+    }
+
+    confirm(){
+        this.G_register.value = 1;
     }
 }

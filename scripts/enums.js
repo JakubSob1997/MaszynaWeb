@@ -72,11 +72,3 @@ export const AlertStyleEnum={
 }
 Object.freeze(AlertStyleEnum);
 
-
-
-export const IODeviceEnum={
-    "Undefined":1,
-    "Input":2,
-    "Output":3,
-}
-Object.freeze(IODeviceEnum);

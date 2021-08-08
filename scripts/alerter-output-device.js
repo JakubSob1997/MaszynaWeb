@@ -1,32 +1,27 @@
 
 
-import { IODeviceEnum } from "./enums.js";
-import InputOutputDevice from "./input-output-device.js";
 
-export default class AlerterOutputDevice extends InputOutputDevice{
 
-    constructor(_ioDriver){
-        super(_ioDriver);
+import Alerter from "./alerter.js";
+import {  AlertStyleEnum } from "./enums.js";
+import IODevice from "./io-device.js";
+
+export default class AlerterOutputDevice extends IODevice{
+
+    constructor(){
+        super();
     }
 
-
-    deviceType(_adress){
-        return IODeviceEnum.Output;
-    }
-
-
-    handleOutput(_outputValue){
-        console.log("I am an output device value: "+_outputValue+" (overide me)");
-    }
-
-
-    confirmOutput(_adress){
-        _iodriver.confirmOutput(_adress);
+    start(_IODriver){
+        if(_IODriver==null){
+            console.log("No io driver provided");
+        }
+        const val =_IODriver.write();
+        Alerter.sendMessage("Komunikat maszyny W wartość: "+val,AlertStyleEnum.Machine);
+        _IODriver.confirm();
     }
 
 
 
 }
-
-
 
