@@ -6,22 +6,31 @@ export default class ConsoleView{
 
     constructor(_consoleDevice){
         this.wrapper;
+        this.inputWrapper;
         this.asciiInputEle;
         this.numericInputEle;
+        this.widthWrapper;
         this.outputEle;
         this.clrConsoleButton;
 
+
+        this.inputLabel;
+        this.outputLabel;
         this.build();
         this.addCallbacks(_consoleDevice)
     }
 
     build(_consoleDevice){
         this.wrapper = document.createElement("div");
+        this.inputWrapper=document.createElement("div");
         this.asciiInputEle = document.createElement("input");
         this.numericInputEle=document.createElement("input");
-        this.outputWrapper=document.createElement("div");
+        this.widthWrapper=document.createElement("div");
         this.outputEle=document.createElement("textarea");
         this.clrConsoleButton=document.createElement("button");
+        this.inputLabel=document.createElement("p");
+        this.outputLabel=document.createElement("p");
+
 
 
         this.numericInputEle.setAttribute("type","number");
@@ -29,11 +38,15 @@ export default class ConsoleView{
 
 
         this.clrConsoleButton.innerHTML="Wyczyść";
+        this.inputLabel.innerHTML="Wejście";
+        this.outputLabel.innerHTML="Wyjście";
 
         this.wrapper.classList.add("generic-inspector");
         this.clrConsoleButton.classList.add("custom-btn");
-        this.outputWrapper.classList.add("console-output-wrapper");
+        this.widthWrapper.classList.add("console-width-wrapper");
         this.outputEle.classList.add("console-output");
+
+        this.inputWrapper.classList.add("console-input-wrapper");
         this.asciiInputEle.classList.add("console-ascii-input");
         this.numericInputEle.classList.add("console-numeric-input");
 
@@ -43,13 +56,16 @@ export default class ConsoleView{
         this.outputEle.setAttribute("readonly","true");
 
 
+        this.inputWrapper.appendChild(this.asciiInputEle);
+        this.inputWrapper.appendChild(this.numericInputEle);
+
+        this.widthWrapper.appendChild(this.inputLabel);
+        this.widthWrapper.appendChild(this.inputWrapper);
+        this.widthWrapper.appendChild(this.outputLabel)
+        this.widthWrapper.appendChild(this.outputEle);
         
 
-        this.outputWrapper.appendChild(this.outputEle);
-
-        this.wrapper.appendChild(this.asciiInputEle);
-        this.wrapper.appendChild(this.numericInputEle);
-        this.wrapper.appendChild(this.outputWrapper);
+        this.wrapper.appendChild(this.widthWrapper);
         this.wrapper.appendChild(this.clrConsoleButton);
 
         

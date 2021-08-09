@@ -18,6 +18,8 @@ export default class IOInspector extends SidebarContent{
 
         this.displayArea;
 
+        this.deviceListWrapper;
+        this.deviceListLabel;
         this.deviceList;
         this.consoleView;
         
@@ -32,6 +34,8 @@ export default class IOInspector extends SidebarContent{
         this.header = document.createElement("h3");
         this.displayArea = document.createElement("div");
         this.deviceList=document.createElement("ul");
+        this.deviceListWrapper=document.createElement("div");
+        this.deviceListLabel=document.createElement("h4");
         this.consoleView = new ConsoleView(_IODevices.consoleDevice);
 
 
@@ -43,6 +47,7 @@ export default class IOInspector extends SidebarContent{
         this.header.innerHTML="Wejście / Wyjście"
         this.showListButton.innerHTML="Lista";
         this.showConsoleButton.innerHTML="Konsola";
+        this.deviceListLabel.innerHTML="Lista urządzeń We/Wy"
         this.populateDeviceLIst(_IOUnit)
         
         
@@ -54,11 +59,16 @@ export default class IOInspector extends SidebarContent{
         this.showListButton.classList.add("custom-btn");
         this.showConsoleButton.classList.add("custom-btn");
 
+
+        this.deviceListWrapper.appendChild(this.deviceListLabel);
+        this.deviceListWrapper.appendChild(this.deviceList);
+        this.displayArea.appendChild(this.deviceListWrapper);
+
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.showListButton);
         this.wrapper.appendChild(this.showConsoleButton)
         this.wrapper.appendChild(this.displayArea);
-        this.displayArea.appendChild(this.deviceList);
+        
 
         this.addCallbacks();
     }
@@ -67,7 +77,7 @@ export default class IOInspector extends SidebarContent{
         
         this.showListButton.addEventListener("click",()=>{
             this.displayArea.innerHTML="";
-            this.displayArea.appendChild(this.deviceList);
+            this.displayArea.appendChild(this.deviceListWrapper);
         })
 
         this.showConsoleButton.addEventListener("click",()=>{

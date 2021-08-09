@@ -4,7 +4,7 @@ import Alerter from "./alerter.js";
 import MachineComponent from "./machine-component.js";
 
 
-export default class InputOutputUnit extends MachineComponent/*extends IODriver */{
+export default class IOUnit extends MachineComponent/*extends IODriver */{
 
     constructor(_RB_register,_G_register,_I_register){
         super();
@@ -59,6 +59,10 @@ export default class InputOutputUnit extends MachineComponent/*extends IODriver 
     }
 
     read(_value){
+        if(isNaN(_value)||typeof(_value)!="number"){
+            Alerter.alert("Input: "+_value+" is not a number.");
+            return;
+        }
         this.RB_register.setValue(_value);
     }
 

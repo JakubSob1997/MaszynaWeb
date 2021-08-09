@@ -49,11 +49,21 @@
 
 
 
-.console-output-wrapper{
+.console-width-wrapper{
     width: 100%;
     min-width: 20em;
     max-width: 45em;
     
+}
+
+.console-width-wrapper>*{
+    margin-bottom: 0.3em;
+}
+
+.console-input-wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .console-ascii-input{
@@ -63,9 +73,11 @@
     padding: 0.5em;
     font-size: 115%;
     border-radius: 0.3em;
-    min-width: 12em;
-    width: calc(100% - 7em);
-    max-width: 32.7em;
+    flex-grow: 1;
+    margin-right: 0.3em;
+    flex-basis: 0;
+    width: 0;
+
 }
 
 .console-numeric-input{
@@ -76,6 +88,7 @@
     padding: 0.5em;
     font-size: 115%;
     width: 5.5em;
+    flex-basis: 0;
 }
 
 .console-output{
@@ -83,12 +96,13 @@
     word-break: break-all;
     white-space:pre-wrap;
     word-wrap: break-word;
+    resize: none;
     
     font-family: 'Inconsolata', monospace;
     background-color: var(--contrast-font-color);
     padding: 1em;
     color: var(--font-color);
-    max-width: 100%;
+    width: 100%;
     min-height: 5em;
     min-height: 20em;
 }

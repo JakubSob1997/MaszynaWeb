@@ -41,19 +41,11 @@ export default class ConsoleDevice{
         const char =this.asciiInputString.charCodeAt(0);
         this.asciiInputString=this.asciiInputString.substring(1);
         this.onUpdateASCII(this);
-        if(isNaN(char)){
-            Alerter.alert("Not a number.");
-            return 0;
-        }
         return char;
     }
 
     readNum(){
         const val = this.numberInputVal;
-        if(isNaN(val)){
-            Alerter.alert("Not a number.");
-            return 0;
-        }
         return val
     }
 
