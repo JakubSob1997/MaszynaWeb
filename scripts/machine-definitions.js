@@ -12,7 +12,7 @@ import InteruptUnit from "./interupt-unit.js";
 import InputOutputUnit from "./input-output-unit.js";
 import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
-import AlerterDevice from "./alerter-device.js";
+import buildIODevices from "./io-definitions.js";
 
 function setupFlagUnit(_flagUnit){
     
@@ -147,13 +147,13 @@ export default function buildMachine(_Machine){
     setupFlagUnit(flagUnit);
     let CntrlUnit = new ControllUnit(I_register,flagUnit);
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
-    let inputOutputUnit = new InputOutputUnit(RB_register,G_register,I_register);
+    let IOUnit = new InputOutputUnit(RB_register,G_register,I_register);
 
 
     //IO
-    let alerterDevice = new AlerterDevice()
-    inputOutputUnit.addIODevice(alerterDevice.printDevice,1);
-    inputOutputUnit.addIODevice(alerterDevice.clearDevice,2);
+    
+    let IODevices   = buildIODevices(IOUnit);
+    _Machine.IODevices=IODevices;
 
 
 
@@ -167,13 +167,13 @@ export default function buildMachine(_Machine){
     _Machine.JAL=JAL
     _Machine.flagUnit=flagUnit;
     _Machine.interuptUnit = InteruptUnt;
-    _Machine.inputOutputUnit = inputOutputUnit;
+    _Machine.IOUnit = IOUnit;
         
     let machineComponents = [
         JAL,
         MEM,
         InteruptUnt,
-        inputOutputUnit,
+        IOUnit,
 
         S_bus,
         A_bus,

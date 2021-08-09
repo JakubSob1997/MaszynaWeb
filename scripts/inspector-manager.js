@@ -4,7 +4,7 @@
 import InstructionInspector from "./instruction-inspector.js";
 import RegisterInspector from "./register-inspector.js";
 import MemorySlotInspector from "./memory-slot-inspector.js";
-import InputOutputInspector from "./input-output-inspector.js";
+import IOInspector from "./io-inspector.js";
 import SettingsInspector from "./settings-inspector.js";
 import FileSInspector from "./file-inspector.js";
 import LayoutMediator from "./layout-mediator.js";
@@ -20,7 +20,7 @@ export default class InsperctorManger{
         this.instructionInspector = new InstructionInspector(_Machine.instructionList);
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
-        this.inputOutputInspector = new InputOutputInspector(_Machine);
+        this.inputOutputInspector = new IOInspector(_Machine.IOUnit,_Machine.IODevices);
         this.settingsInspector = new SettingsInspector();
         this.fileInspector = new FileSInspector();
 

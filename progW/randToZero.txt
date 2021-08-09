@@ -1,0 +1,20 @@
+
+start:  IN 6
+        OUT 4
+        SOZ onzero
+        POB l
+        ODE one
+        LAD l
+        SOM reset
+        SOB start
+reset:
+        OUT 5
+        POB rec
+        LAD l
+        SOB start
+rec:
+        RST 7
+l:      RST 7
+one:    rst 1
+onzero:
+STP

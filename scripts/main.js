@@ -17,7 +17,6 @@ const alertAreaELement = document.getElementById("alert-area");
 const alertWindow =  new  AlertWindow(alertAreaELement)
 alertWindow.createMessage("Witaj!",AlertStyleEnum.Large);
 
-try {
     
     
 const M=new Machine();
@@ -140,9 +139,7 @@ toggleManualButton.onclick = ()=>{
 
 
 
-} catch (error) {
-    Alerter.sendMessage("UNHANDLED EXCEPTION! - "+error,AlertStyleEnum.UnhandledException)
-}
+
 
 
 

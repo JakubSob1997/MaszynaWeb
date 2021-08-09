@@ -466,7 +466,7 @@ function addInputOutputSignals(_Machine){
     const start = new Signal(
         "start",
         true,
-        (_M)=>{_M.inputOutputUnit.doStart();},
+        (_M)=>{_M.IOUnit.doStart();},
         ExtnensionFlags.InputOutput,
         SignalOrientation.Left
     )

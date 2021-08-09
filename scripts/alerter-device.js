@@ -32,7 +32,7 @@ export class IOAlerterPrint extends IODevice{
     }
 
     getDescription(){
-        return "Wyjście powiadomień";
+        return "Wyjście powiadomień (wy)";
     }
 
 }
@@ -45,13 +45,12 @@ export class IOAlerterClear extends IODevice{
             console.log("No io driver provided");
             return;
         }
-        const val =_IODriver.write();
         Alerter.clearMessages();
         _IODriver.confirm();
     }
 
     getDescription(){
-        return "Wyczyść powiadomienia";
+        return "Wyczyść powiadomienia (pol)";
     }
 }
 
