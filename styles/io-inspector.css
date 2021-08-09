@@ -45,3 +45,27 @@
 .device-entry *{
     white-space: nowrap;
 }
+
+
+
+
+.console-output-wrapper{
+    width: 100%;
+    min-width: 20em;
+    
+}
+
+.console-output{
+    border-radius: 0.3em;
+    word-break: break-all;
+    white-space:pre-wrap;
+    word-wrap: break-word;
+    
+    font-family: 'Inconsolata', monospace;
+    background-color: var(--contrast-font-color);
+    padding: 1em;
+    color: var(--font-color);
+    max-width: 100%;
+    min-height: 5em;
+    min-height: 20em;
+}
