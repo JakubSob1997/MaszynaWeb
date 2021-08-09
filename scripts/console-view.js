@@ -12,6 +12,7 @@ export default class ConsoleView{
         this.clrConsoleButton;
 
         this.build();
+        this.addCallbacks(_consoleDevice)
     }
 
     build(_consoleDevice){
@@ -33,12 +34,16 @@ export default class ConsoleView{
         this.clrConsoleButton.classList.add("custom-btn");
         this.outputWrapper.classList.add("console-output-wrapper");
         this.outputEle.classList.add("console-output");
+        this.asciiInputEle.classList.add("console-ascii-input");
+        this.numericInputEle.classList.add("console-numeric-input");
+
+
+
         this.numericInputEle.setAttribute("value","0");
         this.outputEle.setAttribute("readonly","true");
 
 
-        this.outputEle.value="Lorem Ipsum is simp\nly dummy text of the printing and\n typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, re\nmaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-
+        
 
         this.outputWrapper.appendChild(this.outputEle);
 
@@ -51,8 +56,36 @@ export default class ConsoleView{
 
     }
 
-    addCalbacks(){
+    addCallbacks(_device){
+        _device.onUpdateOutput = (d)=>{
+            this.onUpdateOutput(d);
+        }
 
+        _device.onUpdateASCII = (d)=>{
+            this.onUpdateASCIIInput(d);
+        }
+
+        this.clrConsoleButton.addEventListener("click",()=>{
+            _device.clearConsole();
+        })
+
+        this.asciiInputEle.addEventListener("input",(e)=>{
+            _device.setASCIIInput(e.target.value);
+        })
+
+        this.numericInputEle.addEventListener("input",(e)=>{
+            _device.setNumericInput(parseInt(e.target.value));
+        })
+    }
+
+
+
+    onUpdateOutput(_device){
+        this.outputEle.value=_device.consoleOutputString;
+    }
+
+    onUpdateASCIIInput(_device){
+        this.asciiInputEle.value=_device.asciiInputString;
     }
 
 

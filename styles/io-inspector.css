@@ -52,7 +52,30 @@
 .console-output-wrapper{
     width: 100%;
     min-width: 20em;
+    max-width: 45em;
     
+}
+
+.console-ascii-input{
+    font-family: 'Inconsolata', monospace;
+    background-color: var(--contrast-font-color);
+    color: var(--font-color);
+    padding: 0.5em;
+    font-size: 115%;
+    border-radius: 0.3em;
+    min-width: 12em;
+    width: calc(100% - 7em);
+    max-width: 32.7em;
+}
+
+.console-numeric-input{
+    font-family: 'Inconsolata', monospace;
+    background-color: var(--contrast-font-color);
+    color: var(--font-color);
+    border-radius: 0.3em;
+    padding: 0.5em;
+    font-size: 115%;
+    width: 5.5em;
 }
 
 .console-output{

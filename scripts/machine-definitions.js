@@ -9,7 +9,7 @@ import ArythmeticLogicUnit from "./arythmetic-logicUnit.js";
 import FlagsUnit, {ConditionFlag} from "./condition-flags.js";
 import ControllUnit from "./controll-unit.js";
 import InteruptUnit from "./interupt-unit.js";
-import InputOutputUnit from "./input-output-unit.js";
+import IOUnit from "./io-unit.js";
 import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
 import buildIODevices from "./io-definitions.js";
@@ -147,12 +147,12 @@ export default function buildMachine(_Machine){
     setupFlagUnit(flagUnit);
     let CntrlUnit = new ControllUnit(I_register,flagUnit);
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
-    let IOUnit = new InputOutputUnit(RB_register,G_register,I_register);
+    let _IOUnit = new IOUnit(RB_register,G_register,I_register);
 
 
     //IO
     
-    let IODevices   = buildIODevices(IOUnit);
+    let IODevices   = buildIODevices(_IOUnit);
     _Machine.IODevices=IODevices;
 
 
@@ -167,13 +167,13 @@ export default function buildMachine(_Machine){
     _Machine.JAL=JAL
     _Machine.flagUnit=flagUnit;
     _Machine.interuptUnit = InteruptUnt;
-    _Machine.IOUnit = IOUnit;
+    _Machine.IOUnit = _IOUnit;
         
     let machineComponents = [
         JAL,
         MEM,
         InteruptUnt,
-        IOUnit,
+        _IOUnit,
 
         S_bus,
         A_bus,

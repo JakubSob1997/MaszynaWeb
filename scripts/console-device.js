@@ -23,6 +23,14 @@ export default class ConsoleDevice{
     }
 
 
+    setASCIIInput(_string){
+        this.asciiInputString =_string;
+    }
+
+    setNumericInput(_val){
+        this.numberInputVal =_val;
+    }
+
     readASCII(){
         if(this.asciiInputString===""){
             Alerter.sendMessage("Add console wait behaviour",AlertStyleEnum.UnhandledException)
@@ -30,17 +38,26 @@ export default class ConsoleDevice{
         }
 
 
-        const char =this.asciiInputString.charAt(0);
+        const char =this.asciiInputString.charCodeAt(0);
         this.asciiInputString=this.asciiInputString.substring(1);
-        this.onUpdateASCII();
+        this.onUpdateASCII(this);
+        if(isNaN(char)){
+            Alerter.alert("Not a number.");
+            return 0;
+        }
         return char;
     }
 
     readNum(){
-        return this.numberInputVal;
+        const val = this.numberInputVal;
+        if(isNaN(val)){
+            Alerter.alert("Not a number.");
+            return 0;
+        }
+        return val
     }
 
-    writConsole(_value){
+    writeConsole(_value){
         let char = String.fromCharCode(_value);
         this.consoleOutputString+=char;
         this.onUpdateOutput(this);
@@ -66,7 +83,7 @@ class IOConsoleNumericInput extends IODevice{
             console.log("No io driver provided");
             return;
         }
-        const _val = _ConsoleDevice.readNum();
+        const _val = this.consoleDevice.readNum();
         _IODriver.read(_val)
         _IODriver.confirm();
     }
@@ -87,7 +104,7 @@ class IOConsoleASCIInput extends IODevice{
             console.log("No io driver provided");
             return;
         }
-        const _val = _ConsoleDevice.readASCII();
+        const _val = this.consoleDevice.readASCII();
         _IODriver.read(_val)
         _IODriver.confirm();
     }
@@ -110,7 +127,7 @@ class IOConsoleOutput extends IODevice{
             return;
         }
         const _outVal = _IODriver.write()
-        _ConsoleDevice.writConsole(_outVal);
+        this.consoleDevice.writeConsole(_outVal);
         _IODriver.confirm();
     }
 
@@ -131,7 +148,7 @@ class IOConsoleClear extends IODevice{
             console.log("No io driver provided");
             return;
         }
-        _ConsoleDevice.clearConsole();
+        this.consoleDevice.clearConsole();
         _IODriver.confirm();
     }
 

@@ -21,7 +21,6 @@ export default class InputOutputUnit extends MachineComponent/*extends IODriver 
 
 
     doStart(){
-        console.log("start");
         this.init(this.getCurrentAddres());
     }
 
