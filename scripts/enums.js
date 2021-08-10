@@ -46,12 +46,16 @@ export const ExtnensionFlags = {
     "InputOutput":1<<9,
     "Flags":1<<10,
 
+
+}
+Object.freeze(ExtnensionFlags);
+
+export const ExtentionPresets = {
     "W":0b1,
     "W+":0b11,
     "L":0b11111111,
     "EW":0b11111111111,
 }
-Object.freeze(ExtnensionFlags);
 
 
 export const SignalOrientation ={

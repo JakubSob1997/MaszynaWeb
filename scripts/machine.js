@@ -49,7 +49,6 @@ export default class Machine{
         this.clearSignals();
         this.resetComponetsState();
         this.updateComponents();
-        this.controllUnit.setDefault();
     }
 
     addOnManualToggleCallback(_funk){
@@ -231,7 +230,7 @@ export default class Machine{
         Terminator.terminate();
         this.resetInternalState();
 
-        this.manualControll= !this.manualControll;
+        this.manualControll= _newValue;
 
         this.onManualToggleCallbacks.forEach(funk => {
             funk(this.manualControll);

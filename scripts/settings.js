@@ -1,5 +1,5 @@
 
-import { ExtnensionFlags } from "./enums.js";
+import { ExtentionPresets } from "./enums.js";
 
 
 
@@ -15,7 +15,7 @@ export class SettingsSerializer{
         return new SettingsSerializer(
             4,
             5,
-            ExtnensionFlags.EW,
+            ExtentionPresets.EW,
             [1,2,3,4]
             );
     }
@@ -32,7 +32,7 @@ export default class Settings{
     constructor(){
         this.codeWidth=3;
         this.adressWidth=5;
-        this.extentionFlags  = ExtnensionFlags.W;
+        this.extentionFlags  = ExtentionPresets.W;
         this.intAdressList=[1,2,3,4];
 
 

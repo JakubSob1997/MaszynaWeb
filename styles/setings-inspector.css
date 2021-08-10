@@ -16,5 +16,15 @@
 }
 
 .settings-list{
-    min-width: 15em;
+    min-width: 20em;
+}
+
+
+.generic-setting{
+    border-radius: 0.3em;
+    padding:0.3em;
+}
+
+.generic-setting-header{
+    white-space: nowrap;
 }

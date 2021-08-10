@@ -20,7 +20,7 @@ const alertWindow =  new  AlertWindow(alertAreaELement)
 const alertTerminator=new AlertTerminator();
 
 
-Alerter.sendMessage("Witaj!",AlertStyleEnum.Large);
+Alerter.sendMessage("Witaj w symulatorze Maszyny W!",AlertStyleEnum.Large);
 
 const M=new Machine();
 buildMachine(M);

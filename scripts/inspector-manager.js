@@ -21,7 +21,7 @@ export default class InsperctorManger{
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
         this.inputOutputInspector = new IOInspector(_Machine.IOUnit,_Machine.IODevices);
-        this.settingsInspector = new SettingsInspector();
+        this.settingsInspector = new SettingsInspector(_Machine);
         this.fileInspector = new FileSInspector();
 
         _MachineView.addOnMemorySlotSellectedCallback((_index)=>{
