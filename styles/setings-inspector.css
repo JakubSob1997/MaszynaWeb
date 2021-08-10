@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+.settings-list >div:nth-child(odd){
+    background: var(--odd-list-color);
+
+}
+
+.settings-list >div:nth-child(even){
+    background: var( --even-list-color);
+    
+}
+
+.settings-list{
+    min-width: 15em;
+}

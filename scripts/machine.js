@@ -6,41 +6,6 @@ import InstructionList from "./instruction-list.js";
 import Terminator from "./terminator.js";
 
 
-async function runCycleNonBlocking(_exitCondition,_Machine,_delay){
-    _Machine.doCycle();
-    if(_exitCondition(_Machine)==false){
-        setTimeout(()=>{runCycleNonBlocking(_exitCondition,_Machine,_delay);},_delay); 
-    }
-    
-}
-
-async function runSingleInstructionAsync(_Machine){
-
-}
-
-export function runMachineNonBlocking(_Machine){
-    _Machine.wasTerminated=false;
-
-
-    /*
-    while(_Machine.wasTerminated==false){
-        _Machine.doCycle();
-    }
-
-    */
-    
-    runCycleNonBlocking((_M)=>{
-        return _M.wasTerminated==true;
-    },_Machine,0);
-    
-}
-
-
-
-
-
-
-
 
 export default class Machine{
 
@@ -62,7 +27,7 @@ export default class Machine{
         this.settings;
 
         this.onManualToggleCallbacks = [];
-        this.wasTerminated=false;
+        this.wasTerminated=true;
 
 
         if(Terminator!=null){
@@ -261,9 +226,9 @@ export default class Machine{
     }
 
 
-    toggleManualMode(){
+    setManualMode(_newValue){
         
-        
+        Terminator.terminate();
         this.resetInternalState();
 
         this.manualControll= !this.manualControll;

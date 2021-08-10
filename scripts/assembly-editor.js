@@ -4,6 +4,7 @@ import SidebarContent from "./sidebar-content.js";
 import AssemblyParser from "./assembly-parser.js"
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
+import Terminator from "./terminator.js";
 
 export default class AssemblyEditor extends SidebarContent{
     constructor(_machine){
@@ -83,6 +84,7 @@ export default class AssemblyEditor extends SidebarContent{
 
     onLoadButton(){
         
+        Terminator.terminate();
         this.save();
         this.parser = new AssemblyParser(this.textArea.value,this.M.settings,this.M.instructionList);
         

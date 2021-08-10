@@ -1,5 +1,5 @@
 
-import Machine,{runMachineNonBlocking} from "./machine.js";
+import Machine from "./machine.js";
 import buildMachine from"./machine-definitions.js";
 import MachineView from "./machine-view.js";
 import { SettingsSerializer } from "./settings.js";
@@ -10,19 +10,17 @@ import AlertWindow from "./alert-window.js";
 import { AlertStyleEnum } from "./enums.js";
 import Alerter from "./alerter.js";
 import AlertTerminator from "./alert-terminator.js";
-
+import {runMachine} from "./machine-execution.js";
 
 
 
 
 const alertAreaELement = document.getElementById("alert-area");
 const alertWindow =  new  AlertWindow(alertAreaELement)
-alertWindow.createMessage("Witaj!",AlertStyleEnum.Large);
-
-
-
 const alertTerminator=new AlertTerminator();
 
+
+Alerter.sendMessage("Witaj!",AlertStyleEnum.Large);
 
 const M=new Machine();
 buildMachine(M);
@@ -129,7 +127,7 @@ nextInstructionButton.onclick=function(){
 let toggleManualButton = document.getElementById("toggle-manual-button");
 toggleManualButton.onclick = ()=>{
 
-    M.toggleManualMode();
+    M.setManualMode(M.manualControll==false);
     if(M.manualControll){
         toggleManualButton.classList.add("manual-selected")
         
@@ -142,7 +140,7 @@ toggleManualButton.onclick = ()=>{
 
 let runMachineButton=document.getElementById("run-machine-button");
 runMachineButton.addEventListener("click",()=>{
-    runMachineNonBlocking(M);
+    runMachine(M);
 })
 
 

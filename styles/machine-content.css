@@ -15,8 +15,11 @@
 
 */
 
-
-
+/*
+.container *{
+    transition: none;
+}
+*/
 
 .container  *{
     -moz-user-select: -moz-none;

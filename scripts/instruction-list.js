@@ -1,6 +1,7 @@
 
 import Instruction,{InstrCycle,BranchCondition} from "./instruction.js"
 import InstrcutionParser from "./instruction-parser.js";
+import Terminator from "./terminator.js";
 
 export default class InstructionList{
 
@@ -151,6 +152,7 @@ export default class InstructionList{
 
 
     reindexDictionary(){
+        Terminator.terminate();
         this.indexDictionary = [];
         for (let index = 0; index < this.instructionArray.length; index++) {
             const instr = this.instructionArray[index];
