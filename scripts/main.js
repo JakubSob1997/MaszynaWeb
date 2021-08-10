@@ -1,5 +1,5 @@
 
-import Machine from "./machine.js";
+import Machine,{runMachineNonBlocking} from "./machine.js";
 import buildMachine from"./machine-definitions.js";
 import MachineView from "./machine-view.js";
 import { SettingsSerializer } from "./settings.js";
@@ -9,6 +9,8 @@ import EditorManager from "./editor-manager.js";
 import AlertWindow from "./alert-window.js";
 import { AlertStyleEnum } from "./enums.js";
 import Alerter from "./alerter.js";
+import AlertTerminator from "./alert-terminator.js";
+
 
 
 
@@ -17,8 +19,11 @@ const alertAreaELement = document.getElementById("alert-area");
 const alertWindow =  new  AlertWindow(alertAreaELement)
 alertWindow.createMessage("Witaj!",AlertStyleEnum.Large);
 
-    
-    
+
+
+const alertTerminator=new AlertTerminator();
+
+
 const M=new Machine();
 buildMachine(M);
 
@@ -132,9 +137,13 @@ toggleManualButton.onclick = ()=>{
         toggleManualButton.classList.remove("manual-selected")
     }
 
-    
-
 }
+
+
+let runMachineButton=document.getElementById("run-machine-button");
+runMachineButton.addEventListener("click",()=>{
+    runMachineNonBlocking(M);
+})
 
 
 

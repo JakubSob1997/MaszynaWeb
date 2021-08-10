@@ -1,6 +1,45 @@
 
 
+import Alerter from "./alerter.js";
+import { AlertStyleEnum } from "./enums.js";
 import InstructionList from "./instruction-list.js";
+import Terminator from "./terminator.js";
+
+
+async function runCycleNonBlocking(_exitCondition,_Machine,_delay){
+    _Machine.doCycle();
+    if(_exitCondition(_Machine)==false){
+        setTimeout(()=>{runCycleNonBlocking(_exitCondition,_Machine,_delay);},_delay); 
+    }
+    
+}
+
+async function runSingleInstructionAsync(_Machine){
+
+}
+
+export function runMachineNonBlocking(_Machine){
+    _Machine.wasTerminated=false;
+
+
+    /*
+    while(_Machine.wasTerminated==false){
+        _Machine.doCycle();
+    }
+
+    */
+    
+    runCycleNonBlocking((_M)=>{
+        return _M.wasTerminated==true;
+    },_Machine,0);
+    
+}
+
+
+
+
+
+
 
 
 export default class Machine{
@@ -23,8 +62,23 @@ export default class Machine{
         this.settings;
 
         this.onManualToggleCallbacks = [];
+        this.wasTerminated=false;
+
+
+        if(Terminator!=null){
+            Terminator.addTerminable(this);
+        }
 
     }
+
+    onTerminate(){
+        if(this.wasTerminated==false){
+            Alerter.sendMessage("Maszyna została zatrzymana!",AlertStyleEnum.ExecutionFlow)
+            this.wasTerminated=true;
+        }
+    }
+
+
 
     resetInternalState(){
         this.clearSignals();

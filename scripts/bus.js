@@ -38,7 +38,6 @@ export default class Bus extends MachineComponent{
             case MatchRegisterWidthEnum.ToCode:
                 this.busMask=_settings.codeMask;
                 break;
-        
             default:
                 break;
         }

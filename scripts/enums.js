@@ -69,6 +69,7 @@ export const AlertStyleEnum={
     Succes:"alert-succes",
     Large:"alert-large",
     Machine:"alert-machine-response",
+    ExecutionFlow:"alert-execution",
     UnhandledException:"alert-unhandled-exception",
 }
 Object.freeze(AlertStyleEnum);

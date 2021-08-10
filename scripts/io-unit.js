@@ -63,7 +63,7 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
             Alerter.alert("Input: "+_value+" is not a number.");
             return;
         }
-        this.RB_register.setValue(_value);
+        this.RB_register.setValue(Math.floor(_value));
     }
 
     confirm(){

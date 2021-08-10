@@ -47,6 +47,14 @@
     padding-right: 0.5em;
 }
 
+.alert-execution{
+    font-weight: bold;
+}
+.alert-execution::before{
+    content: "⚙️";
+    font-size: 130%;
+    padding-right: 0.5em;
+}
 
 
 .alert-unhandled-exception::before{
