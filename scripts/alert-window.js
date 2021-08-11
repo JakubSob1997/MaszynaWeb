@@ -10,7 +10,7 @@ import LayoutMediator from "./layout-mediator.js";
 /*
     This is the window responsible for
     making all of those anoyig pop-ups
-    that tell you useful stuff
+    that tell you usefull stuff
 */
 
 
@@ -38,7 +38,6 @@ export default class AlertWindow extends IAlertReciever{
 
     createMessage(_message,_style){
         const entry = new AlertEntry(this,_message,_style);
-
         this.wrapper.appendChild(entry.getHTMLElement())
        
 
@@ -87,7 +86,7 @@ class AlertEntry{
         this.wrapper.classList.add("alert-entry");
         this.text.classList.add("alert-text");
         this.exitButton.classList.add("alert-close-button");
-        if(_alertStyle!=null){
+        if(_alertStyle!=undefined){
             this.text.classList.add(_alertStyle);
         }
 

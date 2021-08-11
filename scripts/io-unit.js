@@ -15,7 +15,10 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
 
         this.adressMask= ~0;
 
+        this.ioDriver = this;
+
         this.devices={};
+
         
     }
 
@@ -49,7 +52,7 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
             return;
         }
         this.G_register.setValue(0);
-        device.start(this);
+        device.start(this.ioDriver);
         
     }
 

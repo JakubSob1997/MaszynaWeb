@@ -176,6 +176,7 @@ export default function buildMachine(_Machine){
         JAL,
         MEM,
         InteruptUnt,
+        CntrlUnit,
         _IOUnit,
 
         S_bus,

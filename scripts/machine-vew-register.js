@@ -43,7 +43,6 @@ export default class MachineViewRegister extends MachineViewElement{
     }
 
     display(){
-        console.log(this.machineView);
         const regName = this.register.name.toUpperCase();
         const formatedValue = this.machineView.valueDisplayer.registerToString(this.register)
 

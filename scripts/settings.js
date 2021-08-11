@@ -31,8 +31,8 @@ export class SettingsSerializer{
 
 export default class Settings{
 
-    static MinCodeWidth = 2;
-    static MinAddresWidth=4;
+    static MinCodeWidth = 0;
+    static MinAddresWidth=0;
     static MaxCodeWidth  = 8;
     static MaxAddresWidth =12;
 

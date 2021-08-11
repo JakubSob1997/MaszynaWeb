@@ -25,23 +25,37 @@ export default class ConsoleDevice{
 
     setASCIIInput(_string){
         this.asciiInputString =_string;
+        if(this.waitingDriver!=null){
+            this.readASCII(this.waitingDriver);
+            this.waitingDriver=null;
+        }
     }
 
     setNumericInput(_val){
         this.numberInputVal =_val;
     }
 
-    readASCII(){
+
+
+    readASCII(_IODriver){
+
+        
+
+
         if(this.asciiInputString===""){
-            Alerter.sendMessage("Add console wait behaviour",AlertStyleEnum.UnhandledException)
-            return 0;
+            this.waitingDriver = _IODriver;
+            return;
+        }else{
+            const char =this.asciiInputString.charCodeAt(0);
+            this.asciiInputString=this.asciiInputString.substring(1);
+            this.onUpdateASCII(this);
+            _IODriver.read(char)
+            _IODriver.confirm();
         }
 
 
-        const char =this.asciiInputString.charCodeAt(0);
-        this.asciiInputString=this.asciiInputString.substring(1);
-        this.onUpdateASCII(this);
-        return char;
+
+        
     }
 
     readNum(){
@@ -96,9 +110,7 @@ class IOConsoleASCIInput extends IODevice{
             console.log("No io driver provided");
             return;
         }
-        const _val = this.consoleDevice.readASCII();
-        _IODriver.read(_val)
-        _IODriver.confirm();
+        this.consoleDevice.readASCII(_IODriver);
     }
 
     getDescription(){
