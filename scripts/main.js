@@ -25,7 +25,13 @@ Alerter.sendMessage("Witaj w symulatorze Maszyny W!",AlertStyleEnum.Large);
 const M=new Machine();
 buildMachine(M);
 
-
+/*
+M.IOUnit.ioDriver= {
+    read:(v)=>{M.X_register.setValue(v)},
+    write:()=>{return M.Y_register.getValue()},
+    confirm:()=>{Alerter.sendMessage("IO Good")}
+}
+*/
 
 M.setSettings( SettingsSerializer.getDefault());
 M.setInstructionList(InstructionListSerializer.getDefault());

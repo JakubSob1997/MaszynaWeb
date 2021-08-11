@@ -26,8 +26,11 @@ export default class ConsoleDevice{
     setASCIIInput(_string){
         this.asciiInputString =_string;
         if(this.waitingDriver!=null){
-            this.readASCII(this.waitingDriver);
-            this.waitingDriver=null;
+
+            if(this.readASCII(this.waitingDriver)==true){
+                this.waitingDriver=null;
+            }
+            
         }
     }
 
@@ -44,13 +47,14 @@ export default class ConsoleDevice{
 
         if(this.asciiInputString===""){
             this.waitingDriver = _IODriver;
-            return;
+            return false;
         }else{
             const char =this.asciiInputString.charCodeAt(0);
             this.asciiInputString=this.asciiInputString.substring(1);
             this.onUpdateASCII(this);
             _IODriver.read(char)
             _IODriver.confirm();
+            return true;
         }
 
 
