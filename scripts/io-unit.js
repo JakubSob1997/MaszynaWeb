@@ -31,7 +31,6 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
     onBusWidthChanged(_settings){
         
         this.adressMask=_settings.adressMask;
-        console.log(this.adressMask.toString(2))
     }
 
     addIODevice(_IODevice,_adress){

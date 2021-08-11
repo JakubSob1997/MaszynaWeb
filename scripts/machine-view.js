@@ -1,5 +1,11 @@
 import ValueDisplayer from "./value-displayer.js"
 import { SignalOrientation,ValueDisplayEnum } from "./enums.js";
+import MachineViewRegister from "./machine-vew-register.js";
+
+
+
+
+
 
 export default class MachineView{
 
@@ -26,6 +32,10 @@ export default class MachineView{
 
     }
 
+
+    getCurentExtentions(){
+        return this.M.settings.extentionFlags;
+    }
 
     addOnRegisterSelectedCallback(_funk){
         this.registerSelectedCallbacks.push(_funk);
@@ -70,62 +80,16 @@ export default class MachineView{
 
     }
 
-
-    displayRegister(_register,_element){
-        const regName = _register.name;
-        const value = this.valueDisplayer.registerToString(_register)
-
-
-        _element.innerHTML=regName.toUpperCase() + ": " +value;
-        if(_register.wasWriten){
-            _element.classList.add("reg-selected");
-        }else{
-            _element.classList.remove("reg-selected");
-        }
-
-    
-        if((this.M.settings.extentionFlags &_register.getExtention())===0){
-            
-            _element.classList.add("reg-hidden");
-        }else{
-            
-            _element.classList.remove("reg-hidden");
-        }
-
-    }
-
-
-    createRegisterElement(_register){
-        let element  = document.createElement("button")
-        element.classList.add("reg");
-        element.innerHTML=this.displayRegister(_register,element);
-        
-
-        _register.addOnUpdateCallback(_reg=>{
-                this.displayRegister(_reg,element);
-            }
-        );
-
-        element.onclick = ()=>{
-            this.selectRegister(_register);
-        }
-
-
-
-        _register.update();
-        return element;
-    }
-
     setupRegisterViews(_registers){
         _registers.forEach(reg => {
             let regWrappers = document.getElementsByClassName(reg.name+"-r");
             
             for (let i = 0; i < regWrappers.length; i++) {
                 const wrapper = regWrappers[i];
-                const regView = this.createRegisterElement(reg);
+                const regView = new MachineViewRegister(this,reg);
                 
                 this.registerViews.push(regView);
-                wrapper.appendChild(regView);
+                wrapper.appendChild(regView.getHTMLElement());
                 
             }   
         });

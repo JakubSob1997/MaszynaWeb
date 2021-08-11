@@ -1,6 +1,16 @@
 
 
 import SidebarContent from "./sidebar-content.js";
+import { 
+    SimolationLevelSetting,
+    BusWidthSetting,
+    ExtnetionPickerSetting,
+    InteruptAdressSetting,
+    IOInteruptSetting,
+    PerofrmanceSetting,
+} from "./settings-view.js";
+
+
 
 export default class SettingsInspector extends SidebarContent{
     constructor(_Machine){
@@ -12,7 +22,7 @@ export default class SettingsInspector extends SidebarContent{
 
         
         
-        this.build()
+        this.build(_Machine)
     }
     focus(){
         this.header.focus();
@@ -30,7 +40,7 @@ export default class SettingsInspector extends SidebarContent{
         this.wrapper.classList.add("generic-inspector");
 
         this.simulationLevelSetting = new SimolationLevelSetting();
-        this.busWidthSetting = new BusWidthSetting();
+        this.busWidthSetting = new BusWidthSetting(_Machine.settings);
         this.extnetionPickerSetting = new ExtnetionPickerSetting();
         this.intAdressSetting=new InteruptAdressSetting();
         this.ioInteruptSetting = new IOInteruptSetting();
@@ -55,85 +65,3 @@ export default class SettingsInspector extends SidebarContent{
     }
     
 }
-
-class SettingView{
-    constructor(_name){
-        this.wrapper=document.createElement("div");
-        this.header=document.createElement("h4");
-        this.content = document.createElement("div");
-
-        this.wrapper.classList.add("generic-setting");
-        this.header.classList.add("generic-setting-header");
-        this.content.classList.add("generic-setting-content");
-
-
-        this.header.innerHTML = _name;
-
-        this.wrapper.appendChild(this.header);
-        this.wrapper.appendChild(this.content);
-    }
-
-    getHTMLElement(){
-        return this.wrapper;
-    }
-}
-
-class SimolationLevelSetting extends SettingView{
-
-    constructor(){
-        super("Poziom śledzenia");
-    }
-
-}
-
-
-
-
-class ExtnetionPickerSetting extends SettingView{
-    constructor(){
-        super("Wybór modółów maszyny W");
-    }
-
-    
-}
-
-
-class BusWidthSetting extends SettingView{
-
-    constructor(){
-        super("Szerokość magistral");
-    }
-
-}
-
-
-
-
-class InteruptAdressSetting extends SettingView{
-
-    constructor(){
-        super("Adresy przerwań");
-    }
-
-}
-
-class IOInteruptSetting extends SettingView{
-    constructor(){
-        super("Przerwania We/Wy")
-    }
-}
-
-
-
-class PerofrmanceSetting extends SettingView{
-
-    constructor(){
-        super("Wydajność");
-
-        
-    }
-
-}
-
-
-

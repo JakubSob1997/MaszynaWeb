@@ -1,5 +1,6 @@
 
 import { ExtentionPresets } from "./enums.js";
+import Terminator from "./terminator.js";
 
 
 
@@ -29,6 +30,12 @@ export class SettingsSerializer{
 
 
 export default class Settings{
+
+    static MinCodeWidth = 2;
+    static MinAddresWidth=4;
+    static MaxCodeWidth  = 8;
+    static MaxAddresWidth =12;
+
     constructor(){
         this.codeWidth=3;
         this.adressWidth=5;
@@ -36,11 +43,24 @@ export default class Settings{
         this.intAdressList=[1,2,3,4];
 
 
-        this.onBusWidthChanged = function(_settings){};
-
+        this.onBusWidthChangedCalbacks =[];
         this.codeMask=0b11100000;
         this.adressMask==0b11111;
     }
+
+
+    addOnBusWidthChangedListener(_funk){
+        this.onBusWidthChangedCalbacks.push(_funk);
+
+    }
+
+    invokeOnBusWidthChanged(){
+        this.onBusWidthChangedCalbacks.forEach(_funk => {
+            _funk(this);
+        });
+    }
+
+
 
 
     setupValues(_settingsSerializer){
@@ -65,6 +85,11 @@ export default class Settings{
 
     setBusWidth(_codeWidth,_adressWidth){
 
+        //Clamp
+        _codeWidth =Math.min(Math.max(_codeWidth,Settings.MinCodeWidth),Settings.MaxCodeWidth)
+        _adressWidth = Math.min(Math.max(_adressWidth,Settings.MinAddresWidth),Settings.MaxAddresWidth)
+
+
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
 
@@ -85,7 +110,9 @@ export default class Settings{
             this.adressMask|=1;
             i--;
         }
-        this.onBusWidthChanged(this);
+
+        Terminator.terminate();
+        this.invokeOnBusWidthChanged();
     }
 
 

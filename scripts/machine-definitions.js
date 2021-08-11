@@ -52,7 +52,10 @@ export default function buildMachine(_Machine){
 
 
     _Machine.settings = new Settings();
-    _Machine.settings.onBusWidthChanged =(_set)=>{ _Machine.onBusWidthChanged(_set)};
+    _Machine.settings.addOnBusWidthChangedListener((_set)=>
+    { 
+        _Machine.onBusWidthChanged(_set);
+    });
     
     
 

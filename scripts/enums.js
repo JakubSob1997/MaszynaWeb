@@ -75,6 +75,15 @@ export const AlertStyleEnum={
     Machine:"alert-machine-response",
     ExecutionFlow:"alert-execution",
     UnhandledException:"alert-unhandled-exception",
+    InputError:"alert-input-error"
 }
 Object.freeze(AlertStyleEnum);
 
+
+export const InteruptEnum={
+    INT1:0b1000,
+    INT2:0b0100,
+    INT3:0b0010,
+    INT4:0b0001,
+}
+Object.freeze(InteruptEnum)

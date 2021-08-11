@@ -7,16 +7,19 @@ import { AlertStyleEnum } from "./enums.js";
 import LayoutMediator from "./layout-mediator.js";
 
 
+/*
+    This is the window responsible for
+    making all of those anoyig pop-ups
+    that tell you useful stuff
+*/
+
+
 export default class AlertWindow extends IAlertReciever{
     
     constructor(_windowElement){
         
         super();
         this.wrapper = _windowElement;
-
-
-        //this.importantStyles={};
-        //this.importantStyles[AlertStyleEnum.Succes]=true;
 
         Alerter.addAlertReciever(this);
 
@@ -37,14 +40,6 @@ export default class AlertWindow extends IAlertReciever{
         const entry = new AlertEntry(this,_message,_style);
 
         this.wrapper.appendChild(entry.getHTMLElement())
-        /*
-
-         if(this.importantStyles.hasOwnProperty(_style)){
-            entry.focus();
-            LayoutMediator.showCenter();
-        }
-
-         */
        
 
     }
@@ -71,9 +66,12 @@ export default class AlertWindow extends IAlertReciever{
 
     }
 
-   
-
 }
+
+
+/*
+    This is the code behind a single anoying pop-up
+*/
 
 
 class AlertEntry{
