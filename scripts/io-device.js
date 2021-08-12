@@ -1,3 +1,4 @@
+import { IOModuleFlags } from "./enums.js";
 
 
 
@@ -6,9 +7,15 @@ export default class IODevice{
 
     }
 
+
+
     start(_IODriver){
         console("(overide) interacted by io diriver "+ _IODriver)
         _IODriver.confirm();
+    }
+
+    getIOModule(){
+        return IOModuleFlags.Base;
     }
 
     getDescription(){

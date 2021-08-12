@@ -8,7 +8,7 @@ import MachineComponent from "./machine-component.js";
 
 
 
-export default class InteruptUnit extends MachineComponent {
+export default class InteruptUnit extends MachineComponent/* extends InteruptDriver*/ {
 
     constructor(_RZreg, _RMreg, _RPreg, _APreg, _settings) {
         super()
@@ -18,6 +18,8 @@ export default class InteruptUnit extends MachineComponent {
         this.APregister = _APreg;
         this.RPregister = _RPreg;
         this.settings = _settings;
+
+        this.interuptDriver = this;
 
     }
 
@@ -49,6 +51,22 @@ export default class InteruptUnit extends MachineComponent {
         this.RZregister.write(this.RZregister.getValue() & ~this.RPregister.getValue())
         this.APregister.write(0);
         this.RPregister.write(0);
+    }
+
+
+
+    handleInterupt(_interuptDevice){
+        if(this.interuptDriver==this){
+            this.onInterupt(_interuptDevice);
+        }else{
+            this.interuptDriver.handleInterupt(_interuptDevice);
+        }
+    }
+
+    onInterupt(_interuptDevice){
+        const vector =_interuptDevice.getInteruptVector();
+        this.RZregister.setValue(this.RZregister.getValue()|vector);
+
     }
 
 

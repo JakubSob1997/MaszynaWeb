@@ -2,7 +2,7 @@ import ValueDisplayer from "./value-displayer.js"
 import { SignalOrientation,ValueDisplayEnum } from "./enums.js";
 import MachineViewRegister from "./machine-vew-register.js";
 import MachineViewSignal from "./machine-view-signal.js";
-
+import MachineViewIntButton from "./machine-view-int-button.js"
 
 
 
@@ -73,7 +73,7 @@ export default class MachineView{
         });
         
 
-        this.setRZButtons(this.M.RZ_register);
+        this.setIntButtons(this.M.InteruptDevices);
 
         this.setupBusHorizontal(this.M.S_bus,"s-bus")
         this.setupBusHorizontal(this.M.A_bus,"a-bus")
@@ -156,17 +156,7 @@ export default class MachineView{
             this.memViews.push(element);
             wrapper.appendChild(element);
 
-            _memory.addOnValueChangedCallback((_mem,_adr)=>{
-                element.children[_adr].innerHTML=this.displayMemoryEntry(_mem,_adr);
-            });
-
-            _memory.addOnMemoryChangedCallback((_mem)=>{
-                for (let index = 0; index < element.children.length; index++) {
-                    const child = element.children[index];
-                    child.innerHTML=this.displayMemoryEntry(_mem,index);
-                }
-                
-            });
+            
             element.highlight = 0;
             this.M.A_register.addOnUpdateCallback(_reg=>{
                 const adr = _reg.getValue();
@@ -199,12 +189,37 @@ export default class MachineView{
             _RZreg.update();
         };
         element.innerHTML=_label;
-        element.classList.add("rz-button");
+        element.classList.add("int-button");
         element.classList.add("custom-btn");
         return element;
     }
 
-
+    setIntButtons(_interuptDevices){
+        let buttonWrappers = document.getElementsByClassName("rz-1");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            const view =  new MachineViewIntButton(this,_interuptDevices.button1,"1");
+            wrapper.appendChild(view.getHTMLElement());
+        }
+        buttonWrappers = document.getElementsByClassName("rz-2");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            const view =  new MachineViewIntButton(this,_interuptDevices.button2,"2");
+            wrapper.appendChild(view.getHTMLElement());
+        }
+        buttonWrappers = document.getElementsByClassName("rz-3");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            const view =  new MachineViewIntButton(this,_interuptDevices.button3,"3");
+            wrapper.appendChild(view.getHTMLElement());
+        }
+        buttonWrappers = document.getElementsByClassName("rz-4");
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            const view =  new MachineViewIntButton(this,_interuptDevices.button4,"4");
+            wrapper.appendChild(view.getHTMLElement());
+        }
+    }
     setRZButtons(_RZreg){
         let buttonWrappers = document.getElementsByClassName("rz-1");
         for (let index = 0; index < buttonWrappers.length; index++) {

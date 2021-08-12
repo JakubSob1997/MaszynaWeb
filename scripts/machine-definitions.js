@@ -13,6 +13,7 @@ import IOUnit from "./io-unit.js";
 import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
 import buildIODevices from "./io-definitions.js";
+import buildInteruptDevices from "./interupt-definitions.js";
 
 function setupFlagUnit(_flagUnit){
     
@@ -159,7 +160,8 @@ export default function buildMachine(_Machine){
     _Machine.IODevices=IODevices;
 
 
-
+    let InteruptDevices = buildInteruptDevices(InteruptUnt);
+    _Machine.InteruptDevices = InteruptDevices;
 
 
 
