@@ -3,7 +3,7 @@
 import SidebarContent from "./sidebar-content.js";
 import { 
     SimolationLevelSetting,
-    BusWidthSetting,
+    BusWidthSettingView,
     ExtnetionPickerSetting,
     InteruptAdressSetting,
     IOInteruptSetting,
@@ -40,7 +40,7 @@ export default class SettingsInspector extends SidebarContent{
         this.wrapper.classList.add("generic-inspector");
 
         this.simulationLevelSetting = new SimolationLevelSetting();
-        this.busWidthSetting = new BusWidthSetting(_Machine.settings);
+        this.busWidthSetting = new BusWidthSettingView(_Machine.settings);
         this.extnetionPickerSetting = new ExtnetionPickerSetting();
         this.intAdressSetting=new InteruptAdressSetting();
         this.ioInteruptSetting = new IOInteruptSetting();

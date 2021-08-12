@@ -2,6 +2,18 @@ import Alerter from "./alerter.js"
 import Signal from "./signal.js"
 import { ExtnensionFlags, SignalOrientation,JALOperationEnum} from "./enums.js";
 
+/*
+    Daaaammn...
+    This file is Loooong..
+
+    And also it defines all the signals in a
+    nit nd shrt func called addAllSignals()
+
+    I recomend Ctrl+F to navigate in this file
+*/
+
+
+
 
 export default function addAllSignals(_Machine){
     addMemorySignals(_Machine);

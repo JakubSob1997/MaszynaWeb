@@ -1,4 +1,11 @@
 
+/*
+
+    Alerter is a singleton object akin to something like console
+*/
+
+
+
 
  const Alerter = {
 

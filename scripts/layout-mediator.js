@@ -1,5 +1,11 @@
 
+/*
+    This guy is responible with layout <-> scripts communication
 
+    I called him mediator not beacause of mediator pattern but
+    because he deals with layout.js that absolutley no one 
+    wants to associate with.
+*/
 
 let LayoutMediator={
     showLeftPanel:function(){console.log("overide me");},

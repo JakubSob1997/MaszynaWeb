@@ -41,9 +41,6 @@ export default class ConfirmButton extends CustomElement{
         if(this.isReady){
             this.setReady(false);
         }
-        /*
-        this.element.blur();
-        */
     }
 
 

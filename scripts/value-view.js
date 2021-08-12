@@ -26,7 +26,6 @@ export default class ValueView{
     }
 
     setOnWriteButton(_funk){
-        
         this.submitFunks.push(_funk)
     }
     setOnPlusOneButton(_funk){

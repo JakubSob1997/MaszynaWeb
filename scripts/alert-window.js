@@ -58,7 +58,6 @@ export default class AlertWindow extends IAlertReciever{
         if(nextFocus!=null){
             nextFocus.lastChild.focus();
         }
-
         this.wrapper.removeChild(element)
 
         

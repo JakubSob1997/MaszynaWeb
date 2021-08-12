@@ -46,9 +46,6 @@ export default class AssemblyEditor extends SidebarContent{
         this.title.setAttribute("tabindex",-1);
         this.textArea.setAttribute("spellcheck","false");
 
-
-
-
         this.wrapper.classList.add("generic-inspector")
         this.loadButton.classList.add("custom-btn");
         
@@ -95,7 +92,6 @@ export default class AssemblyEditor extends SidebarContent{
             
             this.M.MEM.loadMemory( this.parser.values);
 
-            
             Alerter.sendMessage("Program załadowany poprawnie!",AlertStyleEnum.Succes);
         }else{
 

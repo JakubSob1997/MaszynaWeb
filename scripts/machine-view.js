@@ -1,6 +1,7 @@
 import ValueDisplayer from "./value-displayer.js"
 import { SignalOrientation,ValueDisplayEnum } from "./enums.js";
 import MachineViewRegister from "./machine-vew-register.js";
+import MachineViewSignal from "./machine-view-signal.js";
 
 
 
@@ -96,64 +97,6 @@ export default class MachineView{
     }
 
 
-    createSignalElement(_signal){
-        let element  = document.createElement("button")
-
-        if(this.M.manualControll==false){
-            element.setAttribute("disabled","true");
-        }
-        
-        element.classList.add("sig");
-
-        if(_signal.isImpulse){
-            element.classList.add("sig-impulse");
-        }
-
-        if(_signal.orientation==SignalOrientation.Right){
-            element.classList.add("sig-right");
-        }else if(_signal.orientation==SignalOrientation.Left){
-            element.classList.add("sig-left");
-        }
-        element.innerHTML=_signal.name;
-
-
-
-        _signal.addOnUpdateCallback(_sig=>{
-
-            if((this.M.settings.extentionFlags & _sig.getExtention()) === 0 ){
-                element.classList.add("sig-hidden");
-            }else{
-                element.classList.remove("sig-hidden");
-            }
-
-            if(this.M.isSignalSelected(_signal.name)){
-            
-                element.classList.add("sig-selected");
-            }else{
-                element.classList.remove("sig-selected");
-            }
-        });
-
-
-        element.onclick =()=>{
-            let name = _signal.name;
-            if(this.M.manualControll){
-                if(this.M.isSignalSelected(name)){
-                    this.M.deSelectSignalManual(name);
-                }else{
-                    this.M.selectSignalManual(name);
-                }
-            }
-
-            
-        };
-
-        
-        _signal.update();
-        return element;
-    }
-
-
     setupSignalViews(_signalDict){
         for (const signalName in _signalDict) {
             if (Object.hasOwnProperty.call(_signalDict, signalName)) {
@@ -163,10 +106,10 @@ export default class MachineView{
                 
                 for (let i = 0; i < signalWrappers.length; i++) {
                     const wrapper = signalWrappers[i];
-                    const sigView = this.createSignalElement(signal);
+                    const sigView = new MachineViewSignal(this,signal);
 
                     this.signalViews.push(sigView);
-                    wrapper.appendChild(sigView); 
+                    wrapper.appendChild(sigView.getHTMLElement()); 
                 } 
             }
         }

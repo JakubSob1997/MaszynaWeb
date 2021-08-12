@@ -34,10 +34,6 @@ export default class ValueDisplayer{
 
 
     toOpCodeArgument(_value,_bitWidth,_bitmask){
-        /*
-        if((this.settings.codeMask&_bitmask) == 0){
-            return _value.toString(10);
-        }*/
 
         const opcode = this.settings.getOpcode(_value)
         let code;
@@ -46,7 +42,7 @@ export default class ValueDisplayer{
             code = this.instructionList.getInstruction(opcode).name;
         }else{
             code="???"
-        }
+        }           
 
         arg = (_value&this.settings.adressMask).toString(10);
 

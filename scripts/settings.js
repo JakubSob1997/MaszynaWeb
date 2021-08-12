@@ -28,7 +28,6 @@ export class SettingsSerializer{
 
 
 
-
 export default class Settings{
 
     static MinCodeWidth = 0;

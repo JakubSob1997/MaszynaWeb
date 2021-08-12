@@ -1,6 +1,30 @@
 
 import LayoutMediator from "./layout-mediator.js";
 
+/*
+    This pice of steaming hot garbage code is a mess by design.
+    Don't you ever try to imporoty this file into any other files
+    Just use singleton object LayoutMediator for comunication
+
+    All of this code does is amanage the widths of both sidepanels.
+
+    Only two important functions are
+        scrollLeft()
+        srollRight()
+    They set left/right panel widths in vw units 
+    and resize other elements to match.
+
+    Everything else are just event handlers and
+    difrent variaties of using srollLeft() and scrollRight()
+
+    Example:
+    scrollLeft(100)
+        will set left to maz width and shrink everything else acordingly;
+
+*/
+
+
+
 
 
 const minBarWidth = 8;

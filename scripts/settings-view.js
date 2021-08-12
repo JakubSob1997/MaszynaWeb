@@ -48,7 +48,7 @@ export class ExtnetionPickerSetting extends SettingView{
 }
 
 
-export class BusWidthSetting extends SettingView{
+export class BusWidthSettingView extends SettingView{
 
     constructor(_Settings){
         super("Szerokość magistral");

@@ -56,16 +56,22 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
         
     }
 
-    write(){
-        return this.RB_register.getValue();
-    }
+    /*
+        I can read, I can write, I can confirm
+        That's why I am an IODriver
+    */
 
+    
     read(_value){
         if(isNaN(_value)||typeof(_value)!="number"){
             Alerter.alert("Input: "+_value+" is not a number.");
             return;
         }
         this.RB_register.setValue(Math.floor(_value));
+    }
+
+    write(){
+        return this.RB_register.getValue();
     }
 
     confirm(){

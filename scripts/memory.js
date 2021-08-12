@@ -66,9 +66,6 @@ export default class Mamory extends MachineComponent{
         }
     }
 
-    resetState(){
-
-    }
     onBusWidthChanged(_settings){
         this.resize(_settings.adressWidth);
     }

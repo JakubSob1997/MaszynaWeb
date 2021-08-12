@@ -22,7 +22,7 @@ export class IOAlerterPrint extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==null){
+        if(_IODriver==undefined){
             console.log("No io driver provided");
             return;
         }
@@ -41,7 +41,7 @@ export class IOAlerterClear extends IODevice{
 
 
     start(_IODriver){
-        if(_IODriver==null){
+        if(_IODriver==undefined){
             console.log("No io driver provided");
             return;
         }

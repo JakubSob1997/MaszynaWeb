@@ -1,8 +1,8 @@
 
 
-import AlerterDevice from "./alerter-device.js";
-import IORandom from "./random-device.js";
-import ConsoleDevice from "./console-device.js";
+import AlerterDevice from "./io-alerter-device.js";
+import IORandom from "./io-random-device.js";
+import ConsoleDevice from "./io-console-device.js";
 
 
 

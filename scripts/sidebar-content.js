@@ -3,7 +3,10 @@
 
 
 
-
+/*
+    It's for inspectors just in case
+    I need to add some default behaivour to them
+*/
 export default class SidebarContent{
 
     constructor(){

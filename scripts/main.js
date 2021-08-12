@@ -17,7 +17,7 @@ import {runMachine} from "./machine-execution.js";
 
 const alertAreaELement = document.getElementById("alert-area");
 const alertWindow =  new  AlertWindow(alertAreaELement)
-const alertTerminator=new AlertTerminator();
+const alertTerminator= new AlertTerminator();
 
 
 Alerter.sendMessage("Witaj w symulatorze Maszyny W!",AlertStyleEnum.Large);
@@ -50,8 +50,6 @@ M.addOnManualToggleCallback((_isManual)=>{
 })
 
 
-var loadCodeButton = document.getElementById("load-code-button");
-
 
 const MView = new MachineView(M);
 MView.setupMachine();
@@ -70,20 +68,6 @@ var editorManager = new EditorManager(editorElement,M,MView);
 inspectorManager.instructionInspector.addInstructionSelectedCallback((_instruction)=>{
     editorManager.drawEditorForInstruction(_instruction);
 })
-
-
-/*
-var insInsepctor = new InstructionInspector(M.instructionList);
-const elee = document.getElementById("instr-list-test");
-elee.appendChild(insInsepctor.getHTMLElement());
-
-
-var insEditor =  new InstructionEditor();
-document.getElementById("instr-editor-test").appendChild(insEditor.getHTMLElement());
-
-var assemblyEditor = new AssemblyEditor(M);
-
-*/
 
 
 
@@ -110,10 +94,6 @@ let showFileButton =  document.getElementById("file-nav")
 showFileButton.onclick=()=>{
     inspectorManager.drawInspectorForFile();
 }
-
-
-//settings-nav
-//
 
 
 

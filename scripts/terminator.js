@@ -1,4 +1,11 @@
 
+/*
+    1 Singleton - Terminator
+    1 Goal - Terminator.terminate();
+
+    It is used to turn of machine execution at any point of the code
+*/
+
 
 let Terminator ={
 

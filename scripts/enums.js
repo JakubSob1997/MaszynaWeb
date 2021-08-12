@@ -17,38 +17,57 @@ export const  MatchRegisterWidthEnum = {
 }
 Object.freeze(MatchRegisterWidthEnum);
 
+
+/*
+    Yeah yeah.. I know those fellas down there
+    probably should have been funcs
+*/
+
 export const JALOperationEnum = {
-    "Unselected":0,
-    "PRZEP":1,
-    "DOD":2,
-    "ODE":3,
-    "NEG":4,
-    "LUB":5,
-    "I":6,
-    "MNO":7,
-    "DZIEL":8,
-    "SHR":9,
+    Unselected:0,
+    PRZEP:1,  //write
+    DOD:2,    //add
+    ODE:3,    //substract
+    NEG:4,    //logical not
+    LUB:5,    //logical or
+    I:6,      //logical and
+    MNO:7,    //multiply
+    DZIEL:8,  //divide
+    SHR:9,    //bitshift 1 right
+    MOD:10,   //modulo
 }
 Object.freeze(JALOperationEnum);
 
 
 
 export const ExtnensionFlags = {
-    "Base":1<<0,
-    "BusConnection" :1<<1,
-    "AK_Increment":1<<2,
-    "JAL_Logic":1<<3,
-    "JAL_ExtendedMath":1<<4,
-    "Stack":1<<5,
-    "X_Register":1<<6,
-    "Y_Register":1<<7,
-    "Interupt":1<<8,
-    "InputOutput":1<<9,
-    "Flags":1<<10,
+    Base:1<<0,
+    BusConnection:1<<1,
+    AK_Increment:1<<2,
+    JAL_Logic:1<<3,
+    JAL_ExtendedMath:1<<4,
+    Stack:1<<5,
+    X_Register:1<<6,
+    Y_Register:1<<7,
+    Interupt:1<<8,
+    InputOutput:1<<9,
+    Flags:1<<10,
 
 
 }
 Object.freeze(ExtnensionFlags);
+
+
+export const IOModuleFlags={
+    Base:1<<0,
+    ConsoleExteneded:1<<1,
+    Notificatior:1<<2,
+    RNG:1<<3,
+    Timer1:1<<4,
+    Timer2:1<<5,
+
+}
+Object.freeze(IOModuleFlags);
 
 export const ExtentionPresets = {
     "W":0b1,
@@ -81,9 +100,12 @@ Object.freeze(AlertStyleEnum);
 
 
 export const InteruptEnum={
+    None:0,
     INT1:0b1000,
     INT2:0b0100,
     INT3:0b0010,
     INT4:0b0001,
 }
 Object.freeze(InteruptEnum)
+
+

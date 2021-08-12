@@ -51,6 +51,9 @@ export default class InsperctorManger{
         
     }
 
+
+    //ALll the fucs down from thera are only to have explicit names for callbacks
+
     drawInspectorForRegister(_reg){
         this.registerInspector.selectRegister(_reg);
         this.selectCurrentInspector(this.registerInspector);
