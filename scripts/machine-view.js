@@ -181,19 +181,6 @@ export default class MachineView{
     }
 
 
-
-    createRZButton(_RZreg,_index,_label){
-        let element  = document.createElement("button")
-        element.onclick=()=>{
-            _RZreg.value = _RZreg.getValue()|(1<<(_RZreg.width-1))>>_index;
-            _RZreg.update();
-        };
-        element.innerHTML=_label;
-        element.classList.add("int-button");
-        element.classList.add("custom-btn");
-        return element;
-    }
-
     setIntButtons(_interuptDevices){
         let buttonWrappers = document.getElementsByClassName("rz-1");
         for (let index = 0; index < buttonWrappers.length; index++) {
@@ -220,30 +207,7 @@ export default class MachineView{
             wrapper.appendChild(view.getHTMLElement());
         }
     }
-    setRZButtons(_RZreg){
-        let buttonWrappers = document.getElementsByClassName("rz-1");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            wrapper.appendChild(this.createRZButton(_RZreg,0,1));
-        }
-        buttonWrappers = document.getElementsByClassName("rz-2");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            wrapper.appendChild(this.createRZButton(_RZreg,1,2));
-        }
-        buttonWrappers = document.getElementsByClassName("rz-3");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            wrapper.appendChild(this.createRZButton(_RZreg,2,3));
-        }
-        buttonWrappers = document.getElementsByClassName("rz-4");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            wrapper.appendChild(this.createRZButton(_RZreg,3,4));
-        }
-    }
-
-
+  
 
     displayBus(_bus,_busElement){
         if(_bus.hasValue()){

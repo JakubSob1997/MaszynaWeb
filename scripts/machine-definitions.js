@@ -156,8 +156,8 @@ export default function buildMachine(_Machine){
 
     //IO
     
-    let IODevices   = buildIODevices(_IOUnit);
-    _Machine.IODevices=IODevices;
+    let Devices   = buildIODevices(_IOUnit);
+    _Machine.Devices=Devices;
 
 
     let InteruptDevices = buildInteruptDevices(InteruptUnt);

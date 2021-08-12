@@ -5,25 +5,25 @@
 
 
 
-.device-list >.device-entry:nth-child(odd){
+.io-device-list >.io-device-entry:nth-child(odd){
     background: var(--odd-list-color);
 
 }
 
-.device-list >.device-entry:nth-child(even){
+.io-device-list >.io-device-entry:nth-child(even){
     background: var( --even-list-color);
     
 }
 
-.device-list>:first-child{
+.io-device-list>:first-child{
     font-weight: bold;
 }
 
-.device-list{
+.io-device-list{
     min-width: min-content;
 }
 
-.device-entry{
+.io-device-entry{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,14 +35,14 @@
     border-radius: 0.5em;
 }
 
-.device-entry>:first-child{
+.io-device-entry>:first-child{
     min-width: 3em;
 }
 
 
 
 
-.device-entry *{
+.io-device-entry *{
     white-space: nowrap;
 }
 

@@ -20,7 +20,7 @@ export default class InsperctorManger{
         this.instructionInspector = new InstructionInspector(_Machine.instructionList);
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
-        this.inputOutputInspector = new IOInspector(_Machine.IOUnit,_Machine.IODevices);
+        this.inputOutputInspector = new IOInspector(_Machine);
         this.settingsInspector = new SettingsInspector(_Machine);
         this.fileInspector = new FileSInspector();
 
