@@ -2,6 +2,7 @@ import ValueDisplayer from "./value-displayer.js"
 import { SignalOrientation,ValueDisplayEnum } from "./enums.js";
 import MachineViewRegister from "./machine-vew-register.js";
 import MachineViewSignal from "./machine-view-signal.js";
+import MachineViewMemory from "./machine-view-memory.js";
 import MachineViewIntButton from "./machine-view-int-button.js"
 
 
@@ -68,9 +69,6 @@ export default class MachineView{
 
         
         this.setupMemoryViews(this.M.MEM)
-        this.memViews.forEach(view => {
-            this.fillMemoryView(this.M.MEM,view);
-        });
         
 
         this.setIntButtons(this.M.InteruptDevices);
@@ -116,96 +114,37 @@ export default class MachineView{
     }
 
 
-
-    displayMemoryEntry(_memory,_adress){
-        const val = _memory.getValue(_adress);
-
-        const decimal =this.valueDisplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
-
-        const code =this.valueDisplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
-
-        return _adress+": "+decimal+" "+code;
-
-    }
-
-    createMemoryBodyElement(_memory){
-        let element  = document.createElement("div")
-        element.classList.add("mem");
-        return element;
-    }
-
-    createMemoryEntryElement(_memory,_adress){
-        let element  = document.createElement("div")
-        element.classList.add("mem-entry");
-        element.innerHTML=this.displayMemoryEntry(_memory,_adress);
-        element.onclick = ()=>{this.selectMemorySlot(_adress)};
-        
-        return element;
-    }
-
-
     setupMemoryViews(_memory){
         const memWrapperName = "mem-body";
         let memWrappers = document.getElementsByClassName(memWrapperName);
 
         for (let index = 0; index < memWrappers.length; index++) {
             const wrapper = memWrappers[index];
-            const element = this.createMemoryBodyElement(_memory);
+            const element = new MachineViewMemory(this,_memory);
 
-
+            
             this.memViews.push(element);
-            wrapper.appendChild(element);
-
-            
-            element.highlight = 0;
-            this.M.A_register.addOnUpdateCallback(_reg=>{
-                const adr = _reg.getValue();
-                element.children[element.highlight].classList.remove("mem-entry-selected");
-                element.children[adr].classList.add("mem-entry-selected");
-                element.highlight = adr;
-
-            })
+            wrapper.appendChild(element.getHTMLElement());
             
         }
     }
 
 
-    fillMemoryView(_memory, _view){
 
-        for (let adress = 0; adress < _memory.length(); adress++) {
-            const element = this.createMemoryEntryElement(_memory,adress);
-
-            _view.appendChild(element);
-            
+    setIntButton(_wrapperName,_intDevice,_label){
+        const buttonWrappers = document.getElementsByClassName(_wrapperName);
+        for (let index = 0; index < buttonWrappers.length; index++) {
+            const wrapper = buttonWrappers[index];
+            const view =  new MachineViewIntButton(this,_intDevice,_label);
+            wrapper.appendChild(view.getHTMLElement());
         }
     }
-
 
     setIntButtons(_interuptDevices){
-        let buttonWrappers = document.getElementsByClassName("rz-1");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            const view =  new MachineViewIntButton(this,_interuptDevices.button1,"1");
-            wrapper.appendChild(view.getHTMLElement());
-        }
-        buttonWrappers = document.getElementsByClassName("rz-2");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            const view =  new MachineViewIntButton(this,_interuptDevices.button2,"2");
-            wrapper.appendChild(view.getHTMLElement());
-        }
-        buttonWrappers = document.getElementsByClassName("rz-3");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            const view =  new MachineViewIntButton(this,_interuptDevices.button3,"3");
-            wrapper.appendChild(view.getHTMLElement());
-        }
-        buttonWrappers = document.getElementsByClassName("rz-4");
-        for (let index = 0; index < buttonWrappers.length; index++) {
-            const wrapper = buttonWrappers[index];
-            const view =  new MachineViewIntButton(this,_interuptDevices.button4,"4");
-            wrapper.appendChild(view.getHTMLElement());
-        }
+        this.setIntButton("rz-1",_interuptDevices.button1,"1")
+        this.setIntButton("rz-2",_interuptDevices.button2,"2")
+        this.setIntButton("rz-3",_interuptDevices.button3,"3")
+        this.setIntButton("rz-4",_interuptDevices.button4,"4")
     }
   
 

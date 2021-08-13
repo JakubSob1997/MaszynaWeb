@@ -40,8 +40,8 @@ export default class IOInspector extends SidebarContent{
         this.deviceListWrapper=document.createElement("div");
         this.ioDeviceListLabel=document.createElement("h4");
         this.ioDeviceList=new IODeviceListView(_IOUnit.devices);
-        this.intDeviceListLabel=document.createElement("h4");
-        this.interuptDeviceList = new InteruptDeviceListView(_IntDevices)
+        //this.intDeviceListLabel=document.createElement("h4");
+        //this.interuptDeviceList = new InteruptDeviceListView(_IntDevices)
 
         
         
@@ -59,7 +59,7 @@ export default class IOInspector extends SidebarContent{
         this.showListButton.innerHTML="Lista";
         this.showConsoleButton.innerHTML="Konsola";
         this.ioDeviceListLabel.innerHTML="Lista urządzeń We/Wy"
-        this.intDeviceListLabel.innerHTML="Lista urządzeń przerywających"
+        //this.intDeviceListLabel.innerHTML="Lista urządzeń przerywających"
         
 
         this.header.setAttribute("tabindex",-1);
@@ -71,8 +71,8 @@ export default class IOInspector extends SidebarContent{
 
         this.deviceListWrapper.appendChild(this.ioDeviceListLabel);
         this.deviceListWrapper.appendChild(this.ioDeviceList.getHTMLElement());
-        this.deviceListWrapper.appendChild(this.intDeviceListLabel);
-        this.deviceListWrapper.appendChild(this.interuptDeviceList.getHTMLElement());
+        //this.deviceListWrapper.appendChild(this.intDeviceListLabel);
+        //this.deviceListWrapper.appendChild(this.interuptDeviceList.getHTMLElement());
         
         this.displayArea.appendChild(this.deviceListWrapper);
 
