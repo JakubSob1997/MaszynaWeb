@@ -2,8 +2,8 @@
 import Machine from "./machine.js";
 import buildMachine from"./machine-definitions.js";
 import MachineView from "./machine-view.js";
-import { SettingsSerializer } from "./settings.js";
-import {InstructionListSerializer} from "./instruction-list.js";
+import SettingsSerializer from "./settings-serializer.js";
+import InstructionListSerializer from "./instruction-list-serializer.js";
 import InsperctorManger from "./inspector-manager.js";
 import EditorManager from "./editor-manager.js";
 import AlertWindow from "./alert-window.js";
@@ -13,6 +13,8 @@ import AlertTerminator from "./alert-terminator.js";
 import {runMachine} from "./machine-execution.js";
 
 
+
+import InstructionListData from "./instruction-list-data.js";
 
 
 const alertAreaELement = document.getElementById("alert-area");
@@ -34,7 +36,7 @@ M.IOUnit.ioDriver= {
 */
 
 M.setSettings( SettingsSerializer.getDefault());
-M.setInstructionList(InstructionListSerializer.getDefault());
+M.setInstructionList(InstructionListData.getDefault());
 
 M.addOnManualToggleCallback((_isManual)=>{
     const signals = document.querySelectorAll("button.sig");

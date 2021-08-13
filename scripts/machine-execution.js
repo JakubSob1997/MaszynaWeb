@@ -7,6 +7,16 @@ export function runMachine(_Machine){
     runMachineNonBlocking(_Machine);
 }
 
+export function runSingleInstruction(_Machine){
+
+}
+
+export function runCycle(_Machine){
+
+}
+
+
+
 
 
 function runMachineBlocking(_Machine){

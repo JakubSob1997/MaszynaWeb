@@ -2,7 +2,7 @@
 import LayoutMediator from "./layout-mediator.js";
 
 /*
-    This pice of steaming hot garbage code is a mess by design.
+    This pice of code is a mess by design.
     Don't you ever try to imporoty this file into any other files
     Just use singleton object LayoutMediator for comunication
 

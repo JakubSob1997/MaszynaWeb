@@ -1,0 +1,61 @@
+
+
+
+
+/**
+ * Serializers are supposed to be responsible for comunicating with objects
+ * especcialy during file import and exports
+ */
+
+
+export default class SerializerBase {
+    constructor(){
+
+    }
+
+    getDefault(){
+        console.log("(overide me)SerializerBase.getDefault()")
+        return null;
+    }
+
+    getKeyName(){
+        console.log("(overide me)SerializerBase.getKeyName()")
+        return null;
+    }
+
+    setObjectData(_dataO){
+        console.log("(overide me)SerializerBase.getObjectData()")
+    }
+
+    getObjectData(){
+        console.log("(overide me)SerializerBase.getObjectData()")
+        return null;
+    }
+
+
+    //Default for object type overide for smthing else
+    getFromLocalStorage(){
+        const jsonString = localStorage.getItem(this.getKeyName());
+        let dataObject;
+        if(jsonString==null){
+            dataObject = this.getDefault();
+        }else{
+            dataObject=JSON.parse(jsonString);
+        }
+        return dataObject;
+    }
+
+    //Default for object type overide for smthing else
+    saveToLocalStorage(){
+        const jsonString = JSON.stringify(getObjectData())
+        localStorage.setItem(getKeyName(),jsonString);
+    }
+
+    loadFromLocalStorage(){
+        const dataObject = this.getFromLocalStorage();
+        this.setObjectData(dataObject);
+    }
+
+
+}
+

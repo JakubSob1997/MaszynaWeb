@@ -1,3 +1,4 @@
+import InstructionData from "./instruction-data.js";
 
 
 
@@ -17,6 +18,8 @@ export class InstrCycle {
         this.signals = _signals;
         this.branchCondtions = [];
         this.isFinal = false;
+        this.isPlaceholder=false;
+        this.ogIndex = NaN;
     }
 }
 
@@ -30,7 +33,18 @@ export default class Instruction {
         this.cycles = []
         this.argCount = 1;
     }
+
+    getData(){
+        return new InstructionData(this.name,this.source);
+    }
 }
+
+
+
+
+
+
+
 
 
 

@@ -8,16 +8,7 @@
 import MachineViewElement from "./machine-view-element.js";
 import { ValueDisplayEnum } from "./enums.js";
 
-/*
-element.highlight = 0;
-this.M.A_register.addOnUpdateCallback(_reg=>{
-    const adr = _reg.getValue();
-    element.children[element.highlight].classList.remove("mem-entry-selected");
-    element.children[adr].classList.add("mem-entry-selected");
-    element.highlight = adr;
 
-})
-*/
 export default class MachineViewMemory extends MachineViewElement{
 
 
@@ -40,6 +31,12 @@ export default class MachineViewMemory extends MachineViewElement{
 
         this.addCallbacks()
 
+    }
+
+    setNewHighlight(_adress){
+        this.entries[this.highlightIndex]?.setHighlight(false);
+        this.entries[_adress]?.setHighlight(true);
+        this.highlightIndex = _adress;
     }
 
     build(_machineView,_memory){
@@ -96,9 +93,7 @@ export default class MachineViewMemory extends MachineViewElement{
 
         this.machineView.M.A_register.addOnUpdateCallback(_reg=>{
             const adr = _reg.getValue();
-            this.entries[this.highlightIndex].setHighlight(false);
-            this.entries[adr].setHighlight(true);
-            this.highlightIndex = adr;
+            this.setNewHighlight(adr);
         
         })
     }

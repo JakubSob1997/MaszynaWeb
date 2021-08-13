@@ -1,30 +1,9 @@
 
 import { ExtentionPresets } from "./enums.js";
 import Terminator from "./terminator.js";
+import SettingsSerializer from "./settings-serializer.js";
 
 
-
-export class SettingsSerializer{
-    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList){
-        this.codeWidth=_codeWidth;
-        this.adressWidth=_adressWidth;
-        this.extentionFlags = _extentionFlags;
-        this.intAdressList = _intAdressList;
-    }
-
-    static getDefault(){
-        return new SettingsSerializer(
-            4,
-            5,
-            ExtentionPresets.EW,
-            [1,2,3,4]
-            );
-    }
-
-    static getSerializer(_settings){
-        return new SettingsSerializer(_settings.codeWidth,_settings.adressWidth,_settings.extentionFlags);
-    }
-}
 
 
 

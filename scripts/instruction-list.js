@@ -2,33 +2,35 @@
 import Instruction,{InstrCycle,BranchCondition} from "./instruction.js"
 import InstrcutionParser from "./instruction-parser.js";
 import Terminator from "./terminator.js";
+import InstructionListData from "./instruction-list-data.js";
+
 
 export default class InstructionList{
 
 
-    static getDeserializedList(_instructionListSerializer,_singnalDictionary){
+    static getDeserializedList(_instructionListData,_singnalDictionary){
         
         let instrList =  new InstructionList();
-        instrList.setupValues(_instructionListSerializer,_singnalDictionary);
+        instrList.setupValues(_instructionListData,_singnalDictionary);
         
     }
 
 
     static getDefaultInstructionList(_singnalDictionary){
-        return InstructionList.getDeserializedList(InstructionListSerializer.getDefault(),_singnalDictionary);
+        return InstructionList.getDeserializedList(InstructionListData.getDefault(),_singnalDictionary);
     }
 
 
     
 
-    setupValues(_instructionListSerializer,_singnalDictionary){
+    setupValues(_instrListData,_singnalDictionary){
 
-        const sourceArr  =_instructionListSerializer.instructionArray
+        const instructionDatas  =_instrListData.intructionDataArray
 
         this.instructionArray=[];
 
-        for (let i = 0; i < sourceArr.length; i++) {
-            const source = sourceArr[i];
+        for (let i = 0; i < instructionDatas.length; i++) {
+            const source = instructionDatas[i].sourceCode;
 
             const parseResult = new InstrcutionParser(source);
             this.instructionArray.push(parseResult.toInstruction());
@@ -215,94 +217,3 @@ export default class InstructionList{
 
 }
 
-
-
-export class InstructionListSerializer{
-    constructor(_instrSourceArray){
-        this.instructionArray = _instrSourceArray;
-    }
-
-    
-
-    static serializeList(_instructionList){
-        return new InstructionListSerializer(_instructionList.instructionArray);
-    }
-
-
-    static getDefault(){
-
-
-        const STP  = 
-            "ROZKAZ STP;\n"+
-            "BEZARG;\n"+
-            "czyt wys wei il;\n"+
-            "stop;\n"
-        
-        const DOD = 
-            "ROZKAZ DOD;\n"+
-            "czyt wys wei il;\n"+
-            "wyad wea;\n"+
-            "wyl wea czyt wys weja dod weak;\n";
-
-        const ODE = 
-            "ROZKAZ ODE;\n"+
-            "czyt wys wei il;\n"+
-            "wyad wea;\n"+
-            "wyl wea czyt wys weja ode weak;\n";
-        
-        const POB = 
-            "ROZKAZ POB;\n"+
-            "czyt wys wei il;\n"+
-            "wyad wea;\n"+
-            "wyl wea czyt wys weja przep weak;\n";
-        
-        const LAD = 
-            "ROZKAZ LAD;\n"+
-            "czyt wys wei il;\n"+
-            "wyad wea wyak wes;\n"+
-            "pisz wyl wea;\n";
-        
-
-        const SOB=
-            "ROZKAZ SOB;\n"+
-            "czyt wys wei il;\n"+
-            "wyad wea wel;\n";
-        
-        const SOM=
-            "ROZKAZ SOM;\n"+
-            "czyt wys wei il;\n"+
-            "JEZELI Z @skok;\n"+
-            "wyl wea KONIEC;\n"+
-            "@skok wyad wea wel;\n";
-
-        const SOZ=
-            "ROZKAZ SOZ;\n"+
-            "czyt wys wei il;\n"+
-            "JEZELI ZAK @skok;\n"+
-            "wyl wea KONIEC;\n"+
-            "@skok wyad wea wel;\n";
-
-
-        const IN ="\nROZKAZ IN;\nczyt wys wei il;\nwyak weja ode weak start;\n@wait wyg weja ode weak;\nJEzELI Z TO @done GDY NIE @wait;\n@done wyrb weja przep weak wyl wea;"
-        const OUT  = "\n\nROZKAZ OUT;\nczyt wys wei il;\nwyak werb wes weja ode weak start;\n@wait wyg weja ode weak;\nJezeli z to @done gdy nie @wait;\n@done wys weja przep weak wyl wea;";
-        
-        const sourceCodes = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ,IN,OUT]
-
-        return new InstructionListSerializer(sourceCodes)
-    }
-
-
-}
-
-
-/*
-    ODE_inst.source=
-            "ROZKAZ ODE;\n"+
-            "czyt wys wei il;\n"+
-            "wyad wea eni;\n"+
-            "JEZELI INT @przerw;\n"+
-            "wyl wea czyt wys weja ode weak wyl KONIEC;\n"+
-            "@przerw wyls wes wyws wea;\n"+
-            "pisz wyap wel wea rint";
-
-*/

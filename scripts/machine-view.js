@@ -23,8 +23,6 @@ export default class MachineView{
         this.registerViews = [];
         this.signalViews=[];
         this.busViews =[];
-        this.jalView=null;
-
         this.memViews = [];
 
 
