@@ -8,22 +8,23 @@ import InstructionListData from "./instruction-list-data.js";
 export default class InstructionList{
 
 
-    static getDeserializedList(_instructionListData,_singnalDictionary){
+    static getDeserializedList(_instructionListData,_instructionValidator){
         
         let instrList =  new InstructionList();
-        instrList.setupValues(_instructionListData,_singnalDictionary);
-        
+
+        instrList.setupValues(_instructionListData,_instructionValidator);
+        return instrList;
     }
 
 
-    static getDefaultInstructionList(_singnalDictionary){
-        return InstructionList.getDeserializedList(InstructionListData.getDefault(),_singnalDictionary);
+    static getDefaultInstructionList(_instructionValidator){
+        return InstructionList.getDeserializedList(InstructionListData.getDefault(),_instructionValidator);
     }
 
 
     
 
-    setupValues(_instrListData,_singnalDictionary){
+    setupValues(_instrListData,_instructionValidator){
 
         const instructionDatas  =_instrListData.intructionDataArray
 
@@ -35,6 +36,8 @@ export default class InstructionList{
             const parseResult = new InstrcutionParser(source);
             this.instructionArray.push(parseResult.toInstruction());
         }
+
+        
 
         this.reindexDictionary();
     }
@@ -48,6 +51,8 @@ export default class InstructionList{
         this.onInstructionChangedCallbacks=[];
     }
 
+
+    
 
     addOnInstructionDeletedCallback(_funk){
         this.onInstructionDeletedCallbacks.push(_funk);
@@ -212,6 +217,18 @@ export default class InstructionList{
 
         return parser.toInstruction();
 
+    }
+
+    getDataObject(){
+
+
+        let instrDatas  = [];
+
+        this.instructionArray.forEach(instr=>{
+            instrDatas.push(instr.getData())
+        })
+
+        return new InstructionListData(instrDatas);
     }
 
 

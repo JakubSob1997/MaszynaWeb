@@ -376,12 +376,12 @@ export default class InstrcutionParser {
         }
     }
 
-    validate(_Machine) {
+    validate(_instructionValidator) {
         this.parseSuccesful = true;
         this.validateSettings();
-        this.validateLongBranches(_Machine.flagUnit.conditionFlags)
-        this.validateBranches(_Machine.flagUnit.conditionFlags);
-        this.validateSignals(_Machine.singnalDictionary)
+        this.validateLongBranches(_instructionValidator.getFlagsDictionary())
+        this.validateBranches(_instructionValidator.getFlagsDictionary());
+        this.validateSignals(_instructionValidator.getSignalDictionary())
         return this.parseSuccesful;
     }
 

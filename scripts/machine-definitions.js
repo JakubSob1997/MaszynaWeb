@@ -233,10 +233,14 @@ export default function buildMachine(_Machine){
     _Machine.settings.setBusWidth(3,5);
 
 
-    _Machine.instructionList=InstructionList.getDefaultInstructionList();
 
     addAllSignals(_Machine);
 
+    _Machine.instructionList=InstructionList.getDefaultInstructionList(_Machine);
+
+    
+
+    
 }
 
 

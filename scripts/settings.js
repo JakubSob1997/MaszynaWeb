@@ -41,10 +41,19 @@ export default class Settings{
 
 
 
-    setupValues(_settingsSerializer){
-        this.setBusWidth(_settingsSerializer.codeWidth,_settingsSerializer.adressWidth);
-        this.setExtentionFlags(_settingsSerializer.extentionFlags);
-        this.intAdressList = _settingsSerializer.intAdressList;
+    setupValues(_setingsData){
+        this.setBusWidth(_setingsData.codeWidth,_setingsData.adressWidth);
+        this.setExtentionFlags(_setingsData.extentionFlags);
+        this.intAdressList = _setingsData.intAdressList;
+    }
+
+    getDataObject(){
+        return new SettingsData(
+            this.codeWidth,
+            this.adressWidth,
+            this.extentionFlags,
+            this.intAdressList
+        )
     }
 
     setExtentionFlags(_flags){
@@ -102,3 +111,26 @@ export default class Settings{
 
 
 }
+
+
+export class SettingsData{
+
+    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList){
+        this.codeWidth=_codeWidth;
+        this.adressWidth=_adressWidth;
+        this.extentionFlags = _extentionFlags;
+        this.intAdressList = _intAdressList;
+    }
+
+
+    static getDefault(){
+        return new SettingsData(
+            4,
+            5,
+            ExtentionPresets.EW,
+            [1,2,3,4]
+            );
+    }
+    
+}
+

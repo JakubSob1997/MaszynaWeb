@@ -39,6 +39,14 @@ export default class Machine{
 
     }
 
+    getSignalDictionary(){
+        return this.singnalDictionary;
+    }
+
+    getFlagsDictionary(){
+        
+    }
+
     onTerminate(){
         if(this.wasTerminated==false){
             Alerter.sendMessage("Maszyna została zatrzymana!",AlertStyleEnum.ExecutionFlow)

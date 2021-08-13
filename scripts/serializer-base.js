@@ -41,14 +41,17 @@ export default class SerializerBase {
             dataObject = this.getDefault();
         }else{
             dataObject=JSON.parse(jsonString);
+            if(dataObject==null){
+                dataObject=this.getDefault();
+            }
         }
         return dataObject;
     }
 
     //Default for object type overide for smthing else
     saveToLocalStorage(){
-        const jsonString = JSON.stringify(getObjectData())
-        localStorage.setItem(getKeyName(),jsonString);
+        const jsonString = JSON.stringify(this.getObjectData())
+        localStorage.setItem(this.getKeyName(),jsonString);
     }
 
     loadFromLocalStorage(){
