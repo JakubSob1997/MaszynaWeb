@@ -1,7 +1,7 @@
 
 import { ExtentionPresets } from "./enums.js";
 import SerializerBase from "./serializer-base.js";
-import Settings,{SettingsData} from "./Settings.js";
+import Settings,{SettingsData} from "./settings.js";
 
 export default class SettingsSerializer extends SerializerBase{
     

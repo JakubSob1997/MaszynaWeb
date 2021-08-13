@@ -44,7 +44,7 @@ export default class Machine{
     }
 
     getFlagsDictionary(){
-        
+        return this.flagUnit.conditionFlags;
     }
 
     onTerminate(){
