@@ -14,8 +14,9 @@ import {runMachine} from "./machine-execution.js";
 
 import SettingsSerializer from "./settings-serializer.js";
 import InstructionListSerializer from "./instruction-list-serializer.js";
+import SerializerManager from "./serializer-manager.js";
 
-import InstructionListData from "./instruction-list-data.js";
+
 
 
 const alertAreaELement = document.getElementById("alert-area");
@@ -28,13 +29,7 @@ Alerter.sendMessage("Witaj w symulatorze Maszyny W!",AlertStyleEnum.Large);
 const M=new Machine();
 buildMachine(M);
 
-/*
-M.IOUnit.ioDriver= {
-    read:(v)=>{M.X_register.setValue(v)},
-    write:()=>{return M.Y_register.getValue()},
-    confirm:()=>{Alerter.sendMessage("IO Good")}
-}
-*/
+
 
 
 const settingsSeralzier = new SettingsSerializer(M.settings);
@@ -43,12 +38,18 @@ const instructionListSerializer = new InstructionListSerializer(M.instructionLis
 settingsSeralzier.loadFromLocalStorage();
 instructionListSerializer.loadFromLocalStorage();
 
-window.addEventListener("click",()=>{
-    instructionListSerializer.saveToLocalStorage();
-    console.log("asdf");
-})
+SerializerManager.addSerializer(instructionListSerializer);
+SerializerManager.addSerializer(settingsSeralzier);
+
+M.settings.serializer=settingsSeralzier;
+M.instructionList.serializer=instructionListSerializer;
 
 
+console.log(instructionListSerializer.getFromLocalStorage());
+
+//!!!!!!!!!!!!!!!!!!!
+//MOVE THIS TO MACHINE VIEW
+//!!!!!!!!!!!!!!!!!!!
 M.addOnManualToggleCallback((_isManual)=>{
     const signals = document.querySelectorAll("button.sig");
     signals.forEach(element => {
@@ -141,9 +142,6 @@ let runMachineButton=document.getElementById("run-machine-button");
 runMachineButton.addEventListener("click",()=>{
     runMachine(M);
 })
-
-
-
 
 
 

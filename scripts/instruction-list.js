@@ -49,8 +49,15 @@ export default class InstructionList{
 
         this.onInstructionDeletedCallbacks=[];
         this.onInstructionChangedCallbacks=[];
+
+        this.serializer = null; //:SeralizerBase
     }
 
+    save(){
+        if(this.serializer!=null){
+            this.serializer.saveToLocalStorage();
+        }
+    }
 
     
 
@@ -159,7 +166,7 @@ export default class InstructionList{
 
 
     reindexDictionary(){
-        Terminator.terminate();
+        
         this.indexDictionary = [];
         for (let index = 0; index < this.instructionArray.length; index++) {
             const instr = this.instructionArray[index];
@@ -169,6 +176,9 @@ export default class InstructionList{
             }
             
         }
+
+        Terminator.terminate();
+        this.save();
     }
 
 

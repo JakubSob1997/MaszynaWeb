@@ -24,6 +24,14 @@ export default class Settings{
         this.onBusWidthChangedCalbacks =[];
         this.codeMask=0b11100000;
         this.adressMask==0b11111;
+
+        this.serializer = null; //:SeralizerBase
+    }
+
+    save(){
+        if(this.serializer!=null){
+            this.serializer.saveToLocalStorage();
+        }
     }
 
 
@@ -99,6 +107,7 @@ export default class Settings{
         }
 
         Terminator.terminate();
+        this.save();
         this.invokeOnBusWidthChanged();
     }
 
