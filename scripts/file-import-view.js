@@ -13,7 +13,20 @@ export default class FileImportView{
 
     build(){
         this.wrapper=document.createElement("div");
-        this.wrapper.innerHTML="import W.I.P";
+
+        this.header=document.createElement("h4");
+        this.localButton=document.createElement("input");
+        this.localButton.type="file"
+
+        this.header.innerHTML="Impport";
+
+        this.wrapper.appendChild(this.header);
+        this.wrapper.appendChild(this.localButton);
+
+
+        this.localButton.oninput=()=>{
+            console.log(this.localButton.value)
+        }
 
     }
 

@@ -18,6 +18,7 @@ export default class SerializerBase {
         return null;
     }
 
+    //This should be Immutable during the lifespan of that object
     getKeyName(){
         console.log("(overide me)SerializerBase.getKeyName()")
         return null;
