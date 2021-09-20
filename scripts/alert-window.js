@@ -81,10 +81,15 @@ class AlertEntry{
 
         this.text.innerHTML=_messageString;
         this.exitButton.innerHTML="X";
+        
+        
+        this.text.setAttribute("role","alert");
 
         this.wrapper.classList.add("alert-entry");
         this.text.classList.add("alert-text");
         this.exitButton.classList.add("alert-close-button");
+
+
         if(_alertStyle!=undefined){
             this.text.classList.add(_alertStyle);
         }
@@ -92,6 +97,7 @@ class AlertEntry{
 
         this.wrapper.appendChild(this.text);
         this.wrapper.appendChild(this.exitButton);
+
 
         this.exitButton.addEventListener("click",()=>{
             _window.discardEntry(this);

@@ -1,13 +1,8 @@
 
 
-
-import CustomElement from "./custom-element.js";
-
-
-export default class ConfirmButton extends CustomElement{
+export default class ConfirmButtonView /*extends CustomElement*/{
 
     constructor(){
-        super();
 
         this.element = document.createElement("button");
 

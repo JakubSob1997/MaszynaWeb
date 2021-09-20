@@ -1,0 +1,41 @@
+ROZKAZ FIBO;
+//SETUP
+czyt wys wei il;
+wyak weja ode weak;
+wyws wes as;
+wyak wex iak wyad wews;
+wyak wey;
+
+// Ws check
+@loop
+wyws as weak przep weja;
+JEZELI ZAK @end_x;
+
+// Add x
+wyy przep weak weja;
+wyx dod weak weja;
+wyak wex dws;
+
+
+// Ws check
+wyws as weak przep weja;
+JEZELI ZAK @end_y;
+
+//Add y
+wyx przep weak weja;
+wyy dod weak weja;
+wyak wey dws;
+JEZELI NIE Z @loop;
+JEZELI Z @loop;
+
+//End
+@end_x wyx weja przep weak;
+JEZELI NIE Z @end;
+JEZELI Z @end;
+@end_y wyy weja przep weak;
+
+@end
+wyl wea;
+wys as wews;
+
+

@@ -6,6 +6,7 @@ export default  class CustomElement {
     }
 
     getHTMLElement(){
+        console.log("overide me")
         return null;
     }
 }

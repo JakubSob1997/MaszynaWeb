@@ -1,6 +1,6 @@
 
 import SidebarContent from "./sidebar-content.js"
-import ConfirmButton from "./confirm-buttton.js";
+import ConfirmButtonView from "./confirm-buttton-view.js";
 import InstructionList from "./instruction-list.js";
 import Alerter from "./alerter.js";
 
@@ -9,7 +9,7 @@ class InstructionRecord{
     constructor(_instruction,_inspector,_index){
         this.record = document.createElement("li");
         this.name = document.createElement("button");
-        this.removeButton  = new ConfirmButton()
+        this.removeButton  = new ConfirmButtonView()
         this.upButton= document.createElement("button");
         this.downButton=document.createElement("button")
 

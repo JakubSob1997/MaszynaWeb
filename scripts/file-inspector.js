@@ -40,7 +40,6 @@ export default class FileSInspector extends SidebarContent{
 
         this.wrapper.classList.add("generic-inspector");
 
-
         this.header.setAttribute("tabindex",-1);
 
 

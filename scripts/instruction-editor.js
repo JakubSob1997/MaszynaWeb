@@ -2,7 +2,7 @@
 
 
 import SidebarContent from "./sidebar-content.js";
-import ConfirmButton from "./confirm-buttton.js";
+import ConfirmButtonView from "./confirm-buttton-view.js";
 import InstrcutionParser from "./instruction-parser.js";
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
@@ -41,7 +41,7 @@ export default class InstructionEditor extends SidebarContent{
         this.header = document.createElement("h3");
         this.textField = document.createElement("textarea");
         this.saveButon = document.createElement("button");
-        this.deleteButon= new ConfirmButton();
+        this.deleteButon= new ConfirmButtonView();
 
         this.header.setAttribute("tabindex",-1);
         this.textField.setAttribute("spellcheck","false");

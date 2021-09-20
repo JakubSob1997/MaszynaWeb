@@ -6,8 +6,10 @@ import InstructionData from "./instruction-data.js";
 
 
 
-export default class InstructionListData{
+export default class InstructionListData {
     constructor(_instrDataArray){
+
+        
         this.intructionDataArray = _instrDataArray;
     }
 
