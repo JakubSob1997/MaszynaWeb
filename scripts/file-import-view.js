@@ -1,6 +1,6 @@
 
 
-
+import SerializerManager from "./serializer-manager.js";
 
 
 
@@ -15,18 +15,20 @@ export default class FileImportView{
         this.wrapper=document.createElement("div");
 
         this.header=document.createElement("h4");
-        this.localButton=document.createElement("input");
-        this.localButton.type="file"
-
-        this.header.innerHTML="Impport";
+        this.fileInput=document.createElement("input");
+        this.fileInput.type="file"
+        this.fileInput.accept="application/json";
+        this.header.innerHTML="Import";
 
         this.wrapper.appendChild(this.header);
-        this.wrapper.appendChild(this.localButton);
+        this.wrapper.appendChild(this.fileInput);
 
 
-        this.localButton.oninput=()=>{
-            console.log(this.localButton.value)
-        }
+        this.fileInput.addEventListener("input",()=>{
+            if(this.fileInput.files.length>0){
+                SerializerManager.readDataFromJson(this.fileInput.files[0],SerializerManager.serializers);
+            }
+        })
 
     }
 

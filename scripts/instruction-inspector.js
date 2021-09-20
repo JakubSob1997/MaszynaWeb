@@ -129,7 +129,14 @@ export default class InstructionInspector extends SidebarContent{
         this.instructionList.addOnInstuctionChangedCallback(
             (_oldName,_newName,_index)=>{
                 this.onInstructionUpdate(_oldName,_newName,_index)
-            });
+            }
+        );
+
+        this.instructionList.addOnInstructionListChangedCallbacks(
+            (_list)=>{
+                this.onListUpdate(_list);
+            }
+        );
         
     }
 
@@ -175,6 +182,12 @@ export default class InstructionInspector extends SidebarContent{
         this.instructionList.removeInstruction(_index);
         
 
+    }
+
+    onListUpdate(_instructionList){
+        this.recordList=[];
+        this.instructionListElement.innerHTML="";
+        this.createInstructionElments(_instructionList,this.instructionListElement);
     }
 
     onDeleteUpdate(_instr,_index){

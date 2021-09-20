@@ -38,7 +38,7 @@ export default class InstructionList{
         }
 
         
-
+        this.invokeInstructionListChanged();
         this.reindexDictionary();
     }
 
@@ -49,6 +49,7 @@ export default class InstructionList{
 
         this.onInstructionDeletedCallbacks=[];
         this.onInstructionChangedCallbacks=[];
+        this.onInstructionListChangedCallbacks=[];
 
         this.serializer = null; //:SeralizerBase
     }
@@ -69,6 +70,10 @@ export default class InstructionList{
         this.onInstructionChangedCallbacks.push(_funk);
     }
 
+    addOnInstructionListChangedCallbacks(_funk){
+        this.onInstructionListChangedCallbacks.push(_funk);
+    }
+
 
     invokeInstructionDeleted(_instrname,_index){
         this.onInstructionDeletedCallbacks.forEach(funk => {
@@ -79,6 +84,12 @@ export default class InstructionList{
     invokeInstructionChanged(_oldName,_newName,_index){
         this.onInstructionChangedCallbacks.forEach(funk => {
             funk(_oldName,_newName,_index);
+        });
+    }
+
+    invokeInstructionListChanged(){
+        this.onInstructionListChangedCallbacks.forEach(funk => {
+            funk(this);
         });
     }
 

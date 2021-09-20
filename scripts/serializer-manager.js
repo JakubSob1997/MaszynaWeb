@@ -1,5 +1,6 @@
 
-
+import Alerter from "./alerter.js"
+import {AlertStyleEnum} from "./enums.js"
 
 let SerializerManager={
     serializers:{},
@@ -31,9 +32,36 @@ let SerializerManager={
 
         const jsonString = JSON.stringify(exportOpbjject,null,"\t");
         this.exportLocalFile(jsonString,_filename,"application/json")
-    }
+    },
    
+    readDataFromJson:function(_fileObject,_serializerList){
+        let reader = new FileReader();
+        reader.onload=(e)=>{
+            const content = e.target.result;
+            const jsonObj = JSON.parse(content);
 
+            for (const key in jsonObj) {
+                if (Object.hasOwnProperty.call(jsonObj, key)) {
+                    const value = jsonObj[key];
+                    
+                    if(_serializerList.hasOwnProperty(key)){
+                        const serializer = _serializerList[key];
+                        serializer.setObjectData(value);
+                    }
+
+                }
+            }
+
+            Alerter.sendMessage(`Wczytanie pliku ${_fileObject.name} przebiegło pomyślnie.`,AlertStyleEnum.InputSucces);
+
+
+        };
+        reader.onerror=(e)=>{
+            Alerter.sendMessage(`Wczytanie pliku ${_fileObject.name} się nie powiodło.`,AlertStyleEnum.InputError);
+
+        }
+        reader.readAsText(_fileObject);
+    }
 
 
 
