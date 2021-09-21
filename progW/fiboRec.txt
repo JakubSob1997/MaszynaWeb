@@ -1,9 +1,9 @@
 
-// fibArg = 16;
+// fibArg = 14;
 // _1 = 1;
 
 SOB start
-fiboARG: RST 16
+fiboARG: RST 14
 _0: RST 0
 _1: RST 1
 _3: RST 3
@@ -33,29 +33,29 @@ STP
 // }
 
 fiboRec:
-TOPN 1
-SOM default_0
-SOZ default_0
+TOPN 1 //AK = n
+SOM default_0 //if(n<0)
+SOZ default_0 //if(n==0)
 ODE _3
-SOM default_1
+SOM default_1 //if(n<3)
 DOD _3
 
-// fiboRec(n-1)
-ODE _1
+
+ODE _1// AK = n-1
 PSH
-CALL fiboRec //ak =fiboRec(n-1)
+CALL fiboRec //fiboRec(n-1)
 
 POPAD tmp // tmp = n-1
-PSH // psh ak
+PSH // psh val = fiboRec(n-1)
 POB tmp
 ODE _1
 PSH //psh n-2
 
-CALL fiboRec //ak =fiboRec(n-2)
+CALL fiboRec //fiboRec(n-2)
 
-LAD tmp // tmp = fiboRec(n-2)
+LAD tmp // val = fiboRec(n-2)
 POP // n-2
-POP // ak = fiboRec(n-1)
+POP // val = fiboRec(n-1)
 DOD tmp // ak =fiboRec(n-1) + fiboRec(n-2)
 RET 
 
@@ -67,5 +67,27 @@ POB _1
 RET
 
 tmp: RPA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

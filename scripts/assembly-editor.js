@@ -5,6 +5,10 @@ import AssemblyParser from "./assembly-parser.js"
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import Terminator from "./terminator.js";
+import AssemblySerializer from "./assembly-serializer.js";
+import SerializerManager from "./serializer-manager.js";
+
+
 
 export default class AssemblyEditor extends SidebarContent{
     constructor(_machine){
@@ -20,9 +24,15 @@ export default class AssemblyEditor extends SidebarContent{
 
         this.M = _machine;
 
+        this.serializer = new AssemblySerializer(this);
+        
+
+
         this.build();
         this.addCallbacks();
         this.load();
+
+        SerializerManager.addSerializer(this.serializer);
 
     }
 
@@ -66,12 +76,20 @@ export default class AssemblyEditor extends SidebarContent{
         this.loadButton.onclick = ()=>{this.onLoadButton();};
     }
 
+    getCode(){
+        return this.textArea.value;
+    }
+
+    setCode(_code){
+        this.textArea.value = _code;
+    }
+
     save(){
-        localStorage.setItem("codeTextArea",this.textArea.value);
+        this.serializer.saveToLocalStorage();
     }
 
     load(){
-        this.textArea.value=localStorage.getItem("codeTextArea");
+        this.serializer.loadFromLocalStorage();
     }
 
 
