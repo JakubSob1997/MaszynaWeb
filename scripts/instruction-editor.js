@@ -6,6 +6,7 @@ import ConfirmButtonView from "./confirm-buttton-view.js";
 import InstrcutionParser from "./instruction-parser.js";
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
+import InstructionChangesCache from "./instruction-changes-cache.js"
 
 export default class InstructionEditor extends SidebarContent{
 
@@ -22,12 +23,14 @@ export default class InstructionEditor extends SidebarContent{
         this.saveButon ;
         this.deleteButon;
 
+        this.changesChache =  new InstructionChangesCache();
+
 
         this.buildEditor();
         this.addCallbacks(_Machine);
         this.instrName;
 
-        
+        this.instructionList = _Machine.instructionList;
 
     }
 
@@ -42,6 +45,7 @@ export default class InstructionEditor extends SidebarContent{
         this.textField = document.createElement("textarea");
         this.saveButon = document.createElement("button");
         this.deleteButon= new ConfirmButtonView();
+        this.cancelButton = new ConfirmButtonView();
 
         this.header.setAttribute("tabindex",-1);
         this.textField.setAttribute("spellcheck","false");
@@ -50,10 +54,12 @@ export default class InstructionEditor extends SidebarContent{
         this.wrapper.appendChild(this.textField);
         this.wrapper.appendChild(this.saveButon);
         this.wrapper.appendChild(this.deleteButon.getHTMLElement());
+        this.wrapper.appendChild(this.cancelButton.getHTMLElement());
+        
         this.header.innerHTML="inst"     
         this.saveButon.innerHTML="Zapisz"
         this.deleteButon.getHTMLElement().innerHTML="Usuń";
-
+        this.cancelButton.getHTMLElement().innerHTML="Cofnij";
 
         this.wrapper.classList.add("generic-inspector")
         this.saveButon.classList.add("custom-btn");        
@@ -64,26 +70,55 @@ export default class InstructionEditor extends SidebarContent{
         
     }
 
+
+    getHeaderText(_instrName){
+        if(this.changesChache.isDirty(_instrName)){
+            return "*Rozkaz: "+_instrName;
+        }else{
+            return "Rozkaz: "+_instrName;
+        }
+        
+    }
+
+
     populateEditor(_instruction){
 
         this.instrName=_instruction.name;
-        this.header.innerHTML = "Rozkaz: "+_instruction.name;
-        this.textField.value=_instruction.source;
+        const name= this.instrName
+
+        this.header.innerHTML = this.getHeaderText(name);
+
+        if(this.changesChache.isDirty(name)){
+            this.textField.value = this.changesChache.getCache(name);
+            this.cancelButton.getHTMLElement().classList.remove("display-none");
+        }else{
+            this.textField.value=_instruction.source;
+            this.cancelButton.getHTMLElement().classList.add("display-none");
+        }
+
+        
 
         
 
     }
 
     onInstrDeleted(_name,_index){
+        this.changesChache.clearCache(_name);
         if(_name===this.instrName){
             this.hackParentContainer.hideContent(this);
         }
     }
 
     onInstrChanged(_old,_new,_index,_list){
+        this.changesChache.clearCache(_old);
         if(_old===this.instrName){
             this.populateEditor(_list.getInstruction(_index));
         }
+    }
+
+    onInstrListChanged(list){
+        this.changesChache.clearAll();
+        this.hackParentContainer.hideContent(this);
     }
 
     addCallbacks(_Machine){
@@ -95,9 +130,6 @@ export default class InstructionEditor extends SidebarContent{
                 _Machine.instructionList.removeInstruction(this.instrName);
             })
 
-
-
-
             _Machine.instructionList.addOnInstructionDeletedCallback((_name,_index)=>{
                 this.onInstrDeleted(_name,_index);
             })
@@ -107,6 +139,24 @@ export default class InstructionEditor extends SidebarContent{
                     this.onInstrChanged(_old,_new,_index,_Machine.instructionList);
                 }
             )
+            _Machine.instructionList.addOnInstructionListChangedCallbacks(
+                ()=>{
+                    this.onInstrListChanged();
+                }
+            )
+
+
+            this.textField.addEventListener("input",()=>{
+                this.changesChache.setCache(this.instrName,this.textField.value);
+                this.header.innerHTML=this.getHeaderText(this.instrName);
+                this.cancelButton.getHTMLElement().classList.remove("display-none");
+            })
+
+            this.cancelButton.addOnClickHandler((e)=>{
+                this.changesChache.clearCache(this.instrName);
+                this.populateEditor(this.instructionList.getInstruction(this.instrName));
+
+            })
 
 
             this.saveButon.onclick = ()=>{
@@ -135,6 +185,10 @@ export default class InstructionEditor extends SidebarContent{
 
                 //console.log(parser);
             }
+
+
+
+
         }
 
 

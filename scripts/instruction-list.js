@@ -3,7 +3,8 @@ import Instruction,{InstrCycle,BranchCondition} from "./instruction.js"
 import InstrcutionParser from "./instruction-parser.js";
 import Terminator from "./terminator.js";
 import InstructionListData from "./instruction-list-data.js";
-
+import Alerter from "./alerter.js";
+import { AlertStyleEnum } from "./enums.js";
 
 export default class InstructionList{
 
@@ -36,7 +37,17 @@ export default class InstructionList{
             const source = instructionDatas[i].sourceCode;
 
             const parseResult = new InstrcutionParser(source);
-            this.instructionArray.push(parseResult.toInstruction());
+            parseResult.validate(_instructionValidator);
+
+            if(parseResult.parseSuccesful){
+                this.instructionArray.push(parseResult.toInstruction());
+            }else{
+                parseResult.errorList.forEach(error => {
+                    Alerter.sendMessage(instructionDatas[i].name + " - "+error,AlertStyleEnum.SyntaxError);
+                });
+            }
+
+            
         }
 
         

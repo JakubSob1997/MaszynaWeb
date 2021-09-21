@@ -17,6 +17,10 @@
 }
 
 
+.display-none.display-none.display-none.display-none.display-none.display-none{
+    display: none;
+}
+
 
 button, input[type="submit"], input[type="reset"]{
 	background: none;

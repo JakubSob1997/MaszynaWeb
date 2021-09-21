@@ -82,6 +82,7 @@ export default class AssemblyEditor extends SidebarContent{
 
     setCode(_code){
         this.textArea.value = _code;
+        this.save();
     }
 
     save(){

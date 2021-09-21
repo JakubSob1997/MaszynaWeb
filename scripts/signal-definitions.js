@@ -3,11 +3,8 @@ import Signal from "./signal.js"
 import { ExtnensionFlags, SignalOrientation,JALOperationEnum} from "./enums.js";
 
 /*
-    Daaaammn...
-    This file is Loooong..
-
-    And also it defines all the signals in a
-    nit nd shrt func called addAllSignals()
+    It defines all the signals in a
+    nite and shrt func called addAllSignals()
 
     I recomend Ctrl+F to navigate in this file
 */

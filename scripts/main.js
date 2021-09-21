@@ -33,7 +33,7 @@ buildMachine(M);
 
 
 const settingsSeralzier = new SettingsSerializer(M.settings);
-const instructionListSerializer = new InstructionListSerializer(M.instructionList)
+const instructionListSerializer = new InstructionListSerializer(M.instructionList,M)
 
 settingsSeralzier.loadFromLocalStorage();
 instructionListSerializer.loadFromLocalStorage();
