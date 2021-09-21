@@ -60,6 +60,11 @@ export default class SerializerBase {
         this.setObjectData(dataObject);
     }
 
+    setToDefault(){
+        this.setObjectData(this.getDefault());
+        this.saveToLocalStorage();
+    }
+
 
 }
 

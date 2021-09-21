@@ -100,7 +100,7 @@ export default class InstructionListData {
             "@done wys weja przep weak wyl wea;"
         )
         const intrDatas = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ,IN,OUT];
-        
+
         return new InstructionListData(intrDatas)
     }
 

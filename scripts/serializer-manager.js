@@ -52,19 +52,27 @@ let SerializerManager={
                 }
             }
 
-            Alerter.sendMessage(`Wczytanie pliku ${_fileObject.name} przebiegło pomyślnie.`,AlertStyleEnum.InputSucces);
+            Alerter.sendMessage(`Wczytanie pliku "${_fileObject.name}" przebiegło pomyślnie.`,AlertStyleEnum.InputSucces);
 
 
         };
         reader.onerror=(e)=>{
-            Alerter.sendMessage(`Wczytanie pliku ${_fileObject.name} się nie powiodło.`,AlertStyleEnum.InputError);
+            Alerter.sendMessage(`Wczytanie pliku "${_fileObject.name}" się nie powiodło.`,AlertStyleEnum.InputError);
 
         }
         reader.readAsText(_fileObject);
+    },
+
+
+    setAllToDefault(){
+        for (const key in this.serializers) {
+            if (Object.hasOwnProperty.call(this.serializers, key)) {
+                const serializer = this.serializers[key];
+                serializer.setToDefault();
+            }
+        }
+        Alerter.sendMessage("Wczytano domyślne ustawienia.",AlertStyleEnum.InputSucces);
     }
-
-
-
 
 }
 

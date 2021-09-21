@@ -4,6 +4,7 @@
 import SidebarContent from "./sidebar-content.js";
 import FileExportView from "./file-export-view.js";
 import FileImportView from "./file-import-view.js";
+import FileDefaultView from "./file-default-view.js";
 
 export default class FileSInspector extends SidebarContent{
     constructor(){
@@ -30,6 +31,7 @@ export default class FileSInspector extends SidebarContent{
 
 
         this.content = document.createElement("div");
+        this.fileDefaultView = new FileDefaultView();
         this.fileImportView=new FileImportView();
         this.fileExportView=new FileExportView();
 
@@ -42,9 +44,10 @@ export default class FileSInspector extends SidebarContent{
 
         this.header.setAttribute("tabindex",-1);
 
-
+        
         this.content.appendChild(this.fileExportView.getHTMLElement());
         this.content.appendChild(this.fileImportView.getHTMLElement());
+        this.content.appendChild(this.fileDefaultView.getHTMLElement());
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);
     }

@@ -28,6 +28,8 @@ export default class InstructionList{
 
         const instructionDatas  =_instrListData.intructionDataArray
 
+        
+
         this.instructionArray=[];
 
         for (let i = 0; i < instructionDatas.length; i++) {
