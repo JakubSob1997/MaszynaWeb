@@ -39,13 +39,6 @@ export class SimolationLevelSetting extends SettingView{
 
 
 
-export class ExtensionPickerSetting extends SettingView{
-    constructor(){
-        super("Wybór modółów maszyny W");
-    }
-
-    
-}
 
 
 

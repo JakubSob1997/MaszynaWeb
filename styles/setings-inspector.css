@@ -28,3 +28,40 @@
 .generic-setting-header{
     white-space: nowrap;
 }
+
+.setting-checkbox-list{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.setting-checkbox-list>div:nth-child(even){
+    background-color: var(--even-list-color);
+}
+.setting-checkbox-list>div:nth-child(odd){
+    background-color: var(--odd-list-color);
+}
+
+
+.setting-exstension-entry{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: right;
+    align-items: center;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+}
+.setting-checkbox{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.5em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+
+
+
+
+
+

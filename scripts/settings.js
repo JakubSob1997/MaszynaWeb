@@ -23,6 +23,9 @@ export default class Settings{
 
         this.onBusWidthChangedCallbacks =[];
         this.onExtensionFlagsChangedCallbacks=[];
+        this.onSettingsChangedCallbacks=[];
+
+
         this.codeMask=0b11100000;
         this.adressMask==0b11111;
 
@@ -45,15 +48,27 @@ export default class Settings{
         this.onBusWidthChangedCallbacks.forEach(_funk => {
             _funk(this);
         });
+        this.invokeSettingsChanged();
     }
 
 
-    onExtensionFlagsChangedListener(_funk){
+    addOnExtensionFlagsChangedListener(_funk){
         this.onExtensionFlagsChangedCallbacks.push(_funk);
     }
 
     invokeExtensionFlagsChanged(){
         this.onExtensionFlagsChangedCallbacks.forEach(_funk=>{
+            _funk(this);
+        })
+        this.invokeSettingsChanged();
+    }
+
+    addOnSettingsChangedListener(_funk){
+        this.onSettingsChangedCallbacks.push(_funk);
+    }
+
+    invokeSettingsChanged(){
+        this.onSettingsChangedCallbacks.forEach(_funk=>{
             _funk(this);
         })
     }
@@ -90,6 +105,8 @@ export default class Settings{
 
     setExtentionFlags(_flags){
         this.extentionFlags  = _flags;
+        this.save();
+        this.invokeExtensionFlagsChanged();
     }
 
 
@@ -152,7 +169,6 @@ export class SettingsData{
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
         this.extensionData = new MachineExtensionData(_extentionFlags);
-        console.log(this.extensionData);
         this.intAdressList = _intAdressList;
     }
 

@@ -29,6 +29,14 @@ export default class MachineView{
         this.registerSelectedCallbacks = [];
         this.memorySlotSellectedCallbacks = [];
 
+        
+        this.M.settings.addOnExtensionFlagsChangedListener(()=>{
+            this.registerViews.forEach(ele=>{ele.display();})
+            this.signalViews.forEach(ele=>{ele.display();})
+            this.memViews.forEach(ele=>{ele.display();})
+            this.signalViews.forEach(ele=>{ele.display();})
+        });
+
 
     }
 
