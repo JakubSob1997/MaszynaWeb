@@ -23,7 +23,7 @@ Object.freeze(MatchRegisterWidthEnum);
     probably should have been funcs
 */
 
-export const JALOperationEnum = {
+export const ALUOperationEnum = {
     Unselected:0,
     PRZEP:1,  //write
     DOD:2,    //add
@@ -36,7 +36,7 @@ export const JALOperationEnum = {
     SHR:9,    //bitshift 1 right
     MOD:10,   //modulo
 }
-Object.freeze(JALOperationEnum);
+Object.freeze(ALUOperationEnum);
 
 
 
@@ -44,8 +44,8 @@ export const ExtnensionFlags = {
     Base:1<<0,
     BusConnection:1<<1,
     AK_Increment:1<<2,
-    JAL_Logic:1<<3,
-    JAL_ExtendedMath:1<<4,
+    ALU_Logic:1<<3,
+    ALU_ExtendedMath:1<<4,
     Stack:1<<5,
     X_Register:1<<6,
     Y_Register:1<<7,

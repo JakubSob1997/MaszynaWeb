@@ -1,7 +1,7 @@
 
 
 import MachineComponent from "./machine-component.js";
-import { JALOperationEnum } from "./enums.js";
+import { ALUOperationEnum } from "./enums.js";
 import Alerter from "./alerter.js"
 
 
@@ -13,15 +13,15 @@ export default class ArythmeticLogicUnit extends MachineComponent {
 
         this.AKRegister =_AKRegister;
 
-        this.Operation=JALOperationEnum.Unselected;
+        this.Operation=ALUOperationEnum.Unselected;
         
         this.BusReference = null;
-        this.SetOperation(JALOperationEnum.Unselected);
+        this.SetOperation(ALUOperationEnum.Unselected);
         
     }
 
     resetState(){
-        this.Operation = JALOperationEnum.Unselected;
+        this.Operation = ALUOperationEnum.Unselected;
         this.BusReference = null;
     }
 
@@ -39,37 +39,37 @@ export default class ArythmeticLogicUnit extends MachineComponent {
         let output;
 
         switch (this.Operation) {
-            case JALOperationEnum.Unselected:
+            case ALUOperationEnum.Unselected:
                 Alerter.alert("Unselected Arythmetic Logic Operation");
                 return;
-            case JALOperationEnum.PRZEP:
+            case ALUOperationEnum.PRZEP:
                  output= _inputval
                  break;
-            case JALOperationEnum.DOD:
+            case ALUOperationEnum.DOD:
                 output= _akval+_inputval;
                 break;
-            case JALOperationEnum.ODE:
+            case ALUOperationEnum.ODE:
                 output= _akval-_inputval;
                 break;
-            case JALOperationEnum.NEG:
+            case ALUOperationEnum.NEG:
                 output = ~_inputval;
                 break;
-            case JALOperationEnum.LUB:
+            case ALUOperationEnum.LUB:
                 output = _akval|_inputval;
                 break;
-            case JALOperationEnum.I:
+            case ALUOperationEnum.I:
                 output = _akval&_inputval;
                 break;
-            case JALOperationEnum.MNO:
+            case ALUOperationEnum.MNO:
                 output = _akval*_inputval;
                 break;
-            case JALOperationEnum.DZIEL:
+            case ALUOperationEnum.DZIEL:
                 output = Math.floor(_akval/_inputval);
                 break;
-            case JALOperationEnum.SHR:
+            case ALUOperationEnum.SHR:
                 output = _inputval>>1;
                 break;
-            case JALOperationEnum.MOD:
+            case ALUOperationEnum.MOD:
                 output = _akval%_inputval;
             default:
                 Alerter.alert("Arethmitic Logic Operation Is Undefined")
@@ -87,7 +87,7 @@ export default class ArythmeticLogicUnit extends MachineComponent {
     SetOperation(_OperationEnum){
 
 
-        if(this.Operation!=JALOperationEnum.Unselected){
+        if(this.Operation!=ALUOperationEnum.Unselected){
             Alerter.alert("Arythmetic Logic Operation already selected");
             return;
         }

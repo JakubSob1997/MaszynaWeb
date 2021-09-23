@@ -146,7 +146,7 @@ export default function buildMachine(_Machine){
     _Machine.G_register=G_register;
 
     //Define Units
-    let JAL = new ArythmeticLogicUnit(AK_register);
+    let ALU = new ArythmeticLogicUnit(AK_register);
     let flagUnit = new FlagsUnit(AK_register);
     setupFlagUnit(flagUnit);
     let CntrlUnit = new ControllUnit(I_register,flagUnit);
@@ -169,13 +169,13 @@ export default function buildMachine(_Machine){
 
 
     _Machine.controllUnit=CntrlUnit;
-    _Machine.JAL=JAL
+    _Machine.ALU=ALU
     _Machine.flagUnit=flagUnit;
     _Machine.interuptUnit = InteruptUnt;
     _Machine.IOUnit = _IOUnit;
         
     let machineComponents = [
-        JAL,
+        ALU,
         MEM,
         InteruptUnt,
         CntrlUnit,

@@ -3,13 +3,14 @@
 import SidebarContent from "./sidebar-content.js";
 import { 
     SimolationLevelSetting,
-    BusWidthSettingView,
-    ExtnetionPickerSetting,
+    ExtensionPickerSetting,
     InteruptAdressSetting,
     IOInteruptSetting,
     PerofrmanceSetting,
 } from "./settings-view.js";
 
+import BusWidthSettingView  from "./setting-bus-width.js";
+import MachineExtensionSetting from "./setting-machine-extension.js";
 
 
 export default class SettingsInspector extends SidebarContent{
@@ -41,7 +42,7 @@ export default class SettingsInspector extends SidebarContent{
 
         this.simulationLevelSetting = new SimolationLevelSetting();
         this.busWidthSetting = new BusWidthSettingView(_Machine.settings);
-        this.extnetionPickerSetting = new ExtnetionPickerSetting();
+        this.extnesionPickerSetting = new MachineExtensionSetting();
         this.intAdressSetting=new InteruptAdressSetting();
         this.ioInteruptSetting = new IOInteruptSetting();
         this.perofrmanceSetting = new PerofrmanceSetting();
@@ -49,7 +50,7 @@ export default class SettingsInspector extends SidebarContent{
     
         this.settingList.appendChild(this.simulationLevelSetting.wrapper)
         this.settingList.appendChild(this.busWidthSetting.wrapper);
-        this.settingList.appendChild(this.extnetionPickerSetting.wrapper);
+        this.settingList.appendChild(this.extnesionPickerSetting.wrapper);
         this.settingList.appendChild(this.intAdressSetting.wrapper)
         this.settingList.appendChild(this.ioInteruptSetting.wrapper)
         this.settingList.appendChild(this.perofrmanceSetting.wrapper);

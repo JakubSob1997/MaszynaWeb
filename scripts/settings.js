@@ -2,7 +2,7 @@
 import { ExtentionPresets } from "./enums.js";
 import Terminator from "./terminator.js";
 import SettingsSerializer from "./settings-serializer.js";
-
+import MachineExtensionData from "./machine-extension-data.js";
 
 
 
@@ -21,7 +21,8 @@ export default class Settings{
         this.intAdressList=[1,2,3,4];
 
 
-        this.onBusWidthChangedCalbacks =[];
+        this.onBusWidthChangedCallbacks =[];
+        this.onExtensionFlagsChangedCallbacks=[];
         this.codeMask=0b11100000;
         this.adressMask==0b11111;
 
@@ -36,23 +37,46 @@ export default class Settings{
 
 
     addOnBusWidthChangedListener(_funk){
-        this.onBusWidthChangedCalbacks.push(_funk);
+        this.onBusWidthChangedCallbacks.push(_funk);
 
     }
 
     invokeOnBusWidthChanged(){
-        this.onBusWidthChangedCalbacks.forEach(_funk => {
+        this.onBusWidthChangedCallbacks.forEach(_funk => {
             _funk(this);
         });
     }
 
 
+    onExtensionFlagsChangedListener(_funk){
+        this.onExtensionFlagsChangedCallbacks.push(_funk);
+    }
 
+    invokeExtensionFlagsChanged(){
+        this.onExtensionFlagsChangedCallbacks.forEach(_funk=>{
+            _funk(this);
+        })
+    }
+
+
+    
 
     setupValues(_setingsData){
-        this.setBusWidth(_setingsData.codeWidth,_setingsData.adressWidth);
-        this.setExtentionFlags(_setingsData.extentionFlags);
-        this.intAdressList = _setingsData.intAdressList;
+
+        if(_setingsData.hasOwnProperty("codeWidth")&&_setingsData.hasOwnProperty("adressWidth")){
+            this.setBusWidth(_setingsData.codeWidth,_setingsData.adressWidth);
+        }
+
+        if(_setingsData.hasOwnProperty("extensionData")){
+            //console.log(_setingsData.extensionData);
+            const flags =MachineExtensionData.prototype.getFlags.call(_setingsData.extensionData)
+            this.setExtentionFlags(flags);
+        }
+        
+        if(_setingsData.hasOwnProperty("intAdressList")){
+            this.intAdressList = _setingsData.intAdressList;
+        }
+        
     }
 
     getDataObject(){
@@ -127,7 +151,8 @@ export class SettingsData{
     constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList){
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
-        this.extentionFlags = _extentionFlags;
+        this.extensionData = new MachineExtensionData(_extentionFlags);
+        console.log(this.extensionData);
         this.intAdressList = _intAdressList;
     }
 
@@ -136,7 +161,7 @@ export class SettingsData{
         return new SettingsData(
             4,
             5,
-            ExtentionPresets.EW,
+            ExtentionPresets.W,
             [1,2,3,4]
             );
     }

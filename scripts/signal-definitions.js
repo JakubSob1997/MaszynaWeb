@@ -1,6 +1,6 @@
 import Alerter from "./alerter.js"
 import Signal from "./signal.js"
-import { ExtnensionFlags, SignalOrientation,JALOperationEnum} from "./enums.js";
+import { ExtnensionFlags, SignalOrientation,ALUOperationEnum} from "./enums.js";
 
 /*
     It defines all the signals in a
@@ -14,14 +14,14 @@ import { ExtnensionFlags, SignalOrientation,JALOperationEnum} from "./enums.js";
 
 export default function addAllSignals(_Machine){
     addMemorySignals(_Machine);
-    addJALSignals(_Machine);
+    addALUSignals(_Machine);
     addCounterSignals(_Machine);
     addInstructionSignals(_Machine);
 
     add_BusConnectionSignals(_Machine);
     addAK_IncrementSignals(_Machine);
-    addJAL_LogicSignals(_Machine);
-    addJAL_ExtendedMathSignals(_Machine);
+    addALU_LogicSignals(_Machine);
+    addALU_ExtendedMathSignals(_Machine);
     addStackSingals(_Machine);
     addX_RegisterSignals(_Machine);
     addY_RegisterSignals(_Machine);
@@ -84,14 +84,14 @@ function addMemorySignals(_Machine){
     _Machine.addSignalToDictioanry(wys);
 }
 
-function addJALSignals(_Machine){
+function addALUSignals(_Machine){
     
 
 //JA: signals
 const weja = new Signal(
     "weja",
     false,
-    (_M)=>{_M.JAL.BusReference = _M.S_bus;},
+    (_M)=>{_M.ALU.BusReference = _M.S_bus;},
     ExtnensionFlags.Base,
     SignalOrientation.Right
 )
@@ -99,21 +99,21 @@ const weja = new Signal(
 const przep = new Signal(
     "przep",
     false,
-    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.PRZEP);},
+    (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.PRZEP);},
     ExtnensionFlags.Base,
     SignalOrientation.Right
 )
 const dod = new Signal(
     "dod",
     false,
-    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.DOD);},
+    (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.DOD);},
     ExtnensionFlags.Base,
     SignalOrientation.Right
 )
 const ode = new Signal(
     "ode",
     false,
-    (_M)=>{_M.JAL.SetOperation(JALOperationEnum.ODE);},
+    (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.ODE);},
     ExtnensionFlags.Base,
     SignalOrientation.Right
 )
@@ -121,7 +121,7 @@ const ode = new Signal(
 const weak = new Signal(
     "weak",
     true,
-    (_M)=>{_M.JAL.writeOperation();},
+    (_M)=>{_M.ALU.writeOperation();},
     ExtnensionFlags.Base,
     SignalOrientation.Right
 )
@@ -239,12 +239,12 @@ function addAK_IncrementSignals(_Machine){
     _Machine.addSignalToDictioanry(dak);
 }
 
-function addJAL_LogicSignals(_Machine){
+function addALU_LogicSignals(_Machine){
     const neg = new Signal(
         "neg",
         false,
-        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.NEG);},
-        ExtnensionFlags.JAL_Logic,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.NEG);},
+        ExtnensionFlags.ALU_Logic,
         SignalOrientation.Left
     )
     
@@ -252,16 +252,16 @@ function addJAL_LogicSignals(_Machine){
     const lub = new Signal(
         "lub",
         false,
-        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.LUB);},
-        ExtnensionFlags.JAL_Logic,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.LUB);},
+        ExtnensionFlags.ALU_Logic,
         SignalOrientation.Left
     )
 
     const i = new Signal(
         "i",
         false,
-        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.I);},
-        ExtnensionFlags.JAL_Logic,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.I);},
+        ExtnensionFlags.ALU_Logic,
         SignalOrientation.Left
     )
 
@@ -272,12 +272,12 @@ function addJAL_LogicSignals(_Machine){
 
 }
 
-function addJAL_ExtendedMathSignals(_Machine){
+function addALU_ExtendedMathSignals(_Machine){
     const mno = new Signal(
         "mno",
         false,
-        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.MNO);},
-        ExtnensionFlags.JAL_ExtendedMath,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.MNO);},
+        ExtnensionFlags.ALU_ExtendedMath,
         SignalOrientation.Right
     )
     
@@ -285,16 +285,16 @@ function addJAL_ExtendedMathSignals(_Machine){
     const dziel = new Signal(
         "dziel",
         false,
-        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.DZIEL);},
-        ExtnensionFlags.JAL_ExtendedMath,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.DZIEL);},
+        ExtnensionFlags.ALU_ExtendedMath,
         SignalOrientation.Right
     )
 
     const shr = new Signal(
         "shr",
         false,
-        (_M)=>{_M.JAL.SetOperation(JALOperationEnum.SHR);},
-        ExtnensionFlags.JAL_ExtendedMath,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.SHR);},
+        ExtnensionFlags.ALU_ExtendedMath,
         SignalOrientation.Right
     )
 
