@@ -108,7 +108,7 @@ Object.freeze(InteruptEnum)
 
 export const ExecutionMode ={
     OneCycle:1,
-    NCycls:2,
+    NCycles:2,
     Instruction:3,
     Program:4,
 }

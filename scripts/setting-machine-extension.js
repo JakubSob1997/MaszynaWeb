@@ -1,6 +1,7 @@
 
 
 
+import { ExtnensionFlags } from "./enums.js";
 import MachineExtensionData from "./machine-extension-data.js";
 import SettingView from "./settings-view.js";
 
@@ -29,15 +30,18 @@ export default class MachineExtensionSetting extends SettingView{
     }
 
     //Returns checkbox element
-    generateFlagEntry(_name,_value,_parent){
+    generateFlagEntry(_name,_value,_parent,_flag){
         let wrapper = document.createElement("div");
         let checkBox = document.createElement("input");
-        let label = document.createElement("div");
+        let label = document.createElement("label");
+
+        const id = "machine-extension-checkbox-"+_flag;
 
         label.innerHTML=_name;
+        label.setAttribute("for",id)
         checkBox.type="checkbox";
-
         checkBox.value=_value;
+        checkBox.id=id;
 
         wrapper.classList.add("setting-exstension-entry");
         checkBox.classList.add("setting-checkbox");
@@ -61,16 +65,16 @@ export default class MachineExtensionSetting extends SettingView{
 
 
 
-        this.keyCheckboxDict.BusConnection = this.generateFlagEntry("Połączenie Magistralowe",this.exstensionData.BusConnection,this.checkEntryParrent);
-        this.keyCheckboxDict.AK_Increment = this.generateFlagEntry("Inkrementacja i Dekrementacja Akumulatora",this.exstensionData.AK_Increment,this.checkEntryParrent);
-        this.keyCheckboxDict.ALU_Logic = this.generateFlagEntry("Operacje logiczne w JAL",this.exstensionData.ALU_Logic,this.checkEntryParrent);
-        this.keyCheckboxDict.ALU_ExtendedMath = this.generateFlagEntry("Rozszerzone Operacje Arytmetyczne w JAL",this.exstensionData.ALU_ExtendedMath,this.checkEntryParrent);
-        this.keyCheckboxDict.Stack = this.generateFlagEntry("Obsługa Stosu",this.exstensionData.Stack,this.checkEntryParrent);
-        this.keyCheckboxDict.X_Register = this.generateFlagEntry("Rejestr X",this.exstensionData.X_Register,this.checkEntryParrent);
-        this.keyCheckboxDict.Y_Register = this.generateFlagEntry("Rejestr Y",this.exstensionData.Y_Register,this.checkEntryParrent);
-        this.keyCheckboxDict.Interupt = this.generateFlagEntry("Przerwania",this.exstensionData.Interupt,this.checkEntryParrent);
-        this.keyCheckboxDict.InputOutput = this.generateFlagEntry("Wejście/Wyjście",this.exstensionData.InputOutput,this.checkEntryParrent);
-        this.keyCheckboxDict.Flags = this.generateFlagEntry("Dodatkowe Znaczniki",this.exstensionData.Flags,this.checkEntryParrent);
+        this.keyCheckboxDict.BusConnection = this.generateFlagEntry("Połączenie Magistralowe",this.exstensionData.BusConnection,this.checkEntryParrent,ExtnensionFlags.BusConnection);
+        this.keyCheckboxDict.AK_Increment = this.generateFlagEntry("Inkrementacja i Dekrementacja Akumulatora",this.exstensionData.AK_Increment,this.checkEntryParrent,ExtnensionFlags.AK_Increment);
+        this.keyCheckboxDict.ALU_Logic = this.generateFlagEntry("Operacje logiczne w JAL",this.exstensionData.ALU_Logic,this.checkEntryParrent,ExtnensionFlags.ALU_Logic);
+        this.keyCheckboxDict.ALU_ExtendedMath = this.generateFlagEntry("Rozszerzone Operacje Arytmetyczne w JAL",this.exstensionData.ALU_ExtendedMath,this.checkEntryParrent,ExtnensionFlags.ALU_ExtendedMath);
+        this.keyCheckboxDict.Stack = this.generateFlagEntry("Obsługa Stosu",this.exstensionData.Stack,this.checkEntryParrent,ExtnensionFlags.Stack);
+        this.keyCheckboxDict.X_Register = this.generateFlagEntry("Rejestr X",this.exstensionData.X_Register,this.checkEntryParrent,ExtnensionFlags.X_Register);
+        this.keyCheckboxDict.Y_Register = this.generateFlagEntry("Rejestr Y",this.exstensionData.Y_Register,this.checkEntryParrent,ExtnensionFlags.Y_Register);
+        this.keyCheckboxDict.Interupt = this.generateFlagEntry("Przerwania",this.exstensionData.Interupt,this.checkEntryParrent,ExtnensionFlags.Interupt);
+        this.keyCheckboxDict.InputOutput = this.generateFlagEntry("Wejście/Wyjście",this.exstensionData.InputOutput,this.checkEntryParrent,ExtnensionFlags.InputOutput);
+        this.keyCheckboxDict.Flags = this.generateFlagEntry("Dodatkowe Znaczniki",this.exstensionData.Flags,this.checkEntryParrent,ExtnensionFlags.Flags);
 
 
         this.content.appendChild(this.checkEntryParrent);

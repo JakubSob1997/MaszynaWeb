@@ -312,3 +312,9 @@ span.reg-name{
     background: transparent;
     color: transparent;
 }
+
+.int-button-hidden:hover{
+    cursor: default;
+    background: transparent;
+    color: transparent;
+}
