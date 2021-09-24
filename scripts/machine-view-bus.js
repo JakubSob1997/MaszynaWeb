@@ -43,6 +43,14 @@ export default class MachineViewBus extends MachineViewElement{
 
     display(){
 
+        const allExtensions = this.machineView.M.settings.extentionFlags;
+        const myExtension =this.bus.getExtention();
+       
+        if((allExtensions&myExtension)==0){
+            this.element.classList.add("bus-hidden");
+        }else{
+            this.element.classList.remove("bus-hidden");
+        }
 
 
         if(this.bus.hasValue()){

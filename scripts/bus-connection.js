@@ -2,6 +2,7 @@
 
 import MachineComponent from "./machine-component.js";
 import Alerter from "./alerter.js"
+import { ExtnensionFlags } from "./enums.js";
 
 export default class BusConnection extends MachineComponent{
     constructor(_busArray){

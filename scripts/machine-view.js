@@ -24,6 +24,7 @@ export default class MachineView{
         this.signalViews=[];
         this.busViews =[];
         this.memViews = [];
+        this.intButtonViews=[];
 
 
         this.registerSelectedCallbacks = [];
@@ -35,6 +36,8 @@ export default class MachineView{
             this.signalViews.forEach(ele=>{ele.display();})
             this.memViews.forEach(ele=>{ele.display();})
             this.signalViews.forEach(ele=>{ele.display();})
+            this.busViews.forEach(ele=>{ele.display();})
+            this.intButtonViews.forEach(ele=>{ele.display();})
         });
 
 
@@ -143,6 +146,7 @@ export default class MachineView{
             const wrapper = buttonWrappers[index];
             const view =  new MachineViewIntButton(this,_intDevice,_label);
             wrapper.appendChild(view.getHTMLElement());
+            this.intButtonViews.push(view);
         }
     }
 

@@ -75,6 +75,11 @@
     color:var(--secondary-color);
 }
 
+.bus-hidden{
+    background: transparent;
+    color: transparent;
+}
+
 
 .reg{
     background: var(--primary-color);
@@ -123,7 +128,7 @@
 
 .reg-hidden{
     background: transparent;
-    color: gray;
+    color: transparent;
 }
 
 
@@ -228,12 +233,13 @@
 
 .sig-hidden{
     background: transparent;
-    color: gray;
+    color: transparent;
 }
 
 .sig-hidden:hover{
     background: transparent;
-    color: gray;
+    color: transparent;
+    cursor:default;
 }
 
 
@@ -300,4 +306,9 @@ span.reg-name{
     position: relative;
     left:  5%;
     top: 5%;
+}
+
+.int-button-hidden{
+    background: transparent;
+    color: transparent;
 }

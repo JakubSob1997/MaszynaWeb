@@ -28,13 +28,6 @@ export default class SettingView{
     }
 }
 
-export class SimolationLevelSetting extends SettingView{
-
-    constructor(){
-        super("Poziom śledzenia");
-    }
-
-}
 
 
 

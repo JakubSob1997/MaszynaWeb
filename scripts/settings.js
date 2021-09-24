@@ -1,5 +1,5 @@
 
-import { ExtentionPresets } from "./enums.js";
+import { ExtentionPresets,ExecutionMode } from "./enums.js";
 import Terminator from "./terminator.js";
 import SettingsSerializer from "./settings-serializer.js";
 import MachineExtensionData from "./machine-extension-data.js";
@@ -19,6 +19,11 @@ export default class Settings{
         this.adressWidth=5;
         this.extentionFlags  = ExtentionPresets.W;
         this.intAdressList=[1,2,3,4];
+
+        this.asyncThreads = 8;
+        this.nCycles=4;
+        this.minTimeBeetwenCycles=0;
+        this.executionMode = ExecutionMode.OneCycle;
 
 
         this.onBusWidthChangedCallbacks =[];
@@ -91,6 +96,11 @@ export default class Settings{
         if(_setingsData.hasOwnProperty("intAdressList")){
             this.intAdressList = _setingsData.intAdressList;
         }
+
+        if(_setingsData.hasOwnProperty("executionMode")){
+            this.executionMode=_setingsData.executionMode;
+        }
+
         
     }
 
@@ -99,7 +109,8 @@ export default class Settings{
             this.codeWidth,
             this.adressWidth,
             this.extentionFlags,
-            this.intAdressList
+            this.intAdressList,
+            this.executionMode,
         )
     }
 
@@ -165,11 +176,14 @@ export default class Settings{
 
 export class SettingsData{
 
-    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList){
+
+
+    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList,_executionMode){
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
         this.extensionData = new MachineExtensionData(_extentionFlags);
         this.intAdressList = _intAdressList;
+        this.executionMode = _executionMode;
     }
 
 
@@ -178,7 +192,8 @@ export class SettingsData{
             4,
             5,
             ExtentionPresets.W,
-            [1,2,3,4]
+            [1,2,3,4],
+            ExecutionMode.OneCycle,
             );
     }
     

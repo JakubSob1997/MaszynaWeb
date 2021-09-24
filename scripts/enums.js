@@ -18,10 +18,6 @@ export const  MatchRegisterWidthEnum = {
 Object.freeze(MatchRegisterWidthEnum);
 
 
-/*
-    Yeah yeah.. I know those fellas down there
-    probably should have been funcs
-*/
 
 export const ALUOperationEnum = {
     Unselected:0,
@@ -110,3 +106,10 @@ export const InteruptEnum={
 Object.freeze(InteruptEnum)
 
 
+export const ExecutionMode ={
+    OneCycle:1,
+    NCycls:2,
+    Instruction:3,
+    Program:4,
+}
+Object.freeze(ExecutionMode)

@@ -1,10 +1,18 @@
 
-
+import { ExecutionMode } from "./enums.js";
 
 
 
 export function runMachine(_Machine){
-    runMachineNonBlocking(_Machine);
+
+    const mode = _Machine.settings.executionMode;
+    if(ExecutionMode.Program==mode){
+        runMachineBlocking(_Machine)
+    }else{
+        runMachineNonBlocking(_Machine);
+    }
+
+    
 }
 
 export function runSingleInstruction(_Machine){
@@ -14,9 +22,6 @@ export function runSingleInstruction(_Machine){
 export function runCycle(_Machine){
 
 }
-
-
-
 
 
 function runMachineBlocking(_Machine){
@@ -36,14 +41,6 @@ function runMachineNonBlocking(_Machine){
     },_Machine,0);
     
 }
-
-
-
-
-
-
-
-
 
 
 function runCycleNonBlocking(_exitCondition,_Machine,_delay){

@@ -50,10 +50,11 @@
     align-items: center;
     padding-top: 0.15em;
     padding-bottom: 0.15em;
+    
 }
 .setting-checkbox{
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2em;
+    height: 2em;
     border-radius: 0.5em;
     margin-right: 0.5em;
     margin-left: 0.5em;

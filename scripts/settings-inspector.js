@@ -2,7 +2,6 @@
 
 import SidebarContent from "./sidebar-content.js";
 import { 
-    SimolationLevelSetting,
     InteruptAdressSetting,
     IOInteruptSetting,
     PerofrmanceSetting,
@@ -10,7 +9,7 @@ import {
 
 import BusWidthSettingView  from "./setting-bus-width.js";
 import MachineExtensionSetting from "./setting-machine-extension.js";
-
+import ExecutionModeSetting from "./setting-execution-mode.js";
 
 export default class SettingsInspector extends SidebarContent{
     constructor(_Machine){
@@ -39,7 +38,7 @@ export default class SettingsInspector extends SidebarContent{
         this.settingList.classList.add("settings-list");
         this.wrapper.classList.add("generic-inspector");
 
-        this.simulationLevelSetting = new SimolationLevelSetting();
+        this.simulationLevelSetting = new ExecutionModeSetting();
         this.busWidthSetting = new BusWidthSettingView(_Machine.settings);
         this.extnesionPickerSetting = new MachineExtensionSetting(_Machine.settings);
         this.intAdressSetting=new InteruptAdressSetting();
