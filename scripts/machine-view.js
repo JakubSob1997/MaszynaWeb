@@ -4,7 +4,7 @@ import MachineViewRegister from "./machine-vew-register.js";
 import MachineViewSignal from "./machine-view-signal.js";
 import MachineViewMemory from "./machine-view-memory.js";
 import MachineViewIntButton from "./machine-view-int-button.js"
-
+import MachineViewBus from "./machine-view-bus.js";
 
 
 
@@ -79,9 +79,9 @@ export default class MachineView{
 
         this.setIntButtons(this.M.InteruptDevices);
 
-        this.setupBusHorizontal(this.M.S_bus,"s-bus")
-        this.setupBusHorizontal(this.M.A_bus,"a-bus")
-        this.setupBusVertical(this.M.AS_bus,"as-bus")
+        this.setupBus(this.M.S_bus,"s-bus",false)
+        this.setupBus(this.M.A_bus,"a-bus",false)
+        this.setupBus(this.M.AS_bus,"as-bus",true)
 
     }
 
@@ -154,59 +154,18 @@ export default class MachineView{
     }
   
 
-    displayBus(_bus,_busElement){
-        if(_bus.hasValue()){
-            _busElement.classList.add("bus-selected");
-        }else{
-            
-            _busElement.classList.remove("bus-selected");
-        }
-    }
-
-    createBusHorizontal(_bus){
-        let element  = document.createElement("div")
-        element.classList.add("bus-hor");
-        this.displayBus(_bus,element);
-
-        _bus.addOnUpdateCallback((_b)=>{
-            this.displayBus(_b,element);
-        })
-
-
-        return element;
-    }
-
-    createBusVertical(_bus){
-        let element  = document.createElement("div")
-        element.classList.add("bus-vert");
-
-        _bus.addOnUpdateCallback((_b)=>{
-            this.displayBus(_b,element);
-        })
-
-        this.displayBus(_bus,element);
-        return element;
-    }
-
-
-    setupBusHorizontal(_bus,_wrapperClassName){
+    setupBus(_bus,_wrapperClassName,_isVertical){
         const wrappers = document.getElementsByClassName(_wrapperClassName);
         for (let i = 0; i < wrappers.length; i++) {
             const element = wrappers[i];
-            const busele = this.createBusHorizontal(_bus);
-            element.appendChild ( busele);
+            const busView = new MachineViewBus(this,_bus,_isVertical);
+            element.appendChild ( busView.getHTMLElement());
+            
+            this.busViews.push(busView);
         }
     }
 
-    setupBusVertical(_bus, _wrapperClassName){
-        const wrappers = document.getElementsByClassName(_wrapperClassName);
-        for (let i = 0; i < wrappers.length; i++) {
-            const element = wrappers[i];
-            const busele = this.createBusVertical(_bus);
-            element.appendChild ( busele);
-            
-        }
-    }
+
 
 }
 
