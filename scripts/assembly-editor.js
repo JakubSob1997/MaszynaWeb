@@ -7,8 +7,7 @@ import { AlertStyleEnum } from "./enums.js";
 import Terminator from "./terminator.js";
 import AssemblySerializer from "./assembly-serializer.js";
 import SerializerManager from "./serializer-manager.js";
-
-
+import AssemblyCodeMirror from "./assembly-codemirror.js";
 
 export default class AssemblyEditor extends SidebarContent{
     constructor(_machine){
@@ -49,12 +48,16 @@ export default class AssemblyEditor extends SidebarContent{
 
         this.wrapper = document.createElement("div");
         this.title=document.createElement("h3");
-        this.textArea =document.createElement("textarea");
+        this.codeMirrorWrapper =document.createElement("div");
         this.loadButton = document.createElement("button");
         this.copyButton = document.createElement("button");
 
+        
+        this.codeMirror = new AssemblyCodeMirror(this.codeMirrorWrapper);
+
         this.title.setAttribute("tabindex",-1);
-        this.textArea.setAttribute("spellcheck","false");
+        
+
 
         this.wrapper.classList.add("generic-inspector")
         this.loadButton.classList.add("custom-btn");
@@ -63,11 +66,15 @@ export default class AssemblyEditor extends SidebarContent{
         this.loadButton.innerHTML="Ładuj do pamięci";
 
 
+
+
+
         this.wrapper.appendChild(this.title);
-        this.wrapper.appendChild(this.textArea);
+        this.wrapper.appendChild(this.codeMirrorWrapper);
         this.wrapper.appendChild(this.loadButton);
 
         
+        console.log(this.codeMirror);
 
 
     }
@@ -77,11 +84,12 @@ export default class AssemblyEditor extends SidebarContent{
     }
 
     getCode(){
-        return this.textArea.value;
+        return this.codeMirror.cm.getValue();
     }
 
     setCode(_code){
-        this.textArea.value = _code;
+        this.codeMirror.cm.setValue(_code);
+        this.codeMirror.cm.refresh();
         this.save();
     }
 
@@ -102,7 +110,7 @@ export default class AssemblyEditor extends SidebarContent{
         
         Terminator.terminate();
         this.save();
-        this.parser = new AssemblyParser(this.textArea.value,this.M.settings,this.M.instructionList);
+        this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList);
         
 
         if( this.parser.parseSuccesful){
