@@ -1,13 +1,13 @@
 
 /*
+  Layoutit:
+  https://grid.layoutit.com/?id=KbzzWO2
 
-grid.layoutit.com?id=8rhKdzE
-in hainsight psoitn absolute would have been better
 */
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 0.1fr 3.2fr;
+  grid-template-columns: 1.2fr 0.1fr 3fr;
   grid-template-rows: 1fr 0.1fr 4fr 0.1fr 01fr;
   grid-auto-columns: 1fr;
   gap: 0px 0px;
@@ -18,7 +18,7 @@ in hainsight psoitn absolute would have been better
     "left-area as-bus center-area"
     "s-bus s-bus s-bus"
     "down-area down-area down-area";
-  width: 99.6%;
+  width: 100%;
   height: 100%;
 }
 
@@ -30,7 +30,7 @@ in hainsight psoitn absolute would have been better
 
 .up-area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 0.35fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.35fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -53,8 +53,8 @@ in hainsight psoitn absolute would have been better
 
 .rz-center {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -76,7 +76,7 @@ in hainsight psoitn absolute would have been better
 .rp-area {
   display: grid;
   grid-template-columns: 0.1fr 1fr 0.1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -102,13 +102,13 @@ in hainsight psoitn absolute would have been better
 
 .rm-center {
   display: grid;
-  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.2fr 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "rm-r rm-r rm-r rm-r"
-    "wyrm-s rm-down rm-up werm-s";
+    "wyrm-s wyrm-arrow-down werm-arrow-up werm-s";
   grid-area: rm-center;
 }
 
@@ -118,9 +118,9 @@ in hainsight psoitn absolute would have been better
 
 .wyrm-s { grid-area: wyrm-s; }
 
-.rm-down { grid-area: rm-down; }
+.wyrm-arrow-down { grid-area: wyrm-arrow-down; }
 
-.rm-up { grid-area: rm-up; }
+.werm-arrow-up { grid-area: werm-arrow-up; }
 
 .ap-area {
   display: grid;
@@ -136,13 +136,13 @@ in hainsight psoitn absolute would have been better
 
 .ap-center {
   display: grid;
-  grid-template-columns: repeat(2, 0.2fr 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 0.2fr 1fr 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "ap-r ap-r ap-r ap-r"
-    ". wyap-s ap-down .";
+    ". wyap-s wyap-arrow-down .";
   grid-area: ap-center;
 }
 
@@ -150,12 +150,12 @@ in hainsight psoitn absolute would have been better
 
 .wyap-s { grid-area: wyap-s; }
 
-.ap-down { grid-area: ap-down; }
+.wyap-arrow-down { grid-area: wyap-arrow-down; }
 
 .eint-rint-area {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.8fr repeat(2, 1fr) 0.8fr;
+  grid-template-rows: 0.8fr 1fr 1fr 0.8fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -172,7 +172,7 @@ in hainsight psoitn absolute would have been better
 
 .down-area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -195,12 +195,12 @@ in hainsight psoitn absolute would have been better
 
 .x-center {
   display: grid;
-  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.2fr 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyx-s x-up x-down wex-s"
+    "wyx-s wyx-arrow-up wex-arrow-down wex-s"
     "x-r x-r x-r x-r";
   grid-area: x-center;
 }
@@ -211,9 +211,9 @@ in hainsight psoitn absolute would have been better
 
 .wex-s { grid-area: wex-s; }
 
-.x-down { grid-area: x-down; }
+.wex-arrow-down { grid-area: wex-arrow-down; }
 
-.x-up { grid-area: x-up; }
+.wyx-arrow-up { grid-area: wyx-arrow-up; }
 
 .y-area {
   display: grid;
@@ -229,21 +229,21 @@ in hainsight psoitn absolute would have been better
 
 .y-center {
   display: grid;
-  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.2fr 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyy-s y-up y-down wey-s"
+    "wyy-s wyy-arrow-up wey-arrow-down wey-s"
     "y-r y-r y-r y-r";
   grid-area: y-center;
 }
 
 .y-r { grid-area: y-r; }
 
-.y-down { grid-area: y-down; }
+.wey-arrow-down { grid-area: wey-arrow-down; }
 
-.y-up { grid-area: y-up; }
+.wyy-arrow-up { grid-area: wyy-arrow-up; }
 
 .wyy-s { grid-area: wyy-s; }
 
@@ -263,23 +263,23 @@ in hainsight psoitn absolute would have been better
 
 .rb-center {
   display: grid;
-  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.2fr 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyrb-s rb-up rb-down werb-s"
+    "wyrb-s wyrb-arrow-up werb-arrow-down werb-s"
     "rb-r rb-r rb-r rb-r";
   grid-area: rb-center;
 }
 
 .rb-r { grid-area: rb-r; }
 
-.rb-down { grid-area: rb-down; }
+.werb-arrow-down { grid-area: werb-arrow-down; }
 
 .werb-s { grid-area: werb-s; }
 
-.rb-up { grid-area: rb-up; }
+.wyrb-arrow-up { grid-area: wyrb-arrow-up; }
 
 .wyrb-s { grid-area: wyrb-s; }
 
@@ -297,13 +297,13 @@ in hainsight psoitn absolute would have been better
 
 .g-center {
   display: grid;
-  grid-template-columns: 0.7fr 0.3fr repeat(2, 0.2fr) 0.3fr 0.7fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 0.6fr 0.4fr 0.2fr 0.2fr 0.1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyg-s wyg-s g-up g-down start-s start-s"
-    ". g-r g-r g-r g-r .";
+    "wyg-s wyg-s wyg-arrow-up . . ."
+    ". g-r g-r g-r g-r start-s";
   grid-area: g-center;
 }
 
@@ -311,15 +311,13 @@ in hainsight psoitn absolute would have been better
 
 .wyg-s { grid-area: wyg-s; }
 
+.wyg-arrow-up { grid-area: wyg-arrow-up; }
+
 .start-s { grid-area: start-s; }
-
-.g-up { grid-area: g-up; }
-
-.g-down { grid-area: g-down; }
 
 .left-area {
   display: grid;
-  grid-template-columns: 1fr 30fr 1fr;
+  grid-template-columns: 1fr 30fr 3fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -331,36 +329,36 @@ in hainsight psoitn absolute would have been better
 .i-l-area {
   display: grid;
   grid-template-columns: 1.7fr 0.1fr 0.9fr 3.2fr 1.3fr 0.1fr;
-  grid-template-rows: repeat(2, 0.3fr) 3.2fr 0.3fr 0.4fr;
+  grid-template-rows: 0.3fr 0.3fr 3.2fr 0.3fr 0.4fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". l-sigs l-sigs l-sigs . wyad-up"
-    "il-s l-r l-r l-r . wyad-up"
-    ". wyls-down wyad-wyls-stop-area wyad-wyls-stop-area wyad-wyls-stop-area wyad-up"
-    ". wyls-down . i-r i-r i-r"
-    ". wyls-down . i-sigs i-sigs i-sigs";
+    ". l-sigs l-sigs l-sigs . wyad-arrow-up"
+    "il-s l-r l-r l-r . wyad-arrow-up"
+    ". wyls-arrow-down wyad-wyls-stop-area wyad-wyls-stop-area wyad-wyls-stop-area wyad-arrow-up"
+    ". wyls-arrow-down . i-r i-r i-r"
+    ". wyls-arrow-down . i-sigs i-sigs i-sigs";
   grid-area: i-l-area;
 }
 
 .il-s { grid-area: il-s; }
 
-.wyls-down { grid-area: wyls-down; }
+.wyls-arrow-down { grid-area: wyls-arrow-down; }
 
 .i-r { grid-area: i-r; }
 
 .l-r { grid-area: l-r; }
 
-.wyad-up { grid-area: wyad-up; }
+.wyad-arrow-up { grid-area: wyad-arrow-up; }
 
 .l-sigs {
   display: grid;
-  grid-template-columns: 1fr repeat(2, 0.2fr) 1fr;
+  grid-template-columns: 1fr 0.2fr 0.2fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wyl-s l-up l-down wel-s";
+    "wyl-s wyl-arrow-up wel-arrow-down wel-s";
   grid-area: l-sigs;
 }
 
@@ -368,29 +366,29 @@ in hainsight psoitn absolute would have been better
 
 .wyl-s { grid-area: wyl-s; }
 
-.l-down { grid-area: l-down; }
+.wel-arrow-down { grid-area: wel-arrow-down; }
 
-.l-up { grid-area: l-up; }
+.wyl-arrow-up { grid-area: wyl-arrow-up; }
 
 .i-sigs {
   display: grid;
-  grid-template-columns: repeat(2, 0.2fr 1fr);
+  grid-template-columns: 0.2fr 1fr 0.2fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". wei-s i-up .";
+    ". wei-s wei-arrow-up .";
   grid-area: i-sigs;
 }
 
 .wei-s { grid-area: wei-s; }
 
-.i-up { grid-area: i-up; }
+.wei-arrow-up { grid-area: wei-arrow-up; }
 
 .wyad-wyls-stop-area {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 0.5fr) 2.8fr repeat(2, 0.6fr) 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 2.8fr 0.6fr 0.6fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -434,7 +432,7 @@ in hainsight psoitn absolute would have been better
 .mem-center {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 0.4fr) 3.6fr 0.4fr 0.5fr;
+  grid-template-rows: 0.4fr 0.4fr 3.6fr 0.4fr 0.5fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -459,7 +457,7 @@ in hainsight psoitn absolute would have been better
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "wys-s s-down s-up wes-s";
+    "wys-s wys-arrow-down wes-arrow-up wes-s";
   grid-area: s-sigs;
 }
 
@@ -467,9 +465,9 @@ in hainsight psoitn absolute would have been better
 
 .wes-s { grid-area: wes-s; }
 
-.s-up { grid-area: s-up; }
+.wes-arrow-up { grid-area: wes-arrow-up; }
 
-.s-down { grid-area: s-down; }
+.wys-arrow-down { grid-area: wys-arrow-down; }
 
 .a-sigs {
   display: grid;
@@ -478,17 +476,17 @@ in hainsight psoitn absolute would have been better
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". a-down wea-s .";
+    ". wea-arrow-down wea-s .";
   grid-area: a-sigs;
 }
 
-.a-down { grid-area: a-down; }
+.wea-arrow-down { grid-area: wea-arrow-down; }
 
 .wea-s { grid-area: wea-s; }
 
 .mem-right {
   display: grid;
-  grid-template-rows: 1.5fr repeat(2, 0.3fr) 1.9fr;
+  grid-template-rows: 1.5fr 0.3fr 0.3fr 1.9fr;
   grid-auto-columns: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -526,12 +524,12 @@ in hainsight psoitn absolute would have been better
 
 .ws-center {
   display: grid;
-  grid-template-columns: repeat(2, 1fr) repeat(2, 0.2fr) repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr 0.2fr 0.2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". wyws-s ws-up ws-down wews-s ."
+    ". wyws-s wyws-arrow-up wews-arrow-down wews-s ."
     "iws-s ws-r ws-r ws-r ws-r dws-s";
   grid-area: ws-center;
 }
@@ -544,9 +542,9 @@ in hainsight psoitn absolute would have been better
 
 .wyws-s { grid-area: wyws-s; }
 
-.ws-up { grid-area: ws-up; }
+.wyws-arrow-up { grid-area: wyws-arrow-up; }
 
-.ws-down { grid-area: ws-down; }
+.wews-arrow-down { grid-area: wews-arrow-down; }
 
 .wews-s { grid-area: wews-s; }
 
@@ -578,30 +576,31 @@ in hainsight psoitn absolute would have been better
 
 .jal-cener {
   display: grid;
-  grid-template-columns: repeat(2, 1fr) 0.5fr repeat(2, 0.2fr) 1fr 0.1fr 0.2fr 1fr;
-  grid-template-rows: 0.2fr repeat(8, 1fr) 1.1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.5fr 0.2fr 0.2fr 1fr 0.1fr 0.2fr 1fr;
+  grid-template-rows: 0.2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.1fr 1fr;
+  grid-auto-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". . . . wyak-right wyak-right wyak-right wyak-down ."
-    ". f-r f-r . wyak-up . . wyak-down ."
-    "iak-s ak-r ak-r ak-r ak-r dak-s . wyak-down ."
-    "weak-s jal-body jal-body jal-body jal-body neg-s . wyak-down wyak-s"
-    "dod-s jal-body jal-body jal-body jal-body lub-s . wyak-down ."
-    "ode-s jal-body jal-body jal-body jal-body i-s . wyak-down ."
-    "przep-s jal-body jal-body jal-body jal-body . . wyak-down ."
-    "mno-s jal-body jal-body jal-body jal-body . . wyak-down ."
-    "dziel-s jal-body jal-body jal-body jal-body . . wyak-down ."
-    "shr-s jal-body jal-body jal-body jal-body . . wyak-down ."
-    ". weja-area weja-area weja-area weja-area . . wyak-down .";
+    ". . . . wyak-arrow-hor-wyak wyak-arrow-hor-wyak wyak-arrow-hor-wyak wyak-arrow-hor-wyak ."
+    ". f-r f-r . wyak-arrow-vert-wyak . . wyak-arrow-down-wyak ."
+    "iak-s ak-r ak-r ak-r ak-r dak-s . wyak-arrow-down-wyak ."
+    "weak-s jal-body jal-body jal-body jal-body neg-s . wyak-arrow-down-wyak wyak-s"
+    "dod-s jal-body jal-body jal-body jal-body lub-s . wyak-arrow-down-wyak ."
+    "ode-s jal-body jal-body jal-body jal-body i-s . wyak-arrow-down-wyak ."
+    "przep-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    "mno-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    "dziel-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    "shr-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    ". weja-area weja-area weja-area weja-area . . wyak-arrow-down-wyak .";
   grid-area: jal-cener;
 }
 
-.wyak-down { grid-area: wyak-down; }
+.wyak-arrow-down-wyak { grid-area: wyak-arrow-down-wyak; }
 
-.wyak-right { grid-area: wyak-right; }
+.wyak-arrow-hor-wyak { grid-area: wyak-arrow-hor-wyak; }
 
-.wyak-up { grid-area: wyak-up; }
+.wyak-arrow-vert-wyak { grid-area: wyak-arrow-vert-wyak; }
 
 .dak-s { grid-area: dak-s; }
 
@@ -635,17 +634,17 @@ in hainsight psoitn absolute would have been better
 
 .weja-area {
   display: grid;
-  grid-template-columns: repeat(2, 0.4fr 1.6fr);
+  grid-template-columns: 1.6fr 0.4fr 1.6fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". weja-s weja-up .";
+    "weja-s weja-arrow-up .";
   grid-area: weja-area;
 }
 
 .weja-s { grid-area: weja-s; }
 
-.weja-up { grid-area: weja-up; }
+.weja-arrow-up { grid-area: weja-arrow-up; }
 
 .wyak-s { grid-area: wyak-s; }

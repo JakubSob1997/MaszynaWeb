@@ -74,30 +74,32 @@ export default class InstructionEditor extends SidebarContent{
     }
 
 
-    getHeaderText(_instrName){
-        if(this.changesChache.isDirty(_instrName)){
-            return "*Rozkaz: "+_instrName;
-        }else{
-            return "Rozkaz: "+_instrName;
-        }
-        
-    }
 
+
+    showDirty(_isDirty){    
+
+        if(_isDirty){
+            this.header.innerHTML="*Rozkaz: "+this.instrName;
+            this.cancelButton.getHTMLElement().classList.remove("display-none");
+        }else{
+            this.header.innerHTML="Rozkaz: "+this.instrName;
+            this.cancelButton.getHTMLElement().classList.add("display-none");
+        }
+    }
 
     populateEditor(_instruction){
 
         this.instrName=_instruction.name;
         const name= this.instrName
 
-        this.header.innerHTML = this.getHeaderText(name);
-
 
         if(this.changesChache.isDirty(name)){
             this.codeMirror.cm.setValue(this.changesChache.getCache(name));
-            this.cancelButton.getHTMLElement().classList.remove("display-none");
+            this.showDirty(true);
         }else{
             this.codeMirror.cm.setValue(_instruction.source)
-            this.cancelButton.getHTMLElement().classList.add("display-none");
+            this.showDirty(false);
+            this.changesChache.clearCache(name);
         }
 
         
@@ -150,11 +152,9 @@ export default class InstructionEditor extends SidebarContent{
             )
 
 
-            this.codeMirror.cm.on("inputRead",(update)=>{
-                this.changesChache.setCache(this.instrName,this.codeMirror.cm.value);
-                this.header.innerHTML=this.getHeaderText(this.instrName);
-                this.cancelButton.getHTMLElement().classList.remove("display-none");
-            
+            this.codeMirror.cm.on("change",(update)=>{
+                this.changesChache.setCache(this.instrName,this.codeMirror.cm.getValue());
+                this.showDirty(true);
                 
             
             })
@@ -169,7 +169,7 @@ export default class InstructionEditor extends SidebarContent{
 
 
             this.saveButon.onclick = ()=>{
-                const parser = new InstrcutionParser(this.codeMirror.value);
+                const parser = new InstrcutionParser(this.codeMirror.cm.getValue());
                 parser.validate(_Machine);
 
 
@@ -177,7 +177,6 @@ export default class InstructionEditor extends SidebarContent{
                 if(parser.parseSuccesful==true){
 
                     const instr = parser.toInstruction();
-                    console.log(instr);
                     if(_Machine.instructionList.updateInstruction(this.instrName,instr)){
                         Alerter.sendMessage("Rozkaz "+instr.name+" został poprawnie zapisany!",AlertStyleEnum.Succes);
                     }else{

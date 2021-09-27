@@ -102,7 +102,6 @@ export default class RegisterInspector extends SidebarContent{
     }
 
     onDisplaySelect(){
-        console.log(this.displaySelect);
         const display = parseInt(this.displaySelect.value,10);
         this.currentRegister.setDisplay(display);
     }

@@ -232,7 +232,6 @@ export default class Machine{
             this.instructionList=new InstructionList()
         }
         this.instructionList.setupValues(_instructionListSerializer);
-        console.log(this.instructionList);
     }
 
 

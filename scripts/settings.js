@@ -88,7 +88,6 @@ export default class Settings{
         }
 
         if(_setingsData.hasOwnProperty("extensionData")){
-            //console.log(_setingsData.extensionData);
             const flags =MachineExtensionData.prototype.getFlags.call(_setingsData.extensionData)
             this.setExtentionFlags(flags);
         }

@@ -45,8 +45,6 @@ M.settings.serializer=settingsSeralzier;
 M.instructionList.serializer=instructionListSerializer;
 
 
-console.log(instructionListSerializer.getFromLocalStorage());
-
 //!!!!!!!!!!!!!!!!!!!
 //MOVE THIS TO MACHINE VIEW
 //!!!!!!!!!!!!!!!!!!!
@@ -63,6 +61,9 @@ M.addOnManualToggleCallback((_isManual)=>{
     });
 })
 
+
+//Add arrow class to all arrows
+var elems = document.body.getElementsByTagName("*");
 
 
 const MView = new MachineView(M);
@@ -117,7 +118,6 @@ showInfoButton.addEventListener("click",()=>{
 
 
 let nextCycleButton = document.getElementById("next-cycle-button");
-console.log(nextCycleButton);
 nextCycleButton.onclick=function(){
 
     M.doCycle();

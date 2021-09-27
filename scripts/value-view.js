@@ -42,7 +42,6 @@ export default class ValueView{
         if(this.valueDisplayer==undefined){
             return parseInt(this.valueField.value,10);
         }else{
-            console.log( this.valueDisplayer.stringToValue(this.valueField.value));
             return this.valueDisplayer.stringToValue(this.valueField.value);
             
         }

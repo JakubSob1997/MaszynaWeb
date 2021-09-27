@@ -5,6 +5,7 @@ import MachineViewSignal from "./machine-view-signal.js";
 import MachineViewMemory from "./machine-view-memory.js";
 import MachineViewIntButton from "./machine-view-int-button.js"
 import MachineViewBus from "./machine-view-bus.js";
+import NachineViewArrow from "./machine-view-arrow.js";
 
 
 
@@ -25,7 +26,7 @@ export default class MachineView{
         this.busViews =[];
         this.memViews = [];
         this.intButtonViews=[];
-
+        this.arrowViews=[];
 
         this.registerSelectedCallbacks = [];
         this.memorySlotSellectedCallbacks = [];
@@ -73,6 +74,8 @@ export default class MachineView{
 
 
     setupMachine(){
+
+        this.setupArrowViews(this.M.singnalDictionary);
         this.setupRegisterViews(this.M.registers);
         this.setupSignalViews(this.M.singnalDictionary);
 
@@ -85,6 +88,8 @@ export default class MachineView{
         this.setupBus(this.M.S_bus,"s-bus",false)
         this.setupBus(this.M.A_bus,"a-bus",false)
         this.setupBus(this.M.AS_bus,"as-bus",true)
+
+        
 
     }
 
@@ -120,6 +125,30 @@ export default class MachineView{
                 } 
             }
         }
+    }
+
+
+    setupArrowViews(_singnalDict){
+        const eles = document.querySelectorAll("*");
+
+        for (let i = 0; i < eles.length; i++) {
+            const element = eles[i];
+            for (let c = 0; c < element.classList.length; c++) {
+                const cls = element.classList[c];
+                let arrowMachineView = NachineViewArrow.extractDataFromClasname(this,cls)
+                
+                if(arrowMachineView!=null){
+                    element.appendChild(arrowMachineView.getHTMLElement());
+                    arrowMachineView.subscribeSignal(_singnalDict[arrowMachineView.signal]);
+                }
+                
+            
+            }
+        }
+
+        
+
+
     }
 
 

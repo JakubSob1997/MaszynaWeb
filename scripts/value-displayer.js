@@ -73,11 +73,9 @@ export default class ValueDisplayer{
     stringToValue(_string,_bitmask){
 
         let trimed = _string.trim();
-        console.log(trimed);
         let output = NaN;
         if(trimed[0]=="%"){
             output =parseInt(trimed.substring(1,trimed.length),2);
-            console.log("%"+"output");
             return output;
         }
         if(trimed[0]=="#"){
