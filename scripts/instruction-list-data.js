@@ -79,6 +79,7 @@ export default class InstructionListData {
             "@skok wyad wea wel;\n"
         )
 
+        /*
         const IN =new InstructionData(
             "IN",
             "ROZKAZ IN;\n"+
@@ -99,7 +100,8 @@ export default class InstructionListData {
             "Jezeli z to @done gdy nie @wait;\n"+
             "@done wys weja przep weak wyl wea;"
         )
-        const intrDatas = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ,IN,OUT];
+        */
+        const intrDatas = [STP,DOD,ODE,POB,LAD,SOB,SOM,SOZ/*,IN,OUT*/];
 
         return new InstructionListData(intrDatas)
     }

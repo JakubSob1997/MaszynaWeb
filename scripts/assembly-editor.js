@@ -40,6 +40,7 @@ export default class AssemblyEditor extends SidebarContent{
     }
     focus(){
         this.title.focus();
+        this.codeMirror.cm.refresh();
     }
 
 
@@ -74,7 +75,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.wrapper.appendChild(this.loadButton);
 
         
-        console.log(this.codeMirror);
+        this.codeMirror.cm.refresh();
 
 
     }

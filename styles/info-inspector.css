@@ -1,0 +1,22 @@
+
+
+
+.info-inspector-entry{
+    padding: 1em;
+    min-width: 25em;
+}
+
+
+
+
+.info-inspector-content >div:nth-child(odd){
+    background: var(--odd-list-color);
+
+}
+
+.info-inspector-content >div:nth-child(even){
+    background: var( --even-list-color);
+    
+}
+
+

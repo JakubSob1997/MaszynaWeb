@@ -8,7 +8,7 @@ import IOInspector from "./io-inspector.js";
 import SettingsInspector from "./settings-inspector.js";
 import FileSInspector from "./file-inspector.js";
 import LayoutMediator from "./layout-mediator.js";
-
+import InfoInspector from "./info-inspector.js";
 
 
 export default class InsperctorManger{
@@ -23,6 +23,7 @@ export default class InsperctorManger{
         this.inputOutputInspector = new IOInspector(_Machine);
         this.settingsInspector = new SettingsInspector(_Machine);
         this.fileInspector = new FileSInspector();
+        this.infoInspector = new InfoInspector();
 
         _MachineView.addOnMemorySlotSellectedCallback((_index)=>{
             this.drawInspectorForMorySlot(_index)
@@ -33,7 +34,7 @@ export default class InsperctorManger{
         });
 
 
-        this.currentInspector = null;
+        this.drawInspectorForInfo();
 
         
     }
@@ -80,6 +81,12 @@ export default class InsperctorManger{
 
         this.memorySlotInspector.selectMemorySlot(_adress);
         this.selectCurrentInspector(this.memorySlotInspector);
+
+    }
+
+    drawInspectorForInfo(){
+
+        this.selectCurrentInspector(this.infoInspector);
 
     }
 

@@ -190,7 +190,7 @@ export class SettingsData{
 
     static getDefault(){
         return new SettingsData(
-            4,
+            3,
             5,
             ExtentionPresets.W,
             [1,2,3,4],

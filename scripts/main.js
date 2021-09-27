@@ -109,6 +109,11 @@ showFileButton.onclick=()=>{
     inspectorManager.drawInspectorForFile();
 }
 
+let showInfoButton =document.getElementById("info-nav");
+showInfoButton.addEventListener("click",()=>{
+    inspectorManager.drawInspectorForInfo();
+})
+
 
 
 let nextCycleButton = document.getElementById("next-cycle-button");

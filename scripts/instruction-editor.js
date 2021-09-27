@@ -7,6 +7,7 @@ import InstrcutionParser from "./instruction-parser.js";
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import InstructionChangesCache from "./instruction-changes-cache.js"
+import InstructionCodeMirror from "./instruction-codemirror.js";
 
 export default class InstructionEditor extends SidebarContent{
 
@@ -19,7 +20,7 @@ export default class InstructionEditor extends SidebarContent{
 
         this.wrapper;
         this.header;
-        this.textField;
+        this.codeMirror;
         this.saveButon ;
         this.deleteButon;
 
@@ -35,6 +36,7 @@ export default class InstructionEditor extends SidebarContent{
     }
 
     focus(){
+        this.codeMirror.cm.refresh();
         this.header.focus();
     }
 
@@ -42,16 +44,17 @@ export default class InstructionEditor extends SidebarContent{
 
         this.wrapper= document.createElement("div");
         this.header = document.createElement("h3");
-        this.textField = document.createElement("textarea");
+        this.cmWrappr = document.createElement("div");
+        this.codeMirror = new InstructionCodeMirror(this.cmWrappr)
         this.saveButon = document.createElement("button");
         this.deleteButon= new ConfirmButtonView();
         this.cancelButton = new ConfirmButtonView();
 
         this.header.setAttribute("tabindex",-1);
-        this.textField.setAttribute("spellcheck","false");
+
 
         this.wrapper.appendChild(this.header);
-        this.wrapper.appendChild(this.textField);
+        this.wrapper.appendChild(this.cmWrappr);
         this.wrapper.appendChild(this.saveButon);
         this.wrapper.appendChild(this.deleteButon.getHTMLElement());
         this.wrapper.appendChild(this.cancelButton.getHTMLElement());
@@ -88,11 +91,12 @@ export default class InstructionEditor extends SidebarContent{
 
         this.header.innerHTML = this.getHeaderText(name);
 
+
         if(this.changesChache.isDirty(name)){
-            this.textField.value = this.changesChache.getCache(name);
+            this.codeMirror.cm.setValue(this.changesChache.getCache(name));
             this.cancelButton.getHTMLElement().classList.remove("display-none");
         }else{
-            this.textField.value=_instruction.source;
+            this.codeMirror.cm.setValue(_instruction.source)
             this.cancelButton.getHTMLElement().classList.add("display-none");
         }
 
@@ -146,11 +150,16 @@ export default class InstructionEditor extends SidebarContent{
             )
 
 
-            this.textField.addEventListener("input",()=>{
-                this.changesChache.setCache(this.instrName,this.textField.value);
+            this.codeMirror.cm.on("inputRead",(update)=>{
+                this.changesChache.setCache(this.instrName,this.codeMirror.cm.value);
                 this.header.innerHTML=this.getHeaderText(this.instrName);
                 this.cancelButton.getHTMLElement().classList.remove("display-none");
+            
+                
+            
             })
+            
+
 
             this.cancelButton.addOnClickHandler((e)=>{
                 this.changesChache.clearCache(this.instrName);
@@ -160,7 +169,7 @@ export default class InstructionEditor extends SidebarContent{
 
 
             this.saveButon.onclick = ()=>{
-                const parser = new InstrcutionParser(this.textField.value);
+                const parser = new InstrcutionParser(this.codeMirror.value);
                 parser.validate(_Machine);
 
 

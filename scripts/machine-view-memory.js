@@ -84,7 +84,7 @@ export default class MachineViewMemory extends MachineViewElement{
         });
 
         this.element.addEventListener("click",(e)=>{
-            const adressString  =e.target.getAttribute("mem-adress");
+            const adressString  =e.target.getAttribute("data-mem-adress");
             if(adressString!=null){
                 const adressInt =parseInt(adressString);
                 this.machineView.selectMemorySlot(adressInt);
@@ -138,7 +138,7 @@ export class MachineViewMemoryEntry extends MachineViewElement{
 
 
         this.element.classList.add("mem-entry");
-        this.element.setAttribute("mem-adress",this.addres.toString());
+        this.element.setAttribute("data-mem-adress",this.addres.toString());
 
         this.display();
         
