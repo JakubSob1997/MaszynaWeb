@@ -39,6 +39,7 @@ export default class MachineView{
             this.signalViews.forEach(ele=>{ele.display();})
             this.busViews.forEach(ele=>{ele.display();})
             this.intButtonViews.forEach(ele=>{ele.display();})
+            this.arrowViews.forEach(ele=>{ele.display();})
         });
 
 
@@ -139,7 +140,10 @@ export default class MachineView{
                 
                 if(arrowMachineView!=null){
                     element.appendChild(arrowMachineView.getHTMLElement());
-                    arrowMachineView.subscribeSignal(_singnalDict[arrowMachineView.signal]);
+                    const signal = _singnalDict[arrowMachineView.signalName];
+                    arrowMachineView.subscribeSignal(signal);
+                    this.arrowViews.push(arrowMachineView);
+                    arrowMachineView.display();
                 }
                 
             

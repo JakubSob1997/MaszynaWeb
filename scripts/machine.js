@@ -30,6 +30,7 @@ export default class Machine{
         this.settings;
 
         this.onManualToggleCallbacks = [];
+        this.onCycleDoneCallbacks=[]
         this.wasTerminated=true;
 
 
@@ -64,6 +65,13 @@ export default class Machine{
 
     addOnManualToggleCallback(_funk){
         this.onManualToggleCallbacks.push(_funk);
+    }
+
+    addOnCycleDoneCallback(_funk){
+        this.onCycleDoneCallbacks.push(_funk);
+    }
+    invokeOnCycleDone(){
+        this.onCycleDoneCallbacks.forEach(_funk=>{_funk(this)});
     }
 
 
@@ -124,7 +132,6 @@ export default class Machine{
                 return this.selectedLongSignals.hasOwnProperty(_signalName);
             }
         }else{
-            //Alerter.alert("Undefined signal "+ _signalName);
             return false;
         }
     }
@@ -193,7 +200,7 @@ export default class Machine{
 
 
         for(const signal in this.selectedLongSignals){
-            this.selectedLongSignals[signal].onSignal(this);
+            this.selectedLongSignals[signal].executeSignal(this);
 
         }
 
@@ -206,9 +213,11 @@ export default class Machine{
         });
 
         for(const signal in this.slectedImpulseSignals){
-            this.slectedImpulseSignals[signal].onSignal(this);
+            this.slectedImpulseSignals[signal].executeSignal(this);
             
         }
+
+        this.invokeOnCycleDone();
     }
 
 

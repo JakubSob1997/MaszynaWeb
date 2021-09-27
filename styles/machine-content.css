@@ -335,6 +335,33 @@ span.reg-name{
     width: 2px;
     left: 50%;
 }
+
+.arrow-body-vert-wyak{
+    height: 100%;
+    width: 2px;
+    left: 0%;
+    position: relative;
+}
+
+.arrow-body-hor-wyak{
+    height: 2px;
+    width: 100%;
+    bottom: -6px;
+    position: relative;
+}
+
+.arrow-body-down-wyak{
+    height: 100%;
+    width: 2px;
+
+    left: 0.90em;
+    position: relative;
+}
+
+.arrow-head{
+    transition:  color 250ms,border-color 250ms;
+}
+
 .arrow-head-up{
     position: absolute;
     top: -1px;
@@ -359,6 +386,41 @@ span.reg-name{
     border-right: 6px solid transparent;
   
     border-top: 8px solid  var(--font-color);
+}
+
+.arrow-head-down-wyak{
+    position: absolute;
+    bottom: 0;
+    left: -5px;
+    width: 0;
+    height: 0;
+
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+  
+    border-top: 8px solid  var(--font-color);
+}
+
+.arrow-body.arrow-selected{
+    background: var(--secondary-color);
+}
+
+
+.arrow-head-down.arrow-selected, .arrow-head-down-wyak.arrow-selected {
+    border-top-color:var(--secondary-color);
+}
+
+.arrow-head-up.arrow-selected {
+    border-bottom-color:var(--secondary-color);
+}
+
+
+.arrow-body-hidden{
+    background: transparent;
+}
+
+.arrow-head-hidden{
+    border-color: transparent;
 }
 
 

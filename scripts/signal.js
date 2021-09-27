@@ -17,13 +17,11 @@ export default class Signal{
         }
         
         this.onUpdateCallbacks = [];
-
     }
 
     getExtention(){
         return this.extention;
     }
-
 
     update(){
         this.onUpdateCallbacks.forEach(callBack => {
@@ -33,6 +31,10 @@ export default class Signal{
 
     addOnUpdateCallback(_funk){
         this.onUpdateCallbacks.push(_funk);
+    }
+
+    executeSignal(_Machine){
+        this.onSignal(_Machine);
     }
 
 
