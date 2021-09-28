@@ -13,7 +13,7 @@ export default class FileDefaultView{
         this.wrapper=document.createElement("div");
 
         this.header=document.createElement("h4");
-        this.header.innerHTML="Wczytaj domyślne ustawienia";
+        this.header.innerHTML="Resetuj Maszynę W";
 
 
         this.defaultButton = new ConfirmButtonView();
@@ -22,7 +22,7 @@ export default class FileDefaultView{
             SerializerManager.setAllToDefault();
         })
 
-        buttonElement.innerHTML="Wczytaj Domyślne"
+        buttonElement.innerHTML="Resetuj"
 
 
         this.wrapper.appendChild(this.header);

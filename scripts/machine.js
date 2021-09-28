@@ -31,6 +31,8 @@ export default class Machine{
 
         this.onManualToggleCallbacks = [];
         this.onCycleDoneCallbacks=[]
+        this.onMachineStartedCllbacks=[];
+        this.onMachineStopedCallbacks=[];
         this.wasTerminated=true;
 
 
@@ -48,10 +50,25 @@ export default class Machine{
         return this.flagUnit.conditionFlags;
     }
 
+
+    startMachine(){
+        this.wasTerminated=false;
+        this.invokeOnMachineStarted();
+    }
+
+    stopMachine(){
+        this.wasTerminated=true;
+        this.invokeOnMachineStoped();
+    }
+
+    isRunning(){
+        return this.wasTerminated==false;
+    }
+
     onTerminate(){
         if(this.wasTerminated==false){
             Alerter.sendMessage("Maszyna została zatrzymana!",AlertStyleEnum.ExecutionFlow)
-            this.wasTerminated=true;
+            this.stopMachine();
         }
     }
 
@@ -70,8 +87,24 @@ export default class Machine{
     addOnCycleDoneCallback(_funk){
         this.onCycleDoneCallbacks.push(_funk);
     }
+
     invokeOnCycleDone(){
         this.onCycleDoneCallbacks.forEach(_funk=>{_funk(this)});
+    }
+
+
+    addOnMachineStartedCllback(_funk){
+        this.onMachineStartedCllbacks.push(_funk)
+    }
+    invokeOnMachineStarted(){
+        this.onMachineStartedCllbacks.forEach(_funk=>{_funk(this)});
+    }
+
+    addOnMachineStopedCallback(_funk){
+        this.onMachineStopedCallbacks.push(_funk)
+    }
+    invokeOnMachineStoped(){
+        this.onMachineStopedCallbacks.forEach(_funk=>{_funk(this)});
     }
 
 

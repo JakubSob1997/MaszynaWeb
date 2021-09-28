@@ -1,11 +1,12 @@
 
 import { ExecutionMode } from "./enums.js";
+import Terminator from "./terminator.js";
 
 
 
 export function runMachine(_Machine){
 
-    _Machine.wasTerminated=false;
+    _Machine.startMachine();
     for (let i = 0; i < _Machine.settings.pseudoThreads; i++) {
         setTimeout(()=>{runMachineBySetting(_Machine),0});
     }
@@ -14,8 +15,11 @@ export function runMachine(_Machine){
 }
 
 export function runSingleInstruction(_Machine){
-
-}
+    _Machine.startMachine();
+    for (let i = 0; i < _Machine.settings.pseudoThreads; i++) {
+        setTimeout(()=>{runInstructionNonBlocking(_Machine),0});
+    }
+}  
 
 export function runCycle(_Machine){
     _Machine.doCycle();
@@ -34,17 +38,18 @@ function runMachineBySetting(_M){
 
     }else if(mode===ExecutionMode.Instruction){
 
+
         let cyclesRemaining = _M.settings.cyclesBeetwenUpdate;
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
             cyclesRemaining--;
-        } while (_M.isNewInstruction()===false ||cyclesRemaining>0);
+            console.log(_M.isNewInstruction())
+        } while (_M.isNewInstruction()===false &&cyclesRemaining>0);
 
 
     }else if(mode===ExecutionMode.Program){
         let cyclesRemaining = _M.settings.cyclesBeetwenUpdate;
-        console.log(cyclesRemaining);
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
@@ -56,35 +61,34 @@ function runMachineBySetting(_M){
 }
 
 
+function runInstructionNonBlocking(_M){
 
-function runMachineBlocking(_Machine){
-    _Machine.wasTerminated=false;
-      
-    while(_Machine.wasTerminated==false){
-        _Machine.doCycle();
+    const mode = _M.settings.executionMode;
+
+    if(mode  === ExecutionMode.Cycle){
+
+        if(_M.wasTerminated==true)return;
+        _M.doCycle();
+        if(_M.isNewInstruction()){
+            _M.stopMachine();
+        }
+
+    }else if(mode===ExecutionMode.Instruction||mode===ExecutionMode.Program){
+
+        let cyclesRemaining = _M.settings.cyclesBeetwenUpdate;
+        do {
+            if(_M.wasTerminated==true)return;
+            _M.doCycle();
+            if(_M.isNewInstruction()){
+                _M.stopMachine();
+            }
+            cyclesRemaining--;
+        } while (cyclesRemaining>0);
+
+
     }
-    
+    setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
 }
-
-function runMachineNonBlocking(_Machine){
-    _Machine.wasTerminated=false;
-
-    runCycleNonBlocking((_M)=>{
-        return _M.wasTerminated==true;
-    },_Machine,0);
-    
-}
-
-
-function runCycleNonBlocking(_exitCondition,_Machine,_delay){
-    if(_exitCondition(_Machine)==true)return;
-    _Machine.doCycle();
-    setTimeout(()=>{runCycleNonBlocking(_exitCondition,_Machine,_delay);},_delay); 
-
-    
-}
-
-
 
 
 

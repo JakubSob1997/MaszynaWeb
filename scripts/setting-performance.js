@@ -6,10 +6,33 @@ import SettingView from "./settings-view.js";
 
 export default  class PerofrmanceSetting extends SettingView{
 
-    constructor(){
+    constructor(_Settings){
         super("Wydajność");
 
+        this.settings= _Settings;
+
         this.build();
+
+        this.setupFields(_Settings);
+
+        this.settings.addOnSettingsChangedListener((_s)=>{
+            this.setupFields(_s);
+        })
+    }
+
+
+    setupFields(_settings){
+        this.pseudoThreadsInput.value=_settings.pseudoThreads;
+        this.cyclesBeetwenInput.value=_settings.cyclesBeetwenUpdate;
+    }
+
+    submitSettings(){
+
+        const pseudoThreadsVal = parseInt(this.pseudoThreadsInput.value)
+        const cyclesBeetwenVal = parseInt(this.cyclesBeetwenInput.value)
+
+
+        this.settings.setPerformanceSettings(pseudoThreadsVal,cyclesBeetwenVal)
     }
 
 
@@ -31,22 +54,29 @@ export default  class PerofrmanceSetting extends SettingView{
 
         //Max cycles
 
-        this.maxCyclesDiv = document.createElement("div");
-        this.pmaxCyclesInput = document.createElement("input");
-        this.maxCyclesLabel = document.createElement("label");
+        this.cyclesBeetwenDiv = document.createElement("div");
+        this.cyclesBeetwenInput = document.createElement("input");
+        this.cyclesBeetwenLabel = document.createElement("label");
 
-        this.pmaxCyclesInput.type="number";
-        this.maxCyclesLabel.innerHTML="Ilość cyklów między odświeżeniami";
+        this.cyclesBeetwenInput.type="number";
+        this.cyclesBeetwenLabel.innerHTML="Ilość cyklów między odświeżeniami";
 
-        this.maxCyclesDiv.appendChild(this.pmaxCyclesInput);
-        this.maxCyclesDiv.appendChild(this.maxCyclesLabel);
+        this.cyclesBeetwenDiv.appendChild(this.cyclesBeetwenInput);
+        this.cyclesBeetwenDiv.appendChild(this.cyclesBeetwenLabel);
 
 
+        this.confirmButton = document.createElement("button");
+        this.confirmButton.innerHTML="Ustaw";
+        this.confirmButton.classList.add("custom-btn");
 
+        this.confirmButton.addEventListener("click",()=>{
+            this.submitSettings();
+        })
 
 
         this.content.appendChild(this.pseudoThreadsDiv);
-        this.content.appendChild(this.maxCyclesDiv);
+        this.content.appendChild(this.cyclesBeetwenDiv);
+        this.content.appendChild(this.confirmButton);
 
 
     }

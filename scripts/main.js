@@ -8,13 +8,14 @@ import AlertWindow from "./alert-window.js";
 import { AlertStyleEnum } from "./enums.js";
 import Alerter from "./alerter.js";
 import AlertTerminator from "./alert-terminator.js";
-import {runMachine} from "./machine-execution.js";
+import {runMachine, runCycle, runSingleInstruction} from "./machine-execution.js";
 
 
 
 import SettingsSerializer from "./settings-serializer.js";
 import InstructionListSerializer from "./instruction-list-serializer.js";
 import SerializerManager from "./serializer-manager.js";
+import Terminator from "./terminator.js";
 
 
 
@@ -120,35 +121,59 @@ showInfoButton.addEventListener("click",()=>{
 let nextCycleButton = document.getElementById("next-cycle-button");
 nextCycleButton.onclick=function(){
 
-    M.doCycle();
+
+    if(M.isRunning()==false){
+        runCycle(M);
+    }
+    
 }
 
 let nextInstructionButton = document.getElementById("next-instruction-button");
 nextInstructionButton.onclick=function(){
 
-    M.doInstruction();
+    if(M.isRunning()==false){
+        runSingleInstruction(M);
+    }
+    
 }
 
 let toggleManualButton = document.getElementById("toggle-manual-button");
 toggleManualButton.onclick = ()=>{
 
     M.setManualMode(M.manualControll==false);
-    if(M.manualControll){
+
+}
+
+M.addOnManualToggleCallback((_manual)=>{
+    if(_manual){
         toggleManualButton.classList.add("manual-selected")
         
     }else{
         toggleManualButton.classList.remove("manual-selected")
     }
 
-}
+})
 
 
 let runMachineButton=document.getElementById("run-machine-button");
 runMachineButton.addEventListener("click",()=>{
-    runMachine(M);
+    if(M.isRunning()){
+        Terminator.terminate();
+    }else{
+        runMachine(M);
+    }
+    
 })
 
 
+M.addOnMachineStartedCllback(()=>{
+    
+    runMachineButton.classList.add("manual-selected");
+})
+
+M.addOnMachineStopedCallback(()=>{
+    runMachineButton.classList.remove("manual-selected");
+})
 
 
 

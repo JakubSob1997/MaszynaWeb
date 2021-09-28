@@ -15,6 +15,11 @@ export default class Settings{
     static MaxCodeWidth  = 8;
     static MaxAddresWidth =12;
 
+    static MinPseudoThreads=1;
+    static MaxPseudoThreads=100;
+    static MinCyclesBeetwenUpdate=0;
+    static MaxCyclesBeetwenUpdate=1000000;
+
     constructor(){
         this.codeWidth=3;
         this.adressWidth=5;
@@ -22,7 +27,7 @@ export default class Settings{
         this.intAdressList=[1,2,3,4];
 
         this.pseudoThreads = 8;
-        this.cyclesBeetwenUpdate=100;
+        this.cyclesBeetwenUpdate=1000;
         this.executionMode = ExecutionMode.Cycle;
 
 
@@ -184,6 +189,23 @@ export default class Settings{
         this.invokeSettingsChanged();
     }
 
+    setPerformanceSettings(_pseudoThreads, _cyclesBeetwen){
+
+        if(isNaN(_pseudoThreads)||isNaN(_cyclesBeetwen)){
+            Alerter.sendMessage("Nieprawidłowe Dane Wejściowe",AlertStyleEnum.InputError);
+        }
+
+        _pseudoThreads =Math.min(Math.max(_pseudoThreads,Settings.MinPseudoThreads),Settings.MaxPseudoThreads)
+        _cyclesBeetwen = Math.min(Math.max(_cyclesBeetwen,Settings.MinCyclesBeetwenUpdate),Settings.MaxCyclesBeetwenUpdate)
+
+        this.pseudoThreads=_pseudoThreads;
+        this.cyclesBeetwenUpdate=_cyclesBeetwen;
+
+        this.save();
+        this.invokeSettingsChanged();
+
+    }
+
 
 
     getOpcode(_value){
@@ -218,7 +240,7 @@ export class SettingsData{
             [1,2,3,4],
             ExecutionMode.Cycle,
             8,
-            100
+            1000
             );
     }
     

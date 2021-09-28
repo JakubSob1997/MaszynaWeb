@@ -1,3 +1,4 @@
+import Alerter from "./alerter.js";
 
 
 
@@ -34,7 +35,14 @@ export default class Signal{
     }
 
     executeSignal(_Machine){
-        this.onSignal(_Machine);
+        if((_Machine.settings.extentionFlags&this.extention)==0){
+
+            Alerter.alert("Moduł zwierający sygnał "+this.name +" nie jest aktywny.")
+        }else{
+            this.onSignal(_Machine);
+        }
+
+        
     }
 
 
