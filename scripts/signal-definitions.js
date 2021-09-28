@@ -1,6 +1,7 @@
 import Alerter from "./alerter.js"
 import Signal from "./signal.js"
 import { ExtnensionFlags, SignalOrientation,ALUOperationEnum} from "./enums.js";
+import Terminator from "./terminator.js";
 
 /*
     It defines all the signals in a
@@ -191,7 +192,7 @@ function addInstructionSignals(_Machine){
     const stop = new Signal(
         "stop",
         false,
-        (_M)=>{Alerter.alert("Program Is Stoped");},
+        (_M)=>{Terminator.terminate()},
         ExtnensionFlags.Base,
         SignalOrientation.None
     )

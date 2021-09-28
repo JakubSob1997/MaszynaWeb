@@ -1,42 +1,37 @@
 
 import ConfirmButtonView from "./confirm-buttton-view.js";
+import FileViewBase from "./file-view-base.js";
 import SerializerManager from "./serializer-manager.js";
 
-export default class FileDefaultView{
+export default class FileDefaultView extends FileViewBase{
 
-    constructor(){
+    constructor(_fileInspector){
+
+        super(_fileInspector,"Wczytaj Domyśle")
         this.wrapper;
         this.build();
     }
 
     build(){
-        this.wrapper=document.createElement("div");
-
-        this.header=document.createElement("h4");
-        this.header.innerHTML="Resetuj Maszynę W";
 
 
-        this.defaultButton = new ConfirmButtonView();
-        const buttonElement = this.defaultButton.getHTMLElement();;
-        this.defaultButton.addOnClickHandler(()=>{
-            SerializerManager.setAllToDefault();
+        this.defaultButton = document.createElement("button");
+        this.defaultButton .addEventListener("click",()=>{
+            let obj  =SerializerManager.getDefaultObject();
+            obj.fileName="Domyślne Ustawienia";
+            this.pickObject(obj);
         })
 
-        buttonElement.innerHTML="Resetuj"
+        this.defaultButton.innerHTML="Wczytaj Domyślne"
+        this.defaultButton.classList.add("file-entry");
 
-
-        this.wrapper.appendChild(this.header);
-        this.wrapper.appendChild(buttonElement);
-
+        this.content.appendChild(this.defaultButton);
 
        
 
 
     }
 
-    getHTMLElement(){
-        return this.wrapper;
-    }
 
 
 }

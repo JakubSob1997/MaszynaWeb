@@ -8,6 +8,7 @@ import Terminator from "./terminator.js";
 import AssemblySerializer from "./assembly-serializer.js";
 import SerializerManager from "./serializer-manager.js";
 import AssemblyCodeMirror from "./assembly-codemirror.js";
+import {runMachine} from "./machine-execution.js";
 
 export default class AssemblyEditor extends SidebarContent{
     constructor(_machine){
@@ -51,7 +52,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.title=document.createElement("h3");
         this.codeMirrorWrapper =document.createElement("div");
         this.loadButton = document.createElement("button");
-        this.copyButton = document.createElement("button");
+        this.runButton = document.createElement("button");
 
         
         this.codeMirror = new AssemblyCodeMirror(this.codeMirrorWrapper);
@@ -62,10 +63,11 @@ export default class AssemblyEditor extends SidebarContent{
 
         this.wrapper.classList.add("generic-inspector")
         this.loadButton.classList.add("custom-btn");
-        
+        this.runButton.classList.add("custom-btn");
+
         this.title.innerHTML="Program"
         this.loadButton.innerHTML="Ładuj do pamięci";
-
+        this.runButton.innerHTML="Uruchom Program";
 
 
 
@@ -73,6 +75,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.wrapper.appendChild(this.title);
         this.wrapper.appendChild(this.codeMirrorWrapper);
         this.wrapper.appendChild(this.loadButton);
+        this.wrapper.appendChild(this.runButton);
 
         
         this.codeMirror.cm.refresh();
@@ -81,7 +84,17 @@ export default class AssemblyEditor extends SidebarContent{
     }
 
     addCallbacks(){
-        this.loadButton.onclick = ()=>{this.onLoadButton();};
+        this.loadButton.addEventListener("click",()=>{this.onLoadButton();});
+        this.runButton.addEventListener("click",()=>{this.onRunButton()});
+    
+        this.M.addOnMachineStartedCllback((_M)=>{
+            this.runButton.classList.add("display-none");
+            this.runButton.blur();
+        })
+        this.M.addOnMachineStopedCallback((_M)=>{
+            this.runButton.classList.remove("display-none");
+        })
+    
     }
 
     getCode(){
@@ -130,6 +143,12 @@ export default class AssemblyEditor extends SidebarContent{
             Alerter.sendMessage(this.parser.errorMessage,AlertStyleEnum.SyntaxError);
         }
 
+    }
+
+    onRunButton(){
+        if(this.M.isRunning()==false){
+            runMachine(this.M);
+        }
     }
 
 

@@ -1,6 +1,6 @@
 {
 	"instructionList": {
-		"intructionDataArray": [
+		"instructionDataArray": [
 			{
 				"name": "STP",
 				"sourceCode": "ROZKAZ STP;\nBEZARG;\nczyt wys wei il;\nstop;\n"
@@ -43,7 +43,7 @@
 			},
 			{
 				"name": "FIBO",
-				"sourceCode": "ROZKAZ FIBO;\n//SETUP\nczyt wys wei il;\nwyak weja ode weak;\nwyws wes as iak;\nwyak wex wey wyad wews;\n\n// Ws check\n@loop\nwyws as weak przep weja;\nJEZELI ZAK @end_y;\n\n// Add x\nwyy przep weak weja;\nwyx dod weak weja;\nwyak wex dws;\n\n\n// Ws check\nwyws as weak przep weja;\nJEZELI ZAK @end_x;\n\n//Add y\nwyx przep weak weja;\nwyy dod weak weja;\nwyak wey dws;\nJEZELI NIE Z @loop;\nJEZELI Z @loop;\n\n//End\n@end_x wyx weja przep weak;\nJEZELI NIE Z @end;\nJEZELI Z @end;\n@end_y wyy weja przep weak;\n\n@end\nwyl wea;\nwys as wews;\n\n\n"
+				"sourceCode": "ROZKAZ FIBO;\n//SETUP\nczyt wys wei il;\nwyak weja ode weak;\nwyws wes as;\nwyak wex iak wyad wews;\nwyak wey;\n\n// Ws check\n@loop\nwyws as weak przep weja;\nJEZELI ZAK @end_x;\n\n// Add x\nwyy przep weak weja;\nwyx dod weak weja;\nwyak wex dws;\n\n\n// Ws check\nwyws as weak przep weja;\nJEZELI ZAK @end_y;\n\n//Add y\nwyx przep weak weja;\nwyy dod weak weja;\nwyak wey dws;\nJEZELI NIE Z @loop;\nJEZELI Z @loop;\n\n//End\n@end_x wyx weja przep weak;\nJEZELI NIE Z @end;\nJEZELI Z @end;\n@end_y wyy weja przep weak;\n\n@end\nwyl wea;\nwys as wews;\n\n\n"
 			},
 			{
 				"name": "CALL",
@@ -75,19 +75,34 @@
 			},
 			{
 				"name": "TOPN",
-				"sourceCode": "ROZKAZ TOPN;\nczyt wys wei il;\nwyws as weja przep weak;\nwyad as weja dod weak;\nwyak as wea;\nczyt wys weja przep weak wyl wea;\n\n"
+				"sourceCode": "ROZKAZ TOPN;\nczyt wys wei il;\nwyws as weja przep weak;\nwyad as weja dod weak;\nwyak as wea;\nczyt wys weja przep weak wyl wea;"
 			}
 		]
 	},
 	"settings": {
-		"codeWidth": 7,
-		"adressWidth": 7,
-		"extentionFlags": 2047,
+		"codeWidth": 5,
+		"adressWidth": 6,
+		"extensionData": {
+			"BusConnection": true,
+			"AK_Increment": true,
+			"ALU_Logic": true,
+			"ALU_ExtendedMath": true,
+			"Stack": true,
+			"X_Register": true,
+			"Y_Register": true,
+			"Interupt": true,
+			"InputOutput": true,
+			"Flags": true
+		},
 		"intAdressList": [
 			1,
 			2,
 			3,
 			4
-		]
-	}
+		],
+		"executionMode": 1,
+		"pseudoThreads": 8,
+		"cyclesBeetwenUpdate": 1000
+	},
+	"program": "//Program NWD\n//Zajduje nwd z liczb A i B\n//Wynik zapisuje w AK\n\n\n\ngetA: IN 6\nSOM getA\nSOZ getA\nLAD a\ngetB: IN 6\nSOM getB\nSOZ getB\nLAD b\n\n\n\nOUT 5\nPOB a\nOUT 4\nPOB b\nOUT 4\n\n//A > B\naMinusb: POB a                \naMinusB+1: ODE b\nSOZ stop  \nSOM bMinusA   \nLAD a \nSOB aMinusB+1\n\n//B>A\nbMinusA: POB b\nbMinusA+1: ODE a\nSOZ stop\nSOM aMinusb\nLAD b\nSOB bMinusA+1\n\n//A==B znaleziono NWD\nstop: DOD a\nOUT 4\nSTP\n\na: RST 120 //A=120\nb: RST 70 //B=70\n"
 }

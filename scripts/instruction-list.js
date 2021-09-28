@@ -27,9 +27,11 @@ export default class InstructionList{
 
     setupValues(_instrListData,_instructionValidator){
 
-        const instructionDatas  =_instrListData.intructionDataArray
+        const instructionDatas  =_instrListData.instructionDataArray;
 
-        
+        if(instructionDatas==null){
+            return
+        }
 
         this.instructionArray=[];
 

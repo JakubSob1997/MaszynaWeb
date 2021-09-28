@@ -16,9 +16,7 @@ export function runMachine(_Machine){
 
 export function runSingleInstruction(_Machine){
     _Machine.startMachine();
-    for (let i = 0; i < _Machine.settings.pseudoThreads; i++) {
-        setTimeout(()=>{runInstructionNonBlocking(_Machine),0});
-    }
+    runInstructionNonBlocking(_Machine);
 }  
 
 export function runCycle(_Machine){

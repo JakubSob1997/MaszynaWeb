@@ -26,6 +26,26 @@ export default class MachineExtensionData{
 
     }
 
+    toString(){
+        let result="";
+        if(this.BusConnection) result+="Połączenie, "
+        if(this.AK_Increment) result+="Inkrementacja, "
+        if(this.BusConnection) result+="Logika, "
+        if(this.BusConnection) result+="Arytmetyka, "
+        if(this.BusConnection) result+="Stos, "
+        if(this.BusConnection) result+="X, "
+        if(this.BusConnection) result+="Y, "
+        if(this.BusConnection) result+="Przerwania, "
+        if(this.BusConnection) result+="We/Wy, "
+        if(this.BusConnection) result+="Flagi, "
+
+        if(result!=""){
+            result=result.slice(0,result.length-2);
+        }
+        return result;
+        
+    }
+
 
 
     setProperties(_flags){
@@ -54,7 +74,6 @@ export default class MachineExtensionData{
         flag|=this.Interupt ?ExtnensionFlags.Interupt:0;
         flag|=this.InputOutput ?ExtnensionFlags.InputOutput:0;
         flag|=this.Flags ?ExtnensionFlags.Flags:0;
-
 
         return flag;
 

@@ -33,24 +33,49 @@ let SerializerManager={
         const jsonString = JSON.stringify(exportOpbjject,null,"\t");
         this.exportLocalFile(jsonString,_filename,"application/json")
     },
+
+    loadFromObject(_obj,_serializerList){
+        for (const key in _obj) {
+            if (Object.hasOwnProperty.call(_obj, key)) {
+                const value = _obj[key];
+                
+                if(_serializerList.hasOwnProperty(key)){
+                    const serializer = _serializerList[key];
+                    serializer.setObjectData(value);
+                }
+
+            }
+        }
+    },
    
+
     readDataFromJson:function(_fileObject,_serializerList){
+        let promise = new Promise((resolve,reject)=>{
+            let reader = new FileReader();
+        reader.onload=(e)=>{
+            const content = e.target.result;
+            const jsonObj = JSON.parse(content);
+            jsonObj.fileName=_fileObject.name;
+
+            resolve(jsonObj);
+        };
+        reader.onerror=(e)=>{
+            reject();
+        }
+        reader.readAsText(_fileObject);
+        })
+
+        return promise;
+        
+    },
+
+    /*
+    loadDataFromJson:function(_fileObject,_serializerList){
         let reader = new FileReader();
         reader.onload=(e)=>{
             const content = e.target.result;
             const jsonObj = JSON.parse(content);
-
-            for (const key in jsonObj) {
-                if (Object.hasOwnProperty.call(jsonObj, key)) {
-                    const value = jsonObj[key];
-                    
-                    if(_serializerList.hasOwnProperty(key)){
-                        const serializer = _serializerList[key];
-                        serializer.setObjectData(value);
-                    }
-
-                }
-            }
+            this.loadFromObject(jsonObj,_serializerList);
 
             Alerter.sendMessage(`Wczytanie pliku "${_fileObject.name}" przebiegło pomyślnie.`,AlertStyleEnum.InputSucces);
 
@@ -61,9 +86,21 @@ let SerializerManager={
 
         }
         reader.readAsText(_fileObject);
+    },*/
+
+    getDefaultObject(){
+        let obj ={};
+
+        for (const key in this.serializers) {
+            if (Object.hasOwnProperty.call(this.serializers, key)) {
+                const serializer = this.serializers[key];
+                obj[serializer.getKeyName()] = serializer.getDefault();
+            }
+        }
+        return obj;
     },
 
-
+    /*
     setAllToDefault(){
         for (const key in this.serializers) {
             if (Object.hasOwnProperty.call(this.serializers, key)) {
@@ -72,10 +109,11 @@ let SerializerManager={
             }
         }
         Alerter.sendMessage("Wczytano domyślne ustawienia.",AlertStyleEnum.InputSucces);
-    }
+    },
+    */
 
+   
 }
-
 
 
 

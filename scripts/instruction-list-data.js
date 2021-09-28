@@ -10,7 +10,7 @@ export default class InstructionListData {
     constructor(_instrDataArray){
 
         
-        this.intructionDataArray = _instrDataArray;
+        this.instructionDataArray = _instrDataArray;
     }
 
     static getDefault(){

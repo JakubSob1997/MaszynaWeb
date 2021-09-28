@@ -1,0 +1,73 @@
+
+
+
+
+
+.file-inspector-content >div:first-child{
+    background: var(--even-list-color);
+
+}
+
+.file-inspector-content >div:nth-child(2){
+    
+    background: var(--odd-list-color);
+
+}
+
+.file-inspector-content > div{
+    padding: 0.2em 0.5em 0.8em 0.5em;
+}
+
+.file-view-header{
+    margin-bottom: 0.4em;
+}
+
+
+.file-inspector-content .custom-btn,.file-inspector-content  .confirm-btn{
+    min-width: 2em;
+    min-height: 2em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+label.file-entry{
+    display: block;
+    cursor: pointer;
+}
+
+
+
+
+.file-entry{
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+
+
+    border-radius: 0.2em;
+    text-align: left;
+}
+
+.file-entry:nth-of-type(even){
+    background: var(--even-list-color);
+}
+.file-entry:nth-of-type(odd){
+    background: var(--odd-list-color);
+}
+
+.file-entry:hover, .file-entry:focus{
+    background: var(--primary-color);
+}
+
+.file-entry:active{
+    color: var(--contrast-font-color);
+    background: var(--secondary-color);
+}
+
+.file-name-input{
+    width: 50%;
+}
+.file-json-span{
+    margin-right: 0.5em;
+}

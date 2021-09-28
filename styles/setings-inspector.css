@@ -26,10 +26,21 @@
     width: 8em;
 }
 
+.settings-list button{
+    min-width: 4em;
+    min-height: 2em;
+}
+
+
 
 .generic-setting{
     border-radius: 0.3em;
     padding:1em 0.5em 1em 0.5em;
+}
+
+.generic-setting-content >*{
+    margin-bottom: 0.3em;
+    margin-right: 0.3em;
 }
 
 .generic-setting-header{

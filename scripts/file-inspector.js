@@ -5,6 +5,8 @@ import SidebarContent from "./sidebar-content.js";
 import FileExportView from "./file-export-view.js";
 import FileImportView from "./file-import-view.js";
 import FileDefaultView from "./file-default-view.js";
+import FileFetchView from "./file-fetch-view.js";
+import FilePreviewView from "./file-prreview.js";
 
 export default class FileSInspector extends SidebarContent{
     constructor(){
@@ -19,7 +21,6 @@ export default class FileSInspector extends SidebarContent{
         
 
         this.build()
-        this.addCallbacks();
     }
     focus(){
         this.header.focus();
@@ -31,9 +32,11 @@ export default class FileSInspector extends SidebarContent{
 
 
         this.content = document.createElement("div");
-        this.fileDefaultView = new FileDefaultView();
-        this.fileImportView=new FileImportView();
-        this.fileExportView=new FileExportView();
+        this.FilePreviewView = new FilePreviewView();
+        this.fileDefaultView = new FileDefaultView(this);
+        this.fileImportView=new FileImportView(this);
+        this.fileExportView=new FileExportView(this);
+        this.FileFetchView = new FileFetchView(this);
 
 
         this.header.innerHTML="Plik"
@@ -41,19 +44,23 @@ export default class FileSInspector extends SidebarContent{
 
 
         this.wrapper.classList.add("generic-inspector");
+        this.content.classList.add("file-inspector-content");
 
         this.header.setAttribute("tabindex",-1);
 
-        
         this.content.appendChild(this.fileExportView.getHTMLElement());
+        this.content.appendChild(this.FilePreviewView.getHTMLElement());
+        
         this.content.appendChild(this.fileImportView.getHTMLElement());
+        this.content.appendChild(this.FileFetchView.getHTMLElement());
         this.content.appendChild(this.fileDefaultView.getHTMLElement());
+        
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);
     }
 
-    addCallbacks(){
-
+    previewObj(_obj){
+        this.FilePreviewView.preview(_obj);
     }
 
 
