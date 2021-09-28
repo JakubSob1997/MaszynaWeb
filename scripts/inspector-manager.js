@@ -34,7 +34,8 @@ export default class InsperctorManger{
         });
 
 
-        this.drawInspectorForInfo();
+        this.currentInspector=this.infoInspector;
+        this.inspectorElement.appendChild(this.infoInspector.getHTMLElement());
 
         
     }

@@ -163,6 +163,13 @@ export default class Settings{
         this.invokeOnBusWidthChanged();
     }
 
+    setExecutionMode(_newMode){
+        this.executionMode=_newMode;
+        Terminator.terminate();
+        this.save();
+        this.invokeSettingsChanged();
+    }
+
 
 
     getOpcode(_value){
@@ -193,7 +200,7 @@ export class SettingsData{
             5,
             ExtentionPresets.W,
             [1,2,3,4],
-            ExecutionMode.OneCycle,
+            ExecutionMode.Cycle,
             );
     }
     

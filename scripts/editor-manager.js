@@ -15,7 +15,7 @@ export default class EditorManager{
         this.instructionEditor = new InstructionEditor(_Machine,this);
 
         this.editorElement.appendChild(this.assemblyEditor.getHTMLElement());
-
+        this.assemblyEditor.refresh();
 
     }
 

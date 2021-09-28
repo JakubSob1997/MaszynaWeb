@@ -102,6 +102,10 @@ export default class AssemblyEditor extends SidebarContent{
         this.serializer.loadFromLocalStorage();
     }
 
+    refresh(){
+        this.codeMirror.cm.refresh();
+    }
+
 
     onInput(){
         this.save();

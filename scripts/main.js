@@ -87,28 +87,28 @@ inspectorManager.instructionInspector.addInstructionSelectedCallback((_instructi
 
 
 let showAsmButton = document.getElementById("asm-nav");
-showAsmButton.onclick=()=>{
+showAsmButton.addEventListener("click",()=>{
     editorManager.drawEditorForAssembly()
-}
+})
 let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
-showInstrInspectorButton.onclick=()=>{
+showInstrInspectorButton.addEventListener("click",()=>{
     inspectorManager.drawInspectorForInstructionList();
-}
+})
 
 let showSettingsButon = document.getElementById("settings-nav")
-showSettingsButon.onclick=()=>{
+showSettingsButon.addEventListener("click",()=>{
     inspectorManager.drawInspectorForSettings();
-}
+})
 
 let showIOButton =  document.getElementById("io-nav")
-showIOButton.onclick=()=>{
+showIOButton.addEventListener("click",()=>{
     inspectorManager.drawInspectorForInputOutput();
-}
+})
 
 let showFileButton =  document.getElementById("file-nav")
-showFileButton.onclick=()=>{
+showFileButton.addEventListener("click",()=>{
     inspectorManager.drawInspectorForFile();
-}
+})
 
 let showInfoButton =document.getElementById("info-nav");
 showInfoButton.addEventListener("click",()=>{

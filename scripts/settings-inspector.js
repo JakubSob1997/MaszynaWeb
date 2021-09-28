@@ -3,13 +3,13 @@
 import SidebarContent from "./sidebar-content.js";
 import { 
     InteruptAdressSetting,
-    IOInteruptSetting,
-    PerofrmanceSetting,
 } from "./settings-view.js";
 
 import BusWidthSettingView  from "./setting-bus-width.js";
 import MachineExtensionSetting from "./setting-machine-extension.js";
 import ExecutionModeSetting from "./setting-execution-mode.js";
+import PerofrmanceSetting from "./setting-performance.js"
+
 
 export default class SettingsInspector extends SidebarContent{
     constructor(_Machine){
@@ -38,19 +38,17 @@ export default class SettingsInspector extends SidebarContent{
         this.settingList.classList.add("settings-list");
         this.wrapper.classList.add("generic-inspector");
 
-        this.simulationLevelSetting = new ExecutionModeSetting();
+        this.simulationLevelSetting = new ExecutionModeSetting(_Machine.settings);
         this.busWidthSetting = new BusWidthSettingView(_Machine.settings);
         this.extnesionPickerSetting = new MachineExtensionSetting(_Machine.settings);
-        this.intAdressSetting=new InteruptAdressSetting();
-        this.ioInteruptSetting = new IOInteruptSetting();
-        this.perofrmanceSetting = new PerofrmanceSetting();
+        this.intAdressSetting=new InteruptAdressSetting(_Machine.settings);
+        this.perofrmanceSetting = new PerofrmanceSetting(_Machine.settings);
 
     
         this.settingList.appendChild(this.simulationLevelSetting.wrapper)
         this.settingList.appendChild(this.busWidthSetting.wrapper);
         this.settingList.appendChild(this.extnesionPickerSetting.wrapper);
-        this.settingList.appendChild(this.intAdressSetting.wrapper)
-        this.settingList.appendChild(this.ioInteruptSetting.wrapper)
+        this.settingList.appendChild(this.intAdressSetting.wrapper);
         this.settingList.appendChild(this.perofrmanceSetting.wrapper);
 
         this.wrapper.appendChild(this.header);

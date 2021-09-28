@@ -9,9 +9,28 @@ export default class ExecutionModeSetting extends SettingView{
     constructor(_Settings){
         super("Poziom Śledzenia")
 
+        this.settings = _Settings;
+        this.radioDict={};
+        this.build();
 
-        this.build(_Settings);
 
+        this.selectRadio(_Settings.executionMode);
+
+        
+        
+    }
+
+
+
+    selectRadio(_executionMode){
+        if(this.radioDict[_executionMode]!=undefined){
+            console.log(this.radioDict);
+            this.radioDict[_executionMode].setAttribute("checked","true");
+        }
+    }
+
+    onRadioChosen(_value){
+        this.settings.setExecutionMode(parseInt(_value));
     }
 
 
@@ -24,6 +43,13 @@ export default class ExecutionModeSetting extends SettingView{
         radio.type="radio";
         radio.name ="execution-mode";
         radio.id=id;
+        radio.value=_value;
+
+        radio.addEventListener("input",(e)=>{this.onRadioChosen(radio.value)});
+
+        this.radioDict[_value] = radio;
+
+
         label.innerHTML=_name;
         label.setAttribute("for",id)
 
@@ -38,8 +64,7 @@ export default class ExecutionModeSetting extends SettingView{
 
     build(){
 
-        this.buildRadio("Takt",ExecutionMode.OneCycle,this.content);
-        //this.buildRadio("N Taktów",ExecutionMode.NCycles,this.content);
+        this.buildRadio("Takt",ExecutionMode.Cycle,this.content);
         this.buildRadio("Rozkaz",ExecutionMode.Instruction,this.content);
         this.buildRadio("Program",ExecutionMode.Program,this.content);
         

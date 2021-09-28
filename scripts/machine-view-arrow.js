@@ -58,6 +58,11 @@ export default class NachineViewArrow extends MachineViewElement{
             }
         })
 
+        this.machineView.M.addOnManualToggleCallback(()=>{
+            this.body.classList.remove("arrow-selected");
+            this.head.classList.remove("arrow-selected");
+        })
+
     }
     
 

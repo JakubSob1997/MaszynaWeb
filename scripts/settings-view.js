@@ -43,23 +43,6 @@ export class InteruptAdressSetting extends SettingView{
 
 }
 
-export class IOInteruptSetting extends SettingView{
-    constructor(){
-        super("Przerwania We/Wy")
-    }
-}
-
-
-
-export class PerofrmanceSetting extends SettingView{
-
-    constructor(){
-        super("Wydajność");
-
-        
-    }
-
-}
 
 
 

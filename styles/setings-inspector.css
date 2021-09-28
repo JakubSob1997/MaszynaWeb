@@ -15,14 +15,21 @@
     
 }
 
+
+
 .settings-list{
     min-width: 20em;
 }
 
 
+.settings-list input[type="number"]{
+    width: 8em;
+}
+
+
 .generic-setting{
     border-radius: 0.3em;
-    padding:0.3em;
+    padding:1em 0.5em 1em 0.5em;
 }
 
 .generic-setting-header{
