@@ -20,7 +20,7 @@ export default class MachineExtensionSetting extends SettingView{
 
         this.settings=_Settings;
 
-        _Settings.addOnSettingsChangedListener((_s)=>{
+        _Settings.addOnExtensionFlagsChangedListener((_s)=>{
             this.setChecks(_s.extentionFlags);
         })
 

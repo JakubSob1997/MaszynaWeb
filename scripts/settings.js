@@ -1,8 +1,9 @@
 
-import { ExtentionPresets,ExecutionMode } from "./enums.js";
+import { ExtentionPresets,ExecutionMode, AlertStyleEnum } from "./enums.js";
 import Terminator from "./terminator.js";
 import SettingsSerializer from "./settings-serializer.js";
 import MachineExtensionData from "./machine-extension-data.js";
+import Alerter from "./alerter.js";
 
 
 
@@ -20,10 +21,9 @@ export default class Settings{
         this.extentionFlags  = ExtentionPresets.W;
         this.intAdressList=[1,2,3,4];
 
-        this.asyncThreads = 8;
-        this.nCycles=4;
-        this.minTimeBeetwenCycles=0;
-        this.executionMode = ExecutionMode.OneCycle;
+        this.pseudoThreads = 8;
+        this.cyclesBeetwenUpdate=100;
+        this.executionMode = ExecutionMode.Cycle;
 
 
         this.onBusWidthChangedCallbacks =[];
@@ -53,7 +53,6 @@ export default class Settings{
         this.onBusWidthChangedCallbacks.forEach(_funk => {
             _funk(this);
         });
-        this.invokeSettingsChanged();
     }
 
 
@@ -65,7 +64,6 @@ export default class Settings{
         this.onExtensionFlagsChangedCallbacks.forEach(_funk=>{
             _funk(this);
         })
-        this.invokeSettingsChanged();
     }
 
     addOnSettingsChangedListener(_funk){
@@ -88,8 +86,14 @@ export default class Settings{
         }
 
         if(_setingsData.hasOwnProperty("extensionData")){
-            const flags =MachineExtensionData.prototype.getFlags.call(_setingsData.extensionData)
-            this.setExtentionFlags(flags);
+            try {
+                const flags= MachineExtensionData.prototype.getFlags.call(_setingsData.extensionData)
+                this.setExtentionFlags(flags);
+            } catch (error) {
+                Alerter.sendMessage(error.message,AlertStyleEnum.InputError);
+            }
+            
+           
         }
         
         if(_setingsData.hasOwnProperty("intAdressList")){
@@ -100,7 +104,16 @@ export default class Settings{
             this.executionMode=_setingsData.executionMode;
         }
 
-        
+        if(_setingsData.hasOwnProperty("pseudoThreads")){
+            this.pseudoThreads = _setingsData.pseudoThreads;
+        }
+
+        if(_setingsData.hasOwnProperty("cyclesBeetwenUpdate")){
+            this.cyclesBeetwenUpdate=_setingsData.cyclesBeetwenUpdate;
+        }
+
+        this.save();
+        this.invokeSettingsChanged();
     }
 
     getDataObject(){
@@ -110,6 +123,8 @@ export default class Settings{
             this.extentionFlags,
             this.intAdressList,
             this.executionMode,
+            this.pseudoThreads,
+            this.cyclesBeetwenUpdate,
         )
     }
 
@@ -165,7 +180,6 @@ export default class Settings{
 
     setExecutionMode(_newMode){
         this.executionMode=_newMode;
-        Terminator.terminate();
         this.save();
         this.invokeSettingsChanged();
     }
@@ -185,12 +199,14 @@ export class SettingsData{
 
 
 
-    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList,_executionMode){
+    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList,_executionMode,_pseudoThreads,_cyclesBeetwen){
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
         this.extensionData = new MachineExtensionData(_extentionFlags);
         this.intAdressList = _intAdressList;
         this.executionMode = _executionMode;
+        this.pseudoThreads = _pseudoThreads;
+        this.cyclesBeetwenUpdate=_cyclesBeetwen;
     }
 
 
@@ -201,6 +217,8 @@ export class SettingsData{
             ExtentionPresets.W,
             [1,2,3,4],
             ExecutionMode.Cycle,
+            8,
+            100
             );
     }
     

@@ -220,6 +220,9 @@ export default class Machine{
         this.invokeOnCycleDone();
     }
 
+    isNewInstruction(){
+        return this.controllUnit.nextInstructionFlag;
+    }
 
     doInstruction(){
         if(this.manualControll == true){

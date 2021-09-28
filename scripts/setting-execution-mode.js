@@ -16,16 +16,29 @@ export default class ExecutionModeSetting extends SettingView{
 
         this.selectRadio(_Settings.executionMode);
 
-        
+        this.settings.addOnSettingsChangedListener((_s)=>{
+            this.selectRadio(_s.executionMode);
+        })
         
     }
 
 
 
     selectRadio(_executionMode){
-        if(this.radioDict[_executionMode]!=undefined){
-            console.log(this.radioDict);
-            this.radioDict[_executionMode].setAttribute("checked","true");
+
+        if(this.radioDict.hasOwnProperty(_executionMode)){
+            for (const key in this.radioDict) {
+                if (Object.hasOwnProperty.call(this.radioDict, key)) {
+                    const radio = this.radioDict[key];
+                    if(key===_executionMode){
+                        this.radioDict[_executionMode].setAttribute("checked","true");
+                    }else{
+                        this.radioDict[_executionMode].setAttribute("checked","false");
+                    }
+                    
+                }
+            }
+           
         }
     }
 
