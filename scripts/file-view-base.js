@@ -9,7 +9,7 @@ export default class FileViewBase{
         this.header = document.createElement("h4")
         this.content = document.createElement("div");
 
-        this.header.classList.add("file-view-header")
+        this.header.classList.add("file-view-header");
 
         this.header.innerHTML = _headerName;
 

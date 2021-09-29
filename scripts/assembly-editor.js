@@ -103,6 +103,7 @@ export default class AssemblyEditor extends SidebarContent{
 
     setCode(_code){
         this.codeMirror.cm.setValue(_code);
+        this.codeMirror.cm.clearHistory();
         this.codeMirror.cm.refresh();
         this.save();
     }

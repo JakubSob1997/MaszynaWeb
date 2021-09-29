@@ -59,6 +59,7 @@ export default class FilePreviewView{
     load(){
         SerializerManager.loadFromObject(this.object,SerializerManager.serializers);
         Alerter.sendMessage("Maszyna została wczytana.",AlertStyleEnum.InputSucces);
+        this.wrapper.classList.add("display-none");
     }
 
     preview(_obj){

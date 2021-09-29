@@ -24,6 +24,13 @@ export default class FileImportView extends FileViewBase{
         const id = "file-import-input";
         this.fileInput.id=id;
         this.inputLabel.setAttribute("for",id);
+        this.inputLabel.tabIndex=0;
+
+        this.inputLabel.addEventListener("keypress",e=>{
+            if(e.keyCode==13||e.keyCode==32){
+                this.inputLabel.click()
+            }
+        })
 
         this.content.appendChild(this.inputLabel);
         this.content.appendChild(this.fileInput);

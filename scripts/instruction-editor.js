@@ -95,9 +95,11 @@ export default class InstructionEditor extends SidebarContent{
 
         if(this.changesChache.isDirty(name)){
             this.codeMirror.cm.setValue(this.changesChache.getCache(name));
+            this.codeMirror.cm.clearHistory();
             this.showDirty(true);
         }else{
             this.codeMirror.cm.setValue(_instruction.source)
+            this.codeMirror.cm.clearHistory();
             this.showDirty(false);
             this.changesChache.clearCache(name);
         }
