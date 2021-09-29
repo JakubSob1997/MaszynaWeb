@@ -5,12 +5,15 @@
 
 .file-inspector-content >div:first-child{
     background: var(--even-list-color);
-
+    
 }
 
 .file-inspector-content >div:nth-child(2){
     
     background: var(--odd-list-color);
+    border: dashed;
+    border-radius: 1em;
+    padding: 1em;
 
 }
 
