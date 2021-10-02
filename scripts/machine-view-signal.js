@@ -47,7 +47,7 @@ export default class MachineViewSignal extends MachineViewElement{
             this.element.classList.add("sig-left");
         }
 
-        this.element.innerHTML=_signal.name;
+        this.element.innerText=_signal.name;
 
     }
 
@@ -64,6 +64,11 @@ export default class MachineViewSignal extends MachineViewElement{
                 this.machineView.M.selectSignalManual(name);
             }
         })
+    }
+
+    onExtensionChanged(){
+        this.pickEnabled();
+        this.display();
     }
 
     display(){
@@ -86,11 +91,24 @@ export default class MachineViewSignal extends MachineViewElement{
     }
 
     setEneable(_boolean){
-        this.element.setAttribute("disabled",(_boolean==false).toString());
+        
     }
 
     getHTMLElement(){
         return this.element;
+    }
+
+    pickEnabled(){
+
+        
+        const allExtentions = this.machineView.M.settings.extentionFlags;
+        const myExtention =this.signal.getExtention();
+
+
+        const isInModule = (allExtentions&myExtention)!=0
+        const isManual=this.machineView.M.manualControll;
+
+        this.setEneable(isInModule&&isManual);
     }
 
 }

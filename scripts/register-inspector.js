@@ -16,12 +16,7 @@ export default class RegisterInspector extends SidebarContent{
         this.valueView = new ValueView(_valueDisplayer);
 
 
-        this.displaySelect=document.createElement("select");
-        this.unsignedDecimal=document.createElement("option");
-        this.signedDecimal=document.createElement("option");
-        this.binary=document.createElement("option");
-        this.hexaDecimal=document.createElement("option");
-        this.instruction=document.createElement("option");
+        
 
 
         this.pastRegisters={};
@@ -42,9 +37,13 @@ export default class RegisterInspector extends SidebarContent{
         this.wrapper.appendChild(this.registerName);
         const valueEle =this.valueView.getHTMLElement();
         this.wrapper.appendChild(valueEle);
-        this.wrapper.appendChild(this.displaySelect);
 
-
+        this.displaySelect=document.createElement("select");
+        this.unsignedDecimal=document.createElement("option");
+        this.signedDecimal=document.createElement("option");
+        this.binary=document.createElement("option");
+        this.hexaDecimal=document.createElement("option");
+        this.instruction=document.createElement("option");
         
 
         this.unsignedDecimal.innerHTML = "Dziesiętny Bez Znaku"
@@ -67,6 +66,8 @@ export default class RegisterInspector extends SidebarContent{
         this.instruction.value=ValueDisplayEnum.OpCodeArgument;
         this.displaySelect.appendChild(this.instruction);        
 
+
+        this.wrapper.appendChild(this.displaySelect);
     }
 
     addCallbacks(){

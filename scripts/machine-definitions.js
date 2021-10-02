@@ -5,7 +5,7 @@ import BusConnection from "./bus-connection.js"
 import Mamory from "./memory.js";
 import Register from "./register.js";
 import { ValueDisplayEnum,MatchRegisterWidthEnum,ExtnensionFlags } from "./enums.js";
-import ArythmeticLogicUnit from "./arythmetic-logicUnit.js";
+import ArythmeticLogicUnit from "./arythmetic-logic-unit.js";
 import FlagsUnit, {ConditionFlag} from "./condition-flags.js";
 import ControllUnit from "./controll-unit.js";
 import InteruptUnit from "./interupt-unit.js";

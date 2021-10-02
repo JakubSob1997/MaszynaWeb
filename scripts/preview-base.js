@@ -7,6 +7,8 @@ export default class PreviewBase{
         this.header=document.createElement("h5");
         this.content = document.createElement("div");
 
+        this.header.classList.add("prview-entry-header")
+
         this.header.innerHTML=_headerName;
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);

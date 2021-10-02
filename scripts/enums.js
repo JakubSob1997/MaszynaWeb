@@ -90,7 +90,7 @@ export const AlertStyleEnum={
     Machine:"alert-machine-response",
     ExecutionFlow:"alert-execution",
     UnhandledException:"alert-unhandled-exception",
-    InputSucces:"alert-succes",//"alert-input-succes",
+    InputSucces:"alert-execution",//"alert-input-succes",
     InputError:"alert-syntax-error",//"alert-input-error"
 }
 Object.freeze(AlertStyleEnum);

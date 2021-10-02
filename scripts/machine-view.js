@@ -33,13 +33,13 @@ export default class MachineView{
 
         
         this.M.settings.addOnExtensionFlagsChangedListener(()=>{
-            this.registerViews.forEach(ele=>{ele.display();})
-            this.signalViews.forEach(ele=>{ele.display();})
-            this.memViews.forEach(ele=>{ele.display();})
-            this.signalViews.forEach(ele=>{ele.display();})
-            this.busViews.forEach(ele=>{ele.display();})
-            this.intButtonViews.forEach(ele=>{ele.display();})
-            this.arrowViews.forEach(ele=>{ele.display();})
+            this.registerViews.forEach(ele=>{ele.onExtensionChanged();})
+            this.signalViews.forEach(ele=>{ele.onExtensionChanged();})
+            this.memViews.forEach(ele=>{ele.onExtensionChanged();})
+            this.signalViews.forEach(ele=>{ele.onExtensionChanged();})
+            this.busViews.forEach(ele=>{ele.onExtensionChanged();})
+            this.intButtonViews.forEach(ele=>{ele.onExtensionChanged();})
+            this.arrowViews.forEach(ele=>{ele.onExtensionChanged();})
         });
 
 
@@ -90,7 +90,15 @@ export default class MachineView{
         this.setupBus(this.M.A_bus,"a-bus",false)
         this.setupBus(this.M.AS_bus,"as-bus",true)
 
-        
+
+        this.M.addOnManualToggleCallback((_isManual)=>{
+           
+            this.signalViews.forEach(signal => {
+                
+                signal.pickEnabled()
+
+            });
+        })
 
     }
 

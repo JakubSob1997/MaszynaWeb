@@ -126,10 +126,12 @@
     color: var(--primary-color);
 }
 
-.reg-hidden{
+.reg:disabled{
     background: transparent;
     color: transparent;
+    cursor: initial;
 }
+
 
 
 

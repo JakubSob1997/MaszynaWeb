@@ -8,16 +8,34 @@
     
 }
 
-.file-inspector-content >div:nth-child(2){
+.file-preview{
     
     background: var(--odd-list-color);
     border: dashed;
     border-radius: 1em;
     padding: 1em;
-
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
-.file-inspector-content > div{
+.prview-entry-header{
+    margin-bottom: 0.2em;
+    margin-top: 0.6em;
+}
+
+.file-preview-header{
+    margin-bottom: 1em;
+}
+
+.file-preview button.confirm-btn{
+    margin-top: 0.8em;
+}
+
+.file-inspector-content{
+    min-width: 15em;
+}
+
+.file-inspector-content > .file-view-wrapper{
     padding: 0.2em 0.5em 0.8em 0.5em;
 }
 
@@ -68,9 +86,14 @@ label.file-entry{
     background: var(--secondary-color);
 }
 
+
+
+
+
 .file-name-input{
     width: 50%;
 }
 .file-json-span{
     margin-right: 0.5em;
 }
+

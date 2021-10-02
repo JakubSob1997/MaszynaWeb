@@ -16,9 +16,9 @@ export default class Settings{
     static MaxAddresWidth =12;
 
     static MinPseudoThreads=1;
-    static MaxPseudoThreads=100;
-    static MinCyclesBeetwenUpdate=0;
-    static MaxCyclesBeetwenUpdate=1000000;
+    static MaxPseudoThreads=255;
+    static MinCyclesBeetwenUpdate=1;
+    static MaxCyclesBeetwenUpdate=9999999;
 
     constructor(){
         this.codeWidth=3;
@@ -151,6 +151,9 @@ export default class Settings{
 
 
     setBusWidth(_codeWidth,_adressWidth){
+
+
+        if (isNaN(_codeWidth)||isNaN(_adressWidth)){throw Error("Nieprawidłowe dane wejściowe.")}
 
         //Clamp
         _codeWidth =Math.min(Math.max(_codeWidth,Settings.MinCodeWidth),Settings.MaxCodeWidth)

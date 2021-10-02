@@ -11,13 +11,33 @@ export default class FileFetchView extends FileViewBase{
         
         super(_fileInspector,"Presety")
 
+        this.entries;
+
         this.build();
 
         this.fetchListing();
     }
 
+    setEntriesActive(_bool){
+
+        for (const key in this.entries) {
+            if (Object.hasOwnProperty.call(this.entries, key)) {
+                const entry = this.entries[key];
+                if(_bool){
+                    entry.removeAttribute("disabled");
+                }else{
+                    entry.setAttribute("disabled",true);
+                    
+                }
+                
+            }
+        }
+    }
+
 
     fetchPreset(_fileName){
+        this.setEntriesActive(false);
+
         fetch("./presets/"+_fileName)
             .then(res=>res.json())
             .then(data=>{
@@ -27,16 +47,23 @@ export default class FileFetchView extends FileViewBase{
             .catch((e)=>{
                 Alerter.sendMessage("Wczytanie presetu \""+_fileName+"\" się nie powiodło.",AlertStyleEnum.InputError)
             })
+            .finally(()=>{
+                this.setEntriesActive(true);
+            })
         
     }
 
 
     fetchListing(){
+        this.refreshButton.setAttribute("disabled",true);
         fetch("presets.json")
             .then(res=>res.json())
             .then(data=>this.setupEntries(data))
             .catch(()=>{
                 Alerter.sendMessage("Wczytanie listy presetów się nie powiodło.",AlertStyleEnum.InputError)
+            })
+            .finally(()=>{
+                this.refreshButton.removeAttribute("disabled");
             })
     
         
@@ -50,8 +77,9 @@ export default class FileFetchView extends FileViewBase{
 
     setupEntries(_nameList){
         this.presetListElement.innerHTML="";
-
+        this.entries = {};
         _nameList.forEach(_name => {
+            
             this.setupEntry(_name,this.presetListElement);
         });
     }
@@ -60,11 +88,13 @@ export default class FileFetchView extends FileViewBase{
         let entry = document.createElement("button");
         entry.innerHTML=_fileName;
         entry.classList.add("file-entry");
+        
 
         entry.addEventListener("click",()=>{
             this.fetchPreset(_fileName);
         })
 
+        this.entries[_fileName] = entry;
         _parentElement.appendChild(entry);
     }
 

@@ -42,6 +42,8 @@ export default class MachineViewRegister extends MachineViewElement{
 
     }
 
+
+
     display(){
         const regName = this.register.name.toUpperCase();
         const formatedValue = this.machineView.valueDisplayer.registerToString(this.register)
@@ -59,8 +61,10 @@ export default class MachineViewRegister extends MachineViewElement{
         
         if((myExtFlag &allExtFlags)===0){
             this.element.classList.add("reg-hidden");
+            this.element.disabled=true;
         }else{
             this.element.classList.remove("reg-hidden");
+            this.element.disabled=false;
         }
         
 

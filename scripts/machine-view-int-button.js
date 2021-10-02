@@ -18,7 +18,7 @@ export default class MachineViewIntButton extends MachineViewElement{
         this.element.onclick=()=>{
             _intDevice.throwInterupt();
         };
-        this.element.innerHTML=_label;
+        this.element.innerText=_label;
         this.element.classList.add("int-button");
         this.element.classList.add("custom-btn");
 

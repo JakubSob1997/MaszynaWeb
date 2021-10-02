@@ -43,9 +43,7 @@ export default class AlertWindow extends IAlertReciever{
 
     }
     clearMessages(){
-        while(this.wrapper.firstChild!=null){
-            this.wrapper.removeChild(this.wrapper.firstChild);
-        }
+        this.wrapper.innerHTML=""
     }
 
 
@@ -79,8 +77,8 @@ class AlertEntry{
         this.text = document.createElement("div");
         this.exitButton = document.createElement("button");
 
-        this.text.innerHTML=_messageString;
-        this.exitButton.innerHTML="X";
+        this.text.innerText=_messageString;
+        this.exitButton.innerText="X";
         
         
         this.text.setAttribute("role","alert");

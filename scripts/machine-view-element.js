@@ -12,6 +12,10 @@ export default class MachineViewElement{
 
     }
 
+    onExtensionChanged(){
+        this.display();
+    }
+
     getHTMLElement(){
 
     }

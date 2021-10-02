@@ -9,7 +9,7 @@ import BusWidthSettingView  from "./setting-bus-width.js";
 import MachineExtensionSetting from "./setting-machine-extension.js";
 import ExecutionModeSetting from "./setting-execution-mode.js";
 import PerofrmanceSetting from "./setting-performance.js"
-
+import LanguageSetting from "./setting-language.js";
 
 export default class SettingsInspector extends SidebarContent{
     constructor(_Machine){
@@ -38,6 +38,7 @@ export default class SettingsInspector extends SidebarContent{
         this.settingList.classList.add("settings-list");
         this.wrapper.classList.add("generic-inspector");
 
+        this.languageSetting = new LanguageSetting();
         this.simulationLevelSetting = new ExecutionModeSetting(_Machine.settings);
         this.busWidthSetting = new BusWidthSettingView(_Machine.settings);
         this.extnesionPickerSetting = new MachineExtensionSetting(_Machine.settings);
@@ -45,6 +46,7 @@ export default class SettingsInspector extends SidebarContent{
         this.perofrmanceSetting = new PerofrmanceSetting(_Machine.settings);
 
     
+        this.settingList.appendChild(this.languageSetting.wrapper);
         this.settingList.appendChild(this.simulationLevelSetting.wrapper)
         this.settingList.appendChild(this.busWidthSetting.wrapper);
         this.settingList.appendChild(this.extnesionPickerSetting.wrapper);

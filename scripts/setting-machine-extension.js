@@ -46,7 +46,11 @@ export default class MachineExtensionSetting extends SettingView{
         wrapper.classList.add("setting-exstension-entry");
         checkBox.classList.add("setting-checkbox");
 
-
+        checkBox.addEventListener("keydown",(e)=>{
+            if(e.keyCode==13){
+                checkBox.click();
+            }
+        })
 
         wrapper.appendChild(checkBox);
         wrapper.appendChild(label);

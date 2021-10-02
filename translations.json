@@ -1,0 +1,18 @@
+{
+    "_program-insp-h":{
+        "en": "Program",
+        "pl": "Program"
+    },
+    "_setting-insp-h":{
+        "en":"Settings",
+        "pl":"Ustawienia"
+    },
+    "_cycle":{
+        "en":"Cycle",
+        "pl":"Takt"
+    },
+    "_instruction":{
+        "en": "Instruction",
+        "pl": "Rozkaz"
+    }
+}

@@ -10,6 +10,7 @@ export default class FileViewBase{
         this.content = document.createElement("div");
 
         this.header.classList.add("file-view-header");
+        this.wrapper.classList.add("file-view-wrapper");
 
         this.header.innerHTML = _headerName;
 

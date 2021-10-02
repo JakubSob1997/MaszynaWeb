@@ -18,11 +18,16 @@ export default class FilePreviewView{
 
         this.wrapper = document.createElement("div");
         this.wrapper.classList.add("display-none");
+        this.wrapper.classList.add("file-preview");
+
         this.header = document.createElement("h4");
         this.content = document.createElement("div");
         
+        this.content.classList.add("file-preview-content");
+
         this.header.innerHTML= "Podgląd";
         this.header.classList.add("file-view-header");
+        this.header.classList.add("file-preview-header");
         this.loadButton = new ConfirmButtonView();
         this.loadButton.getHTMLElement().innerHTML="Wczytaj";
 

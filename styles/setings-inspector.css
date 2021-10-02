@@ -45,6 +45,7 @@
 
 .generic-setting-header{
     white-space: nowrap;
+    margin-bottom: 0.5em;
 }
 
 .setting-checkbox-list{
@@ -82,5 +83,7 @@
 
 
 
-
+.setting-label-input *{
+    display: block;
+}
 
