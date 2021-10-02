@@ -31,8 +31,9 @@ export default class CustomCodemMirror{
         
         
         this.focusLabel = document.createElement("div");
-        this.focusLabel.innerText = "Naciśnij klawisz \"Esc\" by wyjść z edytora."
+        this.focusLabel.innerText = "*Naciśnij klawisz \"Esc\" by wyjść z edytora."
         this.focusLabel.classList.add("display-none");
+        this.focusLabel.classList.add("info-tip");
         _parent.appendChild(this.focusLabel);
 
 

@@ -1,9 +1,14 @@
 {
-    "_program-insp-h":{
+    "_welcome-message":{
+        "en":"Welcome in Machine W simulator!",
+        "pl":"Witaj w symulatorze Maszyny W!"
+    },
+
+    "_program":{
         "en": "Program",
         "pl": "Program"
     },
-    "_setting-insp-h":{
+    "_settings":{
         "en":"Settings",
         "pl":"Ustawienia"
     },

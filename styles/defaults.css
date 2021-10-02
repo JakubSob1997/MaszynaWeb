@@ -82,3 +82,7 @@ textarea {
 
 */
 
+.info-tip{
+    font-style: italic;
+    font-size: 80%;
+}

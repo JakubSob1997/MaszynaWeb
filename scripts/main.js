@@ -22,7 +22,10 @@ import Translator from "./translator.js"
 
 fetch("translations.json")
     .then(res=>{return res.json()})
-    .then(translations=>{Translator.translations =translations })
+    .then(translations=>{
+        Translator.translations =translations 
+        Translator.language=Translator.getLanguage();
+    })
     .finally(()=>{main()})
     
 function main(){
@@ -34,7 +37,7 @@ function main(){
     const alertTerminator= new AlertTerminator();
 
 
-    Alerter.sendMessage("Witaj w symulatorze Maszyny W!",AlertStyleEnum.Large);
+    Alerter.sendMessage(Translator.getTranslation("_welcome-message","Welcome in Machine W simulator!"),AlertStyleEnum.Large);
 
     const M=new Machine();
     buildMachine(M);
