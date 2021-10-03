@@ -26,9 +26,9 @@ export default class BusWidthSettingView extends SettingView{
         this.adressWidthInput=document.createElement("input");
         this.submitButton=document.createElement("button");
 
-        this.codeWidthLabel.innerHTML="Ilość bitów kodu";
-        this.adressWidtLabel.innerHTML="Ilość bitów adresu";
-        this.submitButton.innerHTML="Ustaw";
+        this.codeWidthLabel.innerText="Ilość bitów kodu";
+        this.adressWidtLabel.innerText="Ilość bitów adresu";
+        this.submitButton.innerText="Ustaw";
 
         this.codeWidthInput.id  = codeid;
         this.adressWidthInput.id = addrid;

@@ -59,10 +59,10 @@ export default class InstructionEditor extends SidebarContent{
         this.wrapper.appendChild(this.deleteButon.getHTMLElement());
         this.wrapper.appendChild(this.cancelButton.getHTMLElement());
         
-        this.header.innerHTML="inst"     
-        this.saveButon.innerHTML="Zapisz"
-        this.deleteButon.getHTMLElement().innerHTML="Usuń";
-        this.cancelButton.getHTMLElement().innerHTML="Cofnij";
+        this.header.innerText="inst"     
+        this.saveButon.innerText="Zapisz"
+        this.deleteButon.getHTMLElement().innerText="Usuń";
+        this.cancelButton.getHTMLElement().innerText="Cofnij";
 
         this.wrapper.classList.add("generic-inspector")
         this.saveButon.classList.add("custom-btn");        
@@ -79,10 +79,10 @@ export default class InstructionEditor extends SidebarContent{
     showDirty(_isDirty){    
 
         if(_isDirty){
-            this.header.innerHTML="*Rozkaz: "+this.instrName;
+            this.header.innerText="*Rozkaz: "+this.instrName;
             this.cancelButton.getHTMLElement().classList.remove("display-none");
         }else{
-            this.header.innerHTML="Rozkaz: "+this.instrName;
+            this.header.innerText="Rozkaz: "+this.instrName;
             this.cancelButton.getHTMLElement().classList.add("display-none");
         }
     }

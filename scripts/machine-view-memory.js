@@ -159,7 +159,7 @@ export class MachineViewMemoryEntry extends MachineViewElement{
         const decimal =valueDisplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
         const code =valueDisplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
 
-        this.element.innerHTML=this.addres+": "+decimal+" "+code;
+        this.element.innerText=this.addres+": "+decimal+" "+code;
     }
 
     getHTMLElement(){

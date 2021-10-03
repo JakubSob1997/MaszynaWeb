@@ -37,7 +37,7 @@ function main(){
     const alertTerminator= new AlertTerminator();
 
 
-    Alerter.sendMessage(Translator.getTranslation("_welcome-message","Welcome in Machine W simulator!"),AlertStyleEnum.Large);
+    Alerter.sendMessage(Translator.getTranslation("_welcome_message","Welcome in Machine W simulator!"),AlertStyleEnum.Large);
 
     const M=new Machine();
     buildMachine(M);

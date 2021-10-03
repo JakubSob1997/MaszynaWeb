@@ -12,7 +12,7 @@ export default class FileViewBase{
         this.header.classList.add("file-view-header");
         this.wrapper.classList.add("file-view-wrapper");
 
-        this.header.innerHTML = _headerName;
+        this.header.innerText = _headerName;
 
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);

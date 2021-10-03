@@ -91,7 +91,7 @@ export default class MachineViewSignal extends MachineViewElement{
     }
 
     setEneable(_boolean){
-        
+        this.element.toggleAttribute("disabled",_boolean==false);
     }
 
     getHTMLElement(){
@@ -108,7 +108,7 @@ export default class MachineViewSignal extends MachineViewElement{
         const isInModule = (allExtentions&myExtention)!=0
         const isManual=this.machineView.M.manualControll;
 
-        this.setEneable(isInModule&&isManual);
+        this.setEneable((isInModule&&isManual));
     }
 
 }

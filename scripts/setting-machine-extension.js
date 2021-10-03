@@ -37,7 +37,7 @@ export default class MachineExtensionSetting extends SettingView{
 
         const id = "machine-extension-checkbox-"+_flag;
 
-        label.innerHTML=_name;
+        label.innerText=_name;
         label.setAttribute("for",id)
         checkBox.type="checkbox";
         checkBox.value=_value;

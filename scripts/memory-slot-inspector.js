@@ -49,7 +49,7 @@ export default class MemorySlotInspector{
     }
 
     populate(_memoryIndex){
-        this.label.innerHTML="Pamięć: "+"["+_memoryIndex.toString(10)+"]";
+        this.label.innerText="Pamięć: "+"["+_memoryIndex.toString(10)+"]";
         this.valueView.populateWord(this.memmory.getValue(_memoryIndex));
     }
 

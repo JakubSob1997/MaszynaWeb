@@ -63,7 +63,7 @@ export default class ExecutionModeSetting extends SettingView{
         this.radioDict[_value] = radio;
 
 
-        label.innerHTML=_name;
+        label.innerText=_name;
         label.setAttribute("for",id)
 
 

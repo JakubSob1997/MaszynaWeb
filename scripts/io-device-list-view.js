@@ -17,8 +17,8 @@ export default class IODeviceListView{
         let adressEle = document.createElement("div");
         let descriptionEle = document.createElement("div");
 
-        adressEle.innerHTML="Adres";
-        descriptionEle.innerHTML="Opis";
+        adressEle.innerText="Adres";
+        descriptionEle.innerText="Opis";
 
         wrapper.classList.add("io-device-entry");
 
@@ -32,8 +32,8 @@ export default class IODeviceListView{
         let adressEle = document.createElement("div");
         let descriptionEle = document.createElement("div");
 
-        adressEle.innerHTML=_adress;
-        descriptionEle.innerHTML=_device.getDescription();
+        adressEle.innerText=_adress;
+        descriptionEle.innerText=_device.getDescription();
 
         wrapper.classList.add("io-device-entry");
 

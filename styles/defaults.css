@@ -86,3 +86,7 @@ textarea {
     font-style: italic;
     font-size: 80%;
 }
+
+.info-tip::before{
+    content: "*";
+}

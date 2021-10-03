@@ -37,9 +37,9 @@ export default class ConsoleView{
         this.numericInputEle.setAttribute("step","1");
 
 
-        this.clrConsoleButton.innerHTML="Wyczyść";
-        this.inputLabel.innerHTML="Wejście";
-        this.outputLabel.innerHTML="Wyjście";
+        this.clrConsoleButton.innerText="Wyczyść";
+        this.inputLabel.innerText="Wejście";
+        this.outputLabel.innerText="Wyjście";
 
         this.wrapper.classList.add("generic-inspector");
         this.clrConsoleButton.classList.add("custom-btn");

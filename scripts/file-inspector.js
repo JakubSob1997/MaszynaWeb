@@ -39,7 +39,7 @@ export default class FileSInspector extends SidebarContent{
         this.FileFetchView = new FileFetchView(this);
 
 
-        this.header.innerHTML="Plik"
+        this.header.innerText="Plik"
 
 
 

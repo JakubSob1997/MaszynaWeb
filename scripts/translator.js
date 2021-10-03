@@ -3,6 +3,7 @@
 const Translator = {
     translations: {},
     language: "en",
+    debugFlag:false,
     setLanguage:function(_lang){
         localStorage.setItem("lang",_lang);
     },
@@ -17,20 +18,23 @@ const Translator = {
 
     },
 
+    getDebug(_key,_arguments){
+        let output =_key;
+        if(_arguments!=null){
+            for (let i = 0; i < _arguments.length; i++) {
+                const arg = _arguments[index];
+                output+="-"+i+":"+arg;
+            }
+        }
+        
+        return output;
+    },
 
     getTranslation(_key,_defaultText,_arguments){
 
 
         if(this.language==="DEBUG"){
-            let output =_key;
-            if(_arguments!=null){
-                for (let i = 0; i < _arguments.length; i++) {
-                    const arg = _arguments[index];
-                    output+="-"+i+":"+arg;
-                }
-            }
-            
-            return output;
+            return this.getDebug(_key,_arguments)
         }
 
         console.log(this.translations);
@@ -39,7 +43,12 @@ const Translator = {
         if(this.translations.hasOwnProperty(_key)&&this.translations[_key].hasOwnProperty(this.language)){
             baseText= this.translations[_key][this.language];
         }else{
-            baseText=_defaultText;
+            if(this.debugFlag){
+                return this.getDebug(this.language+_key,_arguments)
+            }else{
+                baseText=_defaultText;
+            }
+            
         }
 
         let returnText;

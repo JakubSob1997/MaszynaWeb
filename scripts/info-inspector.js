@@ -9,7 +9,7 @@ export class InfoEntry{
 
         this.wrapper.classList.add("info-inspector-entry");
 
-        this.header.innerHTML=_title;
+        this.header.innerText=_title;
         this.content.innerHTML=_content;
         this.header.tabIndex=0;
 

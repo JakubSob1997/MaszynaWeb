@@ -10,6 +10,7 @@ import MachineExtensionSetting from "./setting-machine-extension.js";
 import ExecutionModeSetting from "./setting-execution-mode.js";
 import PerofrmanceSetting from "./setting-performance.js"
 import LanguageSetting from "./setting-language.js";
+import Translator from "./translator.js";
 
 export default class SettingsInspector extends SidebarContent{
     constructor(_Machine){
@@ -34,7 +35,7 @@ export default class SettingsInspector extends SidebarContent{
 
         this.header.setAttribute("tabindex",-1);
 
-        this.header.innerHTML="Ustawienia"
+        this.header.innerText=Translator.getTranslation("_settings","Settings");
         this.settingList.classList.add("settings-list");
         this.wrapper.classList.add("generic-inspector");
 

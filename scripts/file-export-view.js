@@ -25,9 +25,9 @@ export default class FileExportView{
         this.nameInput.classList.add("file-name-input");
         this.jsonSpan.classList.add("file-json-span");
 
-        this.saveButton.innerHTML = "Zapisz";
-        this.header.innerHTML="Zapisz na Dysk";
-        this.jsonSpan.innerHTML=".json";
+        this.saveButton.innerText = "Zapisz";
+        this.header.innerText="Zapisz na Dysk";
+        this.jsonSpan.innerText=".json";
 
         this.content.appendChild(this.nameInput);
         this.content.appendChild(this.jsonSpan);

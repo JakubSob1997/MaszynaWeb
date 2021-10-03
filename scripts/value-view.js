@@ -57,10 +57,10 @@ export default class ValueView{
         this.mainWrapper.appendChild(this.minusOneButton);
         this.mainWrapper.appendChild(this.setZeroButton);
 
-        this.writeButton.innerHTML="Pisz";
-        this.plusOneButton.innerHTML="+1";
-        this.minusOneButton.innerHTML="-1";
-        this.setZeroButton.innerHTML="0";
+        this.writeButton.innerText="Pisz";
+        this.plusOneButton.innerText="+1";
+        this.minusOneButton.innerText="-1";
+        this.setZeroButton.innerText="0";
 
         this.writeButton.classList.add("custom-btn");
         this.plusOneButton.classList.add("custom-btn");

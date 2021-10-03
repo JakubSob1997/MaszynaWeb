@@ -46,23 +46,23 @@ export default class RegisterInspector extends SidebarContent{
         this.instruction=document.createElement("option");
         
 
-        this.unsignedDecimal.innerHTML = "Dziesiętny Bez Znaku"
+        this.unsignedDecimal.innerText = "Dziesiętny Bez Znaku"
         this.unsignedDecimal.value=ValueDisplayEnum.UnsignedDecimal;
         this.displaySelect.appendChild(this.unsignedDecimal);
 
-        this.signedDecimal.innerHTML = "Dziesiętny Ze Zankiem";;
+        this.signedDecimal.innerText = "Dziesiętny Ze Zankiem";;
         this.signedDecimal.value=ValueDisplayEnum.SignedDecimal;
         this.displaySelect.appendChild(this.signedDecimal);
 
-        this.binary.innerHTML = "Biinarny";
+        this.binary.innerText = "Biinarny";
         this.binary.value=ValueDisplayEnum.Binary;
         this.displaySelect.appendChild(this.binary);
 
-        this.hexaDecimal.innerHTML = "Heksadecymalny";
+        this.hexaDecimal.innerText = "Heksadecymalny";
         this.hexaDecimal.value=ValueDisplayEnum.HexaDecimal;
         this.displaySelect.appendChild(this.hexaDecimal);
 
-        this.instruction.innerHTML = "Instrukcja";
+        this.instruction.innerText = "Instrukcja";
         this.instruction.value=ValueDisplayEnum.OpCodeArgument;
         this.displaySelect.appendChild(this.instruction);        
 
@@ -128,7 +128,7 @@ export default class RegisterInspector extends SidebarContent{
 
 
     populateInspector(_register){
-        this.registerName.innerHTML="Rejestr: "+_register.name.toUpperCase();
+        this.registerName.innerText="Rejestr: "+_register.name.toUpperCase();
         this.valueView.populateRegister(_register);
 
         this.displaySelect.value = _register.display;

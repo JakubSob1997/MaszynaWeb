@@ -16,8 +16,8 @@ export default class InteruptDeviceListView{
         let adressEle = document.createElement("div");
         let descriptionEle = document.createElement("div");
 
-        adressEle.innerHTML="Wektor";
-        descriptionEle.innerHTML="Opis";
+        adressEle.innerText="Wektor";
+        descriptionEle.innerText="Opis";
 
         wrapper.classList.add("io-device-entry");
 
@@ -31,8 +31,8 @@ export default class InteruptDeviceListView{
         let adressEle = document.createElement("div");
         let descriptionEle = document.createElement("div");
 
-        adressEle.innerHTML=_adress;
-        descriptionEle.innerHTML=_device.getDescription();
+        adressEle.innerText=_adress;
+        descriptionEle.innerText=_device.getDescription();
 
         wrapper.classList.add("io-device-entry");
 

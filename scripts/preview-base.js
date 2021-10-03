@@ -9,7 +9,7 @@ export default class PreviewBase{
 
         this.header.classList.add("prview-entry-header")
 
-        this.header.innerHTML=_headerName;
+        this.header.innerText=_headerName;
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);
 
@@ -36,7 +36,7 @@ export class PreviewFileName extends PreviewBase{
     fillPreview(_obj){
         
         if(_obj.hasOwnProperty("fileName")){
-            this.content.innerHTML=_obj.fileName;
+            this.content.innerText=_obj.fileName;
             this.wrapper.classList.remove("display-none");
         }else{
             this.wrapper.classList.add("display-none");
@@ -63,7 +63,7 @@ export class PreviewInstructionList extends PreviewBase{
                 result += ", "+data.name;
             });
 
-            this.content.innerHTML=result.slice(2);
+            this.content.innerText=result.slice(2);
             this.wrapper.classList.remove("display-none");
         }else{
             this.wrapper.classList.add("display-none");
@@ -88,7 +88,7 @@ export class PreviewProgram extends PreviewBase{
                 result = result.slice(0,147)+"...";
             }
             if(result==""){result=" ";}
-            this.content.innerHTML=result;
+            this.content.textContent=result;
             this.wrapper.classList.remove("display-none");
         }else{
             this.wrapper.classList.add("display-none");
@@ -111,7 +111,7 @@ export class PreviewExtensions extends PreviewBase{
             let result =MachineExtensionData.prototype.toString.call(data)
             
             if(result==""){result=" ";}
-            this.content.innerHTML=result;
+            this.content.innerText=result;
             this.wrapper.classList.remove("display-none");
         }else{
             this.wrapper.classList.add("display-none");

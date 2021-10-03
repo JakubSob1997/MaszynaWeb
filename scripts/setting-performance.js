@@ -64,7 +64,7 @@ export default  class PerofrmanceSetting extends SettingView{
         this.pseudoThreadsInput.setAttribute("max",Settings.MaxPseudoThreads.toString());
         this.pseudoThreadsInput.setAttribute("step","1");
 
-        this.pseudoThreadsLabel.innerHTML="Ilość Pseudo Wątków";
+        this.pseudoThreadsLabel.innerText="Ilość Pseudo Wątków";
         
         
         this.pseudoThreadsDiv.appendChild(this.pseudoThreadsLabel);
@@ -90,7 +90,7 @@ export default  class PerofrmanceSetting extends SettingView{
         this.cyclesBeetwenInput.setAttribute("min",Settings.MinCyclesBeetwenUpdate.toString());
         this.cyclesBeetwenInput.setAttribute("max",Settings.MaxCyclesBeetwenUpdate.toString());
         this.cyclesBeetwenInput.setAttribute("step","100");
-        this.cyclesBeetwenLabel.innerHTML="Ilość cyklów między odświeżeniami";
+        this.cyclesBeetwenLabel.innerText="Ilość cyklów między odświeżeniami";
 
         this.cyclesBeetwenInput.id=cyclesBeetwenid;
         this.cyclesBeetwenLabel.setAttribute("for",cyclesBeetwenid)
@@ -105,7 +105,7 @@ export default  class PerofrmanceSetting extends SettingView{
         })
 
         this.confirmButton = document.createElement("button");
-        this.confirmButton.innerHTML="Ustaw";
+        this.confirmButton.innerText="Ustaw";
         this.confirmButton.classList.add("custom-btn");
 
         this.confirmButton.addEventListener("click",()=>{

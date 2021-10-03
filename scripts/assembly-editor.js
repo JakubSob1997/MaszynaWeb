@@ -65,9 +65,9 @@ export default class AssemblyEditor extends SidebarContent{
         this.loadButton.classList.add("custom-btn");
         this.runButton.classList.add("custom-btn");
 
-        this.title.innerHTML="Program"
-        this.loadButton.innerHTML="Ładuj do pamięci";
-        this.runButton.innerHTML="Uruchom Program";
+        this.title.innerText="Program"
+        this.loadButton.innerText="Ładuj do pamięci";
+        this.runButton.innerText="Uruchom Program";
 
 
 

@@ -36,7 +36,7 @@ export default class FileImportView extends FileViewBase{
         this.content.appendChild(this.fileInput);
 
         this.fileInput.classList.add("display-none");
-        this.inputLabel.innerHTML="Wczytaj z Dysku";
+        this.inputLabel.innerText="Wczytaj z Dysku";
         this.inputLabel.classList.add("file-entry");
 
         this.fileInput.addEventListener("input",()=>{

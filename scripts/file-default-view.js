@@ -22,7 +22,7 @@ export default class FileDefaultView extends FileViewBase{
             this.pickObject(obj);
         })
 
-        this.defaultButton.innerHTML="Wczytaj Domyślne"
+        this.defaultButton.innerText="Wczytaj Domyślne"
         this.defaultButton.classList.add("file-entry");
 
         this.content.appendChild(this.defaultButton);

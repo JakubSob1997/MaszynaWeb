@@ -34,10 +34,10 @@ class InstructionRecord{
     }
 
     populateRecord(_instruction){
-        this.name.innerHTML = _instruction.name;
-        this.removeButton.getHTMLElement().innerHTML="Usuń";
-        this.upButton.innerHTML = "▲";
-        this.downButton.innerHTML = "▼";
+        this.name.innerText = _instruction.name;
+        this.removeButton.getHTMLElement().innerText="Usuń";
+        this.upButton.innerText = "▲";
+        this.downButton.innerText = "▼";
 
 
     }
@@ -111,11 +111,11 @@ export default class InstructionInspector extends SidebarContent{
         this.instructionListElement.classList.add("instr-list");
 
 
-        this.addInstructionButton.innerHTML="Nowy Rozkaz";
+        this.addInstructionButton.innerText="Nowy Rozkaz";
         this.addInstructionButton.classList.add("custom-btn");
 
         this.heading.setAttribute("tabindex",-1)
-        this.heading.innerHTML = "Lista Rozkazów"
+        this.heading.innerText = "Lista Rozkazów"
 
         this.wrpper.appendChild(this.heading);
         this.wrpper.appendChild(this.addInstructionButton);

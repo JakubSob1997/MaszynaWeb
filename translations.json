@@ -1,9 +1,8 @@
 {
-    "_welcome-message":{
+    "_welcome_message":{
         "en":"Welcome in Machine W simulator!",
         "pl":"Witaj w symulatorze Maszyny W!"
     },
-
     "_program":{
         "en": "Program",
         "pl": "Program"
@@ -19,5 +18,17 @@
     "_instruction":{
         "en": "Instruction",
         "pl": "Rozkaz"
+    },
+    "_language":{
+        "en":"Language",
+        "pl":"Język"
+    },
+    "_language_select":{
+        "en":"Select Language: ",
+        "pl":"Wybierz Język: "
+    },
+    "_language_refresh":{
+        "en": "Page refreshes on language change",
+        "pl": "Przy zmianie języka strona się odświerza."
     }
 }

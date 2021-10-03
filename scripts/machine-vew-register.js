@@ -48,7 +48,7 @@ export default class MachineViewRegister extends MachineViewElement{
         const regName = this.register.name.toUpperCase();
         const formatedValue = this.machineView.valueDisplayer.registerToString(this.register)
 
-        this.element.innerHTML=regName+": "+formatedValue;
+        this.element.innerText=regName+": "+formatedValue;
 
         if(this.register.wasWriten){
             this.element.classList.add("reg-selected");

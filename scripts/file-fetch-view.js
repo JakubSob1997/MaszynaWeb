@@ -86,7 +86,7 @@ export default class FileFetchView extends FileViewBase{
 
     setupEntry(_fileName,_parentElement){
         let entry = document.createElement("button");
-        entry.innerHTML=_fileName;
+        entry.innerText=_fileName;
         entry.classList.add("file-entry");
         
 
@@ -104,7 +104,7 @@ export default class FileFetchView extends FileViewBase{
         this.refreshButton = document.createElement("button");
         this.presetListElement = document.createElement("div");
 
-        this.refreshButton.innerHTML = "Odśwież";
+        this.refreshButton.innerText = "Odśwież";
         this.refreshButton.classList.add("custom-btn");
 
         this.content.appendChild(this.refreshButton);

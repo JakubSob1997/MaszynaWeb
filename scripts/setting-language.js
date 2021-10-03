@@ -11,7 +11,7 @@ import Translator from "./translator.js";
 export default  class LanguageSetting extends SettingView{
 
     constructor(){
-        super("Język");
+        super(Translator.getTranslation("_language","Language"));
 
         this.build();
 
@@ -30,9 +30,9 @@ export default  class LanguageSetting extends SettingView{
 
         const id = "setting-languge-select"
         this.label = document.createElement("label");
-        this.label.textContent="Wybierz Język:"
+        this.label.textContent=Translator.getTranslation("_language_select","Select Language: ")
         this.readme = document.createElement('div');
-        this.readme.textContent="*Przy zmianie języka strona się odświerza."
+        this.readme.textContent=Translator.getTranslation("_language_refresh","Page refreshes on language change.")
         
         this.readme.classList.add("info-tip")
 
@@ -53,11 +53,9 @@ export default  class LanguageSetting extends SettingView{
         this.content.appendChild(this.readme);
 
         this.select.value= Translator.getLanguage();
-        console.log(this.select.value);
 
         this.select.addEventListener("input",()=>{
             Translator.setLanguage(this.select.value)
-            localStorage.setItem("lang",this.select.value);
             location.reload();         
         })
     }

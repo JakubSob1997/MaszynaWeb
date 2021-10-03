@@ -55,10 +55,10 @@ export default class IOInspector extends SidebarContent{
 
         
 
-        this.header.innerHTML="Wejście / Wyjście"
-        this.showListButton.innerHTML="Lista";
-        this.showConsoleButton.innerHTML="Konsola";
-        this.ioDeviceListLabel.innerHTML="Lista urządzeń We/Wy"
+        this.header.innerText="Wejście / Wyjście"
+        this.showListButton.innerText="Lista";
+        this.showConsoleButton.innerText="Konsola";
+        this.ioDeviceListLabel.innerText="Lista urządzeń We/Wy"
         //this.intDeviceListLabel.innerHTML="Lista urządzeń przerywających"
         
 

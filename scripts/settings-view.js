@@ -16,7 +16,7 @@ export default class SettingView{
         this.content.classList.add("generic-setting-content");
 
 
-        this.header.innerHTML = _name;
+        this.header.innerText = _name;
 
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);

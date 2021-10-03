@@ -25,11 +25,11 @@ export default class FilePreviewView{
         
         this.content.classList.add("file-preview-content");
 
-        this.header.innerHTML= "Podgląd";
+        this.header.innerText= "Podgląd";
         this.header.classList.add("file-view-header");
         this.header.classList.add("file-preview-header");
         this.loadButton = new ConfirmButtonView();
-        this.loadButton.getHTMLElement().innerHTML="Wczytaj";
+        this.loadButton.getHTMLElement().innerText="Wczytaj";
 
         this.loadButton.addOnClickHandler(()=>{
             this.load();
