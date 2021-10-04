@@ -1,3 +1,4 @@
+import Translator from "./translator.js";
 
 
 
@@ -17,8 +18,8 @@ export default class IODeviceListView{
         let adressEle = document.createElement("div");
         let descriptionEle = document.createElement("div");
 
-        adressEle.innerText="Adres";
-        descriptionEle.innerText="Opis";
+        adressEle.innerText=Translator.getTranslation("_addres","Addres");
+        descriptionEle.innerText=Translator.getTranslation("_description","Description");
 
         wrapper.classList.add("io-device-entry");
 

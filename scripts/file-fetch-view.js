@@ -1,6 +1,7 @@
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import FileViewBase from "./file-view-base.js";
+import Translator from "./translator.js";
 
 
 
@@ -9,7 +10,7 @@ import FileViewBase from "./file-view-base.js";
 export default class FileFetchView extends FileViewBase{
     constructor(_fileInspector){
         
-        super(_fileInspector,"Presety")
+        super(_fileInspector,Translator.getTranslation("_presets","Presets"))
 
         this.entries;
 
@@ -45,7 +46,7 @@ export default class FileFetchView extends FileViewBase{
                 this.recievedPreset(data)
             })
             .catch((e)=>{
-                Alerter.sendMessage("Wczytanie presetu \""+_fileName+"\" się nie powiodło.",AlertStyleEnum.InputError)
+                Alerter.sendMessage(Translator.getTranslation("_message_fail_load_preset","Failed to load \"@0\" preset.",[_fileName]),AlertStyleEnum.InputError)
             })
             .finally(()=>{
                 this.setEntriesActive(true);
@@ -60,7 +61,7 @@ export default class FileFetchView extends FileViewBase{
             .then(res=>res.json())
             .then(data=>this.setupEntries(data))
             .catch(()=>{
-                Alerter.sendMessage("Wczytanie listy presetów się nie powiodło.",AlertStyleEnum.InputError)
+                Alerter.sendMessage(Translator.getTranslation("_message_fail_load_preset_list","Failed to load the preset list."),AlertStyleEnum.InputError)
             })
             .finally(()=>{
                 this.refreshButton.removeAttribute("disabled");
@@ -104,7 +105,7 @@ export default class FileFetchView extends FileViewBase{
         this.refreshButton = document.createElement("button");
         this.presetListElement = document.createElement("div");
 
-        this.refreshButton.innerText = "Odśwież";
+        this.refreshButton.innerText = Translator.getTranslation("_refresh","Refresh");
         this.refreshButton.classList.add("custom-btn");
 
         this.content.appendChild(this.refreshButton);

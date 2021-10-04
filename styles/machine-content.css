@@ -15,11 +15,12 @@
 
 */
 
-/*
+
 .container *{
-    transition: none;
+    font-family: 'Inconsolata', monospace;
+    font-size: 1.1rem;
 }
-*/
+
 
 .container  *{
     -moz-user-select: -moz-none;
@@ -293,6 +294,19 @@
 .mem-entry-selected:hover{
     color: var(--secondary-color);
     background: var(--primary-color);
+}
+
+.mem-entry>span{
+    display: inline-block;
+}
+
+.mem-entry-addres{
+    min-width: 5ch;
+
+}
+
+.mem-entry-value{
+    min-width: 5ch;
 }
 
 

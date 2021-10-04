@@ -4,11 +4,12 @@ import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import SettingView  from "./settings-view.js";
 import Settings from "./settings.js";
+import Translator from "./translator.js";
 
 export default class BusWidthSettingView extends SettingView{
 
     constructor(_Settings){
-        super("Szerokość Magistral");
+        super(Translator.getTranslation("_bus_width","Bus Width"));
 
         _Settings.addOnBusWidthChangedListener((_newSettngs)=>{
             this.onSettingsChanged(_newSettngs);
@@ -26,9 +27,9 @@ export default class BusWidthSettingView extends SettingView{
         this.adressWidthInput=document.createElement("input");
         this.submitButton=document.createElement("button");
 
-        this.codeWidthLabel.innerText="Ilość bitów kodu";
-        this.adressWidtLabel.innerText="Ilość bitów adresu";
-        this.submitButton.innerText="Ustaw";
+        this.codeWidthLabel.innerText=Translator.getTranslation("_code_bit_count","Code bit count");
+        this.adressWidtLabel.innerText=Translator.getTranslation("_addres_bit_count","Addres bit count");
+        this.submitButton.innerText=Translator.getTranslation("_set","Set");
 
         this.codeWidthInput.id  = codeid;
         this.adressWidthInput.id = addrid;

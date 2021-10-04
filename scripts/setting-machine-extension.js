@@ -4,12 +4,13 @@
 import { ExtnensionFlags } from "./enums.js";
 import MachineExtensionData from "./machine-extension-data.js";
 import SettingView from "./settings-view.js";
+import Translator from "./translator.js";
 
 
 
 export default class MachineExtensionSetting extends SettingView{
     constructor(_Settings){
-        super("Wybór modółów maszyny W");
+        super(Translator.getTranslation("_machine_exstension","Machine W modules"));
 
         this.exstensionData = new MachineExtensionData(_Settings.extentionFlags);
 
@@ -69,16 +70,35 @@ export default class MachineExtensionSetting extends SettingView{
 
 
 
-        this.keyCheckboxDict.BusConnection = this.generateFlagEntry("Połączenie Magistralowe",this.exstensionData.BusConnection,this.checkEntryParrent,ExtnensionFlags.BusConnection);
-        this.keyCheckboxDict.AK_Increment = this.generateFlagEntry("Inkrementacja i Dekrementacja Akumulatora",this.exstensionData.AK_Increment,this.checkEntryParrent,ExtnensionFlags.AK_Increment);
-        this.keyCheckboxDict.ALU_Logic = this.generateFlagEntry("Operacje logiczne w JAL",this.exstensionData.ALU_Logic,this.checkEntryParrent,ExtnensionFlags.ALU_Logic);
-        this.keyCheckboxDict.ALU_ExtendedMath = this.generateFlagEntry("Rozszerzone Operacje Arytmetyczne w JAL",this.exstensionData.ALU_ExtendedMath,this.checkEntryParrent,ExtnensionFlags.ALU_ExtendedMath);
-        this.keyCheckboxDict.Stack = this.generateFlagEntry("Obsługa Stosu",this.exstensionData.Stack,this.checkEntryParrent,ExtnensionFlags.Stack);
-        this.keyCheckboxDict.X_Register = this.generateFlagEntry("Rejestr X",this.exstensionData.X_Register,this.checkEntryParrent,ExtnensionFlags.X_Register);
-        this.keyCheckboxDict.Y_Register = this.generateFlagEntry("Rejestr Y",this.exstensionData.Y_Register,this.checkEntryParrent,ExtnensionFlags.Y_Register);
-        this.keyCheckboxDict.Interupt = this.generateFlagEntry("Przerwania",this.exstensionData.Interupt,this.checkEntryParrent,ExtnensionFlags.Interupt);
-        this.keyCheckboxDict.InputOutput = this.generateFlagEntry("Wejście/Wyjście",this.exstensionData.InputOutput,this.checkEntryParrent,ExtnensionFlags.InputOutput);
-        this.keyCheckboxDict.Flags = this.generateFlagEntry("Dodatkowe Znaczniki",this.exstensionData.Flags,this.checkEntryParrent,ExtnensionFlags.Flags);
+        this.keyCheckboxDict.BusConnection = this.generateFlagEntry(Translator.getTranslation("_module_desc_buscon","Bus Connection"),
+            this.exstensionData.BusConnection,this.checkEntryParrent,ExtnensionFlags.BusConnection);
+
+        this.keyCheckboxDict.AK_Increment = this.generateFlagEntry(Translator.getTranslation("_module_desc_incdec","Accumulator Incrementation/Decrementation"),
+            this.exstensionData.AK_Increment,this.checkEntryParrent,ExtnensionFlags.AK_Increment);
+
+        this.keyCheckboxDict.ALU_Logic = this.generateFlagEntry(Translator.getTranslation("_module_desc_logic","ALU Logic Opertions"),
+            this.exstensionData.ALU_Logic,this.checkEntryParrent,ExtnensionFlags.ALU_Logic);
+
+        this.keyCheckboxDict.ALU_ExtendedMath = this.generateFlagEntry(Translator.getTranslation("_module_desc_arythm","ALU Extra Arythmetic Opertions"),
+            this.exstensionData.ALU_ExtendedMath,this.checkEntryParrent,ExtnensionFlags.ALU_ExtendedMath);
+
+        this.keyCheckboxDict.Stack = this.generateFlagEntry(Translator.getTranslation("_module_desc_stack","Stack Module"),
+            this.exstensionData.Stack,this.checkEntryParrent,ExtnensionFlags.Stack);
+
+        this.keyCheckboxDict.X_Register = this.generateFlagEntry(Translator.getTranslation("_module_desc_regx","X Register"),
+            this.exstensionData.X_Register,this.checkEntryParrent,ExtnensionFlags.X_Register);
+
+        this.keyCheckboxDict.Y_Register = this.generateFlagEntry(Translator.getTranslation("_module_desc_regy","Y Register"),
+            this.exstensionData.Y_Register,this.checkEntryParrent,ExtnensionFlags.Y_Register);
+
+        this.keyCheckboxDict.Interupt = this.generateFlagEntry(Translator.getTranslation("_module_desc_int","Interupts"),
+            this.exstensionData.Interupt,this.checkEntryParrent,ExtnensionFlags.Interupt);
+
+        this.keyCheckboxDict.InputOutput = this.generateFlagEntry(Translator.getTranslation("_module_desc_io","Input/Output"),
+            this.exstensionData.InputOutput,this.checkEntryParrent,ExtnensionFlags.InputOutput);
+
+        this.keyCheckboxDict.Flags = this.generateFlagEntry(Translator.getTranslation("_module_desc_flags","Extra Flags"),
+            this.exstensionData.Flags,this.checkEntryParrent,ExtnensionFlags.Flags);
 
 
         this.content.appendChild(this.checkEntryParrent);

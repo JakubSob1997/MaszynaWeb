@@ -5,6 +5,7 @@
 import Alerter from "./alerter.js";
 import {  AlertStyleEnum } from "./enums.js";
 import IODevice from "./io-device.js";
+import Translator from "./translator.js";
 
 export default class AlerterDevice{
 
@@ -22,17 +23,13 @@ export class IOAlerterPrint extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==undefined){
-            console.log("No io driver provided");
-            return;
-        }
-        const val =_IODriver.write();
-        Alerter.sendMessage("Komunikat Maszyny W wartość: "+val,AlertStyleEnum.Machine);
+        const val =_IODriver.write().toString();
+        Alerter.sendMessage(Translator.getTranslation("_message_machine","Message fom Machine W value: @0",[val]),AlertStyleEnum.Machine);
         _IODriver.confirm();
     }
 
     getDescription(){
-        return "Wyjście powiadomień (wy)";
+        return Translator.getTranslation("_io_alerter_out","Notifications output (out)");
     }
 
 }
@@ -41,16 +38,12 @@ export class IOAlerterClear extends IODevice{
 
 
     start(_IODriver){
-        if(_IODriver==undefined){
-            console.log("No io driver provided");
-            return;
-        }
         Alerter.clearMessages();
         _IODriver.confirm();
     }
 
     getDescription(){
-        return "Wyczyść powiadomienia (pol)";
+        return Translator.getTranslation("_io_alerter_clear_cmd","Clear notifications (cmd)");
     }
 }
 

@@ -3,6 +3,7 @@
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import IODevice from "./io-device.js";
+import Translator from "./translator.js";
 
 export default class ConsoleDevice{
 
@@ -89,17 +90,13 @@ class IOConsoleNumericInput extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==null){
-            console.log("No io driver provided");
-            return;
-        }
         const _val = this.consoleDevice.readNum();
         _IODriver.read(_val)
         _IODriver.confirm();
     }
 
     getDescription(){
-        return "Wejście numeryczne konsoli (we)";
+        return Translator.getTranslation("_io_console_num_in","Numeric console input (in)");
     }
 }
 
@@ -110,15 +107,11 @@ class IOConsoleASCIInput extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==null){
-            console.log("No io driver provided");
-            return;
-        }
         this.consoleDevice.readASCII(_IODriver);
     }
 
     getDescription(){
-        return "Wejście ASCII konsoli (we)";
+        return Translator.getTranslation("_io_console_char_in","Character (UTF-8) console input (in)");
     }
 }
 
@@ -130,17 +123,13 @@ class IOConsoleOutput extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==null){
-            console.log("No io driver provided");
-            return;
-        }
         const _outVal = _IODriver.write()
         this.consoleDevice.writeConsole(_outVal);
         _IODriver.confirm();
     }
 
     getDescription(){
-        return "Wyjście konsoli (wy)";
+        return Translator.getTranslation("_io_console_out","Console output (out)");
     }
 }
 
@@ -152,16 +141,12 @@ class IOConsoleClear extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==null){
-            console.log("No io driver provided");
-            return;
-        }
         this.consoleDevice.clearConsole();
         _IODriver.confirm();
     }
 
     getDescription(){
-        return "Wyczyść konsole (pol)";
+        return Translator.getTranslation("_io_console_clear_cmd","Clear console (cmd)");
     }
 }
 

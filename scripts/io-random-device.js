@@ -1,6 +1,7 @@
 
 
 import IODevice from "./io-device.js";
+import Translator from "./translator.js";
 
 export default class IORandom extends IODevice{
     constructor(){
@@ -17,10 +18,6 @@ export default class IORandom extends IODevice{
     }
 
     start(_IODriver){
-        if(_IODriver==null){
-            console.log("No io driver provided");
-            return;
-        }
         let val =this.getRnadomInt();
         val=val>>8;
         _IODriver.read(val);
@@ -28,7 +25,7 @@ export default class IORandom extends IODevice{
     }
 
     getDescription(){
-        return "Generator liczb losowych (we)";
+        return Translator.getTranslation("_io_random_in","Random number generator (in)")
     }
 }
 

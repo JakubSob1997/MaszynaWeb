@@ -5,6 +5,7 @@ import SidebarContent from "./sidebar-content.js";
 import ConsoleView from "./console-view.js";
 import IODeviceListView from "./io-device-list-view.js"
 import InteruptDeviceListView from "./interupt-device-list-view.js";
+import Translator from "./translator.js";
 
 
 export default class IOInspector extends SidebarContent{
@@ -55,10 +56,10 @@ export default class IOInspector extends SidebarContent{
 
         
 
-        this.header.innerText="Wejście / Wyjście"
-        this.showListButton.innerText="Lista";
-        this.showConsoleButton.innerText="Konsola";
-        this.ioDeviceListLabel.innerText="Lista urządzeń We/Wy"
+        this.header.innerText=Translator.getTranslation("_input_output","Input/Output")
+        this.showListButton.innerText=Translator.getTranslation("_list","List");
+        this.showConsoleButton.innerText=Translator.getTranslation("_console","Console");
+        this.ioDeviceListLabel.innerText=Translator.getTranslation("_io_list","Lista urządzeń We/Wy")
         //this.intDeviceListLabel.innerHTML="Lista urządzeń przerywających"
         
 

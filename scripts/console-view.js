@@ -1,3 +1,4 @@
+import Translator from "./translator.js";
 
 
 
@@ -37,9 +38,9 @@ export default class ConsoleView{
         this.numericInputEle.setAttribute("step","1");
 
 
-        this.clrConsoleButton.innerText="Wyczyść";
-        this.inputLabel.innerText="Wejście";
-        this.outputLabel.innerText="Wyjście";
+        this.clrConsoleButton.innerText=Translator.getTranslation("_clear","Clear");
+        this.inputLabel.innerText=Translator.getTranslation("_input","Input");
+        this.outputLabel.innerText=Translator.getTranslation("_output","Output");
 
         this.wrapper.classList.add("generic-inspector");
         this.clrConsoleButton.classList.add("custom-btn");

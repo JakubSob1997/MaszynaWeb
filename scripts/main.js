@@ -20,11 +20,13 @@ import Terminator from "./terminator.js";
 import Translator from "./translator.js"
 
 
+
 fetch("translations.json")
     .then(res=>{return res.json()})
     .then(translations=>{
         Translator.translations =translations 
         Translator.language=Translator.getLanguage();
+        document.documentElement.setAttribute("lang",Translator.language);
     })
     .finally(()=>{main()})
     
@@ -37,7 +39,7 @@ function main(){
     const alertTerminator= new AlertTerminator();
 
 
-    Alerter.sendMessage(Translator.getTranslation("_welcome_message","Welcome in Machine W simulator!"),AlertStyleEnum.Large);
+    Alerter.sendMessage(Translator.getTranslation("_message_welcome","Welcome in Machine W simulator!"),AlertStyleEnum.Large);
 
     const M=new Machine();
     buildMachine(M);

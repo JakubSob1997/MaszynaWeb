@@ -1,11 +1,11 @@
 import SidebarContent from "./sidebar-content.js";
-
+import Translator from "./translator.js"
 
 export class InfoEntry{
     constructor(_content,_title){
         this.wrapper = document.createElement("div");
         this.header=document.createElement("h4");
-        this.content=document.createElement("div");
+        this.content=document.createElement("main");
 
         this.wrapper.classList.add("info-inspector-entry");
 
@@ -65,10 +65,12 @@ export default class InfoInspector extends SidebarContent{
 
         for (let i = 0; i < templateEntries.length; i++) {
             const template = templateEntries[i];
-            const entry =new InfoEntry(template.innerHTML,template.getAttribute("data-title"));
-            this.entries.push(entry);
-        
-            _parent.appendChild(entry.getHTMLElement());
+            if(template.lang===Translator.getLanguage()){
+                const entry =new InfoEntry(template.innerHTML,template.getAttribute("data-title"));
+                this.entries.push(entry);
+                _parent.appendChild(entry.getHTMLElement());
+            }
+            
         }
 
 

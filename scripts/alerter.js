@@ -19,6 +19,10 @@
         });
     },
 
+    alertTranslate:function(_key,_defaultMessage,_arguments){
+
+    },
+
 
     sendMessage: function(_message,_style){
         this.alertRecievers.forEach((alertReciever)=>{
@@ -45,6 +49,7 @@ export class IAlertReciever{
     alert(_message){
         console.log("overide me(alert): "+_message);
     }
+    
 
     sendMessage(_message,_style){
         console.log("overide me(message): "+_message);

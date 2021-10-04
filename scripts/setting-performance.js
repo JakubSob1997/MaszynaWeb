@@ -4,13 +4,14 @@ import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import SettingView from "./settings-view.js";
 import Settings from "./settings.js";
+import Translator from "./translator.js";
 
 
 
 export default  class PerofrmanceSetting extends SettingView{
 
     constructor(_Settings){
-        super("Wydajność");
+        super(Translator.getTranslation("_performance","Performance"));
 
         this.settings= _Settings;
 
@@ -90,7 +91,7 @@ export default  class PerofrmanceSetting extends SettingView{
         this.cyclesBeetwenInput.setAttribute("min",Settings.MinCyclesBeetwenUpdate.toString());
         this.cyclesBeetwenInput.setAttribute("max",Settings.MaxCyclesBeetwenUpdate.toString());
         this.cyclesBeetwenInput.setAttribute("step","100");
-        this.cyclesBeetwenLabel.innerText="Ilość cyklów między odświeżeniami";
+        this.cyclesBeetwenLabel.innerText=Translator.getTranslation("_cycles_beetwen","Cycles beetwen each update");
 
         this.cyclesBeetwenInput.id=cyclesBeetwenid;
         this.cyclesBeetwenLabel.setAttribute("for",cyclesBeetwenid)
@@ -105,7 +106,7 @@ export default  class PerofrmanceSetting extends SettingView{
         })
 
         this.confirmButton = document.createElement("button");
-        this.confirmButton.innerText="Ustaw";
+        this.confirmButton.innerText=Translator.getTranslation("_set","Set");
         this.confirmButton.classList.add("custom-btn");
 
         this.confirmButton.addEventListener("click",()=>{

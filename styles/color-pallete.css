@@ -19,11 +19,33 @@
     
     */
 
-
-
+    
     :root{
 
-        --primary-color:#445ce2;
+        --primary-color:#0e25a7;
+        --secondary-color: #fa882b;
+    
+        --font-color: #e4e4e4;
+        --contrast-font-color: #0f0f0f;
+    
+        --body-color: #3b3b3b;
+        --panel-color:  #4e4d4d;
+    
+        --even-list-color: #525050;
+        --odd-list-color: #626262;
+
+        --even-alert-color: rgb(250, 162, 90);
+        
+        --button-background:var(--font-color);
+    
+    
+        --reg-hover: #071b8b;
+        
+    }
+    /*
+    :root{
+
+        --primary-color:#2741d4;
         --secondary-color: #FFB619;
     
         --font-color: #e4e4e4;
@@ -43,3 +65,6 @@
         --reg-hover: #2c30a7;
         
     }
+    */
+    
+    

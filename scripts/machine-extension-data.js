@@ -1,6 +1,7 @@
 
 
 import { ExtnensionFlags,ExtentionPresets } from "./enums.js";
+import Translator from "./translator.js";
 
 
 export default class MachineExtensionData{
@@ -28,16 +29,16 @@ export default class MachineExtensionData{
 
     toString(){
         let result="";
-        if(this.BusConnection) result+="Połączenie, "
-        if(this.AK_Increment) result+="Inkrementacja, "
-        if(this.BusConnection) result+="Logika, "
-        if(this.BusConnection) result+="Arytmetyka, "
-        if(this.BusConnection) result+="Stos, "
-        if(this.BusConnection) result+="X, "
-        if(this.BusConnection) result+="Y, "
-        if(this.BusConnection) result+="Przerwania, "
-        if(this.BusConnection) result+="We/Wy, "
-        if(this.BusConnection) result+="Flagi, "
+        if(this.BusConnection) result+=`${Translator.getTranslation("_module_short_buscon","Connection")}, `
+        if(this.AK_Increment) result+=`${Translator.getTranslation("_module_short_incdec","Incrementation")}, `
+        if(this.ALU_Logic) result+=`${Translator.getTranslation("_module_short_logic","Logic")}, `
+        if(this.ALU_ExtendedMath) result+=`${Translator.getTranslation("_module_short_arythm","Arythmetic")}, `
+        if(this.Stack) result+=`${Translator.getTranslation("_module_short_stack","Stack")}, `
+        if(this.X_Register) result+=`${Translator.getTranslation("_module_short_regx","X")}, `
+        if(this.Y_Register) result+=`${Translator.getTranslation("_module_short_regy","Y")}, `
+        if(this.Interupt) result+=`${Translator.getTranslation("_module_short_int","Interupts")}, `
+        if(this.InputOutput) result+=`${Translator.getTranslation("_module_short_io","I/O")}, `
+        if(this.Flags) result+=`${Translator.getTranslation("_module_short_flags","Flags")}, `
 
         if(result!=""){
             result=result.slice(0,result.length-2);

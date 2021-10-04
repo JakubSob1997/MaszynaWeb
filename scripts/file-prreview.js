@@ -3,6 +3,7 @@ import SerializerManager from "./serializer-manager.js";
 import { PreviewFileName, PreviewInstructionList, PreviewProgram, PreviewExtensions,} from "./preview-base.js";
 import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
+import Translator from "./translator.js";
 
 
 
@@ -25,11 +26,11 @@ export default class FilePreviewView{
         
         this.content.classList.add("file-preview-content");
 
-        this.header.innerText= "Podgląd";
+        this.header.innerText= Translator.getTranslation("_preview","Preview");
         this.header.classList.add("file-view-header");
         this.header.classList.add("file-preview-header");
         this.loadButton = new ConfirmButtonView();
-        this.loadButton.getHTMLElement().innerText="Wczytaj";
+        this.loadButton.getHTMLElement().innerText=Translator.getTranslation("_load_file","Load");
 
         this.loadButton.addOnClickHandler(()=>{
             this.load();
@@ -63,7 +64,7 @@ export default class FilePreviewView{
 
     load(){
         SerializerManager.loadFromObject(this.object,SerializerManager.serializers);
-        Alerter.sendMessage("Maszyna została wczytana.",AlertStyleEnum.InputSucces);
+        Alerter.sendMessage(Translator.getTranslation("_message_file_loaded","Machine was loaded."),AlertStyleEnum.InputSucces);
         this.wrapper.classList.add("display-none");
     }
 

@@ -1,4 +1,5 @@
 import MachineExtensionData from "./machine-extension-data.js";
+import Translator from "./translator.js";
 
 
 export default class PreviewBase{
@@ -30,7 +31,7 @@ export default class PreviewBase{
 export class PreviewFileName extends PreviewBase{
 
     constructor(){
-        super("Nazwa Pliku");
+        super(Translator.getTranslation("_file_name","File Name"));
     }
 
     fillPreview(_obj){
@@ -48,7 +49,7 @@ export class PreviewFileName extends PreviewBase{
 export class PreviewInstructionList extends PreviewBase{
 
     constructor(){
-        super("Lista Instrukcji");
+        super(Translator.getTranslation("_instruction_list","Instruction List"));
     }
 
     fillPreview(_obj){
@@ -75,7 +76,7 @@ export class PreviewInstructionList extends PreviewBase{
 export class PreviewProgram extends PreviewBase{
 
     constructor(){
-        super("Program")
+        super(Translator.getTranslation("_program","Program"))
     }
 
     fillPreview(_obj){
@@ -99,7 +100,7 @@ export class PreviewProgram extends PreviewBase{
 export class PreviewExtensions extends PreviewBase{
 
     constructor(){
-        super("Moduły")
+        super(Translator.getTranslation("_modules","Modules"))
     }
 
     fillPreview(_obj){

@@ -2,12 +2,13 @@
 
 import { ExecutionMode } from "./enums.js";
 import SettingView from "./settings-view.js";
+import Translator from "./translator.js";
 
 
 export default class ExecutionModeSetting extends SettingView{
 
     constructor(_Settings){
-        super("Poziom Śledzenia")
+        super(Translator.getTranslation("_execution_mode","Tracking Level"))
 
         this.settings = _Settings;
         this.radioDict={};
@@ -77,9 +78,9 @@ export default class ExecutionModeSetting extends SettingView{
 
     build(){
 
-        this.buildRadio("Takt",ExecutionMode.Cycle,this.content);
-        this.buildRadio("Rozkaz",ExecutionMode.Instruction,this.content);
-        this.buildRadio("Program",ExecutionMode.Program,this.content);
+        this.buildRadio(Translator.getTranslation("_cycle","Cycle"),ExecutionMode.Cycle,this.content);
+        this.buildRadio(Translator.getTranslation("_instruction","Instruction"),ExecutionMode.Instruction,this.content);
+        this.buildRadio(Translator.getTranslation("_program","Program"),ExecutionMode.Program,this.content);
         
     }
 

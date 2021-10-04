@@ -5,6 +5,7 @@
 import Alerter,{IAlertReciever} from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import LayoutMediator from "./layout-mediator.js";
+import Translator from "./translator.js";
 
 
 /*
@@ -79,9 +80,10 @@ class AlertEntry{
 
         this.text.innerText=_messageString;
         this.exitButton.innerText="X";
-        
+        this.exitButton.ariaLabel=Translator.getTranslation("_dismiss_alert","Dissmiss notification.")
         
         this.text.setAttribute("role","alert");
+        this.text.setAttribute("aria-live","polite");
 
         this.wrapper.classList.add("alert-entry");
         this.text.classList.add("alert-text");

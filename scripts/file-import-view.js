@@ -2,13 +2,14 @@
 
 import FileViewBase from "./file-view-base.js";
 import SerializerManager from "./serializer-manager.js";
+import Translator from "./translator.js";
 
 
 
 export default class FileImportView extends FileViewBase{
 
     constructor(_fileInspector){
-        super(_fileInspector,"Wczytaj z Dysku");
+        super(_fileInspector,Translator.getTranslation("_load_from_drive","Load from Drive"))
 
         this.wrapper;
         this.build();
@@ -17,7 +18,7 @@ export default class FileImportView extends FileViewBase{
     build(){
 
         this.fileInput=document.createElement("input");
-        this.fileInput.type="file"
+        this.fileInput.type="file";
         this.fileInput.accept="application/json";
 
         this.inputLabel = document.createElement("label");
@@ -25,10 +26,11 @@ export default class FileImportView extends FileViewBase{
         this.fileInput.id=id;
         this.inputLabel.setAttribute("for",id);
         this.inputLabel.tabIndex=0;
+        this.inputLabel.role="button";
 
         this.inputLabel.addEventListener("keypress",e=>{
             if(e.keyCode==13||e.keyCode==32){
-                this.inputLabel.click()
+                this.inputLabel.click();
             }
         })
 
@@ -36,13 +38,13 @@ export default class FileImportView extends FileViewBase{
         this.content.appendChild(this.fileInput);
 
         this.fileInput.classList.add("display-none");
-        this.inputLabel.innerText="Wczytaj z Dysku";
+        this.inputLabel.innerText=Translator.getTranslation("_load_from_drive","Load from Drive");
         this.inputLabel.classList.add("file-entry");
 
         this.fileInput.addEventListener("input",()=>{
             if(this.fileInput.files.length>0){
                 SerializerManager.readDataFromJson(this.fileInput.files[0],SerializerManager.serializers)
-                    .then((_data)=>{this.pickObject(_data)})
+                    .then((_data)=>{this.pickObject(_data)});
             }
         })
 

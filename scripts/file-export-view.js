@@ -1,6 +1,7 @@
 
 
 import SerializerManager from "./serializer-manager.js";
+import Translator from "./translator.js";
 
 
 
@@ -21,12 +22,16 @@ export default class FileExportView{
         this.nameInput = document.createElement("input");
         this.jsonSpan= document.createElement("span");
 
+
         this.saveButton.classList.add("custom-btn");
         this.nameInput.classList.add("file-name-input");
         this.jsonSpan.classList.add("file-json-span");
 
-        this.saveButton.innerText = "Zapisz";
-        this.header.innerText="Zapisz na Dysk";
+
+        this.nameInput.ariaLabel=Translator.getTranslation("_file_name_to_save","Name of the file to save.")
+
+        this.saveButton.innerText = Translator.getTranslation("_save_file","Save");
+        this.header.innerText= Translator.getTranslation("_save_to_drive","Save to Drive");
         this.jsonSpan.innerText=".json";
 
         this.content.appendChild(this.nameInput);

@@ -67,14 +67,18 @@ export default class Mamory extends MachineComponent{
     }
 
     onBusWidthChanged(_settings){
-        this.resize(_settings.adressWidth);
+        this.resize(_settings.adressWidth,_settings.getWordMask());
     }
 
 
-    resize(_adressWidth){
+    resize(_adressWidth,_wordMask){
 
         const arrayLength = 1<<(_adressWidth);
         let tmp = new Array(arrayLength);
+
+        if(_wordMask==null){
+            _wordMask=-1;
+        }
 
 
         for (let index = 0; index < tmp.length; index++) {
@@ -88,7 +92,7 @@ export default class Mamory extends MachineComponent{
                 break;
             }
 
-            tmp[index] = this.values[index];
+            tmp[index] = (this.values[index])&_wordMask;
             
         }
         delete this.values;

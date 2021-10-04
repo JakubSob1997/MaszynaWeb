@@ -7,6 +7,7 @@ import FileImportView from "./file-import-view.js";
 import FileDefaultView from "./file-default-view.js";
 import FileFetchView from "./file-fetch-view.js";
 import FilePreviewView from "./file-prreview.js";
+import Translator from "./translator.js";
 
 export default class FileSInspector extends SidebarContent{
     constructor(){
@@ -39,7 +40,7 @@ export default class FileSInspector extends SidebarContent{
         this.FileFetchView = new FileFetchView(this);
 
 
-        this.header.innerText="Plik"
+        this.header.innerText=Translator.getTranslation("_file","File");
 
 
 

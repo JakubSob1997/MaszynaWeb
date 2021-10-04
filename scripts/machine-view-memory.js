@@ -131,14 +131,24 @@ export class MachineViewMemoryEntry extends MachineViewElement{
     }
 
     build(_machineView,_register){
-        this.element  = document.createElement("div")
+        this.element  = document.createElement("pre")
         //this.adrElement = document.createElement("span");
         //this.valElement = document.createElement("span")
         //this.codeElement = document.createElement("span")
 
+        //this.element.appendChild(this.adrElement);
+        //this.element.appendChild(this.valElement);
+        //this.element.appendChild(this.codeElement);
 
         this.element.classList.add("mem-entry");
+        //this.adrElement.classList.add("mem-entry-addres");
+        //this.valElement.classList.add("mem-entry-value");
+        //this.codeElement.classList.add("mem-entry-code");
+
         this.element.setAttribute("data-mem-adress",this.addres.toString());
+        //this.adrElement.setAttribute("data-mem-adress",this.addres.toString());
+        //this.valElement.setAttribute("data-mem-adress",this.addres.toString());
+        //this.codeElement.setAttribute("data-mem-adress",this.addres.toString());
 
         this.display();
         
@@ -156,10 +166,24 @@ export class MachineViewMemoryEntry extends MachineViewElement{
         const valueDisplayer = this.machineView.valueDisplayer;
         const val = this.memory.getValue(this.addres);
 
-        const decimal =valueDisplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
-        const code =valueDisplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
+        let addresStr = this.addres+":";
+        let decimal =valueDisplayer.wordToString(val,ValueDisplayEnum.UnsignedDecimal);
+        let code =valueDisplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
 
-        this.element.innerText=this.addres+": "+decimal+" "+code;
+
+        //this.adrElement.textContent=this.addres+":";
+        //this.valElement.textContent=decimal;
+        //this.codeElement.textContent=code;
+        
+        if(addresStr.length<5){
+            addresStr+="&nbsp;".repeat(5-addresStr.length);
+        }
+        if(decimal.length<5){
+            decimal+="&nbsp;".repeat(5-decimal.length);
+        }
+
+       
+        this.element.innerHTML=addresStr+decimal+code;
     }
 
     getHTMLElement(){

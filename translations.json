@@ -1,7 +1,23 @@
 {
-    "_welcome_message":{
+    "_message_welcome":{
         "en":"Welcome in Machine W simulator!",
         "pl":"Witaj w symulatorze Maszyny W!"
+    },
+    "_message_machine":{
+        "en":"Message fom Machine W value: @0",
+        "pl":"Komunikat Maszyny W wartość: @0"
+    },
+    "_message_file_loaded":{
+        "en":"Machine was loaded.",
+        "pl":"Maszyna została wczytana."
+    },
+    "_message_fail_load_preset":{
+        "en":"Failed to load \"@0\" preset.",
+        "pl":"Wczytanie presetu \"@0\" się nie powiodło."
+    },
+    "_message_fail_load_preset_list":{
+        "en":"Failed to load the preset list.",
+        "pl":"Wczytanie listy presetów się nie powiodło."
     },
     "_program":{
         "en": "Program",
@@ -28,7 +44,249 @@
         "pl":"Wybierz Język: "
     },
     "_language_refresh":{
-        "en": "Page refreshes on language change",
+        "en": "Page refreshes on language change.",
         "pl": "Przy zmianie języka strona się odświerza."
+    },
+    "_execution_mode":{
+        "en":"Tracking Level",
+        "pl":"Poziom Śledzenia"
+    },
+    "_bus_width":{
+        "en":"Bus Width",
+        "pl":"Szerokość Magistral"
+    },
+    "_code_bit_count":{
+        "en":"Code bit count",
+        "pl":"Ilość bitów kodu"
+    },
+    "_addres_bit_count":{
+        "en":"Addres bit count",
+        "pl":"Ilość bitów adresu"
+    },
+    "_set":{
+        "en":"Set",
+        "pl":"Ustaw"
+    },
+    "_machine_exstension":{
+        "en":"Machine W modules",
+        "pl":"Połączenie Magistralowe"
+    },
+    "_module_desc_buscon":{
+        "en":"Bus Connection",
+        "pl":"Połączenie Magistralowe"
+    },
+    "_module_desc_incdec":{
+        "en":"Accumulator Incrementation/Decrementation",
+        "pl":"Inkrementacja i Dekrementacja Akumulatora"
+    },
+    "_module_desc_logic":{
+        "en":"ALU Logic Opertions",
+        "pl":"Operacje logiczne w JAL"
+    },
+    "_module_desc_arythm":{
+        "en":"ALU Extra Arythmetic Opertions",
+        "pl":"Rozszerzone Operacje Arytmetyczne w JAL"
+    },
+    "_module_desc_stack":{
+        "en":"Stack Module",
+        "pl":"Obsługa Stosu"
+    },
+    "_module_desc_regx":{
+        "en":"X Register",
+        "pl":"Rejestr X"
+    },
+    "_module_desc_regy":{
+        "en":"Y Register",
+        "pl":"Rejestr Y"
+    },
+    "_module_desc_int":{
+        "en":"Interupts",
+        "pl":"Przerwania"
+    },
+    "_module_desc_io":{
+        "en":"Input/Output",
+        "pl":"Wejście/Wyjście"
+    },
+    "_module_desc_flags":{
+        "en":"Extra Flags",
+        "pl":"Dodatkowe Znaczniki"
+    },
+    "_performance":{
+        "en":"Performance",
+        "pl":"Wydajność"
+    },
+    "_cycles_beetwen":{
+        "en":"Cycles beetwen each update",
+        "pl":"Ilość cyklów między odświeżeniami"
+    },
+    "_list":{
+        "en":"List",
+        "pl":"Lista"
+    },
+    "_console":{
+        "en":"Console",
+        "pl":"Konsola"
+    },
+    "_io_list":{
+        "en":"I/O Device list",
+        "pl":"Lista urządzeń We/Wy"
+    },
+    "_addres":{
+        "en":"Addres",
+        "pl":"Adres"
+    },
+    "_description":{
+        "en":"Description",
+        "pl":"Opis"
+    },
+    "_io_console_num_in":{
+        "en":"Numeric console input (in)",
+        "pl":"Wejście numeryczne konsoli (we)"
+    },
+    "_io_console_char_in":{
+        "en":"Character (UTF-8) console input (in)",
+        "pl":"Wejście znakowe (UTF-8) konsoli (we)"
+    },
+    "_io_console_out":{
+        "en":"Console output (out)",
+        "pl":"Wyjście konsoli (wy)"
+    },
+    "_io_console_clear_cmd":{
+        "en":"Clear console (cmd)",
+        "pl":"Wyczyść konsole (pol)"
+    },
+    "_io_alerter_out":{
+        "en":"Notifications output (out)",
+        "pl":"Wyjście powiadomień (wy)"
+    },
+    "_io_alerter_clear_cmd":{
+        "en":"Clear notifications (cmd)",
+        "pl":"Wyczyść powiadomienia (pol)"
+    },
+    "_io_random_in":{
+        "en":"Random number generator (in)",
+        "pl":"Generator liczb losowych (we)"
+    },
+    "_input":{
+        "en":"Input",
+        "pl":"Wejście"
+    },
+    "_output":{
+        "en":"Output",
+        "pl":"Wyjście"
+    },
+    "_input_output":{
+        "en":"Input/Output",
+        "pl":"Wejście/Wyjście"
+    },
+    "_clear":{
+        "en":"Clear",
+        "pl":"Wyczyść"
+    },
+    "_file":{
+        "en":"File",
+        "pl":"Plik"
+    },
+    "_save_file":{
+        "en":"Save",
+        "pl":"Zapisz"
+    },
+    "_load_file":{
+        "en":"Load",
+        "pl":"Wczytaj"
+    },
+    "_save_to_drive":{
+        "en": "Save to Drive",
+        "pl": "Zapisz na Dysk"
+    },
+    "_file_name_to_save":{
+        "en": "Name of the file to save.",
+        "pl": "Nazwa pliku do zapisania."
+    },
+    "_refresh":{
+        "en":"Refresh",
+        "pl":"Odśwież"
+    },
+    "_file_name":{
+        "en": "File Name",
+        "pl": "Nazwa Pliku"
+    },
+    "_preview":{
+        "en":"Preview",
+        "pl":"Podgląd"
+    },
+    "_instruction_list":{
+        "en":"Instruction List",
+        "pl":"Lista Rozkazów"
+    },
+    "_modules":{
+        "en":"Modules",
+        "pl":"Moduły"
+    },
+    "_module_short_buscon":{
+        "en":"Connection",
+        "pl":"Połączenie"
+    },
+    "_module_short_incdec":{
+        "en":"Incrementation",
+        "pl":"Inkrementacja"
+    },
+    "_module_short_logic":{
+        "en":"Logic",
+        "pl":"Logika"
+    },
+    "_module_short_arythm":{
+        "en":"Arythmetic",
+        "pl":"Arytmetyka"
+    },
+    "_module_short_stack":{
+        "en":"Stack",
+        "pl":"Stos"
+    },
+    "_module_short_regx":{
+        "en":"X",
+        "pl":"X"
+    },
+    "_module_short_regy":{
+        "en":"Y",
+        "pl":"Y"
+    },
+    "_module_short_int":{
+        "en":"Interupts",
+        "pl":"Przerwania"
+    },
+    "_module_short_io":{
+        "en":"I/O",
+        "pl":"We/Wy"
+    },
+    "_module_short_flags":{
+        "en":"Flags",
+        "pl":"Flagi"
+    },
+    "_load_from_drive":{
+        "en":"Load from Drive",
+        "pl":"Wczytaj z Dysku"
+    },
+    "_presets":{
+        "en":"Presets",
+        "pl":"Presety"
+    },
+    "_load_default":{
+        "en": "Load Default",
+        "pl": "Wczytaj Domyślne"
+    },
+    "_default_settings":{
+        "en":"Default Setting",
+        "pl": "Domyślne Ustawienia"
+    },
+    "_dismiss_alert":{
+        "en":"Dismiss notification.",
+        "pl":"Zamknij powiadomienie"
     }
+
+    
+
+    
+
+    
 }
