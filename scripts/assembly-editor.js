@@ -96,6 +96,15 @@ export default class AssemblyEditor extends SidebarContent{
         this.M.addOnMachineStopedCallback((_M)=>{
             this.runButton.removeAttribute("disabled");
         })
+        this.codeMirror.cm.on("mousedown",()=>{
+            setTimeout(()=>{
+                if(this.parser!=null){
+                    const cursor =this.codeMirror.cm.getCursor();
+                    console.log(this.parser.getInstructionByPositon(cursor.line,cursor.ch));
+                }
+            })
+            
+        })
     
     }
 
@@ -132,7 +141,7 @@ export default class AssemblyEditor extends SidebarContent{
         Terminator.terminate();
         this.save();
         this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList,this.valueDisplayer);
-        
+        console.log(this.parser);
 
         if( this.parser.parseSuccesful){
             this.M.setComponentsDefault();

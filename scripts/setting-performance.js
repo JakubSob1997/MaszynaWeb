@@ -26,19 +26,17 @@ export default  class PerofrmanceSetting extends SettingView{
 
 
     setupFields(_settings){
-        this.pseudoThreadsInput.value=_settings.pseudoThreads;
         this.cyclesBeetwenInput.value=_settings.cyclesBeetwenUpdate;
     }
 
     submitSettings(){
 
-        const pseudoThreadsVal = parseInt(this.pseudoThreadsInput.value)
         const cyclesBeetwenVal = parseInt(this.cyclesBeetwenInput.value)
 
         try{
-            this.settings.setPerformanceSettings(pseudoThreadsVal,cyclesBeetwenVal)
+            this.settings.setPerformanceSettings(cyclesBeetwenVal)
             Alerter.sendMessage(
-                `${this.header.innerText}: ${this.pseudoThreadsLabel.innerText} - ${this.settings.pseudoThreads}, ${this.cyclesBeetwenLabel.innerText} - ${this.settings.cyclesBeetwenUpdate}`,
+                `${this.header.innerText}: ${this.cyclesBeetwenLabel.innerText} - ${this.settings.cyclesBeetwenUpdate}`,
                 AlertStyleEnum.InputSucces
                 );
         }catch(error){
@@ -52,33 +50,6 @@ export default  class PerofrmanceSetting extends SettingView{
 
         this.content.classList.add("setting-label-input")
 
-
-        //Pseudo threads
-        const pseudoThreadsid = "pseudoThreadsSetting"
-
-        this.pseudoThreadsDiv = document.createElement("div");
-        this.pseudoThreadsInput = document.createElement("input");
-        this.pseudoThreadsLabel=document.createElement("label");
-
-        this.pseudoThreadsInput.type="number";
-        this.pseudoThreadsInput.setAttribute("min",Settings.MinPseudoThreads.toString());
-        this.pseudoThreadsInput.setAttribute("max",Settings.MaxPseudoThreads.toString());
-        this.pseudoThreadsInput.setAttribute("step","1");
-
-        this.pseudoThreadsLabel.innerText="Ilość Pseudo Wątków";
-        
-        
-        this.pseudoThreadsDiv.appendChild(this.pseudoThreadsLabel);
-        this.pseudoThreadsDiv.appendChild(this.pseudoThreadsInput);
-        
-        this.pseudoThreadsInput.id=pseudoThreadsid;
-        this.pseudoThreadsLabel.setAttribute("for",pseudoThreadsid)
-
-        this.pseudoThreadsInput.addEventListener("keydown",(e)=>{
-            if(e.keyCode==13){
-                this.submitSettings();
-            }
-        })
 
         //Max cycles
         const cyclesBeetwenid = "cyclesBeetwenSetting"
@@ -114,7 +85,6 @@ export default  class PerofrmanceSetting extends SettingView{
         })
 
 
-        this.content.appendChild(this.pseudoThreadsDiv);
         this.content.appendChild(this.cyclesBeetwenDiv);
         this.content.appendChild(this.confirmButton);
 

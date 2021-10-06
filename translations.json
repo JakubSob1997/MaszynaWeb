@@ -402,14 +402,10 @@
     "_asm_err_invalid_arg":{
         "en":"Argument: @0 is not an value or label.",
         "pl":"Argument: @0 nie jest wartością lub etykietą."
+    },
+    "_asm_err_not_positive":{
+        "en":"Argument: @0 is not a positive integer.",
+        "pl":"Argument: @0 nie jest liczbą dodatnią."
     }
-
-
-
-
-    
-
-    
-
     
 }

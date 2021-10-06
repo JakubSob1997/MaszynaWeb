@@ -47,7 +47,6 @@ function runMachineBySetting(_M){
             if(_M.wasTerminated==true)return;
             _M.doCycle();
             cyclesRemaining--;
-            console.log(_M.isNewInstruction())
         } while (_M.isNewInstruction()===false &&cyclesRemaining>0);
 
 

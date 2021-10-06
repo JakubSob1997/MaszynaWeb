@@ -12,6 +12,14 @@ class Word{
 }
 
 
+class AssemblyLabel{
+    constructor(_name,_instrIndex){
+        this.name =_name;
+        this.instrIndex = _instrIndex;
+        this.refrences = [];
+    }
+}
+
 class AssemblyInstruction{
     constructor(_opcode,_argumets,_ogLine,_ogColumn){
         this.code=_opcode;
@@ -106,6 +114,29 @@ export default class AssemblyParser{
 
     }
 
+    getInstructionByPositon(_line,_ch){
+        if(this.parseSuccesful===false){
+            return null
+        }
+
+        let closest;
+
+        console.log(_line,_ch);
+
+        for (let i = 0; i < this.instructions.length; i++) {
+            
+            const instr = this.instructions[i];
+            
+            if(closest==null||instr.ogLine<_line||(instr.ogLine===_line&&instr.ogColumn<=_ch)){
+                closest=instr;
+            }
+            
+        }
+        
+        return closest;
+    }
+
+
     removeComentFromLine(_line){
         return _line.split(/(\/\/|;)/)[0];
     }
@@ -180,7 +211,7 @@ export default class AssemblyParser{
                             "Label redefinition."),
                         word);
                 }else{
-                    this.labels[slicedLabel]=instrCounter;
+                    this.labels[slicedLabel]=new AssemblyLabel(slicedLabel,instrCounter);
                 continue;
                 }
                 
@@ -214,14 +245,14 @@ export default class AssemblyParser{
 
             }
 
-            if(word.value.toUpperCase()=="RPA"){
+            if(word.value.toUpperCase()==="RPA"){
                 this.instructions[instrCounter]= 
                     new AssemblyInstruction("RPA",[],wordOgLine,wordOgColumn);
                 instrCounter++;
                 continue;
             }
 
-            if(word.value.toUpperCase()=="RST"){
+            if(word.value.toUpperCase()==="RST"||word.value.toUpperCase()==="RTB"){
                 index++;
                 
 
@@ -232,7 +263,7 @@ export default class AssemblyParser{
 
 
                     this.instructions[instrCounter]= 
-                    new AssemblyInstruction("RST",[this.words[index].value],wordOgLine,wordOgColumn);
+                    new AssemblyInstruction(word.value,[this.words[index].value],wordOgLine,wordOgColumn);
                 }else{
                     throw new AssemblyParserError(Translator.getTranslation("_asm_err_expected_argument","Expected argument."),word)
                 }
@@ -249,20 +280,14 @@ export default class AssemblyParser{
     }
 
 
-    cleanLabels(){
-        for (let index = 0; index < this.labels.length; index++) {
-            this.labels[index] = this.labels[index].slice(0,this.labels[index].length-1);
-            
-        }
-    }
 
-
-    parseArg(_arg){
+    parseArg(_arg,_argAddres){
 
         let argVal = NaN;
 
         if(this.labels.hasOwnProperty(_arg)){
-            argVal = this.labels[_arg];
+            this.labels[_arg].refrences.push(_argAddres);
+            return 0;
 
         }else{
             if(this.valueDisplayer!=null){
@@ -283,7 +308,7 @@ export default class AssemblyParser{
         for (let index = 0; index < this.instructions.length; index++) {
             const instr = this.instructions[index];
             
-            if(instr.code == "RPA"){
+            if(instr.code === "RPA"){
 
                 instr.addres=addres;
                 this.values[addres] =0;
@@ -292,9 +317,9 @@ export default class AssemblyParser{
             }
 
 
-            if(instr.code == "RST"){
+            if(instr.code === "RST"){
 
-                let parsedArg =this.parseArg(instr.args[0]);
+                let parsedArg =this.parseArg(instr.args[0],addres);
                 if(isNaN(parsedArg)){
                     throw new AssemblyMapperError(Translator.getTranslation("_asm_err_invalid_arg","Argument: @0 is not an value or label.",[instr.args[0]]),instr);
                 }
@@ -302,6 +327,20 @@ export default class AssemblyParser{
                 instr.addres=addres;
                 this.values[addres]  = parsedArg &_settings.getWordMask();
                 addres++;
+                continue;
+            }
+
+            if(instr.code==="RTB"){
+                let parsedArg =this.parseArg(instr.args[0],addres);
+                
+                if(isNaN(parsedArg)||parsedArg<=0){
+                    throw new AssemblyMapperError(Translator.getTranslation("_asm_err_not_positive","Argument: @0 is not a positive integer.",[instr.args[0]]),instr);
+                }
+                instr.addres=addres;
+                for (let i = 0; i < parsedArg; i++) {
+                    this.values[addres]  = 0;
+                    addres++;      
+                }
                 continue;
             }
 
@@ -321,7 +360,7 @@ export default class AssemblyParser{
                 addres++;
             }else if(instructionRefrence.argCount>=1){
                 
-                let argVal =this.parseArg(instr.args[0]);
+                let argVal =this.parseArg(instr.args[0],addres);
 
 
                 if(isNaN(argVal)){
@@ -338,7 +377,7 @@ export default class AssemblyParser{
             if(instructionRefrence.argCount>1){
                 for (let i = 1; i < instr.args.length; i++) {
                     const arg = instr.args[i];
-                    const parsedArg= this.parseArg(instr.args[i]);
+                    const parsedArg= this.parseArg(instr.args[i],addres);
                     if(isNaN(parsedArg)){
                         throw new AssemblyMapperError(Translator.getTranslation("_asm_err_invalid_arg","Argument: @0 is not an value or label.",[arg]),instr);
                     }
@@ -347,12 +386,27 @@ export default class AssemblyParser{
                     addres++;
                 }
             }
-
-            
-
         }
+
+
+        for (const name in this.labels) {
+            if (Object.hasOwnProperty.call(this.labels, name)) {
+                const label = this.labels[name];
+                const addr  = this.instructions[label.instrIndex].addres;
+
+                for (let r = 0; r < label.refrences.length; r++) {
+                    const ref = label.refrences[r];
+                    const val =  addr&_settings.adressMask;
+                    this.values[ref] =this.values[ref]|val;
+                }
+            }
+        }
+
+
     }
 }
 
 
 
+
+           

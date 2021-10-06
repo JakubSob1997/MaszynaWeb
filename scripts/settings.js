@@ -15,8 +15,6 @@ export default class Settings{
     static MaxCodeWidth  = 8;
     static MaxAddresWidth =12;
 
-    static MinPseudoThreads=1;
-    static MaxPseudoThreads=255;
     static MinCyclesBeetwenUpdate=1;
     static MaxCyclesBeetwenUpdate=9999999;
 
@@ -26,7 +24,6 @@ export default class Settings{
         this.extentionFlags  = ExtentionPresets.W;
         this.intAdressList=[1,2,3,4];
 
-        this.pseudoThreads = 8;
         this.cyclesBeetwenUpdate=1000;
         this.executionMode = ExecutionMode.Cycle;
 
@@ -109,10 +106,6 @@ export default class Settings{
             this.executionMode=_setingsData.executionMode;
         }
 
-        if(_setingsData.hasOwnProperty("pseudoThreads")){
-            this.pseudoThreads = _setingsData.pseudoThreads;
-        }
-
         if(_setingsData.hasOwnProperty("cyclesBeetwenUpdate")){
             this.cyclesBeetwenUpdate=_setingsData.cyclesBeetwenUpdate;
         }
@@ -192,16 +185,14 @@ export default class Settings{
         this.invokeSettingsChanged();
     }
 
-    setPerformanceSettings(_pseudoThreads, _cyclesBeetwen){
+    setPerformanceSettings( _cyclesBeetwen){
 
-        if(isNaN(_pseudoThreads)||isNaN(_cyclesBeetwen)){
+        if(isNaN(_cyclesBeetwen)){
             Alerter.sendMessage("Nieprawidłowe Dane Wejściowe",AlertStyleEnum.InputError);
         }
 
-        _pseudoThreads =Math.min(Math.max(_pseudoThreads,Settings.MinPseudoThreads),Settings.MaxPseudoThreads)
         _cyclesBeetwen = Math.min(Math.max(_cyclesBeetwen,Settings.MinCyclesBeetwenUpdate),Settings.MaxCyclesBeetwenUpdate)
 
-        this.pseudoThreads=_pseudoThreads;
         this.cyclesBeetwenUpdate=_cyclesBeetwen;
 
         this.save();
@@ -224,13 +215,12 @@ export class SettingsData{
 
 
 
-    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList,_executionMode,_pseudoThreads,_cyclesBeetwen){
+    constructor(_codeWidth,_adressWidth,_extentionFlags,_intAdressList,_executionMode,_cyclesBeetwen){
         this.codeWidth=_codeWidth;
         this.adressWidth=_adressWidth;
         this.extensionData = new MachineExtensionData(_extentionFlags);
         this.intAdressList = _intAdressList;
         this.executionMode = _executionMode;
-        this.pseudoThreads = _pseudoThreads;
         this.cyclesBeetwenUpdate=_cyclesBeetwen;
     }
 
@@ -242,7 +232,6 @@ export class SettingsData{
             ExtentionPresets.W,
             [1,2,3,4],
             ExecutionMode.Cycle,
-            8,
             1000
             );
     }
