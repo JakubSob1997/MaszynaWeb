@@ -185,8 +185,8 @@ class BranchLine {
 class SettingsLine {
     constructor(_words) {
         this.words = _words;
-        this.noArgs = false;
         this.name = null;
+        this.argCount=NaN;
 
         this.parseSuccesful = true;
         this.warning = null;
@@ -200,11 +200,24 @@ class SettingsLine {
     }
 
     parse(_words) {
-        if (_words[0].toUpperCase() == "BEZARG") {
-            this.noArgs = true;
+        if (_words[0].toUpperCase() === "BEZARG") {
+            this.argCount = 0;
         }
 
-        if (_words[0].toUpperCase() == "ROZKAZ") {
+        if(_words[0].toUpperCase()==="ARGUMENTY"){
+            if (_words.length == 2) {
+                this.argCount = parseInt(_words[1])
+                if(this.argCount.argCount<0){
+                    this.logWarning("Argument count must be an Inteager: " + _words[0])
+                }
+
+            } else {
+                this.logWarning("Expected argument count after: " + _words[0])
+            }
+            
+        }
+
+        if (_words[0].toUpperCase() === "ROZKAZ") {
             if (_words.length == 2) {
                 this.name = _words[1].toUpperCase();
             } else {
@@ -214,21 +227,16 @@ class SettingsLine {
     }
 
 
-    applyNoArgs(_instr) {
-        _instr.argCount = 0;
-    }
 
-    applyName(_instr, _name) {
-        _instr.name = _name;
-    }
 
     applySetting(_instruction) {
-        if (this.noArgs === true) {
-            this.applyNoArgs(_instruction);
+        if (isNaN( this.argCount)===false) {
+            _instruction.argCount = this.argCount;
         }
 
         if (this.name != null) {
-            this.applyName(_instruction, this.name);
+            _instruction.name = this.name;
+
         }
     }
 
@@ -445,11 +453,15 @@ export default class InstrcutionParser {
 
         const word = _wordArry[0].toUpperCase();
 
-        if (word == "ROZKAZ") {
+        if (word === "ROZKAZ") {
             return true;
         }
 
-        if (word == "BEZARG") {
+        if (word === "BEZARG") {
+            return true;
+        }
+
+        if (word === "ARGUMENTY") {
             return true;
         }
         return false;

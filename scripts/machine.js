@@ -4,6 +4,7 @@ import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import InstructionList from "./instruction-list.js";
 import Terminator from "./terminator.js";
+import Translator from "./translator.js";
 
 
 
@@ -67,7 +68,7 @@ export default class Machine{
 
     onTerminate(){
         if(this.wasTerminated==false){
-            Alerter.sendMessage("Maszyna została zatrzymana!",AlertStyleEnum.ExecutionFlow)
+            Alerter.sendMessage(Translator.getTranslation("_message_machine_stopped","Machine was stopped!"),AlertStyleEnum.ExecutionFlow)
             this.stopMachine();
         }
     }

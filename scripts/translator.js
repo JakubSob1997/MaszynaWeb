@@ -43,7 +43,7 @@ const Translator = {
         if(this.translations.hasOwnProperty(_key)&&this.translations[_key].hasOwnProperty(this.language)){
             baseText= this.translations[_key][this.language];
         }else{
-            if(this.debugFlag){
+            if(this.debugFlag&&this.language!="DEFAULT"){
                 return this.getDebug(this.language+_key,_arguments)
             }else{
                 if(_defaultText===null){

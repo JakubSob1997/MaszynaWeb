@@ -19,13 +19,49 @@
         "en":"Failed to load the preset list.",
         "pl":"Wczytanie listy presetów się nie powiodło."
     },
+    "_message_instruction_loaded":{
+        "en":"Instruction @0 was saved succesfully!",
+        "pl":"Rozkaz @0 został poprawnie zapisany!"
+    },
+    "_message_instrucion_exsists":{
+        "en":"Instruction @0 already exsists in instruction list!",
+        "pl":"Już istnieje rozkaz @0 w liście instrukcji!"
+    },
+    "_message_program_loaded":{
+        "en":"Program was loaded to memory!",
+        "pl":"Program został załadowany do pamięci!"
+    },
+    "_message_machine_stopped":{
+        "en":"Machine was stopped!",
+        "pl":"Maszyna została zatrzymana!"
+    },
     "_program":{
         "en": "Program",
         "pl": "Program"
     },
+    "_instructions":{
+        "en":"Instructions",
+        "pl": "Rozkazy"
+    },
     "_settings":{
         "en":"Settings",
         "pl":"Ustawienia"
+    },
+    "_io":{
+        "en":"I/O",
+        "pl":"We/Wy"
+    },
+    "_file":{
+        "en":"File",
+        "pl":"Plik"
+    },
+    "_info":{
+        "en":"Info",
+        "pl":"Info"
+    },
+    "_manual":{
+        "en":"Manual",
+        "pl":"Manual"
     },
     "_cycle":{
         "en":"Cycle",
@@ -34,6 +70,10 @@
     "_instruction":{
         "en": "Instruction",
         "pl": "Rozkaz"
+    },
+    "_run":{
+        "en":"Run",
+        "pl":"Uruchom"
     },
     "_language":{
         "en":"Language",
@@ -183,10 +223,6 @@
         "en":"Clear",
         "pl":"Wyczyść"
     },
-    "_file":{
-        "en":"File",
-        "pl":"Plik"
-    },
     "_save_file":{
         "en":"Save",
         "pl":"Zapisz"
@@ -282,7 +318,94 @@
     "_dismiss_alert":{
         "en":"Dismiss notification.",
         "pl":"Zamknij powiadomienie"
+    },
+    "_new_instruction":{
+        "en":"New Instruction",
+        "pl":"Nowy Rozkaz"
+    },
+    "_memory_header":{
+        "en": "Memory [@0]",
+        "pl": "Pamięć [@0]"
+    },
+    "_register_header":{
+        "en": "Register: @0",
+        "pl": "Rejestr: @0"
+    },
+    "_instruction_header":{
+        "en":"Instruction: @0",
+        "pl": "Rozkaz: @0"
+    },
+    "_delete":{
+        "en":"Delete",
+        "pl":"Usuń"
+    },
+    "_save_instruction":{
+        "en":"Save",
+        "pl":"Zapisz"
+    },
+    "_cancel":{
+        "en":"Cancel",
+        "pl":"Cofnij"
+    },
+    "_code_mirror_label":{
+        "en": "Press the \"Esc\" key to leave editor focus.",
+        "pl": "Naciśnij klawisz \"Esc\" by wyjść z edytora."
+    },
+    "_load_to_memory":{
+        "en": "Load to memory",
+        "pl": "Ładuj do pamięci"
+    },
+    "_write":{
+        "en": "Write",
+        "pl": "Pisz"
+    },
+    "_display_unsigned":{
+        "en":"Unsigned Decimal",
+        "pl":"Dziesiętny Bez Znaku"
+    },
+    "_display_signed":{
+        "en":"Signed Decimal",
+        "pl":"Dziesiętny Ze Znakiem"
+    },
+    "_display_binary":{
+        "en":"Binary",
+        "pl":"Binarny"
+    },
+    "_display_hexadecimal":{
+        "en":"Hexadecimal",
+        "pl":"Heksadecymalny"
+    },
+    "_display_instruction":{
+        "en":"Instruction",
+        "pl":"Instrukcja"
+    },
+    "_assembly_parser_error_format":{
+        "en":"@0 - @1 Line: @2 Character: @3",
+        "pl":"@0 - @1 Linia: @2 Znak: @3"
+    },
+    "_assembly_mapper_error_format":{
+        "en":"@0 Instruction: @1 Argumenty: @2 Line: @3 Character: @4",
+        "pl":"@0 Rozkaz: @1 Argumenty: @2 Linia: @3 Znak: @4"
+    },
+    "_asm_err_label_redefinition":{
+        "en":"Label redefinition.",
+        "pl":"Etykieta już istnieje."
+    },
+    "_asm_err_expected_argument":{
+        "en":"Expected argument.",
+        "pl":"Oczekiwano argumentu."
+    },
+    "_asm_err_expected_instr_label":{
+        "en":"Expected insturction or label.",
+        "pl":"Oczekiwano rozkazu lub etykiety."
+    },
+    "_asm_err_invalid_arg":{
+        "en":"Argument: @0 is not an value or label.",
+        "pl":"Argument: @0 nie jest wartością lub etykietą."
     }
+
+
+
 
     
 

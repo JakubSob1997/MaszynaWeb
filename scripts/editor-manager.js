@@ -11,7 +11,7 @@ export default class EditorManager{
         this.editorElement = _Element;
         this.currentEditor =null;
 
-        this.assemblyEditor = new AssemblyEditor(_Machine);
+        this.assemblyEditor = new AssemblyEditor(_Machine,_MachineView.valueDisplayer);
         this.instructionEditor = new InstructionEditor(_Machine,this);
 
         this.editorElement.appendChild(this.assemblyEditor.getHTMLElement());

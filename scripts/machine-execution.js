@@ -6,17 +6,22 @@ import Terminator from "./terminator.js";
 
 export function runMachine(_Machine){
 
-    _Machine.startMachine();
-    for (let i = 0; i < _Machine.settings.pseudoThreads; i++) {
+    if(_Machine.isRunning()==false){
+        _Machine.startMachine();
         setTimeout(()=>{runMachineBySetting(_Machine),0});
     }
+    
 
     
 }
 
 export function runSingleInstruction(_Machine){
-    _Machine.startMachine();
-    runInstructionNonBlocking(_Machine);
+
+    if(_Machine.isRunning()==false){
+        _Machine.startMachine();
+        runInstructionNonBlocking(_Machine);
+    }
+    
 }  
 
 export function runCycle(_Machine){

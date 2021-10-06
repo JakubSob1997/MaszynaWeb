@@ -87,30 +87,36 @@ function main(){
 
 
     let showAsmButton = document.getElementById("asm-nav");
+    showAsmButton.textContent=Translator.getTranslation("_program","Program");
     showAsmButton.addEventListener("click",()=>{
         editorManager.drawEditorForAssembly()
     })
     let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
+    showInstrInspectorButton.textContent=Translator.getTranslation("_instructions","Instructions");
     showInstrInspectorButton.addEventListener("click",()=>{
         inspectorManager.drawInspectorForInstructionList();
     })
 
     let showSettingsButon = document.getElementById("settings-nav")
+    showSettingsButon.textContent=Translator.getTranslation("_settings","Settings")
     showSettingsButon.addEventListener("click",()=>{
         inspectorManager.drawInspectorForSettings();
     })
 
     let showIOButton =  document.getElementById("io-nav")
+    showIOButton.textContent=Translator.getTranslation("_io","I/O");
     showIOButton.addEventListener("click",()=>{
         inspectorManager.drawInspectorForInputOutput();
     })
 
     let showFileButton =  document.getElementById("file-nav")
+    showFileButton.textContent=Translator.getTranslation("_file","File");
     showFileButton.addEventListener("click",()=>{
         inspectorManager.drawInspectorForFile();
     })
 
     let showInfoButton =document.getElementById("info-nav");
+    showInfoButton.textContent=Translator.getTranslation("_info","Info");
     showInfoButton.addEventListener("click",()=>{
         inspectorManager.drawInspectorForInfo();
     })
@@ -118,6 +124,7 @@ function main(){
 
 
     let nextCycleButton = document.getElementById("next-cycle-button");
+    nextCycleButton.textContent=Translator.getTranslation("_cycle","Cycle");
     nextCycleButton.onclick=function(){
 
 
@@ -128,6 +135,7 @@ function main(){
     }
 
     let nextInstructionButton = document.getElementById("next-instruction-button");
+    nextInstructionButton.textContent=Translator.getTranslation("_instruction","Instruction");
     nextInstructionButton.onclick=function(){
 
         if(M.isRunning()==false){
@@ -137,6 +145,7 @@ function main(){
     }
 
     let toggleManualButton = document.getElementById("toggle-manual-button");
+    toggleManualButton.textContent=Translator.getTranslation("_manual","Manual");
     toggleManualButton.onclick = ()=>{
 
         M.setManualMode(M.manualControll==false);
@@ -155,6 +164,7 @@ function main(){
 
 
     let runMachineButton=document.getElementById("run-machine-button");
+    runMachineButton.textContent=Translator.getTranslation("_run","Run");
     runMachineButton.addEventListener("click",()=>{
         if(M.isRunning()){
             Terminator.terminate();
@@ -163,6 +173,7 @@ function main(){
         }
         
     })
+    
 
 
     M.addOnMachineStartedCllback(()=>{

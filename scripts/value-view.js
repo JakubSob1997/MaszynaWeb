@@ -1,5 +1,6 @@
 
 import { ValueDisplayEnum } from "./enums.js";
+import Translator from "./translator.js";
 
 export default class ValueView{
     constructor(_valueDisplayer){
@@ -57,7 +58,7 @@ export default class ValueView{
         this.mainWrapper.appendChild(this.minusOneButton);
         this.mainWrapper.appendChild(this.setZeroButton);
 
-        this.writeButton.innerText="Pisz";
+        this.writeButton.innerText=Translator.getTranslation("_write","Write");
         this.plusOneButton.innerText="+1";
         this.minusOneButton.innerText="-1";
         this.setZeroButton.innerText="0";

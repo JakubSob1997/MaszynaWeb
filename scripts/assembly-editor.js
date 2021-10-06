@@ -9,9 +9,10 @@ import AssemblySerializer from "./assembly-serializer.js";
 import SerializerManager from "./serializer-manager.js";
 import AssemblyCodeMirror from "./assembly-codemirror.js";
 import {runMachine} from "./machine-execution.js";
+import Translator from "./translator.js";
 
 export default class AssemblyEditor extends SidebarContent{
-    constructor(_machine){
+    constructor(_machine,_valueDisplayer){
 
         super();
         
@@ -23,6 +24,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.copyButton;
 
         this.M = _machine;
+        this.valueDisplayer = _valueDisplayer;
 
         this.serializer = new AssemblySerializer(this);
         
@@ -65,9 +67,9 @@ export default class AssemblyEditor extends SidebarContent{
         this.loadButton.classList.add("custom-btn");
         this.runButton.classList.add("custom-btn");
 
-        this.title.innerText="Program"
-        this.loadButton.innerText="Ładuj do pamięci";
-        this.runButton.innerText="Uruchom Program";
+        this.title.innerText=Translator.getTranslation("_program","Program");
+        this.loadButton.innerText=Translator.getTranslation("_load_to_memory","Load to memory")
+        this.runButton.innerText=Translator.getTranslation("_run","Run");
 
 
 
@@ -87,12 +89,12 @@ export default class AssemblyEditor extends SidebarContent{
         this.loadButton.addEventListener("click",()=>{this.onLoadButton();});
         this.runButton.addEventListener("click",()=>{this.onRunButton()});
     
+
         this.M.addOnMachineStartedCllback((_M)=>{
-            this.runButton.classList.add("display-none");
-            this.runButton.blur();
+            this.runButton.setAttribute("disabled","true");
         })
         this.M.addOnMachineStopedCallback((_M)=>{
-            this.runButton.classList.remove("display-none");
+            this.runButton.removeAttribute("disabled");
         })
     
     }
@@ -129,7 +131,7 @@ export default class AssemblyEditor extends SidebarContent{
         
         Terminator.terminate();
         this.save();
-        this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList);
+        this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList,this.valueDisplayer);
         
 
         if( this.parser.parseSuccesful){
@@ -138,7 +140,7 @@ export default class AssemblyEditor extends SidebarContent{
             
             this.M.MEM.loadMemory( this.parser.values);
 
-            Alerter.sendMessage("Program załadowany poprawnie!",AlertStyleEnum.Succes);
+            Alerter.sendMessage(Translator.getTranslation("_message_program_loaded","Program was loaded to memory!"),AlertStyleEnum.Succes);
         }else{
 
             Alerter.sendMessage(this.parser.errorMessage,AlertStyleEnum.SyntaxError);

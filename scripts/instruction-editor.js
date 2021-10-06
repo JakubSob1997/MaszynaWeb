@@ -8,6 +8,7 @@ import Alerter from "./alerter.js";
 import { AlertStyleEnum } from "./enums.js";
 import InstructionChangesCache from "./instruction-changes-cache.js"
 import InstructionCodeMirror from "./instruction-codemirror.js";
+import Translator from "./translator.js";
 
 export default class InstructionEditor extends SidebarContent{
 
@@ -60,9 +61,9 @@ export default class InstructionEditor extends SidebarContent{
         this.wrapper.appendChild(this.cancelButton.getHTMLElement());
         
         this.header.innerText="inst"     
-        this.saveButon.innerText="Zapisz"
-        this.deleteButon.getHTMLElement().innerText="Usuń";
-        this.cancelButton.getHTMLElement().innerText="Cofnij";
+        this.saveButon.innerText=Translator.getTranslation("_save_instruction","Save")
+        this.deleteButon.getHTMLElement().innerText=Translator.getTranslation("_delete","Delete");
+        this.cancelButton.getHTMLElement().innerText=Translator.getTranslation("_cancel","Cancel");
 
         this.wrapper.classList.add("generic-inspector")
         this.saveButon.classList.add("custom-btn");        
@@ -78,11 +79,13 @@ export default class InstructionEditor extends SidebarContent{
 
     showDirty(_isDirty){    
 
+        const headerText =Translator.getTranslation("_instruction_header","Instruction: @0",[this.instrName])
+
         if(_isDirty){
-            this.header.innerText="*Rozkaz: "+this.instrName;
+            this.header.innerText="*"+headerText;
             this.cancelButton.getHTMLElement().classList.remove("display-none");
         }else{
-            this.header.innerText="Rozkaz: "+this.instrName;
+            this.header.innerText=headerText;
             this.cancelButton.getHTMLElement().classList.add("display-none");
         }
     }
@@ -178,11 +181,11 @@ export default class InstructionEditor extends SidebarContent{
 
                 if(parser.parseSuccesful==true){
 
-                    const instr = parser.toInstruction();
+                    const instr = parser.toInstruction();//instr.name+
                     if(_Machine.instructionList.updateInstruction(this.instrName,instr)){
-                        Alerter.sendMessage("Rozkaz "+instr.name+" został poprawnie zapisany!",AlertStyleEnum.Succes);
+                        Alerter.sendMessage(Translator.getTranslation("_message_instruction_loaded","Instruction @0 was saved succesfully!",[instr.name]),AlertStyleEnum.Succes);
                     }else{
-                        Alerter.sendMessage("Już istnieje rozkaz "+instr.name+" w liście instrukcji!",AlertStyleEnum.SyntaxError);
+                        Alerter.sendMessage(Translator.getTranslation("_message_instrucion_exsists","Instruction @0 already exsists in instruction list!",[instr.name]),AlertStyleEnum.SyntaxError);
                     }
                     
                 }else{

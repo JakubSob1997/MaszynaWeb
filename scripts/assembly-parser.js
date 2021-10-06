@@ -1,20 +1,24 @@
+import Translator from "./translator.js";
 
 
 
 
 class Word{
-    constructor(_value,_originalLine){
+    constructor(_value,_originalLine,_ogColumn){
         this.value = _value;
-        this.ogIndex=_originalLine;
+        this.ogLine=_originalLine;
+        this.ogColumn=_ogColumn
     }
 }
 
 
 class AssemblyInstruction{
-    constructor(_opcode,_argumets,_ogIndex){
+    constructor(_opcode,_argumets,_ogLine,_ogColumn){
         this.code=_opcode;
         this.args = _argumets;
-        this.ogIndex=_ogIndex;
+        this.ogLine=_ogLine;
+        this.ogColumn=_ogColumn
+        this.addres;
     }
 }
 
@@ -26,7 +30,18 @@ class AssemblyParserError{
     }
 
     toString(){
-        return(this.message+ " - "+this.word.value+" at line: "+this.word.ogIndex.toString());
+
+        return Translator.getTranslation(
+            "_assembly_parser_error_format",
+            "@0 - @1 Line: @2 Character: @3",
+            [
+                this.message,
+                this.word.value,
+                this.word.ogLine,
+                this.word.ogColumn
+            ]
+        );
+
     }
 }
 
@@ -38,10 +53,19 @@ class AssemblyMapperError{
     }
 
     toString(){
-        return (this.message +
-            " instruction: "+this.instruction.code+
-            " argument: "+this.instruction.args.join(" ")+
-            " at line: "+this.instruction.ogIndex );
+
+        return Translator.getTranslation(
+            "_assembly_mapper_error_format",
+            "@0 Instruction: @1 Argument: @2 Line: @3 Character: @4",
+            [
+                this.message,
+                this.instruction.code,
+                this.instruction.args.join(" "),
+                this.instruction.ogLine,
+                this.instruction.ogColumn
+            ]
+            );
+
     }
 }
 
@@ -51,7 +75,7 @@ class AssemblyMapperError{
 export default class AssemblyParser{
 
 
-    constructor(_assemblyCode,_settings,_instructionList){
+    constructor(_assemblyCode,_settings,_instructionList,_valueDisplayer){
 
         this.sourceCode = _assemblyCode;
 
@@ -59,6 +83,7 @@ export default class AssemblyParser{
         this.labels = {};
         this.instructions = [];
         this.values=[];
+        this.valueDisplayer=_valueDisplayer;
 
         
         this.parseSuccesful = false;
@@ -105,14 +130,21 @@ export default class AssemblyParser{
         let lines=_assemblyCode.split(/\r?\n/);
         
         for (let l = 0; l < lines.length; l++) {
-            const element = lines[l];
+            const line = lines[l];
 
-            let formatedLine=element.replaceAll(/\s+/g," ");
+            let formatedLine=line.replaceAll(/\s+/g," ");
             let newWords = formatedLine.split(/\s/);
+            let fromIndex = 0;
+
 
             for (let w = 0; w < newWords.length; w++) {
-                if(newWords[w]!=""){
-                    this.words.push( new Word(newWords[w],l));
+                const word = newWords[w];
+                if(word!=""){
+                    
+                    const matchIndex =  line.indexOf(word,fromIndex);
+                    fromIndex = matchIndex+word.length;
+                    
+                    this.words.push( new Word(newWords[w],l,matchIndex));
                 }
                 
                 
@@ -135,14 +167,18 @@ export default class AssemblyParser{
         for (let index = 0; index < this.words.length; index++) {
             const word = this.words[index];
             const wordValue = this.words[index].value;
-            const wordOgIndex = this.words[index].ogIndex;
+            const wordOgLine = this.words[index].ogLine;
+            const wordOgColumn = this.words[index].ogColumn;
             
             if(this.isLabel(wordValue)){
 
                 let slicedLabel = wordValue.slice(0,wordValue.length-1);
 
                 if(this.labels.hasOwnProperty(slicedLabel)){
-                    throw new AssemblyParserError("Label redefitiniton",word);
+                    throw new AssemblyParserError(
+                        Translator.getTranslation("_asm_err_label_redefinition",
+                            "Label redefinition."),
+                        word);
                 }else{
                     this.labels[slicedLabel]=instrCounter;
                 continue;
@@ -159,10 +195,10 @@ export default class AssemblyParser{
                 for (let argi = 0; argi < instr.argCount; argi++) {
                     index++;
                     if(index>=this.words.length){
-                        throw new AssemblyParserError("Expected argument after "+instr.name+": ",word);
+                        throw new AssemblyParserError(Translator.getTranslation("_asm_err_expected_argument","Expected argument.") ,word);
                     }
                     if(this.isLabel(this.words[index].value)){
-                        throw new AssemblyParserError("Expected argument after "+instr.name+": ",word);
+                        throw new AssemblyParserError(Translator.getTranslation("_asm_err_expected_argument","Expected argument."),word);
                     }
 
                     args.push( this.words[index].value);
@@ -171,7 +207,7 @@ export default class AssemblyParser{
 
 
                 this.instructions[instrCounter]= 
-                    new AssemblyInstruction(wordValue,args,wordOgIndex);
+                    new AssemblyInstruction(wordValue,args,wordOgLine,wordOgColumn);
 
                     instrCounter++;
                 continue;
@@ -180,7 +216,7 @@ export default class AssemblyParser{
 
             if(word.value.toUpperCase()=="RPA"){
                 this.instructions[instrCounter]= 
-                    new AssemblyInstruction("RPA",[],wordOgIndex);
+                    new AssemblyInstruction("RPA",[],wordOgLine,wordOgColumn);
                 instrCounter++;
                 continue;
             }
@@ -191,14 +227,14 @@ export default class AssemblyParser{
 
                 if(index < this.words.length){
                     if(this.isLabel(this.words[index].value)){
-                        throw new AssemblyParserError("Expected argument after RST: ",word)
+                        throw new AssemblyParserError(Translator.getTranslation("_asm_err_expected_argument","Expected argument."),word)
                     }
 
 
                     this.instructions[instrCounter]= 
-                    new AssemblyInstruction("RST",[this.words[index].value],wordOgIndex);
+                    new AssemblyInstruction("RST",[this.words[index].value],wordOgLine,wordOgColumn);
                 }else{
-                    throw new AssemblyParserError("Expected argument after RST: ",word)
+                    throw new AssemblyParserError(Translator.getTranslation("_asm_err_expected_argument","Expected argument."),word)
                 }
                 instrCounter++;
                 continue;
@@ -206,7 +242,7 @@ export default class AssemblyParser{
 
 
 
-            throw new AssemblyParserError("Expected instruction or label",word);
+            throw new AssemblyParserError(Translator.getTranslation("_asm_err_expected_instr_label","Expected insturction or label."),word);
 
 
         }
@@ -229,7 +265,12 @@ export default class AssemblyParser{
             argVal = this.labels[_arg];
 
         }else{
-            argVal = parseInt(_arg);
+            if(this.valueDisplayer!=null){
+                argVal = this.valueDisplayer.stringToValue(_arg)
+            }else{
+                argVal = parseInt(_arg);
+            }
+            
         }
 
 
@@ -238,11 +279,15 @@ export default class AssemblyParser{
 
 
     calculateValues(_instructionList,_settings){
+        let addres = 0;
         for (let index = 0; index < this.instructions.length; index++) {
             const instr = this.instructions[index];
             
             if(instr.code == "RPA"){
-                this.values[index] =0;
+
+                instr.addres=addres;
+                this.values[addres] =0;
+                addres++;
                 continue;
             }
 
@@ -251,10 +296,12 @@ export default class AssemblyParser{
 
                 let parsedArg =this.parseArg(instr.args[0]);
                 if(isNaN(parsedArg)){
-                    throw AssemblyMapperError("Argument is not an integer or label:",instr);
+                    throw new AssemblyMapperError(Translator.getTranslation("_asm_err_invalid_arg","Argument: @0 is not an value or label.",[instr.args[0]]),instr);
                 }
 
-                this.values[index]  = parsedArg &_settings.getWordMask();
+                instr.addres=addres;
+                this.values[addres]  = parsedArg &_settings.getWordMask();
+                addres++;
                 continue;
             }
 
@@ -269,20 +316,40 @@ export default class AssemblyParser{
             opcode=opcode&_settings.codeMask;
 
             if(instructionRefrence.argCount==0){
-                this.values[index]=opcode;
-            }else if(instructionRefrence.argCount==1){
+                instr.addres=addres;
+                this.values[addres]=opcode;
+                addres++;
+            }else if(instructionRefrence.argCount>=1){
                 
                 let argVal =this.parseArg(instr.args[0]);
 
 
                 if(isNaN(argVal)){
-                    throw new AssemblyMapperError("Argument is not an adress or label:",instr);
+                    throw new AssemblyMapperError(Translator.getTranslation("_asm_err_invalid_arg","Argument: @0 is not an value or label.",[instr.args[0]]),instr);
                 }
 
                 argVal=argVal&_settings.adressMask;
                 
-                this.values[index] = opcode|argVal;
+                instr.addres=addres;
+                this.values[addres] = opcode|argVal;
+                addres++;
             }
+
+            if(instructionRefrence.argCount>1){
+                for (let i = 1; i < instr.args.length; i++) {
+                    const arg = instr.args[i];
+                    const parsedArg= this.parseArg(instr.args[i]);
+                    if(isNaN(parsedArg)){
+                        throw new AssemblyMapperError(Translator.getTranslation("_asm_err_invalid_arg","Argument: @0 is not an value or label.",[arg]),instr);
+                    }
+
+                    this.values[addres] =parsedArg;
+                    addres++;
+                }
+            }
+
+            
+
         }
     }
 }

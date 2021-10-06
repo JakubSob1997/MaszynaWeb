@@ -41,7 +41,7 @@ export default  class LanguageSetting extends SettingView{
         
 
         //this.label.setAttribute("for",id);
-
+        this.select.appendChild(this.generateOption("DEFAULT","Default"));
         this.select.appendChild(this.generateOption("DEBUG","Debug"));
         this.select.appendChild(this.generateOption("en","English 🇬🇧"));
         this.select.appendChild(this.generateOption("pl","Polski 🇵🇱"));

@@ -1,3 +1,4 @@
+import Translator from "./translator.js";
 
 
 
@@ -5,6 +6,22 @@
 export default class CustomCodemMirror{
 
     constructor(_parent){
+
+       
+
+        
+        
+
+
+        
+
+        
+        
+        this.focusLabel = document.createElement("div");
+        this.focusLabel.innerText = Translator.getTranslation("_code_mirror_label","Press the \"Esc\" key to leave editor focus.")
+        this.focusLabel.classList.add("visibility-hidden");
+        this.focusLabel.classList.add("info-tip");
+        _parent.appendChild(this.focusLabel);
 
         this.cm = CodeMirror(_parent,{
             lineNumbers:true,
@@ -20,31 +37,16 @@ export default class CustomCodemMirror{
                 cm.display.input.blur();
             }
         })
-
-        
-        
-
-
         this.cm.refresh();
         this.cm.setSize(null,"60vh");
-
-        
-        
-        this.focusLabel = document.createElement("div");
-        this.focusLabel.innerText = "*Naciśnij klawisz \"Esc\" by wyjść z edytora."
-        this.focusLabel.classList.add("display-none");
-        this.focusLabel.classList.add("info-tip");
-        _parent.appendChild(this.focusLabel);
-
-
         this.cm.on("blur",(update)=>{
-            this.focusLabel.classList.add("display-none");
+            this.focusLabel.classList.add("visibility-hidden");
             
         
         })
 
         this.cm.on("focus",(update)=>{
-            this.focusLabel.classList.remove("display-none");
+            this.focusLabel.classList.remove("visibility-hidden");
             
         
         })

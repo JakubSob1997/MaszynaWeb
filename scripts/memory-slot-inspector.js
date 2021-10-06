@@ -1,5 +1,6 @@
 
 
+import Translator from "./translator.js";
 import ValueView from "./value-view.js";
 
 export default class MemorySlotInspector{
@@ -48,8 +49,8 @@ export default class MemorySlotInspector{
 
     }
 
-    populate(_memoryIndex){
-        this.label.innerText="Pamięć: "+"["+_memoryIndex.toString(10)+"]";
+    populate(_memoryIndex){//_memoryIndex.toString(10)
+        this.label.innerText=Translator.getTranslation("_memory_header","Memory [@0]",[_memoryIndex.toString(10)])
         this.valueView.populateWord(this.memmory.getValue(_memoryIndex));
     }
 

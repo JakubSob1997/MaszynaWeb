@@ -3,6 +3,7 @@ import SidebarContent from "./sidebar-content.js"
 import ConfirmButtonView from "./confirm-buttton-view.js";
 import InstructionList from "./instruction-list.js";
 import Alerter from "./alerter.js";
+import Translator from "./translator.js";
 
 class InstructionRecord{
 
@@ -35,7 +36,7 @@ class InstructionRecord{
 
     populateRecord(_instruction){
         this.name.innerText = _instruction.name;
-        this.removeButton.getHTMLElement().innerText="Usuń";
+        this.removeButton.getHTMLElement().innerText=Translator.getTranslation("_delete","Delete");
         this.upButton.innerText = "▲";
         this.downButton.innerText = "▼";
 
@@ -111,11 +112,11 @@ export default class InstructionInspector extends SidebarContent{
         this.instructionListElement.classList.add("instr-list");
 
 
-        this.addInstructionButton.innerText="Nowy Rozkaz";
+        this.addInstructionButton.innerText=Translator.getTranslation("_new_instruction","New Instruction");
         this.addInstructionButton.classList.add("custom-btn");
 
         this.heading.setAttribute("tabindex",-1)
-        this.heading.innerText = "Lista Rozkazów"
+        this.heading.innerText = Translator.getTranslation("_instruction_list","Instruction List")
 
         this.wrpper.appendChild(this.heading);
         this.wrpper.appendChild(this.addInstructionButton);

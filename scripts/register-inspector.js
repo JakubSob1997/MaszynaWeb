@@ -2,6 +2,7 @@
 import SidebarContent from "./sidebar-content.js";
 import ValueView from "./value-view.js"
 import { ValueDisplayEnum } from "./enums.js";
+import Translator from "./translator.js";
 
 export default class RegisterInspector extends SidebarContent{
 
@@ -46,23 +47,23 @@ export default class RegisterInspector extends SidebarContent{
         this.instruction=document.createElement("option");
         
 
-        this.unsignedDecimal.innerText = "Dziesiętny Bez Znaku"
+        this.unsignedDecimal.innerText = Translator.getTranslation("_display_unsigned","Unsigned Decimal")
         this.unsignedDecimal.value=ValueDisplayEnum.UnsignedDecimal;
         this.displaySelect.appendChild(this.unsignedDecimal);
 
-        this.signedDecimal.innerText = "Dziesiętny Ze Zankiem";;
+        this.signedDecimal.innerText = Translator.getTranslation("_display_signed","Dziesiętny Ze Znakiem")
         this.signedDecimal.value=ValueDisplayEnum.SignedDecimal;
         this.displaySelect.appendChild(this.signedDecimal);
 
-        this.binary.innerText = "Biinarny";
+        this.binary.innerText = Translator.getTranslation("_display_binary","Binary");
         this.binary.value=ValueDisplayEnum.Binary;
         this.displaySelect.appendChild(this.binary);
 
-        this.hexaDecimal.innerText = "Heksadecymalny";
+        this.hexaDecimal.innerText = Translator.getTranslation("_display_hexadecimal","Hexadecimal");
         this.hexaDecimal.value=ValueDisplayEnum.HexaDecimal;
         this.displaySelect.appendChild(this.hexaDecimal);
 
-        this.instruction.innerText = "Instrukcja";
+        this.instruction.innerText = Translator.getTranslation("_display_instruction","Instruction");
         this.instruction.value=ValueDisplayEnum.OpCodeArgument;
         this.displaySelect.appendChild(this.instruction);        
 
@@ -128,7 +129,7 @@ export default class RegisterInspector extends SidebarContent{
 
 
     populateInspector(_register){
-        this.registerName.innerText="Rejestr: "+_register.name.toUpperCase();
+        this.registerName.innerText=Translator.getTranslation("_register_header","Register: @0",[_register.name.toUpperCase()]);
         this.valueView.populateRegister(_register);
 
         this.displaySelect.value = _register.display;
