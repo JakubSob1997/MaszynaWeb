@@ -40,7 +40,7 @@ export default  class PerofrmanceSetting extends SettingView{
                 AlertStyleEnum.InputSucces
                 );
         }catch(error){
-            Alerter.sendMessage(error.InputSucces);
+            Alerter.sendMessage(error,AlertStyleEnum.InputError);
         }
         
     }

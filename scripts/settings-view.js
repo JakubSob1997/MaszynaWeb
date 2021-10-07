@@ -35,13 +35,6 @@ export default class SettingView{
 
 
 
-export class InteruptAdressSetting extends SettingView{
-
-    constructor(){
-        super("Adresy przerwań");
-    }
-
-}
 
 
 

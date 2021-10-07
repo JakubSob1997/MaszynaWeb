@@ -11,6 +11,7 @@
     --header-height:3em;
     --editor-width:18vw;
     --inspector-width:18vw;
+    --machine-scale:1;
 
     --width-transition:
         width 70ms ease-out,
@@ -339,14 +340,19 @@ nav{
 
 .machine-wrapper{
 
-    min-width: 1000px;
-    max-width: 1600px;
+    min-width: calc(1000px*var(--machine-scale));
+    max-width: calc(1600px*var(--machine-scale));;
+
+    
  
 
 
     position: relative;
 }
 
+.machine-wrapper *{
+    font-size: calc(1rem*var(--machine-scale));
+}
 
 
 .bar{

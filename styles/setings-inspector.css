@@ -72,9 +72,11 @@
     
 }
 .setting-checkbox{
-    width: 2em;
-    height: 2em;
-    border-radius: 0.5em;
+    width: 3ch;
+    height: 3ch;
+
+    padding-left: 2ch;
+    padding-right: 2ch;
     margin-right: 0.5em;
     margin-left: 0.5em;
 }
@@ -87,3 +89,18 @@
     display: block;
 }
 
+.interupt-addres-setting-entry{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height:2em;
+    padding-left: 1ch;
+    padding-right: 1ch;
+
+}
+.interupt-addres-setting-entry:nth-child(odd){
+    background-color: var(--even-list-color);
+}
+.interupt-addres-setting-entry:nth-child(even){
+    background-color: var(--odd-list-color);
+}

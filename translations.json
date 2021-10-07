@@ -4,8 +4,8 @@
         "pl":"Witaj w symulatorze Maszyny W!"
     },
     "_message_machine":{
-        "en":"Message fom Machine W value:@0",
-        "pl":"Komunikat Maszyny W wartość:@0"
+        "en":"Message fom Machine W value: @0",
+        "pl":"Komunikat Maszyny W wartość: @0"
     },
     "_message_file_loaded":{
         "en":"Machine was loaded.",
@@ -410,6 +410,22 @@
     "_run_cursor":{
         "en":"Run to cursor",
         "pl":"Uruchom do kursora"
+    },
+    "_interupt_addreses":{
+        "en":"Interupt Addreses",
+        "pl":"Adresy Przerwań"
+    },
+    "_interupt_label":{
+        "en":"Interupt @0",
+        "pl":"Przerwanie @0"
+    },
+    "_input_err_invalid_data":{
+        "en":"Invalid input data.",
+        "pl":"Nieprawidłowe dane wejściowe."
+    },
+    "_input_err_too_few_ints":{
+        "en":"Expected array with 4 interupt addreses.",
+        "pl":"Oczekiwano tablice z 4-rema adresami przerwań."
     }
     
 }

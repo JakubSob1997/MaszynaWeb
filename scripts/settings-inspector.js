@@ -1,9 +1,7 @@
 
 
 import SidebarContent from "./sidebar-content.js";
-import { 
-    InteruptAdressSetting,
-} from "./settings-view.js";
+import InteruptAddresSetting from "./setting-interupt-addres.js"
 
 import BusWidthSettingView  from "./setting-bus-width.js";
 import MachineExtensionSetting from "./setting-machine-extension.js";
@@ -43,7 +41,7 @@ export default class SettingsInspector extends SidebarContent{
         this.simulationLevelSetting = new ExecutionModeSetting(_Machine.settings);
         this.busWidthSetting = new BusWidthSettingView(_Machine.settings);
         this.extnesionPickerSetting = new MachineExtensionSetting(_Machine.settings);
-        this.intAdressSetting=new InteruptAdressSetting(_Machine.settings);
+        this.intAdressSetting=new InteruptAddresSetting(_Machine.settings);
         this.perofrmanceSetting = new PerofrmanceSetting(_Machine.settings);
 
     

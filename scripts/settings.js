@@ -4,6 +4,7 @@ import Terminator from "./terminator.js";
 import SettingsSerializer from "./settings-serializer.js";
 import MachineExtensionData from "./machine-extension-data.js";
 import Alerter from "./alerter.js";
+import Translator from "./translator.js";
 
 
 
@@ -143,10 +144,32 @@ export default class Settings{
     }
 
 
+    setInteruptAddreses(_intArray){
+        if(Array.isArray(_intArray)==false||_intArray.length<4){
+            throw Error(Translator.getTranslation("_input_err_too_few_ints","Expected array with 4 interupt addreses"))
+        }
+        //validae
+        for (let i = 0; i < 4; i++) {
+            const v = _intArray[i];
+            if(isNaN(v)||v<0){
+                throw Error(Translator.getTranslation("_input_err_invalid_data","Invalid input data."))
+            }
+        }
+
+        for (let i = 0; i < 4; i++) {
+            this.intAdressList[i] = _intArray[i];
+
+        }
+
+    }
+
+
     setBusWidth(_codeWidth,_adressWidth){
 
 
-        if (isNaN(_codeWidth)||isNaN(_adressWidth)){throw Error("Nieprawidłowe dane wejściowe.")}
+        if (isNaN(_codeWidth)||isNaN(_adressWidth)){
+            throw Error(Translator.getTranslation("_input_err_invalid_data","Invalid input data."))
+        }
 
         //Clamp
         _codeWidth =Math.min(Math.max(_codeWidth,Settings.MinCodeWidth),Settings.MaxCodeWidth)
@@ -188,7 +211,7 @@ export default class Settings{
     setPerformanceSettings( _cyclesBeetwen){
 
         if(isNaN(_cyclesBeetwen)){
-            Alerter.sendMessage("Nieprawidłowe Dane Wejściowe",AlertStyleEnum.InputError);
+            throw(new Error(Translator.getTranslation("_input_err_invalid_data","Invalid input data.")))
         }
 
         _cyclesBeetwen = Math.min(Math.max(_cyclesBeetwen,Settings.MinCyclesBeetwenUpdate),Settings.MaxCyclesBeetwenUpdate)
