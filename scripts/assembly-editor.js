@@ -8,7 +8,7 @@ import Terminator from "./terminator.js";
 import AssemblySerializer from "./assembly-serializer.js";
 import SerializerManager from "./serializer-manager.js";
 import AssemblyCodeMirror from "./assembly-codemirror.js";
-import {runMachine} from "./machine-execution.js";
+import {ExecutionContext,runMachine,runMachineToCurssor} from "./machine-execution.js";
 import Translator from "./translator.js";
 
 export default class AssemblyEditor extends SidebarContent{
@@ -55,7 +55,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.codeMirrorWrapper =document.createElement("div");
         this.loadButton = document.createElement("button");
         this.runButton = document.createElement("button");
-
+        this.toCurrsorButton = document.createElement("button");
         
         this.codeMirror = new AssemblyCodeMirror(this.codeMirrorWrapper);
 
@@ -66,11 +66,12 @@ export default class AssemblyEditor extends SidebarContent{
         this.wrapper.classList.add("generic-inspector")
         this.loadButton.classList.add("custom-btn");
         this.runButton.classList.add("custom-btn");
+        this.toCurrsorButton.classList.add("custom-btn");
 
-        this.title.innerText=Translator.getTranslation("_program","Program");
-        this.loadButton.innerText=Translator.getTranslation("_load_to_memory","Load to memory")
-        this.runButton.innerText=Translator.getTranslation("_run","Run");
-
+        this.title.textContent=Translator.getTranslation("_program","Program");
+        this.loadButton.textContent=Translator.getTranslation("_load_to_memory","Load to memory")
+        this.runButton.textContent=Translator.getTranslation("_run","Run");
+        this.toCurrsorButton.textContent=Translator.getTranslation("_run_cursor","Run to cursor")
 
 
 
@@ -78,6 +79,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.wrapper.appendChild(this.codeMirrorWrapper);
         this.wrapper.appendChild(this.loadButton);
         this.wrapper.appendChild(this.runButton);
+        this.wrapper.appendChild(this.toCurrsorButton)
 
         
         this.codeMirror.cm.refresh();
@@ -88,7 +90,7 @@ export default class AssemblyEditor extends SidebarContent{
     addCallbacks(){
         this.loadButton.addEventListener("click",()=>{this.onLoadButton();});
         this.runButton.addEventListener("click",()=>{this.onRunButton()});
-    
+        this.toCurrsorButton.addEventListener("click",()=>{this.onRunToCursorButton();});
 
         this.M.addOnMachineStartedCllback((_M)=>{
             this.runButton.setAttribute("disabled","true");
@@ -96,15 +98,21 @@ export default class AssemblyEditor extends SidebarContent{
         this.M.addOnMachineStopedCallback((_M)=>{
             this.runButton.removeAttribute("disabled");
         })
+
         this.codeMirror.cm.on("mousedown",()=>{
+
             setTimeout(()=>{
                 if(this.parser!=null){
                     const cursor =this.codeMirror.cm.getCursor();
-                    console.log(this.parser.getInstructionByPositon(cursor.line,cursor.ch));
+                    const addres = this.parser.getInstructionByPositon(cursor.line,cursor.ch);
+                    console.log(addres.addres)
+                    ExecutionContext.curssorAddres = addres.addres;
                 }
             })
             
+            
         })
+       
     
     }
 
@@ -140,6 +148,11 @@ export default class AssemblyEditor extends SidebarContent{
         
         Terminator.terminate();
         this.save();
+
+        if( this.parser!=null){
+            this.parser.dispose();
+            delete  this.parser;
+        }
         this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList,this.valueDisplayer);
         console.log(this.parser);
 
@@ -161,6 +174,20 @@ export default class AssemblyEditor extends SidebarContent{
         if(this.M.isRunning()==false){
             runMachine(this.M);
         }
+    }
+
+    onRunToCursorButton(){
+
+        if(this.parser!=null){
+            
+
+
+            if(this.M.isRunning()==false){
+                runMachineToCurssor(this.M)
+            }
+       
+        }
+       
     }
 
 

@@ -113,6 +113,12 @@ export default class AssemblyParser{
         
 
     }
+    dispose(){
+        delete this.words;
+        delete this.labels;
+        delete this.instructions;
+        delete this.values;
+    }
 
     getInstructionByPositon(_line,_ch){
         if(this.parseSuccesful===false){
@@ -120,14 +126,12 @@ export default class AssemblyParser{
         }
 
         let closest;
-
-        console.log(_line,_ch);
-
         for (let i = 0; i < this.instructions.length; i++) {
             
             const instr = this.instructions[i];
             
-            if(closest==null||instr.ogLine<_line||(instr.ogLine===_line&&instr.ogColumn<=_ch)){
+            if(closest==null||instr.ogLine<_line||(instr.ogLine===_line&&instr.ogColumn<_ch)){
+                
                 closest=instr;
             }
             

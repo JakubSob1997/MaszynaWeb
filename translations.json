@@ -4,8 +4,8 @@
         "pl":"Witaj w symulatorze Maszyny W!"
     },
     "_message_machine":{
-        "en":"Message fom Machine W value: @0",
-        "pl":"Komunikat Maszyny W wartość: @0"
+        "en":"Message fom Machine W value:@0",
+        "pl":"Komunikat Maszyny W wartość:@0"
     },
     "_message_file_loaded":{
         "en":"Machine was loaded.",
@@ -36,12 +36,12 @@
         "pl":"Maszyna została zatrzymana!"
     },
     "_program":{
-        "en": "Program",
-        "pl": "Program"
+        "en":"Program",
+        "pl":"Program"
     },
     "_instructions":{
         "en":"Instructions",
-        "pl": "Rozkazy"
+        "pl":"Rozkazy"
     },
     "_settings":{
         "en":"Settings",
@@ -68,8 +68,8 @@
         "pl":"Takt"
     },
     "_instruction":{
-        "en": "Instruction",
-        "pl": "Rozkaz"
+        "en":"Instruction",
+        "pl":"Rozkaz"
     },
     "_run":{
         "en":"Run",
@@ -80,12 +80,12 @@
         "pl":"Język"
     },
     "_language_select":{
-        "en":"Select Language: ",
-        "pl":"Wybierz Język: "
+        "en":"Select Language:",
+        "pl":"Wybierz Język:"
     },
     "_language_refresh":{
-        "en": "Page refreshes on language change.",
-        "pl": "Przy zmianie języka strona się odświerza."
+        "en":"Page refreshes on language change.",
+        "pl":"Przy zmianie języka strona się odświerza."
     },
     "_execution_mode":{
         "en":"Tracking Level",
@@ -232,20 +232,20 @@
         "pl":"Wczytaj"
     },
     "_save_to_drive":{
-        "en": "Save to Drive",
-        "pl": "Zapisz na Dysk"
+        "en":"Save to Drive",
+        "pl":"Zapisz na Dysk"
     },
     "_file_name_to_save":{
-        "en": "Name of the file to save.",
-        "pl": "Nazwa pliku do zapisania."
+        "en":"Name of the file to save.",
+        "pl":"Nazwa pliku do zapisania."
     },
     "_refresh":{
         "en":"Refresh",
         "pl":"Odśwież"
     },
     "_file_name":{
-        "en": "File Name",
-        "pl": "Nazwa Pliku"
+        "en":"File Name",
+        "pl":"Nazwa Pliku"
     },
     "_preview":{
         "en":"Preview",
@@ -308,12 +308,12 @@
         "pl":"Presety"
     },
     "_load_default":{
-        "en": "Load Default",
-        "pl": "Wczytaj Domyślne"
+        "en":"Load Default",
+        "pl":"Wczytaj Domyślne"
     },
     "_default_settings":{
         "en":"Default Setting",
-        "pl": "Domyślne Ustawienia"
+        "pl":"Domyślne Ustawienia"
     },
     "_dismiss_alert":{
         "en":"Dismiss notification.",
@@ -324,16 +324,16 @@
         "pl":"Nowy Rozkaz"
     },
     "_memory_header":{
-        "en": "Memory [@0]",
-        "pl": "Pamięć [@0]"
+        "en":"Memory [@0]",
+        "pl":"Pamięć [@0]"
     },
     "_register_header":{
-        "en": "Register: @0",
-        "pl": "Rejestr: @0"
+        "en":"Register:@0",
+        "pl":"Rejestr:@0"
     },
     "_instruction_header":{
-        "en":"Instruction: @0",
-        "pl": "Rozkaz: @0"
+        "en":"Instruction:@0",
+        "pl":"Rozkaz:@0"
     },
     "_delete":{
         "en":"Delete",
@@ -348,16 +348,16 @@
         "pl":"Cofnij"
     },
     "_code_mirror_label":{
-        "en": "Press the \"Esc\" key to leave editor focus.",
-        "pl": "Naciśnij klawisz \"Esc\" by wyjść z edytora."
+        "en":"Press the \"Esc\" key to leave editor focus.",
+        "pl":"Naciśnij klawisz \"Esc\" by wyjść z edytora."
     },
     "_load_to_memory":{
-        "en": "Load to memory",
-        "pl": "Ładuj do pamięci"
+        "en":"Load to memory",
+        "pl":"Ładuj do pamięci"
     },
     "_write":{
-        "en": "Write",
-        "pl": "Pisz"
+        "en":"Write",
+        "pl":"Pisz"
     },
     "_display_unsigned":{
         "en":"Unsigned Decimal",
@@ -380,12 +380,12 @@
         "pl":"Instrukcja"
     },
     "_assembly_parser_error_format":{
-        "en":"@0 - @1 Line: @2 Character: @3",
-        "pl":"@0 - @1 Linia: @2 Znak: @3"
+        "en":"@0 - @1 Line:@2 Character:@3",
+        "pl":"@0 - @1 Linia:@2 Znak:@3"
     },
     "_assembly_mapper_error_format":{
-        "en":"@0 Instruction: @1 Argumenty: @2 Line: @3 Character: @4",
-        "pl":"@0 Rozkaz: @1 Argumenty: @2 Linia: @3 Znak: @4"
+        "en":"@0 Instruction:@1 Argumenty:@2 Line:@3 Character:@4",
+        "pl":"@0 Rozkaz:@1 Argumenty:@2 Linia:@3 Znak:@4"
     },
     "_asm_err_label_redefinition":{
         "en":"Label redefinition.",
@@ -400,12 +400,16 @@
         "pl":"Oczekiwano rozkazu lub etykiety."
     },
     "_asm_err_invalid_arg":{
-        "en":"Argument: @0 is not an value or label.",
-        "pl":"Argument: @0 nie jest wartością lub etykietą."
+        "en":"Argument:@0 is not an value or label.",
+        "pl":"Argument:@0 nie jest wartością lub etykietą."
     },
     "_asm_err_not_positive":{
-        "en":"Argument: @0 is not a positive integer.",
-        "pl":"Argument: @0 nie jest liczbą dodatnią."
+        "en":"Argument:@0 is not a positive integer.",
+        "pl":"Argument:@0 nie jest liczbą dodatnią."
+    },
+    "_run_cursor":{
+        "en":"Run to cursor",
+        "pl":"Uruchom do kursora"
     }
     
 }

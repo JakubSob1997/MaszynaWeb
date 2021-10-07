@@ -43,6 +43,10 @@ export default class Machine{
 
     }
 
+    getCurrentAddres(){
+        return this.A_register.getValue();
+    }
+
     getSignalDictionary(){
         return this.singnalDictionary;
     }

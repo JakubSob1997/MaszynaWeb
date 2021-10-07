@@ -22,8 +22,8 @@
     
     :root{
 
-        --primary-color:#0e25a7;
-        --secondary-color: #fa882b;
+        --primary-color:#273583;
+        --secondary-color: #ff802b;
     
         --font-color: #e4e4e4;
         --contrast-font-color: #0f0f0f;
@@ -34,12 +34,12 @@
         --even-list-color: #525050;
         --odd-list-color: #626262;
 
-        --even-alert-color: rgb(250, 162, 90);
+        --even-alert-color: #fd9550;
         
         --button-background:var(--font-color);
     
     
-        --reg-hover: #071b8b;
+        --reg-hover: #212c6e;
         
     }
     /*
