@@ -32,6 +32,36 @@ fetch("translations.json")
     
 function main(){
 
+    const navbar =document.getElementById("navbar");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    function hideMobileMenu(){
+        navbar.classList.remove("mobile")
+    }
+
+    function showMobileMenu(){
+        navbar.classList.add("mobile");
+    }
+
+    function toggleMobileMenu(){
+        navbar.classList.toggle("mobile")
+    }
+
+    navbar.addEventListener("click",(e)=>{
+        if(e.target!=navbar){
+            hideMobileMenu();
+        }
+    })
+
+    mobileMenu.addEventListener("click",()=>{
+        toggleMobileMenu();
+    })
+    mobileMenu.addEventListener("keydown",(e)=>{
+        if(e.keyCode===13||e.keyCode===32){
+            toggleMobileMenu();
+        }
+        
+    })
 
         
     const alertAreaELement = document.getElementById("alert-area");
@@ -91,6 +121,9 @@ function main(){
     showAsmButton.addEventListener("click",()=>{
         editorManager.drawEditorForAssembly()
     })
+    
+
+
     let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
     showInstrInspectorButton.textContent=Translator.getTranslation("_instructions","Instructions");
     showInstrInspectorButton.addEventListener("click",()=>{
@@ -184,6 +217,10 @@ function main(){
     M.addOnMachineStopedCallback(()=>{
         runMachineButton.classList.remove("manual-selected");
     })
+
+
+
+
 }
 
 

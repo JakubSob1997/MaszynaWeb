@@ -21,36 +21,6 @@
 }
 
 
-@media screen and (min-width: 350px) {
-    :root {
-        --machine-scale:0.35;
-    }
-  }
-
-  @media screen and (min-width: 500px) {
-    :root {
-        --machine-scale:0.5;
-    }
-  }
-
-  @media screen and (min-width: 700x) {
-    :root {
-        --machine-scale:0.6;
-    }
-  }
-  
-@media screen and (min-width: 1000px) {
-    :root {
-        --machine-scale:1;
-    }
-  }
-
-  @media screen and (min-width: 1400px) {
-    :root {
-        --machine-scale:1.2;
-    }
-  }
-  
 
 
 .custom-btn{
@@ -101,7 +71,8 @@ button:focus, input[type="submit"]:focus, input[type="reset"]:focus{
 header{
     background: var(--primary-color);
 
-    position: fixed;
+    stroke: var(--font-color);
+    position: relative;
     top: 0;
     left: 0;
     height: var(--header-height);
@@ -116,6 +87,27 @@ header{
     border-bottom: solid;
     border-width: thin;
 }
+
+.mobile-menu{
+    cursor: pointer;
+    fill: var(--font-color);
+   
+}
+.mobile-menu:hover{
+    fill: var(--secondary-color);
+}
+.mobile-menu:focus{
+    stroke: var(--secondary-color);
+    stroke-width: 0.5em;
+    stroke: var(--secondary-color);
+    outline: none;
+}
+.mobile-menu:active{
+    fill: var(--primary-color);
+    stroke-width: 0.5em;
+    stroke: var(--font-color);
+}
+
 
 .logo{
     font-weight: 700;
@@ -333,8 +325,8 @@ nav{
     flex-basis: 0;
     flex-grow: 1;
     display: inline-block;
-    overflow: auto;
-    overflow-wrap: break-word;
+    overflow: hidden;
+    /*overflow-wrap: break-word;*/
 
 }
 
@@ -411,6 +403,107 @@ nav{
 
 
 
+
+ .logo{
+    display: none;
+}
+
+
+nav{
+    display: none;
+}
+
+nav.mobile{
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    overflow: visible;
+    
+    top: var(--header-height);
+    left: 0;
+    z-index: 999;
+    background-color: var(--primary-color);
+    border-right: solid;
+    border-bottom: solid;
+    border-width: thin;
+    
+    
+
+    height: min(20em,50vh);
+}
+
+nav.mobile> *{
+
+    width: 100%;
+}
+
+@media screen and (min-width: 350px) {
+    :root {
+        --machine-scale:0.35;
+    }
+  }
+
+  @media screen and (min-width: 500px) {
+    :root {
+        --machine-scale:0.5;
+    }
+  }
+
+  @media screen and (min-width: 700x) {
+    :root {
+        --machine-scale:0.6;
+    }
+
+    
+
+  }
+  
+@media screen and (min-width: 1000px) {
+    :root {
+        --machine-scale:1;
+    }
+
+    nav, nav.mobile{
+        display: flex;
+        position: static;
+        height: 100%;
+        align-items: center;
+        overflow: auto;
+        flex-shrink: 3;
+        min-width: 20vw;
+
+
+       flex-direction: initial;
+       background-color: var(--primary-color);
+
+    border:none;
+    
+
+
+    
+
+
+    }
+    
+
+    .mobile-menu{
+        display: none;
+    }
+
+
+    .logo{
+        display: initial;
+    }
+
+
+  }
+
+  @media screen and (min-width: 1400px) {
+    :root {
+        --machine-scale:1.2;
+    }
+  }
+  
 
 
 

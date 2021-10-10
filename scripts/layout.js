@@ -41,6 +41,8 @@ const mobileShowCenterWidths=0;
 
 const keyboardScroll=2.5;
 
+const mobilePanelStickines = 400; //in ms
+
 let isMobile=false;
 
 window.addEventListener("touchstart",(e)=>{isMobile=true},{once:true});
@@ -238,9 +240,14 @@ leftPanel.addEventListener("touchstart",(e)=>{
 
     let offset = (e.touches[0].clientX*100)/window.innerWidth;
     let oldWidth=leftWidth;
+    let stickyCounter=Date.now();
 
     function leftBarTouchMove(e){
         
+        if(mobilePanelStickines+stickyCounter>Date.now()){
+            return;
+        }
+
         e=e || window.event;
         pauseEvent(e);
 
@@ -272,11 +279,14 @@ rightPanel.addEventListener("touchstart",(e)=>{
 
     let offset = ((window.innerWidth-e.touches[0].clientX)*100)/window.innerWidth;
     let oldWidth=rightWidth;
-
+    let stickyCounter=Date.now();
+    
 
     function rightBarTouchMove(e){
         
-        
+        if(mobilePanelStickines+stickyCounter>Date.now()){
+            return;
+        }
 
         let newX = e.touches[0].clientX;
         newX = ((window.innerWidth-newX)*100/window.innerWidth);
