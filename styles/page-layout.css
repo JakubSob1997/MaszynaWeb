@@ -11,7 +11,8 @@
     --header-height:3em;
     --editor-width:18vw;
     --inspector-width:18vw;
-    --machine-scale:1;
+    --machine-scale:0.2;
+    
 
     --width-transition:
         width 70ms ease-out,
@@ -19,6 +20,37 @@
         right 70ms ease-out ;
 }
 
+
+@media screen and (min-width: 350px) {
+    :root {
+        --machine-scale:0.35;
+    }
+  }
+
+  @media screen and (min-width: 500px) {
+    :root {
+        --machine-scale:0.5;
+    }
+  }
+
+  @media screen and (min-width: 700x) {
+    :root {
+        --machine-scale:0.6;
+    }
+  }
+  
+@media screen and (min-width: 1000px) {
+    :root {
+        --machine-scale:1;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    :root {
+        --machine-scale:1.2;
+    }
+  }
+  
 
 
 .custom-btn{
@@ -329,7 +361,8 @@ nav{
 
 .machine-flex{
     
-    min-width: 1000px;
+    min-width: 1px;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -340,17 +373,19 @@ nav{
 
 .machine-wrapper{
 
+    
     min-width: calc(1000px*var(--machine-scale));
     max-width: calc(1600px*var(--machine-scale));;
-
     
- 
-
+    /*
+    min-width: 800px;
+    width: 60vw;
+    */
 
     position: relative;
 }
 
-.machine-wrapper *{
+.machine-wrapper {
     font-size: calc(1rem*var(--machine-scale));
 }
 
@@ -371,13 +406,6 @@ nav{
     padding: 10px;
     overflow: auto;
 }
-
-
-
-
-
-
-
 
 
 

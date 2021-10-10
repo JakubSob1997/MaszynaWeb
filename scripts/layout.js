@@ -1,4 +1,5 @@
 
+import Alerter from "./alerter.js";
 import LayoutMediator from "./layout-mediator.js";
 
 /*
@@ -201,18 +202,8 @@ function pauseEvent(e){
     return false;
 }
 
-
-function onLeftPanelTouched(e){
-    
-    if(leftWidth<minBarWidth+minpageWidth){
-        pauseEvent(e)
-    }
-
-    showLeftPanel();
-    leftPanel.focus();
-}
-
 function onRightPanelTouched(e){
+    Alerter.sendMessage("right")
     if(rightWidth<minBarWidth+minpageWidth){
         pauseEvent(e)
     }
@@ -235,11 +226,77 @@ function onCenterTouched(e){
 }
 
 
-leftPanel.addEventListener("touchend",onLeftPanelTouched)
+leftPanel.addEventListener("touchstart",(e)=>{
 
-rightPanel.addEventListener("touchend",onRightPanelTouched)
 
-center.addEventListener("touchend",onCenterTouched);
+    //e=e || window.event;
+    //pauseEvent(e);
+
+    leftPanel.addEventListener("touchmove", leftBarTouchMove);
+    window.addEventListener("touchend", leftBarTouchUp);
+
+
+    let offset = (e.touches[0].clientX*100)/window.innerWidth;
+    let oldWidth=leftWidth;
+
+    function leftBarTouchMove(e){
+        
+        e=e || window.event;
+        pauseEvent(e);
+
+        let newX = e.touches[0].clientX;
+        newX = (newX*100/window.innerWidth);
+
+        const width =newX-offset+oldWidth;
+
+        //Alerter.sendMessage(width);
+        scrollLeft(width);
+       
+     }
+    
+     function leftBarTouchUp(){
+        leftPanel.removeEventListener("touchmove", leftBarTouchMove)
+        window.removeEventListener("touchend", leftBarTouchUp)
+     }
+
+})
+
+rightPanel.addEventListener("touchstart",(e)=>{
+
+    
+    //e=e || window.event;
+    //pauseEvent(e);
+
+    rightPanel.addEventListener("touchmove", rightBarTouchMove);
+    window.addEventListener("touchend", rightBarTouchUp);
+
+    let offset = ((window.innerWidth-e.touches[0].clientX)*100)/window.innerWidth;
+    let oldWidth=rightWidth;
+
+
+    function rightBarTouchMove(e){
+        
+        
+
+        let newX = e.touches[0].clientX;
+        newX = ((window.innerWidth-newX)*100/window.innerWidth);
+
+        const width =newX-offset+oldWidth;
+
+    
+        scrollRight(width);
+
+     }
+
+    
+     function rightBarTouchUp(){
+        rightPanel.removeEventListener("touchmove", rightBarTouchMove)
+        window.removeEventListener("touchend", rightBarTouchUp)
+     }
+
+})
+
+center.addEventListener("touchstart",onCenterTouched);
 
 leftBarHandle.addEventListener("keydown",(e)=>{
 

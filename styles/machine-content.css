@@ -43,7 +43,7 @@
 
 
 .container{
-    font-size: medium;
+
     
     
 }
@@ -53,7 +53,7 @@
 .bus-hor{
     border-top: solid;
     border-bottom: solid;
-    border-width: medium;
+    border-width: 0.25em;
 
     color: var(--font-color);
     
@@ -66,7 +66,7 @@
 .bus-vert{
     border-left: solid;
     border-right: solid;
-    border-width: medium;
+    border-width: 0.25em;
 
     color: var(--font-color);
 
@@ -349,27 +349,27 @@ span.reg-name{
 .arrow-body-up, .arrow-body-down{
     position: relative;
     height: 100%;
-    width: 2px;
-    left: 50%;
+    width: 0.15em;
+    left: calc(50%-0.075em);
 }
 
 .arrow-body-vert-wyak{
     height: 100%;
-    width: 2px;
+    width: 0.15em;
     left: 0%;
     position: relative;
 }
 
 .arrow-body-hor-wyak{
-    height: 2px;
+    height:0.15em;
     width: 100%;
-    bottom: -6px;
+    bottom: -0.45em;
     position: relative;
 }
 
 .arrow-body-down-wyak{
     height: 100%;
-    width: 2px;
+    width: 0.15em;
 
     left: 0.90em;
     position: relative;
@@ -381,41 +381,41 @@ span.reg-name{
 
 .arrow-head-up{
     position: absolute;
-    top: -1px;
-    left: -5px;
+    top: 0.2m;
+    left: -0.325em;
     width: 0;
     height: 0;
 
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
+    border-left: 0.45em solid transparent;
+    border-right:  0.45em solid transparent;
   
-    border-bottom: 8px solid  var(--font-color);
+    border-bottom: 0.6em solid  var(--font-color);
 }
 
 .arrow-head-down{
     position: absolute;
     bottom: 0;
-    left: -5px;
+    left: -0.40em;
     width: 0;
     height: 0;
 
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
+    border-left: 0.45em  solid transparent;
+    border-right: 0.45em solid transparent;
   
-    border-top: 8px solid  var(--font-color);
+    border-top:  0.6em solid  var(--font-color);
 }
 
 .arrow-head-down-wyak{
     position: absolute;
     bottom: 0;
-    left: -5px;
+    left: -0.40em;
     width: 0;
     height: 0;
 
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
+    border-left: 0.45em solid transparent;
+    border-right: 0.45em solid transparent;
   
-    border-top: 8px solid  var(--font-color);
+    border-top:  0.6em solid  var(--font-color);
 }
 
 .arrow-body.arrow-selected{

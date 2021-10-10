@@ -46,6 +46,12 @@ export default class InteruptAddresSetting extends SettingView{
 
         label.textContent=Translator.getTranslation("_interupt_label","Interupt @0",[_index+1]);
 
+        input.addEventListener("keydown",(e)=>{
+            if(e.keyCode===13){
+                this.onSetButton();
+            }
+        })
+
         this.inputs.push(input);
         this.labels.push(label);
 
@@ -109,10 +115,10 @@ export default class InteruptAddresSetting extends SettingView{
             //Build response
             for (let i = 0; i < 4; i++) {
                 message+=` ${this.labels[i].textContent} - ${this.settings.intAdressList[i]},`
-                message=message.slice(0,message.length-1);
+                
 
             }
-
+            message=message.slice(0,message.length-1);
             Alerter.sendMessage(message,AlertStyleEnum.InputSucces)
 
         } catch (error) {
