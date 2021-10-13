@@ -35,6 +35,8 @@ function main(){
     const navbar =document.getElementById("navbar");
     const mobileMenu = document.getElementById("mobile-menu");
 
+    mobileMenu.querySelector("title").textContent=Translator.getTranslation("_nav_menu","Navigation Menu")
+
     function hideMobileMenu(){
         navbar.classList.remove("mobile")
     }

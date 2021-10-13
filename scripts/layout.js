@@ -34,18 +34,25 @@ const maxBarWidth = 100-minBarWidth-minpageWidth;
 const widthTouchTreshold=30;
 
 
-const desktopShowPanelWidth=25;
-const mobileShowWPanelidth=100;
-const desktopShowCenterWdths=20;
-const mobileShowCenterWidths=0;
+const targetShowPanelWidth = 400//in px
+const showCenterWdths=0;
+let showPanelWidth=25;
+
+
 
 const keyboardScroll=2.5;
 
-const mobilePanelStickines = 400; //in ms
+const mobilePanelStickines = 10; //in vw
 
-let isMobile=false;
+function onResize(){
+    
+    showPanelWidth = (targetShowPanelWidth/window.innerWidth)*100;
+}
 
-window.addEventListener("touchstart",(e)=>{isMobile=true},{once:true});
+window.addEventListener("resize",onResize);
+onResize();
+
+
 
 let leftWidth=18;
 let rightWidth=18;
@@ -137,45 +144,27 @@ function showLeftPanel (){
 
     let targetWidth;
 
-    if(isMobile==false){
-        targetWidth=desktopShowPanelWidth;
-    }else{
-        targetWidth=mobileShowWPanelidth;
-    }
 
-    if(leftWidth<targetWidth){
-        scrollLeft(targetWidth);
+    if(leftWidth<showPanelWidth){
+        scrollLeft(showPanelWidth);
     }
 
 }
 
 function showRightPanel(){
-    let targetWidth;
-    if(isMobile==false){
-        targetWidth=desktopShowPanelWidth;
-    }else{
-        targetWidth=mobileShowWPanelidth;
-    }
 
-    if(rightWidth<targetWidth){
-        scrollRight(targetWidth);
+    if(rightWidth<showPanelWidth){
+        scrollRight(showPanelWidth);
     }
 }
 
 function showCenter(){
-    let targetWidth;
-    if(isMobile==false){
-        
-        targetWidth=desktopShowCenterWdths;
-    }else{
-        targetWidth=mobileShowCenterWidths;
-    }
 
-    if(targetWidth<leftWidth){
-        scrollLeft(targetWidth);
+    if(showCenterWdths<leftWidth){
+        scrollLeft(showCenterWdths);
     }
-    if(targetWidth<rightWidth){
-        scrollRight(targetWidth);
+    if(showCenterWdths<rightWidth){
+        scrollRight(showCenterWdths);
     }
     
 }
@@ -240,23 +229,25 @@ leftPanel.addEventListener("touchstart",(e)=>{
 
     let offset = (e.touches[0].clientX*100)/window.innerWidth;
     let oldWidth=leftWidth;
-    let stickyCounter=Date.now();
+    let isStickyBroken =false;
 
     function leftBarTouchMove(e){
         
-        if(mobilePanelStickines+stickyCounter>Date.now()){
-            return;
-        }
 
-        e=e || window.event;
-        pauseEvent(e);
+
+        
 
         let newX = e.touches[0].clientX;
         newX = (newX*100/window.innerWidth);
 
         const width =newX-offset+oldWidth;
 
-        //Alerter.sendMessage(width);
+        if(Math.abs(oldWidth-width)<mobilePanelStickines&&isStickyBroken==false){
+            return;
+        }else{
+            isStickyBroken=true;
+        }
+
         scrollLeft(width);
        
      }
@@ -279,20 +270,22 @@ rightPanel.addEventListener("touchstart",(e)=>{
 
     let offset = ((window.innerWidth-e.touches[0].clientX)*100)/window.innerWidth;
     let oldWidth=rightWidth;
-    let stickyCounter=Date.now();
-    
+    let isStickyBroken =false;
 
     function rightBarTouchMove(e){
         
-        if(mobilePanelStickines+stickyCounter>Date.now()){
-            return;
-        }
+        
 
         let newX = e.touches[0].clientX;
         newX = ((window.innerWidth-newX)*100/window.innerWidth);
 
         const width =newX-offset+oldWidth;
 
+        if(Math.abs(oldWidth-width)<mobilePanelStickines&&isStickyBroken==false){
+            return;
+        }else{
+            isStickyBroken=true;
+        }
     
         scrollRight(width);
 

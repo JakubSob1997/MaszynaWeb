@@ -90,6 +90,7 @@ header{
 
 .mobile-menu{
     cursor: pointer;
+    flex-shrink: 0;
     fill: var(--font-color);
    
 }
@@ -316,8 +317,19 @@ nav{
     flex-wrap: nowrap;
     min-height: 2em;
 
-    
+    transform-origin: top;
+    animation: alert-entry 200ms cubic-bezier(.49,.38,.31,1.6);
 
+}
+
+@keyframes alert-entry{
+    from {
+        transform: scale(0.9,0);
+    }
+    to {
+        transform: scale(1,1);
+
+    }
 }
 
 
@@ -427,7 +439,10 @@ nav.mobile{
     border-bottom: solid;
     border-width: thin;
     
-    
+
+    transform-origin: left;
+    animation: nav-menu-entry 200ms cubic-bezier(.49,.38,.31,1.6);
+
 
     height: min(20em,50vh);
 }
@@ -437,30 +452,32 @@ nav.mobile> *{
     width: 100%;
 }
 
+
+@keyframes nav-menu-entry {
+    0%{
+        transform: scaleX(0);
+    }
+    100%{
+        transform: scaleX(1);
+    }
+}
+
+
 @media screen and (min-width: 350px) {
     :root {
         --machine-scale:0.35;
     }
-  }
+}
 
-  @media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
     :root {
         --machine-scale:0.5;
     }
-  }
+}
 
-  @media screen and (min-width: 700x) {
+@media screen and (min-width: 850px) {
     :root {
-        --machine-scale:0.6;
-    }
-
-    
-
-  }
-  
-@media screen and (min-width: 1000px) {
-    :root {
-        --machine-scale:1;
+        --machine-scale:0.8;
     }
 
     nav, nav.mobile{
@@ -471,25 +488,26 @@ nav.mobile> *{
         overflow: auto;
         flex-shrink: 3;
         min-width: 20vw;
-
-
+    
+    
        flex-direction: initial;
        background-color: var(--primary-color);
 
-    border:none;
+       animation:none;
     
-
-
-    
-
-
+        border:none;
     }
     
-
     .mobile-menu{
         display: none;
     }
 
+}
+  
+@media screen and (min-width: 1000px) {
+    :root {
+        --machine-scale:1;
+    }
 
     .logo{
         display: initial;

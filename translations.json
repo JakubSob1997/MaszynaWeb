@@ -426,6 +426,10 @@
     "_input_err_too_few_ints":{
         "en":"Expected array with 4 interupt addreses.",
         "pl":"Oczekiwano tablice z 4-rema adresami przerwań."
+    },
+    "_nav_menu":{
+        "en":"Navigation Menu",
+        "pl":"Menu Nawigacji"
     }
     
 }
