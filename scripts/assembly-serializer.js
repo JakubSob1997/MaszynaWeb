@@ -11,7 +11,7 @@ export default class AssemblySerializer extends SerializerBase{
 
 
     getDefault(){
-        return "";
+        return "//You can find example programs at\n//File=>Presets=>[name].json=>Load";
     }
 
     getKeyName(){
