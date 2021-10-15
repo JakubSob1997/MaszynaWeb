@@ -8,7 +8,7 @@ import Settings from "./settings.js";
 export default class SettingView{
     constructor(_name){
         this.wrapper=document.createElement("div");
-        this.header=document.createElement("h4");
+        this.header=document.createElement("h2");
         this.content = document.createElement("div");
 
         this.wrapper.classList.add("generic-setting");

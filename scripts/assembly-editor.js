@@ -51,7 +51,7 @@ export default class AssemblyEditor extends SidebarContent{
 
 
         this.wrapper = document.createElement("div");
-        this.title=document.createElement("h3");
+        this.title=document.createElement("h1");
         this.codeMirrorWrapper =document.createElement("div");
         this.loadButton = document.createElement("button");
         this.runButton = document.createElement("button");

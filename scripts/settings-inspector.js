@@ -28,7 +28,7 @@ export default class SettingsInspector extends SidebarContent{
 
     build(_Machine){
         this.wrapper = document.createElement("div");
-        this.header = document.createElement("h3");
+        this.header = document.createElement("h1");
         this.settingList = document.createElement("div");
 
         this.header.setAttribute("tabindex",-1);

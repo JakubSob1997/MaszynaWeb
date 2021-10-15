@@ -9,7 +9,7 @@ import Translator from "./translator.js";
 export default class BusWidthSettingView extends SettingView{
 
     constructor(_Settings){
-        super(Translator.getTranslation("_bus_width","Bus Width"));
+        super(Translator.getTranslation("_bus_width","Word Width"));
 
         _Settings.addOnBusWidthChangedListener((_newSettngs)=>{
             this.onSettingsChanged(_newSettngs);

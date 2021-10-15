@@ -15,7 +15,7 @@ export default class FileExportView{
 
     build(){
         this.wrapper=document.createElement("div");
-        this.header=document.createElement("h4");
+        this.header=document.createElement("h2");
         this.content = document.createElement("div");
 
         this.saveButton = document.createElement("button");

@@ -29,7 +29,7 @@ export default class FileSInspector extends SidebarContent{
 
     build(){
         this.wrapper = document.createElement("div");
-        this.header = document.createElement("h3")
+        this.header = document.createElement("h1")
 
 
         this.content = document.createElement("div");

@@ -12,7 +12,7 @@ export default class RegisterInspector extends SidebarContent{
 
         this.wrapper = document.createElement("div");
 
-        this.registerName =document.createElement("h3");
+        this.registerName =document.createElement("h1");
 
         this.valueView = new ValueView(_valueDisplayer);
 

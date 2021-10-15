@@ -516,14 +516,6 @@ nav.mobile> *{
 
   }
 
-  @media screen and (min-width: 1400px) {
-    :root {
-        --machine-scale:1.2;
-    }
-  }
-  
-
-
 
 
 

@@ -5,7 +5,7 @@ import Translator from "./translator.js";
 export default class PreviewBase{
     constructor(_headerName){
         this.wrapper = document.createElement("div");
-        this.header=document.createElement("h5");
+        this.header=document.createElement("h3");
         this.content = document.createElement("div");
 
         this.header.classList.add("prview-entry-header")

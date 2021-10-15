@@ -68,12 +68,12 @@
 
     </nav>
     
-    <list id="flow-control">
+    <div id="flow-control">
       <button class="flow-button " id="toggle-manual-button"> Manual</button>
       <button class="flow-button " id="next-cycle-button">Cycle</button>
       <button class="flow-button " id="next-instruction-button">Instruction</button>
       <button class="flow-button " id="run-machine-button">Run</button>
-    </list>
+    </div>
   </header>
   
   
@@ -280,33 +280,187 @@
   <section class="right-side-bar" id="right-panel">
     <div id="right-handle" class="right-drag-handle handle-ew"></div>
     <div id="inspector" class="bar"></div>
-
-
-    
   </section>
   
   </div>
   
   
+  <template class = "info-entry" data-key="_about" lang="en" data-default data-title="About Machine" >
+    <p><span data-key="_about">Machine W</span> is a simplified computer model.
+      It allows execution of programs written in <span data-key="_assembly">assembly language</span> , 
+      with use of custom  <span data-key="_instruction">instructions</span>.</p>
+     
+      <h3>In it's default form machine is composed of:</h3>
+      <ul>
+        <li><span data-key="_bus">Data Bus S </span> (2 lines below)</li>
+        <li><span data-key="_bus">Address Bus A </span> (2 lines above)</li>
+        <li><span data-key="_register">Registers</span>: AK, A, S, L, I</li>
+        <li><span data-key="_mem">Random Access Memory</span></li>
+        <li><span data-key="_alu">Arithmetic Logic Unit</span></li>
+      </ul>
+  </template>
+
+  <template class = "info-entry"  data-key="_about" lang="pl" data-title="O Maszynie">
+    <p><span data-key="_about">Maszyna W</span> jest uproszczonym modelem komputera.
+    Pozwala ona na wykonywanie programów napisanych w <span data-key="_assembly">języku asemblera</span>, 
+     przy pomocy zaprojektowanych   <span data-key="_instruction">rozkazów</span>.</p>
+   
+    <h3>W swojej podstawowej formie maszyna składa się z:</h3>
+    <ul>
+      <li><span data-key="_bus">Magistrali Danych S </span> (para kresek na dole)</li>
+      <li><span data-key="_bus">Magistrali Adresu A </span> (para kresek na górze)</li>
+      <li><span data-key="_register">Rejestrów</span>: AK, A, S, L, I</li>
+      <li><span data-key="_mem">Pamięci Operacyjnej</span></li>
+      <li><span data-key="_alu">Jednostki Arytmetyczno Logicznej</span></li>
+    </ul>
+    
+
+  </template>
+
+  <template class = "info-entry"  data-key="_register" lang="en" data-default data-title="Register">
+    <p><span data-key="_register">Registers</span> allow to store values.
+      Register read/write operations are done with help of following <span data-key="_signal">signals</span>: 
+      <span class="over"> we[name]</span>, wy[name]</p>
+    <h3>Register list with their descriptions</h3>
+    <dl>
+      <b><div><dt>Name</dt><dd>Description</dd></div></b>
+      <div><dt>AK</dt><dd>Accumulator</dd></div>
+      <div><dt>S</dt><dd>Word Register</dd></div>
+      <div><dt>A</dt><dd>Address Register</dd></div>
+      <div><dt>I</dt><dd>Instruction Register</dd></div>
+      <div><dt>L</dt><dd>Counter Register</dd></div>
+      <div><dt>WS</dt><dd>Stack Pointer Register</dd></div>
+      <div><dt>RZ</dt><dd>Reported Interrupt Register</dd></div>
+      <div><dt>RP</dt><dd>Active Interrupt Register</dd></div>
+      <div><dt>RM</dt><dd>Interrupt Mask Register</dd></div>
+      <div><dt>AP</dt><dd>Interrupt Address Register</dd></div>
+      <div><dt>RG</dt><dd>Buffer Register</dd></div>
+      <div><dt>G</dt><dd>Ready Bit</dd></div>
+    </dl>
+  </template>
+
+  <template class = "info-entry" data-title="Rejestry" data-key="_register" lang="pl">
+    <p><span data-key="_register">Rejestry</span> pozwalają na przechowywanie wartości.
+      Operacje zapisu i odczytu z rejestru są realizowane przy pomocy odpowiednich <span data-key="_signal">sygnałów</span>: 
+      <span class="over"> we[nazwa]</span>, wy[nazwa]</p>
+    <h3>Lista rejestrów wraz z ich typowym przeznaczeniem:</h3>
+    <dl>
+      <b><div><dt>Nazwa</dt><dd>Opis</dd></div></b>
+      <div><dt>AK</dt><dd>Akumulator</dd></div>
+      <div><dt>S</dt><dd>Rejestr Słowa</dd></div>
+      <div><dt>A</dt><dd>Rejestr Adresu</dd></div>
+      <div><dt>I</dt><dd>Rejestr Instrukcji (Rozkazu)</dd></div>
+      <div><dt>L</dt><dd>Rejestr Licznika</dd></div>
+      <div><dt>WS</dt><dd>Rejestr Wskaźnika Stosu</dd></div>
+      <div><dt>RZ</dt><dd>Rejestr Zgłoszeń</dd></div>
+      <div><dt>RP</dt><dd>Rejestr Przerwania</dd></div>
+      <div><dt>RM</dt><dd>Rejestr Maski</dd></div>
+      <div><dt>AP</dt><dd>Adres Przerwania</dd></div>
+      <div><dt>RG</dt><dd>Rejestr Bufora</dd></div>
+      <div><dt>G</dt><dd>Bit Gotowości</dd></div>
+    </dl>
+
+  </template>
 
 
-  <template class = "info-entry" data-title="Assembly" lang="en">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  <template class = "info-entry" data-key="_bus" lang="en" data-default data-title="Busses">
+    <p>
+      <span data-key="_bus">Busses</span> are responsible for connecting  <span data-key="_register">registers</span>.
+       During a single <span data-key="_cycle">cycle</span> only one register cant output data to a bus, 
+       Multiple registers can read values from a register at the same time.
+    </p>
+  </template>
+
+  <template class = "info-entry" data-key="_bus" lang="pl" data-title="Magistrale" >
+    <p>
+      <span data-key="_bus">Magistrale</span> pełnią rolę połączenia pomiędzy <span data-key="_register">rejestrami</span>.
+       Podczas jednego <span data-key="_cycle">taktu</span> na magistrale może wystawiać wartość tylko jeden rejestr, 
+       Lecz z magistrali może odczytywać wartość wiele rejestrów jednocześnie.
+    </p>
+  </template>
+
+  <template class = "info-entry" data-key="_alu" lang="en" data-default data-title="Arithmetic Logic Unit" >
+    <p>
+      <span data-key="_alu">Arithmetic Logic Unit</span> allows to perform arithmetic and logic operations. 
+      The first argument of an operation is the <span data-key="_register">AK register</span> value,
+      the second argument of an operation is the <span data-key="_bus">S bus</span> value during active <span data-key="_signal">weja signal</span>.
+      The operation result is written into the <span data-key="_register">AK register</span> with the use of <span data-key="_signal"> <span  class="over">weak</span> signal</span>.
+      During a single <span data-key="_cycle">cycle</span> only one arithmetic/logic operation can be active at a time.
+    </p>
+  </template>
+
+  <template class = "info-entry" data-key="_alu" lang="pl" data-title="Jednostka Arytmetyczno Logiczna">
+    <p>
+      <span data-key="_alu">Jednostka Arytmetyczno Logiczna</span> pozwala na wykonywanie operacji arytmetyczno logicznych. 
+      Pierwszym operandem operacji jest zawartość <span data-key="_register">rejestru AK</span>,
+      a drugim operandem jest wartość na <span data-key="_bus">magistrali S</span> przy aktywnym <span data-key="_signal">sygnale weja</span>.
+      Wynik operacji wpisywany jest do <span data-key="_register">rejestru AK</span> z użyciem <span data-key="_signal">sygnału  <span  class="over">weak</span></span>.
+      Podczas jednego <span data-key="_cycle">taktu</span> może być aktywna tylko jedna operacja arytmetycno/logiczna.
+    </p>
+  </template>
+
+  <template class = "info-entry" data-key="_mem" lang="en" data-default data-title="Random Access Memory">
+    <p>
+      <span data-key="_mem">Random Access Memory</span> is responsible for storing the program code and variables necessary for execution.
+      Each memory cell stores one <span data-key="_word">machine word</span>.
+      The amount of available memory space depends on the number of address bits in the machine word and can be expressed with the following equation: <i>memory cell count = 2 <sup>address bit count</sup></i>.
+    </p>
+    <p>
+      In order to manipulate the memory <span data-key="_register">A register</span> and <span data-key="_register">S register</span> are used.
+      <span data-key="_register">A register</span> value points to memory the cell that is currently being manipulated.
+      <span data-key="_register">S register</span> is a memory buffer. Current memory cell value is read into it during <span data-key="_signal">czyt signal</span>.
+      Current memory cell has it's value written based on <span data-key="_register">S register</span> value during <span data-key="_signal">pisz signal</span>.
+    </p>
+  </template>
+
+  <template class = "info-entry" data-key="_mem" lang="pl" data-title="Pamięć Operacyjna">
+    <p>
+      <span data-key="_mem">Pamięć Operacyjna</span> przechowuje ona kod programu oraz zmienne potrzebne do jego wykonania.
+      Na każdym adresie przechowywane jest jedno <span data-key="_word">słowo maszynowe</span>.
+      Ilość dostępnych adresów zależy od szerokości bitów adresów słowa maszynowego w zależności: <i>ilość adresów = 2 <sup>ilość bitów adresu</sup></i>.
+    </p>
+    <p>
+      W celach operacji na pamięci wykorzystuje się <span data-key="_register">rejestr A</span> i <span data-key="_register">rejestr S</span>.
+      Wartość <span data-key="_register">rejestru A</span> wskazuje na adres obecnej komórki pamięci na której wykonywane są operacje.
+      <span data-key="_register">Rejestr S</span> pełni rolę bufora pamięci. Jest do niego odczytywana wartość komórki pamięci przy <span data-key="_signal">sygnale czyt</span>.
+      Jest z niego wpisywana wartość do komórki pamięci przy <span data-key="_signal">sygnale pisz</span>.
+    </p>
+  </template>
+
+  <template class = "info-entry" data-key="_signal" lang="en" data-default data-title="Signals">
+    <p>
+      <span data-key="_signal">Signals</span> are used to controll machine components.
+      Signals can be divided into: long and <span class="over">impulse</span> signals.
+    </p>
+    <ul>
+      <li>Long signals: are active during entiryty of the <span data-key="_cycle">cycle</span> .</li>
+      <li><span class="over">Impulse</span> signals: are active for short impulse during the end of a <span data-key="_cycle">cycle</span>.</li>
+    </ul>
+  </template>
+
+  
+  <template class = "info-entry" data-key="_signal" lang="pl" data-title="Sygnały">
+    <p>
+      <span data-key="_signal">Sygnały</span> są wykorzystywane do sterowania elementami maszyny.
+      Sygnały dzielą się na sygnały podłużne i <span class="over">impulsowe</span>.
+    </p>
+    <ul>
+      <li>Sygnały podłużne: są aktywne przez cały czas trwania <span data-key="_cycle">taktu</span>.</li>
+      <li>Sygnały <span class="over">impulsowe</span>: są aktywne prez krótki czas na końcu <span data-key="_cycle">taktu</span>.</li>
+    </ul>
   </template>
   
-  <template class = "info-entry" data-title="Instructions" lang="en">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+
+  <template class = "info-entry" data-title="Author" data-key="_author" lang="en" data-default>
+    
+    <a href="https://github.com/JakubSob1997">Jakub Sobolewski</a>
   </template>
 
-  <template class = "info-entry" data-title="Input/Output" lang="en">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  <template class = "info-entry" data-title="Autor" data-key="_author" lang="pl">
+    <a href="https://github.com/JakubSob1997">Jakub Sobolewski</a>
   </template>
-
-  <template class = "info-entry" data-title="Author" lang="en">
-   
-  </template>
-
-
 
 </body>
 </html>

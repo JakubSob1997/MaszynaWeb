@@ -34,7 +34,7 @@ export default class IOInspector extends SidebarContent{
 
     build(_IOUnit,_IntDevices,_Devices){
         this.wrapper = document.createElement("div");
-        this.header = document.createElement("h3");
+        this.header = document.createElement("h1");
         this.displayArea = document.createElement("div");
 
 

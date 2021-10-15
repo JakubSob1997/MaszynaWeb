@@ -6,7 +6,7 @@ export default class FileViewBase{
 
     constructor(_fileInspector,_headerName){
         this.wrapper = document.createElement("div");
-        this.header = document.createElement("h4")
+        this.header = document.createElement("h2")
         this.content = document.createElement("div");
 
         this.header.classList.add("file-view-header");

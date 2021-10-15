@@ -2,9 +2,10 @@ import SidebarContent from "./sidebar-content.js";
 import Translator from "./translator.js"
 
 export class InfoEntry{
-    constructor(_content,_title){
+    constructor(_inspector,_content,_title){
+        this.inspector = _inspector;
         this.wrapper = document.createElement("div");
-        this.header=document.createElement("h4");
+        this.header=document.createElement("h2");
         this.content=document.createElement("main");
 
         this.wrapper.classList.add("info-inspector-entry");
@@ -16,8 +17,24 @@ export class InfoEntry{
         if(_title!=null){
             this.wrapper.appendChild(this.header);
         }
+
+        this.content.querySelectorAll("span[data-key]").forEach((ele)=>{
+
+            ele.addEventListener("click",(e)=>{
+                this.keySpanCliicked(ele.getAttribute("data-key"));
+            })
+        })
         
         this.wrapper.appendChild(this.content);
+    }
+
+    focus(){
+        this.header.focus();
+
+    }
+
+    keySpanCliicked(_key){
+        this.inspector.focusOnKey(_key)
     }
 
     getHTMLElement(){
@@ -42,7 +59,7 @@ export default class InfoInspector extends SidebarContent{
 
     build(){
         this.wrapper = document.createElement("div");
-        this.header = document.createElement("h3")
+        this.header = document.createElement("h1")
         this.content = document.createElement("div");
 
         this.header.innerHTML="Info"
@@ -58,27 +75,90 @@ export default class InfoInspector extends SidebarContent{
         this.wrapper.appendChild(this.content);
     }
 
-
+    focusOnKey(_key){
+        if(this.entries.hasOwnProperty(_key)){
+            this.entries[_key].focus();
+        }
+    }
     pullEntries(_parent){
-        const templateEntries = document.getElementsByClassName("info-entry");
-        this.entries=[];
+        const templateEntries = document.querySelectorAll("template.info-entry");
 
-        for (let i = 0; i < templateEntries.length; i++) {
-            const template = templateEntries[i];
-            if(template.lang===Translator.getLanguage()){
-                const entry =new InfoEntry(template.innerHTML,template.getAttribute("data-title"));
-                this.entries.push(entry);
+        /**
+         * Map
+         * {
+         *  key:{
+         *      lang1:entry1,
+         *      lang2:entry2
+         *      }
+         * }
+         */
+        let keyEntryMap = new Map();
+
+        /**
+         * Default
+         * {
+         *  key:entry
+         * }
+         */
+        let deufaultEntries = {}
+        
+
+
+        templateEntries.forEach(entry => {
+
+
+            const key= entry.getAttribute("data-key");
+            let lang = entry.getAttribute("lang");
+
+            if(entry.hasAttribute("data-default")){
+                if(key!=null){
+                    deufaultEntries[key]=entry;
+                }
+            }
+            if(lang===null){
+                lang="_"
+            }
+
+            if(key!=null){
+                if(keyEntryMap.has(key)){
+                    keyEntryMap.get(key)[lang]=entry;
+                }else{
+                    const obj = {}
+                    obj[lang]=entry;
+                    keyEntryMap.set(key,obj)
+                }
+            }
+        });
+
+
+        const currentLanguge = Translator.getLanguage();
+
+        this.entries={};
+        for (const key of keyEntryMap.keys()) {
+            let entryToAppend=null;
+            const entryTranslations = keyEntryMap.get(key)
+            
+            if(entryTranslations.hasOwnProperty(currentLanguge)){
+                entryToAppend=entryTranslations[currentLanguge];
+            }
+
+            if(entryToAppend==null){
+                if(deufaultEntries.hasOwnProperty(key)){
+                    entryToAppend=deufaultEntries[key];
+                }
+            }
+
+            if(entryToAppend!=null){
+
+                const entry =new InfoEntry(this,entryToAppend.innerHTML,entryToAppend.getAttribute("data-title"));
+                this.entries[key]=(entry);
                 _parent.appendChild(entry.getHTMLElement());
             }
-            
+     
         }
 
 
     }
-
-
-
-
 
     getHTMLElement(){
         return this.wrapper;

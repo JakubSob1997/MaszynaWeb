@@ -20,3 +20,92 @@
 }
 
 
+
+.info-inspector-entry *{
+    line-height: 1.7;
+}
+
+.info-inspector-entry ul{
+    margin-bottom: 0.5em;
+}
+
+.info-inspector-entry li{
+    list-style: square;
+    margin-left: 1em;
+}
+
+.info-inspector-entry p::before{
+    content: " ";
+    display: inline-block;
+    width: 1.5em;
+}
+
+.info-inspector-entry p{
+    margin-bottom: 0.5em;
+    text-align: justify;
+}
+
+
+.info-inspector-entry h2{
+
+    font-size: 1.15rem;
+    margin-bottom: 0.6em;
+}
+
+.info-inspector-entry h3{
+
+    
+    font-weight: normal;
+    font-size: 1.1rem;
+    margin-bottom: 0.6em;
+}
+
+
+.info-inspector-entry a:hover, .info-inspector-entry a:focus {
+
+    text-decoration: underline;
+}
+
+
+.info-inspector-entry dl div{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-inspector-entry dl>div>*:first-child{
+    text-align: left;
+    padding-right: 1em;
+}
+.info-inspector-entry dl>div>*:last-child{
+    text-align: right;
+    padding-left: 1em;
+}
+
+.info-inspector-entry span.over{
+    text-decoration: overline;
+}
+
+
+span[data-key]{
+    font-weight: bold;
+}
+span[data-key]:hover{
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+span[data-key]:active{
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+span[data-key]:focus{
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -37,7 +37,7 @@ export default class MemorySlotInspector{
         
         this.valueView = new ValueView(_valueDisplayer);
         this.wrapper = document.createElement("div");
-        this.label = document.createElement("h3");
+        this.label = document.createElement("h1");
         
 
         this.label.setAttribute("tabindex",0)

@@ -99,7 +99,7 @@ export default class InstructionInspector extends SidebarContent{
 
     build(_instructionList){
         this.wrpper=document.createElement("div");
-        this.heading = document.createElement("h3");
+        this.heading = document.createElement("h1");
         this.instructionListElement = document.createElement("ul");
         this.addInstructionButton = document.createElement("button");
 

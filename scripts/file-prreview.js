@@ -21,7 +21,7 @@ export default class FilePreviewView{
         this.wrapper.classList.add("display-none");
         this.wrapper.classList.add("file-preview");
 
-        this.header = document.createElement("h4");
+        this.header = document.createElement("h2");
         this.content = document.createElement("div");
         
         this.content.classList.add("file-preview-content");

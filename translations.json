@@ -92,8 +92,8 @@
         "pl":"Poziom Śledzenia"
     },
     "_bus_width":{
-        "en":"Bus Width",
-        "pl":"Szerokość Magistral"
+        "en":"Word Width",
+        "pl":"Szerokość Słowa Maszynowego"
     },
     "_code_bit_count":{
         "en":"Code bit count",
@@ -109,7 +109,7 @@
     },
     "_machine_exstension":{
         "en":"Machine W modules",
-        "pl":"Połączenie Magistralowe"
+        "pl":"Moduły Maszyny W"
     },
     "_module_desc_buscon":{
         "en":"Bus Connection",
