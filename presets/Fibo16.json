@@ -1,0 +1,70 @@
+{
+	"instructionList": {
+		"instructionDataArray": [
+			{
+				"name": "STP",
+				"sourceCode": "ROZKAZ STP;\nBEZARG;\nczyt wys wei il;\nstop;\n"
+			},
+			{
+				"name": "DOD",
+				"sourceCode": "ROZKAZ DOD;\nczyt wys wei il;\nwyad wea;\nwyl wea czyt wys weja dod weak;\n"
+			},
+			{
+				"name": "ODE",
+				"sourceCode": "ROZKAZ ODE;\nczyt wys wei il;\nwyad wea;\nwyl wea czyt wys weja ode weak;\n"
+			},
+			{
+				"name": "POB",
+				"sourceCode": "ROZKAZ POB;\nczyt wys wei il;\nwyad wea;\nwyl wea czyt wys weja przep weak;\n"
+			},
+			{
+				"name": "LAD",
+				"sourceCode": "ROZKAZ LAD;\nczyt wys wei il;\nwyad wea wyak wes;\npisz wyl wea;\n"
+			},
+			{
+				"name": "SOB",
+				"sourceCode": "ROZKAZ SOB;\nczyt wys wei il;\nwyad wea wel;\n"
+			},
+			{
+				"name": "SOM",
+				"sourceCode": "ROZKAZ SOM;\nczyt wys wei il;\nJEZELI Z @skok;\nwyl wea KONIEC;\n@skok wyad wea wel;\n"
+			},
+			{
+				"name": "SOZ",
+				"sourceCode": "ROZKAZ SOZ;\nczyt wys wei il;\nJEZELI ZAK @skok;\nwyl wea KONIEC;\n@skok wyad wea wel;\n"
+			},
+			{
+				"name": "IN",
+				"sourceCode": "ROZKAZ IN;\nczyt wys wei il;\nwyak weja ode weak start;\n@wait wyg weja ode weak;\nJEzELI Z TO @done GDY NIE @wait;\n@done wyrb weja przep weak wyl wea;"
+			},
+			{
+				"name": "OUT",
+				"sourceCode": "ROZKAZ OUT;\nczyt wys wei il;\nwyak werb wes weja ode weak start;\n@wait wyg weja ode weak;\nJezeli z to @done gdy nie @wait;\n@done wys weja przep weak wyl wea;"
+			}
+		]
+	},
+	"settings": {
+		"codeWidth": 5,
+		"adressWidth": 6,
+		"extensionData": {
+			"BusConnection": false,
+			"AK_Increment": false,
+			"ALU_Logic": false,
+			"ALU_ExtendedMath": false,
+			"Stack": false,
+			"X_Register": false,
+			"Y_Register": false,
+			"Interupt": false,
+			"InputOutput": true,
+			"Flags": false
+		},
+		"intAdressList": [
+			1,
+			2,
+			3,
+			4
+		],
+		"executionMode": 2
+	},
+	"program": "//Program Fibbo 16\n//Wypisuje pierwsze 16 \n//liczb ciągu fibbonaciego\n\nPOB s_16\nLAD licznik\n\npetla:\n\t//Sprawdź licznik\n\tPOB licznik\n\tODE s_1\n\tLAD licznik\n\tSOM koniec\n    \n    //Dodaj prawą do lewej\n\tPOB lewa\n\tOUT 4\n\tDOD prawa\n\tLAD lewa\n\n\t//Sprawdź licznik\n\tPOB licznik\n\tODE s_1\n\tLAD licznik\n\tSOM koniec\n    \n    //Dodaj lewą do prawej\n\tPOB prawa\n\tOUT 4\n\tDOD lewa\n\tLAD prawa\nSOB petla\n\n//Zakoń program\nkoniec:\n\tSTP\n\nlicznik: RPA\nlewa: RST 0\nprawa: RST 1\n\ns_16: RST 16 //Stała 16\ns_1: RST 1 //Stała 1\n\n\n\n\n\n\n\n"
+}

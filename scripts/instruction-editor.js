@@ -44,7 +44,7 @@ export default class InstructionEditor extends SidebarContent{
     buildEditor(){
 
         this.wrapper= document.createElement("div");
-        this.header = document.createElement("h3");
+        this.header = document.createElement("h1");
         this.cmWrappr = document.createElement("div");
         this.codeMirror = new InstructionCodeMirror(this.cmWrappr)
         this.saveButon = document.createElement("button");
