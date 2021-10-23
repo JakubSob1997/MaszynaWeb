@@ -22,10 +22,11 @@ export default class ControllUnit extends MachineComponent{
     selectSinalsForCycle(_Machine,_InstructionList,_Settings){
        
         const opCode =  _Settings.getOpcode(this.I_Register.getValue());
-        
-        
+        let forceNextInstrFlag = false;
+
+
         if(_InstructionList.length()<=opCode){
-            Alerter.alert("Instruction with op code: "+ opCode.toString(2)+" undefined" );
+            Alerter.alert("Instruction with op code: "+ opCode.toString()+" undefined" );
             return;
         }
         
@@ -51,7 +52,16 @@ export default class ControllUnit extends MachineComponent{
                 //}
 
                 this.internalCycleCounter=branchCondition.targetCycle;
-                instrcycle = instruction.cycles[this.internalCycleCounter];
+                if(this.internalCycleCounter<instruction.cycles.length){
+                    instrcycle = instruction.cycles[this.internalCycleCounter];
+                }else{
+                    instrcycle = instruction.cycles[0];
+                    this.internalCycleCounter=0;
+                    forceNextInstrFlag=true;
+
+                }
+                
+
                 break;
             }
         }
@@ -63,13 +73,8 @@ export default class ControllUnit extends MachineComponent{
 
         
 
-        if(instrcycle.isFinal==false){
-            this.internalCycleCounter++;
-        }else{
-            this.internalCycleCounter=instruction.cycles.length+1;
-        }
-
-        this.nextInstructionFlag=this.internalCycleCounter>=instruction.cycles.length;
+        this.internalCycleCounter++;
+        this.nextInstructionFlag=forceNextInstrFlag||this.internalCycleCounter>=instruction.cycles.length;
 
         
     }

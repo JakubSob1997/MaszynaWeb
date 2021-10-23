@@ -79,7 +79,6 @@ function runMachineToAddresAsync(_M,_addres){
 
         if(_M.wasTerminated==true)return;
         _M.doCycle();
-        console.log[_M.isNewInstruction(),_M.getCurrentAddres()]
         if(_M.isNewInstruction()&&_M.getCurrentAddres()===_addres){
             setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
             return;

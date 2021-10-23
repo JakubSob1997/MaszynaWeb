@@ -101,7 +101,6 @@ function main(){
     const MView = new MachineView(M);
     MView.setupMachine();
     M.A_register.update();
-    console.log(M);
 
 
 

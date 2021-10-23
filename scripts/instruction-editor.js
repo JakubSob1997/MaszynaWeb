@@ -177,11 +177,12 @@ export default class InstructionEditor extends SidebarContent{
                 const parser = new InstrcutionParser(this.codeMirror.cm.getValue());
                 parser.validate(_Machine);
 
+                console.log(parser);
 
-
-                if(parser.parseSuccesful==true){
+                if(parser.parseSuccesful===true){
 
                     const instr = parser.toInstruction();//instr.name+
+                    console.log(instr);
                     if(_Machine.instructionList.updateInstruction(this.instrName,instr)){
                         Alerter.sendMessage(Translator.getTranslation("_message_instruction_loaded","Instruction @0 was saved succesfully!",[instr.name]),AlertStyleEnum.Succes);
                     }else{
@@ -196,7 +197,6 @@ export default class InstructionEditor extends SidebarContent{
 
                 
 
-                //console.log(parser);
             }
 
 

@@ -22,7 +22,7 @@ class AssemblyLabel{
 
 class AssemblyInstruction{
     constructor(_opcode,_argumets,_ogLine,_ogColumn){
-        this.code=_opcode;
+        this.code=_opcode.toUpperCase();
         this.args = _argumets;
         this.ogLine=_ogLine;
         this.ogColumn=_ogColumn
@@ -95,17 +95,13 @@ export default class AssemblyParser{
 
         
         this.parseSuccesful = false;
+        this.parseSuccesful=true;
+
         try {
             let codeWithNoComents = this.removeComents(_assemblyCode);
             this.splitIntoWords(codeWithNoComents);
             this.parseWords(_instructionList);
             this.calculateValues(_instructionList,_settings);
-
-        
-            
-            //this.splitIntoWords(codeWithNoComents);
-
-            this.parseSuccesful=true;
         } catch (error) {
             this.parseSuccesful=false;
             this.errorMessage = error.toString();

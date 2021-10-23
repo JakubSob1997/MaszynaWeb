@@ -105,8 +105,10 @@ export default class AssemblyEditor extends SidebarContent{
                 if(this.parser!=null){
                     const cursor =this.codeMirror.cm.getCursor();
                     const addres = this.parser.getInstructionByPositon(cursor.line,cursor.ch);
-                    console.log(addres.addres)
-                    ExecutionContext.curssorAddres = addres.addres;
+                    if(addres!=null){
+                        ExecutionContext.curssorAddres = addres.addres;
+                    }
+                    
                 }
             })
             
@@ -154,7 +156,6 @@ export default class AssemblyEditor extends SidebarContent{
             delete  this.parser;
         }
         this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList,this.valueDisplayer);
-        console.log(this.parser);
 
         if( this.parser.parseSuccesful){
             this.M.setComponentsDefault();

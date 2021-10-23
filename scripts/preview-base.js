@@ -107,7 +107,7 @@ export class PreviewExtensions extends PreviewBase{
 
         if(_obj.hasOwnProperty("settings")&&_obj.settings.hasOwnProperty("extensionData")){
             const data = _obj.settings.extensionData;
-            console.log(data);
+
 
             let result =MachineExtensionData.prototype.toString.call(data)
             

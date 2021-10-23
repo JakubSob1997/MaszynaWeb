@@ -328,12 +328,12 @@
         "pl":"Pamięć [@0]"
     },
     "_register_header":{
-        "en":"Register:@0",
-        "pl":"Rejestr:@0"
+        "en":"Register: @0",
+        "pl":"Rejestr: @0"
     },
     "_instruction_header":{
-        "en":"Instruction:@0",
-        "pl":"Rozkaz:@0"
+        "en":"Instruction: @0",
+        "pl":"Rozkaz: @0"
     },
     "_delete":{
         "en":"Delete",
@@ -400,12 +400,12 @@
         "pl":"Oczekiwano rozkazu lub etykiety."
     },
     "_asm_err_invalid_arg":{
-        "en":"Argument:@0 is not an value or label.",
-        "pl":"Argument:@0 nie jest wartością lub etykietą."
+        "en":"Argument: @0 is not an value or label.",
+        "pl":"Argument: @0 nie jest wartością lub etykietą."
     },
     "_asm_err_not_positive":{
-        "en":"Argument:@0 is not a positive integer.",
-        "pl":"Argument:@0 nie jest liczbą dodatnią."
+        "en":"Argument: @0 is not a positive integer.",
+        "pl":"Argument: @0 nie jest liczbą dodatnią."
     },
     "_run_cursor":{
         "en":"Run to cursor",

@@ -46,6 +46,14 @@ function setupFlagUnit(_flagUnit){
         )
     )
 
+    _flagUnit.addFlag(
+        new ConditionFlag("DALEJ",
+        (_Machine)=>{
+            return true;
+        }
+        )
+    )
+
 }
 
 

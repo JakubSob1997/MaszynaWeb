@@ -326,10 +326,10 @@ nav{
 
 @keyframes alert-entry{
     from {
-        transform: scale(0.9,0);
+        transform: scaleY(0);
     }
     to {
-        transform: scale(1,1);
+        transform: scaleY(1);
 
     }
 }
@@ -520,54 +520,3 @@ nav.mobile> *{
 
 
 
-
-
-/*
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-
-.title span{
-    color: var(--support-color);
-}
-
-.title{
-    float: up;
-    display: flex;
-    justify-content: center;
-    background: var(--main-color);
-}
-
-.container{
-    width: 100vw;
-    height: 100vh;
-    
-    
-    font-weight: bold;
-    font-size: 10px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 20px 1fr;
-    
-    gap: 5px;
-    padding: 5px;
-
-    box-sizing: border-box;
-
-
-}
-
-.container div{
-    padding: 10px;
-    
-}
-
-div{
-    border:1px solid var(--compliment-color)
-}
-*/

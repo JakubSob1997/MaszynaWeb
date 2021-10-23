@@ -103,7 +103,7 @@ export default class Mamory extends MachineComponent{
 
 
     read(_adress){
-        //console.log(this.values);
+
         if(_adress>= this.values.length||_adress<0){
             Alerter.alert("Memory out of bounds.");
         }else{

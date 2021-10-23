@@ -80,7 +80,6 @@ export default class FilePreviewView{
             prev.fillPreview(_obj);
         });
 
-        console.log(_obj);
 
 
     }

@@ -9,7 +9,6 @@ class InstructionLine {
         this.instrIndex = _instrIndex;
 
         this.label = null;
-        this.isFinal = false;
         this.isBranchPlaceholder = false;
         this.signals = null;
 
@@ -19,27 +18,19 @@ class InstructionLine {
     }
 
 
-    isLabel(_string) {
-        return _string[0] == "@";
-    }
+
 
     parseIntructionLine(_words) {
         let startIndex = 0;
         let endIndex = _words.length;
 
-        if (this.isLabel(_words[0])) {
+        if (InstructionLabel.isLabel(_words[0])) {
             this.label = _words[0];
             startIndex++;
         } else {
             this.label = null;
         }
 
-        if (_words[_words.length - 1].toUpperCase() == "KONIEC") {
-            this.isFinal = true;
-            endIndex--;
-        } else {
-            this.isFinal = false;
-        }
 
         if (endIndex - startIndex <= 0) {
             this.signals = []
@@ -65,15 +56,17 @@ class LongBranchLine {
         this.noLabel = null;
         this.words = _words;
 
+       
+
         this.parseSuccesful = this.parseBranch(_words);
     }
 
     static isLongBranch(_words) {
         if (_words.length < 7) return false;
-        if (_words[0].toUpperCase() == "JEZELI" == false) return false;
-        if (_words[2].toUpperCase() == "TO" == false) return false;
-        if (_words[4].toUpperCase() == "GDY" == false) return false;
-        if (_words[5].toUpperCase() == "NIE" == false) return false;
+        if (_words[0].toUpperCase() != "JEZELI") return false;
+        if (_words[2].toUpperCase() != "TO") return false;
+        if (_words[4].toUpperCase() != "GDY") return false;
+        if (_words[5].toUpperCase() != "NIE") return false;
         return true;
     }
 
@@ -125,7 +118,7 @@ class BranchLine {
         this.words = _words;
 
         if (_words != null) {
-            this.parseSuccesful = this.parseBranch(_words);
+            this.parseSuccesful = this.parse(_words);
         } else {
             this.parseSuccesful = false;
         }
@@ -135,6 +128,50 @@ class BranchLine {
 
     logWarning(_string) {
         this.warning = _string;
+    }
+
+    parse(_words){
+        const firstWord  = _words[0].toUpperCase();
+        if(firstWord ==="JEZELI"){
+            return  this.parseBranch(_words);
+        }else if(firstWord ==="DALEJ"){
+            return this.parseContinue(_words);
+        }else if(firstWord ==="KONIEC"){
+            return this.parseEnd(_words);
+        }
+        return false;
+        
+    }
+
+    parseContinue(_words){
+        if(_words.length !=2){
+            this.logWarning("Invalid continue statment")
+            return false;
+        }
+
+        this.flagName = "DALEJ";
+        this.label = _words[1];
+
+        if(InstructionLabel.isLabel(this.label)===false){
+            this.logWarning("Invalid label syntax expected @[label name]")
+            return false;
+        }
+
+        return true;
+    }
+
+    parseEnd(_words){
+        if(_words.length !=1){
+            this.logWarning("Invalid branch statment")
+            return false;
+        }
+
+        this.flagName = "DALEJ";
+        this.label = "KONIEC";
+
+
+        
+        return true;
     }
 
     parseBranch(_words) {
@@ -175,6 +212,11 @@ class BranchLine {
 
 
         this.label = _words[wordIndex];
+        if(InstructionLabel.isLabel(this.label)===false){
+            this.logWarning("Invalid label syntax expected @[label name]")
+            return false;
+        }
+
         wordIndex++;
 
         return true;
@@ -209,10 +251,12 @@ class SettingsLine {
                 this.argCount = parseInt(_words[1])
                 if(this.argCount.argCount<0){
                     this.logWarning("Argument count must be an Inteager: " + _words[0])
+                    this.parseSuccesful=false;
                 }
 
             } else {
                 this.logWarning("Expected argument count after: " + _words[0])
+                this.parseSuccesful=false;
             }
             
         }
@@ -222,6 +266,7 @@ class SettingsLine {
                 this.name = _words[1].toUpperCase();
             } else {
                 this.logWarning("Expected instruction name after: " + _words[0])
+                this.parseSuccesful=false;
             }
         }
     }
@@ -247,8 +292,12 @@ class InstructionLabel {
         this.name = _labelName;
         this.index = _instrIndex;
     }
-}
 
+
+    static isLabel(_string) {
+        return _string[0] == "@";
+    }
+}
 
 
 
@@ -269,14 +318,21 @@ export default class InstrcutionParser {
 
         this.labels = {};
 
-        this.parseSuccesful = false;
+        
+
+        this.parseSuccesful = true;
         this.errorList = [];
         this.name = null;
 
 
         const comentless = this.removeComents(_sourceCode);
+        
         this.splitIntoLines(comentless);
         this.parseLines();
+
+        
+        this.labels["KONIEC"] = new InstructionLabel(this.instructionLines.length, "KONIEC");
+
 
     }
 
@@ -321,15 +377,24 @@ export default class InstrcutionParser {
                 continue;
             }
 
+
+
+
             if (this.labels.hasOwnProperty(branch.label) == false) {
                 this.parseSuccesful = false;
                 this.errorList.push("Undefined label: " + branch.label + " - " + branch.words.join(" "));
             }
 
+           
+
             if (_flagDictionary.hasOwnProperty(branch.flagName) == false) {
                 this.parseSuccesful = false;
                 this.errorList.push("Undefined flag: " + branch.flagName + " - " + branch.words.join(" "));
             }
+
+            
+
+            
 
 
         }
@@ -446,7 +511,12 @@ export default class InstrcutionParser {
     }
 
     isBranchLine(_wordArry) {
-        return _wordArry[0].toUpperCase() == "JEZELI";
+        const word = _wordArry[0].toUpperCase();
+
+        if(word == "JEZELI")return true;
+        if(word== "KONIEC")return true;
+        if(word== "DALEJ")return true;
+        return false;
     }
 
     isSettingsLine(_wordArry) {
@@ -468,12 +538,10 @@ export default class InstrcutionParser {
     }
 
     hasLabel(_wordArry) {
-        return this.isLabel(_wordArry[0]);
+        return InstructionLabel.isLabel(_wordArry[0]);
     }
 
-    isLabel(_string) {
-        return _string[0] == "@";
-    }
+
 
 
     parseLine(_wordArry, _nextInstrIndex) {
@@ -483,22 +551,46 @@ export default class InstrcutionParser {
             return _nextInstrIndex;
         }
 
-        if (LongBranchLine.isLongBranch(_wordArry)) {
-            this.longBranchLines.push(new LongBranchLine(_nextInstrIndex, _wordArry));
+        if(this.isBranchLine(_wordArry)){
+            this.parseBranches(_nextInstrIndex,_wordArry);
             return _nextInstrIndex;
         }
 
-        if (this.isBranchLine(_wordArry)) {
-            this.branchLines.push(new BranchLine(_nextInstrIndex, _wordArry))
-            return _nextInstrIndex;
-        }
-
-        if (this.isLabel(_wordArry[0])) {
+        if (InstructionLabel.isLabel(_wordArry[0])) {
             this.labels[_wordArry[0]] = new InstructionLabel(_nextInstrIndex, _wordArry[0]);
         }
 
-        this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry));
+        let split = 0
+        for (split; split < _wordArry.length; split++) {
+            
+            const wordMarker = [_wordArry[split]];
+            if(this.isBranchLine(wordMarker)){
+                
+                break;
+            }
+        }
+        
+        
+        if(split<_wordArry.length){
+            this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry.slice(0,split)));
+            this.parseBranches(_nextInstrIndex+1,_wordArry.slice(split));
+            
+
+            
+        }else{
+            this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry));
+        }
+
+        
         return _nextInstrIndex + 1;
+    }
+
+    parseBranches(_nextInstrIndex, _wordArry){
+        if (LongBranchLine.isLongBranch(_wordArry)) {
+            this.longBranchLines.push(new LongBranchLine(_nextInstrIndex, _wordArry));
+        }else{
+            this.branchLines.push(new BranchLine(_nextInstrIndex, _wordArry))
+        }
     }
 
     parseLines() {
@@ -538,16 +630,19 @@ export default class InstrcutionParser {
     }
 
     applyBranchConditions(_instruction) {
+
+
         for (let index = 0; index < this.branchLines.length; index++) {
             const branchLine = this.branchLines[index];
             const label = this.labels[branchLine.label];
 
             if (label === undefined) {
-                return null;
+                console.log("Label undefined")
+                continue;
             }
-
+            
             let targetIndex = this.labels[branchLine.label].index;
-
+            //console.log(branchLine);
             if (branchLine.instrIndex >= _instruction.cycles.length) {
 
                 const placeholderCycle = new InstrCycle([]);

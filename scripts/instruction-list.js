@@ -29,6 +29,8 @@ export default class InstructionList{
 
         const instructionDatas  =_instrListData.instructionDataArray;
 
+   
+
         if(instructionDatas==null){
             return
         }
@@ -42,7 +44,10 @@ export default class InstructionList{
             parseResult.validate(_instructionValidator);
 
             if(parseResult.parseSuccesful){
-                this.instructionArray.push(parseResult.toInstruction());
+
+                const instr =parseResult.toInstruction();
+                console.log(instr);
+                this.instructionArray.push(instr);
             }else{
                 parseResult.errorList.forEach(error => {
                     Alerter.sendMessage(instructionDatas[i].name + " - "+error,AlertStyleEnum.SyntaxError);
