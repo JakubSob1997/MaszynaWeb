@@ -138,7 +138,7 @@ export default class AssemblyParser{
 
 
     removeComentFromLine(_line){
-        return _line.split(/(\/\/|;)/)[0];
+        return _line.split(/(\/\/)/)[0];
     }
 
 
@@ -211,7 +211,15 @@ export default class AssemblyParser{
                             "Label redefinition."),
                         word);
                 }else{
-                    this.labels[slicedLabel]=new AssemblyLabel(slicedLabel,instrCounter);
+                    if(isNaN(this.valueDisplayer.stringToValue(slicedLabel))){
+                        this.labels[slicedLabel]=new AssemblyLabel(slicedLabel,instrCounter);
+                    }else{
+                        throw new AssemblyParserError(
+                            Translator.getTranslation("_asm_err_label_not_number",
+                                "Label can't be a number"),
+                            word);
+                    }
+                   
                 continue;
                 }
                 

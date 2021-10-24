@@ -3,7 +3,7 @@
 		"instructionDataArray": [
 			{
 				"name": "STP",
-				"sourceCode": "ROZKAZ STP;\nBEZARG;\nczyt wys wei il;\nstop;\n"
+				"sourceCode": "ROZKAZ STP;\nARGUMENTY 0;\nczyt wys wei il;\nstop;\n"
 			},
 			{
 				"name": "DOD",
@@ -51,11 +51,11 @@
 			},
 			{
 				"name": "RET",
-				"sourceCode": "ROZKAZ RET;\nBEZARG;\nczyt wys wei il;\nwyws wea iws;\nczyt wys as wel wea;\n"
+				"sourceCode": "ROZKAZ RET;\nARGUMENTY 0;\nczyt wys wei il;\nwyws wea iws;\nczyt wys as wel wea;\n"
 			},
 			{
 				"name": "PSH",
-				"sourceCode": "ROZKAZ PSH;\nBEZARG;\nczyt wys wei il;\nwyak wes dws;\nwyws wea;\npisz wyl wea;\n\n"
+				"sourceCode": "ROZKAZ PSH;\nARGUMENTY 0;\nczyt wys wei il;\nwyak wes dws;\nwyws wea;\npisz wyl wea;\n\n"
 			},
 			{
 				"name": "PSHAD",
@@ -63,7 +63,7 @@
 			},
 			{
 				"name": "POP",
-				"sourceCode": "ROZKAZ POP;\nBEZARG;\nczyt wys wei il;\nwyws wea iws;\nczyt wys weja przep weak wyl wea;\n\n"
+				"sourceCode": "ROZKAZ POP;\nARGUMENTY 0;\nczyt wys wei il;\nwyws wea iws;\nczyt wys weja przep weak wyl wea;\n\n"
 			},
 			{
 				"name": "POPAD",
@@ -71,7 +71,7 @@
 			},
 			{
 				"name": "TOP",
-				"sourceCode": "ROZKAZ TOP;\nBEZARG;\nczyt wys wei il;\nwyws wea;\nczyt wys weja przep weak wyl wea;\n\n"
+				"sourceCode": "ROZKAZ TOP;\nARGUMENTY 0;\nczyt wys wei il;\nwyws wea;\nczyt wys weja przep weak wyl wea;\n\n"
 			},
 			{
 				"name": "TOPN",

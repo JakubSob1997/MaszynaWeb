@@ -6,6 +6,7 @@ import MachineViewMemory from "./machine-view-memory.js";
 import MachineViewIntButton from "./machine-view-int-button.js"
 import MachineViewBus from "./machine-view-bus.js";
 import NachineViewArrow from "./machine-view-arrow.js";
+import MachineViewFlagRegister from "./machine-view-flag-register.js";
 
 
 
@@ -77,10 +78,12 @@ export default class MachineView{
     setupMachine(){
 
         this.setupArrowViews(this.M.singnalDictionary);
-        this.setupRegisterViews(this.M.registers);
         this.setupSignalViews(this.M.singnalDictionary);
-
+        this.setupRegisterViews(this.M.registers);
+        this.setupFlagRegister(this.M.FlagRegister);
         
+
+
         this.setupMemoryViews(this.M.MEM)
         
 
@@ -100,6 +103,25 @@ export default class MachineView{
             });
         })
 
+    }
+
+    setupFlagRegister(_flagRegister){
+        let regWrappers = document.getElementsByClassName("f-r");
+        
+
+        console.log(regWrappers);
+
+            for (let i = 0; i < regWrappers.length; i++) {
+                const wrapper = regWrappers[i];
+                const regView = new MachineViewFlagRegister(this,_flagRegister);
+                
+                this.registerViews.push(regView);
+                const ele =regView.getHTMLElement()
+                console.log(regView);
+
+                wrapper.appendChild(regView.getHTMLElement());
+                
+            }   
     }
 
     setupRegisterViews(_registers){

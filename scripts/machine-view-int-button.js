@@ -37,8 +37,10 @@ export default class MachineViewIntButton extends MachineViewElement{
 
         if((allExtentions&myExtention)===0){
             this.element.classList.add("int-button-hidden");
+            this.element.disabled = true;
         }else{
             this.element.classList.remove("int-button-hidden");
+            this.element.disabled = false;
         }
 
         

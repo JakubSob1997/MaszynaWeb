@@ -64,7 +64,7 @@ const Translator = {
             for (let i = 0; i < _arguments.length; i++) {
                 const index =i.toString()
                 const match = "@"+index;
-                const replace = replaceHash+index;
+                const replace = replaceHash+index+replaceHash;
 
                 returnText = returnText.replace(match,replace);
             }
@@ -72,7 +72,7 @@ const Translator = {
             for (let i = 0; i < _arguments.length; i++) {
                 const arg = _arguments[i];
                 const index =i.toString()
-                const match = replaceHash+index;
+                const match = replaceHash+index+replaceHash;
                 const replace = arg;
 
                 returnText = returnText.replace(match,replace);

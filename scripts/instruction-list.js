@@ -46,7 +46,6 @@ export default class InstructionList{
             if(parseResult.parseSuccesful){
 
                 const instr =parseResult.toInstruction();
-                console.log(instr);
                 this.instructionArray.push(instr);
             }else{
                 parseResult.errorList.forEach(error => {

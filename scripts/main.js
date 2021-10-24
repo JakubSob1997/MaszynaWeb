@@ -17,8 +17,9 @@ import InstructionListSerializer from "./instruction-list-serializer.js";
 import SerializerManager from "./serializer-manager.js";
 import Terminator from "./terminator.js";
 
-import Translator from "./translator.js"
-
+import Translator from "./translator.js";
+import AssemblyColorContext from "./assembly-color-context.js";
+import InstructionColorContext from "./instruction-color-context.js";
 
 
 fetch("translations.json")
@@ -92,10 +93,9 @@ function main(){
     M.instructionList.serializer=instructionListSerializer;
 
 
-
-
-    //Add arrow class to all arrows
-    var elems = document.body.getElementsByTagName("*");
+    AssemblyColorContext.instructionList = M.instructionList;
+    InstructionColorContext.signalDictionary = M.getSignalDictionary();
+    InstructionColorContext.flagsDictionary=M.getFlagsDictionary();
 
 
     const MView = new MachineView(M);

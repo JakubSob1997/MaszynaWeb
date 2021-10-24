@@ -35,7 +35,7 @@ class InstructionLine {
         if (endIndex - startIndex <= 0) {
             this.signals = []
         } else {
-            this.signals = _words.slice(startIndex, endIndex);
+            this.signals = _words.slice(startIndex, endIndex).map((sig)=>{return sig.toLowerCase()});
         }
 
 
@@ -242,15 +242,12 @@ class SettingsLine {
     }
 
     parse(_words) {
-        if (_words[0].toUpperCase() === "BEZARG") {
-            this.argCount = 0;
-        }
 
         if(_words[0].toUpperCase()==="ARGUMENTY"){
             if (_words.length == 2) {
                 this.argCount = parseInt(_words[1])
-                if(this.argCount.argCount<0){
-                    this.logWarning("Argument count must be an Inteager: " + _words[0])
+                if(isNaN(this.argCount)|| this.argCount<0){
+                    this.logWarning("Argument count must be a positive Inteager: " + _words[1])
                     this.parseSuccesful=false;
                 }
 
@@ -425,7 +422,7 @@ export default class InstrcutionParser {
                 this.errorList.push("Undefined label: " + branch.label + " - " + branch.words.join(" "));
             }
 
-            if (_flagDictionary.hasOwnProperty(branch.flagName) == false) {
+            if (_flagDictionary.hasOwnProperty(branch.flagName) == false||branch.flagName==="DALEJ") {
                 this.parseSuccesful = false;
                 this.errorList.push("Undefined flag: " + branch.flagName + " - " + branch.words.join(" "));
             }
@@ -437,6 +434,8 @@ export default class InstrcutionParser {
     validateSignals(_signalDictionary) {
         for (let i = 0; i < this.instructionLines.length; i++) {
             const line = this.instructionLines[i];
+            let used={};
+
 
             for (let j = 0; j < line.signals.length; j++) {
                 const signal = line.signals[j];
@@ -444,6 +443,11 @@ export default class InstrcutionParser {
                     this.parseSuccesful = false;
                     this.errorList.push("Undefined signal: " + signal + " - " + line.words.join(" "));
                 }
+                if(used[signal]===true){
+                    this.parseSuccesful = false;
+                    this.errorList.push("Signal redefined: " + signal + " - " + line.words.join(" "));
+                }
+                used[signal]=true;
             }
 
         }
@@ -524,10 +528,6 @@ export default class InstrcutionParser {
         const word = _wordArry[0].toUpperCase();
 
         if (word === "ROZKAZ") {
-            return true;
-        }
-
-        if (word === "BEZARG") {
             return true;
         }
 

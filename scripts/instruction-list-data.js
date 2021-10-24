@@ -19,7 +19,7 @@ export default class InstructionListData {
         const STP  = new InstructionData(
             "STP",
             "ROZKAZ STP;\n"+
-            "BEZARG;\n"+
+            "ARGUMENTY 0;\n"+
             "czyt wys wei il;\n"+
             "stop;\n"
         )

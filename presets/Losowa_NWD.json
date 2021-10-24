@@ -3,7 +3,7 @@
 		"instructionDataArray": [
 			{
 				"name": "STP",
-				"sourceCode": "ROZKAZ STP;\nBEZARG;\nczyt wys wei il;\nstop;\n"
+				"sourceCode": "ROZKAZ STP;\nARGUMENTY 0;\nczyt wys wei il;\nstop;\n"
 			},
 			{
 				"name": "DOD",

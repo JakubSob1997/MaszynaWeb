@@ -5,17 +5,8 @@ import Translator from "./translator.js";
 
 export default class CustomCodemMirror{
 
-    constructor(_parent){
+    constructor(_parent,_settings){
 
-       
-
-        
-        
-
-
-        
-
-        
         
         this.focusLabel = document.createElement("div");
         this.focusLabel.innerText = Translator.getTranslation("_code_mirror_label","Press the \"Esc\" key to leave editor focus.")
@@ -26,10 +17,12 @@ export default class CustomCodemMirror{
         this.cm = CodeMirror(_parent,{
             lineNumbers:true,
             firstLineNumber:0,
-            theme:"darcula"
+            theme:"darcula",
+            ..._settings
 
         });
 
+        console.log(this.cm);
 
 
         this.cm.setOption("extraKeys",{

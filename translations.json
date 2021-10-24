@@ -391,6 +391,10 @@
         "en":"Label redefinition.",
         "pl":"Etykieta już istnieje."
     },
+    "_asm_err_label_not_number":{
+        "en": "Label can't be a number",
+        "pl": "Etykieta nie może być numerem"
+    },
     "_asm_err_expected_argument":{
         "en":"Expected argument.",
         "pl":"Oczekiwano argumentu."

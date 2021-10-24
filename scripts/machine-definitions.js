@@ -14,6 +14,7 @@ import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
 import buildIODevices from "./io-definitions.js";
 import buildInteruptDevices from "./interupt-definitions.js";
+import FlagRegister from "./flag-register.js";
 
 function setupFlagUnit(_flagUnit){
     
@@ -101,6 +102,7 @@ export default function buildMachine(_Machine){
     let RB_register=new Register("rb",ExtnensionFlags.InputOutput);
     let G_register=new Register("g",ExtnensionFlags.InputOutput);
     
+
     //Set default display
     AK_register.display = ValueDisplayEnum.SignedDecimal;
     I_register.display = ValueDisplayEnum.OpCodeArgument;
@@ -161,7 +163,9 @@ export default function buildMachine(_Machine){
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
     let _IOUnit = new IOUnit(RB_register,G_register,I_register);
 
+    let flagRegister = new FlagRegister();
 
+    
     //IO
     
     let Devices   = buildIODevices(_IOUnit);
@@ -181,13 +185,16 @@ export default function buildMachine(_Machine){
     _Machine.flagUnit=flagUnit;
     _Machine.interuptUnit = InteruptUnt;
     _Machine.IOUnit = _IOUnit;
-        
+    _Machine.FlagRegister = flagRegister;
+
+
     let machineComponents = [
         ALU,
         MEM,
         InteruptUnt,
         CntrlUnit,
         _IOUnit,
+        flagRegister,
 
         S_bus,
         A_bus,

@@ -217,6 +217,8 @@ function onCenterTouched(e){
 }
 
 
+
+
 leftPanel.addEventListener("touchstart",(e)=>{
 
 
@@ -300,6 +302,10 @@ rightPanel.addEventListener("touchstart",(e)=>{
 })
 
 center.addEventListener("touchstart",onCenterTouched);
+center.addEventListener("dblclick", showCenter);
+
+leftPanel.addEventListener("dblclick",showLeftPanel);
+rightPanel.addEventListener("dblclick",showRightPanel);
 
 leftBarHandle.addEventListener("keydown",(e)=>{
 
