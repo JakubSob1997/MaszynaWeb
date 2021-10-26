@@ -1,4 +1,4 @@
-import { MatchRegisterWidthEnum, ValueDisplayEnum } from "./enums.js";
+import { ValueDisplayEnum } from "./enums.js";
 import Translator from "./translator.js";
 
 
@@ -11,6 +11,7 @@ import Translator from "./translator.js";
 export default class VariablesPreview{
 
     constructor(_valueDisplayer,_mem){
+        this.inspectorManager;
         this.build(_valueDisplayer,_mem);
     }
 
@@ -20,18 +21,34 @@ export default class VariablesPreview{
         this.header = document.createElement("h2");
         this.content = document.createElement("div");
 
-        this.registers = new RegisterPreviews(_valueDisplayer);
-        this.memory=new MemoryPreviews(_valueDisplayer,_mem);
+        this.registers = new RegisterPreviews(this, _valueDisplayer);
+        this.memory=new MemoryPreviews(this, _valueDisplayer,_mem);
+        this.wrapper.classList.add("variable-preview");
 
 
-        this.content.appendChild(this.registers.getHTMLElemnt());
+        this.header.textContent = Translator.getTranslation("_variable_preview","Variable Preview")
+
         this.content.appendChild(this.memory.getHTMLElemnt());
+        this.content.appendChild(this.registers.getHTMLElemnt());
+        
 
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);
         
 
     }
+
+ 
+    onMemoryPreviewClicked(_addres){
+        if(this.inspectorManager)
+        this.inspectorManager.drawInspectorForMorySlot(_addres);
+    }
+
+    onRegisterEntryClicked(_register){
+        if(this.inspectorManager)
+        this.inspectorManager.drawInspectorForRegister(_register);
+    }
+
 
     clearAll(){
         this.registers.clearPreviews();
@@ -45,14 +62,25 @@ export default class VariablesPreview{
 }
 
 class PreviewEntry{
-    constructor(){
-        this.build();
+    constructor(_preview){
+        this.build(_preview);
     }
 
-    build(){
-        this.wrapper = document.createElement("dl");
+    build(_preview){
+        this.wrapper = document.createElement("div");
         this.name= document.createElement("dt");
         this.value=document.createElement("dd");
+
+        this.wrapper.tabIndex=0;
+        this.wrapper.ariaRoleDescription="button";
+        this.wrapper.addEventListener("click",()=>{
+            _preview.onEntryClicked(this);
+        })
+        this.wrapper.addEventListener("keydown",(e)=>{
+            if(e.keyCode===13||e.keyCode===32){
+                this.wrapper.click();
+            }
+        })
 
         this.wrapper.appendChild(this.name);
         this.wrapper.appendChild(this.value);
@@ -83,6 +111,10 @@ class Previews {
 
     }
 
+    onEntryClicked(_entry){
+        console.log("overide me");
+    }
+
     build(_header){
         this.wrapper=document.createElement("div");
         this.header = document.createElement("h3");
@@ -90,6 +122,9 @@ class Previews {
     
     
         this.header.textContent = _header;
+
+        
+   
 
 
         this.wrapper.appendChild(this.header);
@@ -111,7 +146,7 @@ class Previews {
     addPreview(_preview,_forceRebuild){
         
         this.previews[_preview.getId()] = _preview;
-        
+
         if(_forceRebuild)this.buildList();
         
     }
@@ -124,14 +159,15 @@ class Previews {
 
     buildList(){
         this.list.innerHTML="";
-
+        
         for (const key in this.previews) {
             if (Object.hasOwnProperty.call(this.previews, key)) {
                 
                 const preview = this.previews[key];
                 preview.setValues();
+                
                 this.list.appendChild(preview.getHTMLElemnt());
-
+                
             }
         }
     }
@@ -144,8 +180,8 @@ class Previews {
 
 
 class RegisterPreviewEntry extends PreviewEntry{
-    constructor(_register,_valueDisplayer){
-        super();
+    constructor(_preview,_register,_valueDisplayer){
+        super(_preview);
         this.valueDisplayer=_valueDisplayer;
         this.register=_register;
 
@@ -169,13 +205,18 @@ class RegisterPreviewEntry extends PreviewEntry{
 
 }
 class RegisterPreviews extends Previews{
-    constructor(_valueDisplayer){
+    constructor(_parent,_valueDisplayer){
         super(Translator.getTranslation("_registers","Registers"));
         this.valueDisplayer = _valueDisplayer;
+        this.parent = _parent;
+    }
+
+    onEntryClicked(_entry){
+        this.parent.onRegisterEntryClicked(_entry.register);
     }
 
     toggleRegister(_register){
-        let preview  = new RegisterPreviewEntry(_register,this.valueDisplayer);
+        let preview  = new RegisterPreviewEntry(this,_register,this.valueDisplayer);
 
         
         if(this.hasPreview(preview.getId())==false){
@@ -193,9 +234,9 @@ class RegisterPreviews extends Previews{
 
 
 class MemoryPreviewEntry extends PreviewEntry{
-    constructor(_valueDisplayer,_addres,_value,_label){
+    constructor(_preview,_valueDisplayer,_addres,_value,_label){
 
-        super();
+        super(_preview);
         this.valueDisplayer=_valueDisplayer;
         this.addres=_addres;
         this.cachedValue=_value;
@@ -221,10 +262,12 @@ class MemoryPreviewEntry extends PreviewEntry{
 }
 
 class MemoryPreviews extends Previews{
-    constructor(_valueDisplayer,_mem){
+    constructor(_parent,_valueDisplayer,_mem){
         super(Translator.getTranslation("_memory","Memory"));
         this.valueDisplayer = _valueDisplayer;
         this.mem=_mem;
+
+        this.parent = _parent;
 
         this.mem.addOnValueChangedCallback((_mem,_addres)=>{
             if(this.hasPreview(_addres)){
@@ -256,13 +299,18 @@ class MemoryPreviews extends Previews{
                 this.buildList();
             }
         })
+        
 
     }
 
 
+    onEntryClicked(_entry){
+        this.parent.onMemoryPreviewClicked(_entry.addres);
+    }
+
     addMemorySlot(_addres,_label){
         if(_addres<this.mem.length()){
-            const entry = new MemoryPreviewEntry(this.valueDisplayer,_addres,this.mem.getValue(_addres),_label);
+            const entry = new MemoryPreviewEntry(this,this.valueDisplayer,_addres,this.mem.getValue(_addres),_label);
         this.addPreview(entry,false);
         }
         
@@ -270,9 +318,9 @@ class MemoryPreviews extends Previews{
     }
 
     toggleMemorySlot(_addres){
-        const entry = new MemoryPreviewEntry(this.valueDisplayer,_addres,this.mem.getValue(_addres));
+        const entry = new MemoryPreviewEntry(this,this.valueDisplayer,_addres,this.mem.getValue(_addres),"");
         if(this.hasPreview(entry.getId())==false){
-            
+
             this.addPreview(entry,true);
         }else{
             

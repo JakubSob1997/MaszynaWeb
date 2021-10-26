@@ -13,7 +13,7 @@ import Translator from "./translator.js";
 import VariablesPreview from "./variables-preview.js";
 
 export default class AssemblyEditor extends SidebarContent{
-    constructor(_machine,_valueDisplayer){
+    constructor(_machine,_valueDisplayer,_variablePreview){
 
         super();
         
@@ -32,17 +32,9 @@ export default class AssemblyEditor extends SidebarContent{
         
         this.variablePreview;
 
-        this.build();
+        this.build(_variablePreview);
         this.addCallbacks();
         this.load();
-
-        this.variablePreview.registers.toggleRegister(_machine.AK_register);
-
-        this.variablePreview.memory.addMemorySlot(0);
-        this.variablePreview.memory.addMemorySlot(1);
-        this.variablePreview.memory.addMemorySlot(2);
-        this.variablePreview.memory.addMemorySlot(3);
-        this.variablePreview.memory.buildList();
 
         SerializerManager.addSerializer(this.serializer);
 
@@ -57,7 +49,7 @@ export default class AssemblyEditor extends SidebarContent{
     }
 
 
-    build(){
+    build(_variablePreview){
 
 
         this.wrapper = document.createElement("div");
@@ -68,7 +60,7 @@ export default class AssemblyEditor extends SidebarContent{
         this.runButton = document.createElement("button");
         this.toCurrsorButton = document.createElement("button");
         
-        this.variablePreview = new VariablesPreview(this.valueDisplayer,this.M.MEM);
+        this.variablePreview =_variablePreview;
 
 
         this.codeMirror = new AssemblyCodeMirror(this.codeMirrorWrapper);

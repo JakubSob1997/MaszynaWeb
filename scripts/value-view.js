@@ -54,15 +54,27 @@ export default class ValueView{
     build(){
         this.mainWrapper.appendChild(this.valueField);
         this.mainWrapper.appendChild(this.writeButton);
-        this.mainWrapper.appendChild(this.plusOneButton);
-        this.mainWrapper.appendChild(this.minusOneButton);
-        this.mainWrapper.appendChild(this.setZeroButton);
+        
+        this.buttonWrapper.appendChild(this.minusOneButton);
+        this.buttonWrapper.appendChild(this.setZeroButton);
+        this.buttonWrapper.appendChild(this.plusOneButton);
+        this.mainWrapper.appendChild(this.buttonWrapper);
+
 
         this.writeButton.innerText=Translator.getTranslation("_write","Write");
         this.plusOneButton.innerText="+1";
         this.minusOneButton.innerText="-1";
         this.setZeroButton.innerText="0";
 
+        
+        this.valueField.style.height="2.5em"
+        this.valueField.style.width="10em"
+
+        this.mainWrapper.style.whiteSpace="nowrap";
+        this.buttonWrapper.style.whiteSpace="nowrap";
+
+        this.mainWrapper.classList.add("generic-inspector")
+        this.buttonWrapper.classList.add("generic-inspector")
         this.writeButton.classList.add("custom-btn");
         this.plusOneButton.classList.add("custom-btn");
         this.minusOneButton.classList.add("custom-btn");

@@ -442,7 +442,12 @@
     "_memory":{
         "en":"Memory",
         "pl":"Pamięć"
+    },
+    "_variable_preview":{
+        "en":"Variable Preview",
+        "pl":"Podgląd Zmiennych"
     }
+
     
  
 

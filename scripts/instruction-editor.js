@@ -183,9 +183,7 @@ export default class InstructionEditor extends SidebarContent{
 
                     const instr = parser.toInstruction();//instr.name+
                     console.log(instr);
-                    if(instr.name.match(/^(rpa|rst|rtb)$/i)){
-                        Alerter.sendMessage(Translator.getTranslation("_message_instrucion_keyword_override","Instruction @0 can't be a keyword",[instr.name]),AlertStyleEnum.SyntaxError);
-                    }
+                    
 
 
 

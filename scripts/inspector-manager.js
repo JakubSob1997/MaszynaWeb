@@ -12,14 +12,14 @@ import InfoInspector from "./info-inspector.js";
 
 
 export default class InsperctorManger{
-    constructor(_Element,_Machine,_MachineView){
+    constructor(_Element,_Machine,_MachineView,_variablePreview){
 
         
 
         this.inspectorElement = _Element;
         this.instructionInspector = new InstructionInspector(_Machine.instructionList);
-        this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer);
-        this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer);
+        this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer,_variablePreview);
+        this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer,_variablePreview);
         this.inputOutputInspector = new IOInspector(_Machine);
         this.settingsInspector = new SettingsInspector(_Machine);
         this.fileInspector = new FileSInspector();

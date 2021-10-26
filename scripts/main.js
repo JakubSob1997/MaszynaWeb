@@ -20,6 +20,7 @@ import Terminator from "./terminator.js";
 import Translator from "./translator.js";
 import AssemblyColorContext from "./assembly-color-context.js";
 import InstructionColorContext from "./instruction-color-context.js";
+import VariablesPreview from "./variables-preview.js";
 
 
 fetch("translations.json")
@@ -103,13 +104,15 @@ function main(){
     M.A_register.update();
 
 
-
-
+    const variablePreview = new VariablesPreview(MView.valueDisplayer,M.MEM);
+    
     const inspectorElement = document.getElementById("inspector");
-    var inspectorManager = new InsperctorManger(inspectorElement,M,MView);
+    const inspectorManager = new InsperctorManger(inspectorElement,M,MView,variablePreview);
+    variablePreview.inspectorManager=inspectorManager;
+
 
     const editorElement = document.getElementById("editor");
-    var editorManager = new EditorManager(editorElement,M,MView);
+    const editorManager = new EditorManager(editorElement,M,MView,variablePreview);
 
     inspectorManager.instructionInspector.addInstructionSelectedCallback((_instruction)=>{
         editorManager.drawEditorForInstruction(_instruction);

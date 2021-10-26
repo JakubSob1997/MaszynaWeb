@@ -5,13 +5,13 @@ import LayoutMediator from "./layout-mediator.js";
 
 export default class EditorManager{
 
-    constructor(_Element,_Machine,_MachineView){
+    constructor(_Element,_Machine,_MachineView,_variablePreview){
 
 
         this.editorElement = _Element;
         this.currentEditor =null;
 
-        this.assemblyEditor = new AssemblyEditor(_Machine,_MachineView.valueDisplayer);
+        this.assemblyEditor = new AssemblyEditor(_Machine,_MachineView.valueDisplayer,_variablePreview);
         this.instructionEditor = new InstructionEditor(_Machine,this);
 
         this.editorElement.appendChild(this.assemblyEditor.getHTMLElement());

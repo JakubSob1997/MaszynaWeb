@@ -6,7 +6,7 @@ import Translator from "./translator.js";
 
 export default class RegisterInspector extends SidebarContent{
 
-    constructor(_valueDisplayer){
+    constructor(_valueDisplayer,_variablePreview){
 
         super();
 
@@ -24,7 +24,7 @@ export default class RegisterInspector extends SidebarContent{
         this.currentRegister=null;
         
         this.build();
-        this.addCallbacks();
+        this.addCallbacks(_variablePreview);
 
     }
     focus(){
@@ -39,13 +39,15 @@ export default class RegisterInspector extends SidebarContent{
         const valueEle =this.valueView.getHTMLElement();
         this.wrapper.appendChild(valueEle);
 
+        this.wrapper.classList.add("generic-inspector"); 
+
         this.displaySelect=document.createElement("select");
         this.unsignedDecimal=document.createElement("option");
         this.signedDecimal=document.createElement("option");
         this.binary=document.createElement("option");
         this.hexaDecimal=document.createElement("option");
         this.instruction=document.createElement("option");
-        
+
 
         this.unsignedDecimal.innerText = Translator.getTranslation("_display_unsigned","Unsigned Decimal")
         this.unsignedDecimal.value=ValueDisplayEnum.UnsignedDecimal;
@@ -68,15 +70,28 @@ export default class RegisterInspector extends SidebarContent{
         this.displaySelect.appendChild(this.instruction);        
 
 
+
+        this.previewButton = document.createElement("button");
+        this.previewButton.classList.add("custom-btn");
+        this.previewButton.textContent="Preview";
+        this.previewButton.style.display="block";
+        
+
         this.wrapper.appendChild(this.displaySelect);
+
+        this.wrapper.appendChild(this.previewButton);
     }
 
-    addCallbacks(){
+    addCallbacks(_variablePreview){
         this.valueView.setOnPlusOneButton(()=>{this.onPlusOneButton();});
         this.valueView.setOnMinusOneButton(()=>{this.onMinusOneButon();});
         this.valueView.setOnSetZeroButton(()=>{ this.onSetZeroButton();});
         this.valueView.setOnWriteButton(()=>{this.onValueInput();});
         this.displaySelect.oninput=()=>{this.onDisplaySelect();};
+   
+        this.previewButton.addEventListener("click",()=>{
+            _variablePreview.registers.toggleRegister(this.currentRegister);
+        });
     }
 
     onPlusOneButton(){
