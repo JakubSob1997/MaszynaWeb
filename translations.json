@@ -434,6 +434,19 @@
     "_nav_menu":{
         "en":"Navigation Menu",
         "pl":"Menu Nawigacji"
+    },
+    "_registers":{
+        "en":"Registers",
+        "pl":"Rejestry"
+    },
+    "_memory":{
+        "en":"Memory",
+        "pl":"Pamięć"
     }
     
+ 
+
+    
+    
+
 }

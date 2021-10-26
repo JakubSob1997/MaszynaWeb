@@ -2,5 +2,7 @@
     "DodajDwa.json",
     "Fibo16.json",
     "Losowa_NWD.json",
-    "FiboInstr.json"
+    "FiboInstr.json",
+    "FiboRecursive.json",
+	"PrzerwaniaLista.json"
 ]

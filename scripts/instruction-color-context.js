@@ -4,6 +4,7 @@
 
 
 const InstructionColorContext={
-    signalDictionary:{}
+    signalDictionary:{},
+    flagsDictionary:{}
 }
 export default InstructionColorContext;

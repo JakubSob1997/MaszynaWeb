@@ -4,7 +4,19 @@ import Terminator from "./terminator.js";
 
 
 export const ExecutionContext ={
-    curssorAddres: 0
+    curssorAddres: 0,
+    breakPoints:{}
+}
+
+
+function breakpointCheck(_M){
+    const newinstr =_M.isNewInstruction();
+    const addres = _M.getCurrentAddres()
+
+    const hasBreakPoint = Object.values(ExecutionContext.breakPoints).indexOf(addres) > -1;
+
+
+    if(hasBreakPoint&&newinstr)_M.stopMachine();
 }
 
 
@@ -48,6 +60,7 @@ function runMachineBySetting(_M){
 
         if(_M.wasTerminated==true)return;
         _M.doCycle();
+        breakpointCheck(_M)
 
     }else if(mode===ExecutionMode.Instruction){
 
@@ -56,6 +69,7 @@ function runMachineBySetting(_M){
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
+            breakpointCheck(_M)
             cyclesRemaining--;
         } while (_M.isNewInstruction()===false &&cyclesRemaining>0);
 
@@ -65,6 +79,7 @@ function runMachineBySetting(_M){
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
+            breakpointCheck(_M)
             cyclesRemaining--;
         } while (cyclesRemaining>0);
 
@@ -79,8 +94,10 @@ function runMachineToAddresAsync(_M,_addres){
 
         if(_M.wasTerminated==true)return;
         _M.doCycle();
+        breakpointCheck(_M)
         if(_M.isNewInstruction()&&_M.getCurrentAddres()===_addres){
-            setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
+            //setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
+            _M.stopMachine();
             return;
         }
 
@@ -91,8 +108,10 @@ function runMachineToAddresAsync(_M,_addres){
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
+            breakpointCheck(_M)
             if(_M.isNewInstruction()&&_M.getCurrentAddres()===_addres){
-                setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
+                //setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
+                _M.stopMachine();
                 return;
             }
             cyclesRemaining--;
@@ -104,8 +123,10 @@ function runMachineToAddresAsync(_M,_addres){
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
+            breakpointCheck(_M)
             if(_M.isNewInstruction()&&_M.getCurrentAddres()===_addres){
-                setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
+                //setTimeout(()=>{runInstructionNonBlocking(_M);},0); 
+                _M.stopMachine();
                 return;
             }
             cyclesRemaining--;
@@ -124,6 +145,7 @@ function runInstructionNonBlocking(_M){
 
         if(_M.wasTerminated==true)return;
         _M.doCycle();
+        breakpointCheck(_M)
         if(_M.isNewInstruction()){
             _M.stopMachine();
         }
@@ -134,6 +156,7 @@ function runInstructionNonBlocking(_M){
         do {
             if(_M.wasTerminated==true)return;
             _M.doCycle();
+            breakpointCheck(_M)
             if(_M.isNewInstruction()){
                 _M.stopMachine();
             }

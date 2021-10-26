@@ -24,6 +24,7 @@ export default class  Register extends MachineComponent {
         this.wasWriten=false;
         this.onUpdateCallbacks = [];
         this.extention = _extention?? ExtnensionFlags.Base;
+        this.updatedFlag=false;
     }
 
     getExtention(){
@@ -99,10 +100,19 @@ export default class  Register extends MachineComponent {
 
     update(){
         
-        if(this.onUpdateCallbacks===undefined==false){
-            this.onUpdateCallbacks.forEach(funk => {
-                funk(this);
-            });
+
+        
+        if(this.updatedFlag == false){
+            
+            this.updatedFlag = true;
+
+            setTimeout(()=>{
+                this.onUpdateCallbacks.forEach(funk => {
+                    funk(this);
+                });
+                this.updatedFlag=false;
+            })
+            
         }
 
         

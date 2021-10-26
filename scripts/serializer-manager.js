@@ -52,13 +52,20 @@ let SerializerManager={
             let reader = new FileReader();
         reader.onload=(e)=>{
             const content = e.target.result;
-            const jsonObj = JSON.parse(content);
+            let jsonObj
+            try {
+                jsonObj = JSON.parse(content);
+                
+            } catch (error) {
+                reject(error)
+            }
+            
             jsonObj.fileName=_fileObject.name;
-
             resolve(jsonObj);
+            
         };
-        reader.onerror=(e)=>{
-            reject();
+        reader.onerror=(error)=>{
+            reject(error);
         }
         reader.readAsText(_fileObject);
         })

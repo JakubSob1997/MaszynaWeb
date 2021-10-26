@@ -3,13 +3,14 @@
 import SidebarContent from "./sidebar-content.js";
 import AssemblyParser from "./assembly-parser.js"
 import Alerter from "./alerter.js";
-import { AlertStyleEnum } from "./enums.js";
+import { AlertStyleEnum, ExecutionMode } from "./enums.js";
 import Terminator from "./terminator.js";
 import AssemblySerializer from "./assembly-serializer.js";
 import SerializerManager from "./serializer-manager.js";
 import AssemblyCodeMirror from "./assembly-codemirror.js";
 import {ExecutionContext,runMachine,runMachineToCurssor} from "./machine-execution.js";
 import Translator from "./translator.js";
+import VariablesPreview from "./variables-preview.js";
 
 export default class AssemblyEditor extends SidebarContent{
     constructor(_machine,_valueDisplayer){
@@ -25,14 +26,23 @@ export default class AssemblyEditor extends SidebarContent{
 
         this.M = _machine;
         this.valueDisplayer = _valueDisplayer;
+ 
 
         this.serializer = new AssemblySerializer(this);
         
-
+        this.variablePreview;
 
         this.build();
         this.addCallbacks();
         this.load();
+
+        this.variablePreview.registers.toggleRegister(_machine.AK_register);
+
+        this.variablePreview.memory.addMemorySlot(0);
+        this.variablePreview.memory.addMemorySlot(1);
+        this.variablePreview.memory.addMemorySlot(2);
+        this.variablePreview.memory.addMemorySlot(3);
+        this.variablePreview.memory.buildList();
 
         SerializerManager.addSerializer(this.serializer);
 
@@ -53,10 +63,14 @@ export default class AssemblyEditor extends SidebarContent{
         this.wrapper = document.createElement("div");
         this.title=document.createElement("h1");
         this.codeMirrorWrapper =document.createElement("div");
+        this.buttonWrapper = document.createElement("div");
         this.loadButton = document.createElement("button");
         this.runButton = document.createElement("button");
         this.toCurrsorButton = document.createElement("button");
         
+        this.variablePreview = new VariablesPreview(this.valueDisplayer,this.M.MEM);
+
+
         this.codeMirror = new AssemblyCodeMirror(this.codeMirrorWrapper);
 
         this.title.setAttribute("tabindex",-1);
@@ -64,6 +78,7 @@ export default class AssemblyEditor extends SidebarContent{
 
 
         this.wrapper.classList.add("generic-inspector")
+        this.buttonWrapper.classList.add("generic-inspector");
         this.loadButton.classList.add("custom-btn");
         this.runButton.classList.add("custom-btn");
         this.toCurrsorButton.classList.add("custom-btn");
@@ -74,12 +89,15 @@ export default class AssemblyEditor extends SidebarContent{
         this.toCurrsorButton.textContent=Translator.getTranslation("_run_cursor","Run to cursor")
 
 
+        this.buttonWrapper.appendChild(this.loadButton);
+        this.buttonWrapper.appendChild(this.runButton);
+        this.buttonWrapper.appendChild(this.toCurrsorButton)
+
 
         this.wrapper.appendChild(this.title);
         this.wrapper.appendChild(this.codeMirrorWrapper);
-        this.wrapper.appendChild(this.loadButton);
-        this.wrapper.appendChild(this.runButton);
-        this.wrapper.appendChild(this.toCurrsorButton)
+        this.wrapper.appendChild(this.buttonWrapper);
+        this.wrapper.appendChild(this.variablePreview.getHTMLElemnt());
 
         
         this.codeMirror.cm.refresh();
@@ -104,18 +122,57 @@ export default class AssemblyEditor extends SidebarContent{
             setTimeout(()=>{
                 if(this.parser!=null){
                     const cursor =this.codeMirror.cm.getCursor();
-                    const addres = this.parser.getInstructionByPositon(cursor.line,cursor.ch);
-                    if(addres!=null){
-                        ExecutionContext.curssorAddres = addres.addres;
+                    const pointer = this.parser.getInstructionByPositon(cursor.line,cursor.ch);
+                    if(pointer!=null){
+                        ExecutionContext.curssorAddres = pointer.addres;
                     }
                     
                 }
             })
-            
-            
         })
+
+        this.codeMirror.onGutterClick=(_state,_line)=>{
+            this.setBreakPointAddres(_state,_line);
+        }
+
+        this.M.addOnCycleDoneCallback((M)=>{
+
+            if(this.parser==null)return;
+
+            if(M.isNewInstruction()){
+                this.codeMirror.highlightLine(
+                    this.parser.getLineByAddres(
+                        M.getCurrentAddres()
+                        )
+                    );
+            }
+        })
+
        
     
+    }
+
+    setBreakPointAddres(_state,_line){
+        let pointer;
+        if(this.parser!=null){
+            pointer = this.parser.getInstructionByBreakPoint(_line);
+            
+        }
+
+        if(_state){
+            ExecutionContext.breakPoints[_line] =pointer!=null ? pointer.addres:null;
+        }else{
+            delete ExecutionContext.breakPoints[_line];
+        }
+        console.log(ExecutionContext.breakPoints);
+    }
+
+    recalcBreakpointAddreses(){
+        for (const line in ExecutionContext.breakPoints) {
+            if (Object.hasOwnProperty.call(ExecutionContext.breakPoints, line)) {
+                this.setBreakPointAddres(true,line);
+            }
+        }
     }
 
     getCode(){
@@ -126,6 +183,9 @@ export default class AssemblyEditor extends SidebarContent{
         this.codeMirror.cm.setValue(_code);
         this.codeMirror.cm.clearHistory();
         this.codeMirror.cm.refresh();
+        ExecutionContext.breakPoints={};
+        this.variablePreview.clearAll();
+        
         this.save();
     }
 
@@ -160,8 +220,24 @@ export default class AssemblyEditor extends SidebarContent{
         if( this.parser.parseSuccesful){
             this.M.setComponentsDefault();
             this.M.resetInternalState();
-            
             this.M.MEM.loadMemory( this.parser.values);
+            this.recalcBreakpointAddreses();
+            this.codeMirror.clearHiglight();
+            this.codeMirror.highlightLine(this.parser.getLineByAddres(0));
+
+            this.variablePreview.memory.clearPreviews();
+
+            for (const name in this.parser.labels) {
+                if (Object.hasOwnProperty.call(this.parser.labels, name)) {
+                    const label = this.parser.labels[name];
+                    if(label.instrIndex!=null){
+                        this.variablePreview.memory.addMemorySlot(label.instrIndex,label.name);
+                    }
+                }
+            }
+
+            this.variablePreview.memory.buildList();
+
 
             Alerter.sendMessage(Translator.getTranslation("_message_program_loaded","Program was loaded to memory!"),AlertStyleEnum.Succes);
         }else{

@@ -11,3 +11,13 @@
     width: 100%;
     height: 50vh;
 }
+
+.CodeMirror-gutter.breakpoints{
+    width: 20px;
+    font-size: 120%;
+}
+
+
+.custom-cm-highlight{
+    background: rgb(105, 49, 29);
+}

@@ -18,6 +18,7 @@ export default class Signal{
         }
         
         this.onUpdateCallbacks = [];
+        this.wasUpdatedFlag=false;
     }
 
     getExtention(){
@@ -25,9 +26,17 @@ export default class Signal{
     }
 
     update(){
-        this.onUpdateCallbacks.forEach(callBack => {
-            callBack(this);
-        });
+        if(this.wasUpdatedFlag ==false){
+            this.wasUpdatedFlag=true;
+            setTimeout(()=>{
+                this.onUpdateCallbacks.forEach(callBack => {
+                    callBack(this);
+                });
+                this.wasUpdatedFlag=false;
+            })
+            
+        }
+        
     }
 
     addOnUpdateCallback(_funk){

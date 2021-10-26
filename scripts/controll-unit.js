@@ -52,7 +52,7 @@ export default class ControllUnit extends MachineComponent{
                 //}
 
                 this.internalCycleCounter=branchCondition.targetCycle;
-                if(this.internalCycleCounter<instruction.cycles.length){
+                if(this.internalCycleCounter>=0){
                     instrcycle = instruction.cycles[this.internalCycleCounter];
                 }else{
                     instrcycle = instruction.cycles[0];

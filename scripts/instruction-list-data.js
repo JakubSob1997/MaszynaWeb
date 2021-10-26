@@ -18,6 +18,8 @@ export default class InstructionListData {
 
         const STP  = new InstructionData(
             "STP",
+            "// Stops the program execution\n"+
+            "// Zatrzymuje działanie programu\n"+
             "ROZKAZ STP;\n"+
             "ARGUMENTY 0;\n"+
             "czyt wys wei il;\n"+
@@ -27,6 +29,8 @@ export default class InstructionListData {
         
         const DOD = new InstructionData(
             "DOD", 
+            "// Adds value from Memory[AD] to AK\n"+
+            "// Dodaje wartość z Pemięci[AD] do AK\n"+
             "ROZKAZ DOD;\n"+
             "czyt wys wei il;\n"+
             "wyad wea;\n"+
@@ -35,6 +39,8 @@ export default class InstructionListData {
 
         const ODE = new InstructionData(
             "ODE",
+            "// Substracts value from Memory[AD] to AK\n"+
+            "// Odejmuje wartość z Pemięci[AD] do AK\n"+
             "ROZKAZ ODE;\n"+
             "czyt wys wei il;\n"+
             "wyad wea;\n"+
@@ -42,6 +48,8 @@ export default class InstructionListData {
         )
         const POB = new InstructionData(
             "POB",
+            "// Reads value from Memory[AD] to AK\n"+
+            "// Pobiera wartość z Pemięci[AD] do AK\n"+
             "ROZKAZ POB;\n"+
             "czyt wys wei il;\n"+
             "wyad wea;\n"+
@@ -49,6 +57,8 @@ export default class InstructionListData {
         )
         const LAD =new InstructionData(
             "LAD",
+            "// Loads value from AK into the Memory[AD] \n"+
+            "// Ładuje wartość z AK do Pemięci[AD]\n"+
             "ROZKAZ LAD;\n"+
             "czyt wys wei il;\n"+
             "wyad wea wyak wes;\n"+
@@ -57,12 +67,16 @@ export default class InstructionListData {
 
         const SOB=new InstructionData(
             "SOB",
+            "// Unconditional jump to AD addres \n"+
+            "// Skok bezwarunkowy do adresu AD\n"+
             "ROZKAZ SOB;\n"+
             "czyt wys wei il;\n"+
             "wyad wea wel;\n"
         )
         const SOM=new InstructionData(
             "SOM",
+            "// Jump when AK<0 to AD addres \n"+
+            "// Skok gdu AK<0 do adresu AD\n"+
             "ROZKAZ SOM;\n"+
             "czyt wys wei il;\n"+
             "JEZELI Z @skok;\n"+
@@ -72,6 +86,8 @@ export default class InstructionListData {
 
         const SOZ=new InstructionData(
             "SOZ",
+            "// Jump when AK==0 to AD addres \n"+
+            "// Skok gdu AK==0 do adresu AD\n"+
             "ROZKAZ SOZ;\n"+
             "czyt wys wei il;\n"+
             "JEZELI ZAK @skok;\n"+

@@ -328,7 +328,7 @@ export default class InstrcutionParser {
         this.parseLines();
 
         
-        this.labels["KONIEC"] = new InstructionLabel(this.instructionLines.length, "KONIEC");
+        this.labels["KONIEC"] = new InstructionLabel(-1, "KONIEC");
 
 
     }
@@ -459,6 +459,12 @@ export default class InstrcutionParser {
         this.validateLongBranches(_instructionValidator.getFlagsDictionary())
         this.validateBranches(_instructionValidator.getFlagsDictionary());
         this.validateSignals(_instructionValidator.getSignalDictionary())
+        
+        if(this.name.match(/^(rpa|rst|rtb)$/i)){
+            this.errorList.push(`Instruction: ${this.name} can't be a keyword: (RPA, RST, RTB)`);
+            this.parseSuccesful=false;
+        }
+        
         return this.parseSuccesful;
     }
 

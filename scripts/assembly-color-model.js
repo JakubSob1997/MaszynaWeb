@@ -25,7 +25,7 @@ CodeMirror.defineMode('prog', function(_config, parserConfig) {
   // }
 
   var types = /^(rst|rpa|rtb)$/i;
-  var numbers = /^(#[\da-f]+|%[01]+|\d+d?)$/i;
+  var numbers = /^(#[\da-f]+|%[01]+|\-?\d+)$/i;
 
   return {
     startState: function() {

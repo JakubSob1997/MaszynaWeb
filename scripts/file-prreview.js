@@ -63,8 +63,13 @@ export default class FilePreviewView{
     }
 
     load(){
-        SerializerManager.loadFromObject(this.object,SerializerManager.serializers);
-        Alerter.sendMessage(Translator.getTranslation("_message_file_loaded","Machine was loaded."),AlertStyleEnum.InputSucces);
+        try {
+            SerializerManager.loadFromObject(this.object,SerializerManager.serializers);
+            Alerter.sendMessage(Translator.getTranslation("_message_file_loaded","Machine was loaded."),AlertStyleEnum.InputSucces);
+        } catch (error) {
+            Alerter.sendMessage(error,AlertStyleEnum.InputError);
+        }
+        
         this.wrapper.classList.add("display-none");
     }
 

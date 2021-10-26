@@ -108,12 +108,6 @@ CodeMirror.defineMode('inst', function(_config, parserConfig) {
         return "type";
       }
 
-    //   if(AssemblyColorContext.instructionList!=null){
-    //     if(AssemblyColorContext.instructionList.hasInstruction(word)){
-    //       return "keyword";
-    //     }
-    //   }
-      
 
     if(word.slice(0,1)==="@"){
 

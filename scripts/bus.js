@@ -18,6 +18,8 @@ export default class Bus extends MachineComponent{
         this.busMask=~0;
 
         this.tmpMask= ~0;
+
+        this.wasUpdateFlag=false;
     }
 
     resetState(){
@@ -49,10 +51,20 @@ export default class Bus extends MachineComponent{
     }
 
     update(){
-        if(this.onUpdateCallbacks!=null){
-            this.onUpdateCallbacks.forEach(element => {
-                element(this);
-            });
+
+
+        if(this.wasUpdateFlag==false){
+
+            this.wasUpdateFlag=true;
+
+            setTimeout(()=>{
+                this.onUpdateCallbacks.forEach(element => {
+                    element(this);
+                });
+                this.wasUpdateFlag=false;
+            })
+
+            
         }
         
     }

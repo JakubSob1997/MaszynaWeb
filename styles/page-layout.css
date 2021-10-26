@@ -310,6 +310,10 @@ nav{
     background: var(--even-alert-color);
 }
 
+.alert-area>.alert-entry:nth-child(odd){
+    background: var(--secondary-color);
+}
+
 .alert-entry{
     width: 100%;
     padding-left: 1.2em;
@@ -367,7 +371,7 @@ nav{
 
 .machine-flex{
     
-    min-width: 1px;
+    min-width: calc(1000px*var(--machine-scale));
     
     display: flex;
     flex-direction: column;
@@ -382,7 +386,6 @@ nav{
     
     min-width: calc(1000px*var(--machine-scale));
     max-width: calc(1600px*var(--machine-scale));;
-    
     /*
     min-width: 800px;
     width: 60vw;

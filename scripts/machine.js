@@ -94,7 +94,15 @@ export default class Machine{
     }
 
     invokeOnCycleDone(){
-        this.onCycleDoneCallbacks.forEach(_funk=>{_funk(this)});
+        if(this.cycleDoneInvoked == false){
+            this.cycleDoneInvoked=true;
+        }
+        
+        setTimeout(()=>{
+            this.onCycleDoneCallbacks.forEach(_funk=>{_funk(this)});
+            this.cycleDoneInvoked=false;
+        })
+        
     }
 
 

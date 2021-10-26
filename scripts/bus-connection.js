@@ -15,6 +15,7 @@ export default class BusConnection extends MachineComponent{
         this.onUpdateCallbacks = [];
         this.isaActive=false;
         this.busMask=0;;
+        this.wasUpdatedFlag=false;
 
     }
 
@@ -40,10 +41,18 @@ export default class BusConnection extends MachineComponent{
     }
 
     update(){
-        if(this.onUpdateCallbacks!=null){
-            this.onUpdateCallbacks.forEach(element => {
-                element(this);
+        
+
+        if(this.wasUpdatedFlag==false){
+
+            this.wasUpdatedFlag=true;
+            setTimeout(() => {
+                this.onUpdateCallbacks.forEach(element => {
+                    element(this);
+                });
+                this.wasUpdatedFlag=false;
             });
+            
         }
         
     }

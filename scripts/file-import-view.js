@@ -1,5 +1,7 @@
 
 
+import Alerter from "./alerter.js";
+import { AlertStyleEnum } from "./enums.js";
 import FileViewBase from "./file-view-base.js";
 import SerializerManager from "./serializer-manager.js";
 import Translator from "./translator.js";
@@ -44,7 +46,8 @@ export default class FileImportView extends FileViewBase{
         this.fileInput.addEventListener("input",()=>{
             if(this.fileInput.files.length>0){
                 SerializerManager.readDataFromJson(this.fileInput.files[0],SerializerManager.serializers)
-                    .then((_data)=>{this.pickObject(_data)});
+                    .then((_data)=>{this.pickObject(_data)})
+                    .catch((e)=>{Alerter.sendMessage(e,AlertStyleEnum.InputError)});
             }
         })
 

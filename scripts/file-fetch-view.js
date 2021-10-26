@@ -46,7 +46,7 @@ export default class FileFetchView extends FileViewBase{
                 this.recievedPreset(data)
             })
             .catch((e)=>{
-                Alerter.sendMessage(Translator.getTranslation("_message_fail_load_preset","Failed to load \"@0\" preset.",[_fileName]),AlertStyleEnum.InputError)
+                Alerter.sendMessage(Translator.getTranslation("_message_fail_load_preset","Failed to load \"@0\" preset.",[_fileName]),AlertStyleEnum.InputError);
             })
             .finally(()=>{
                 this.setEntriesActive(true);

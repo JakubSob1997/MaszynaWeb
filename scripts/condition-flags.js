@@ -12,8 +12,12 @@ export class ConditionFlag{
 
 export default class FlagsUnit{
 
-    constructor(){
+    constructor(_flagRegister){
         this.conditionFlags = {};
+    }
+
+    updateUnit(){
+        
     }
 
     addFlag(_conditionFlag){

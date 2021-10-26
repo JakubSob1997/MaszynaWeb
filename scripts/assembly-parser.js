@@ -116,6 +116,40 @@ export default class AssemblyParser{
         delete this.values;
     }
 
+
+    getLineByAddres(_addres){
+        let line = -1;
+
+
+        const found  = this.instructions.find((ele)=>{
+            return ele.addres===_addres;
+        })
+
+        if(found){
+            line = found.ogLine;
+        }
+        return line;
+    }
+
+    getInstructionByBreakPoint(_line){
+        if(this.parseSuccesful===false){
+            return null ;
+        }
+
+        let closest=null;
+        for (let i = 0; i < this.instructions.length; i++) {
+            
+            const instr = this.instructions[i];
+            
+            if(closest===null&&instr.ogLine>=_line){
+                
+                closest=instr;
+            }
+            
+        }
+        return closest;
+    }
+
     getInstructionByPositon(_line,_ch){
         if(this.parseSuccesful===false){
             return null
@@ -400,6 +434,9 @@ export default class AssemblyParser{
         for (const name in this.labels) {
             if (Object.hasOwnProperty.call(this.labels, name)) {
                 const label = this.labels[name];
+
+                if(this.instructions[label.instrIndex]==null){continue;}
+                
                 const addr  = this.instructions[label.instrIndex].addres;
 
                 for (let r = 0; r < label.refrences.length; r++) {

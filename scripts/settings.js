@@ -121,9 +121,8 @@ export default class Settings{
             this.adressWidth,
             this.extentionFlags,
             this.intAdressList,
-            this.executionMode,
-            this.pseudoThreads,
-            this.cyclesBeetwenUpdate,
+            //this.executionMode,
+            //this.cyclesBeetwenUpdate,
         )
     }
 
@@ -243,8 +242,8 @@ export class SettingsData{
         this.adressWidth=_adressWidth;
         this.extensionData = new MachineExtensionData(_extentionFlags);
         this.intAdressList = _intAdressList;
-        this.executionMode = _executionMode;
-        this.cyclesBeetwenUpdate=_cyclesBeetwen;
+        if(_executionMode)this.executionMode = _executionMode;
+        if(_cyclesBeetwen) this.cyclesBeetwenUpdate=_cyclesBeetwen;
     }
 
 

@@ -1,60 +1,36 @@
-import MachineViewElement from "./machine-view-element.js"
+
+import MachineViewRegister from "./machine-vew-register.js";
+
+import {MatchRegisterWidthEnum} from "./enums.js";
 
 
 
 
 
 
-
-
-
-export default class MachineViewFlagRegister extends MachineViewElement{
+export default class MachineViewFlagRegister extends MachineViewRegister{
 
 
     constructor(_MV,_flagRegister){
-        super(_MV);
+        super(_MV,_flagRegister);
 
-
-        this.flagRegister = _flagRegister;
-
-        this.build(_MV,_flagRegister);
-        this.display();
-    }
-
-
-    build(_machineView,_flagRegister){
-        this.element  = document.createElement("button")
-
-        this.element.classList.add("reg");
-        
-        /*
-        _flagRegister.addOnUpdateCallback(_reg=>{
-             this.display();
-            }
-        );
-            */
-
-        this.element.addEventListener("click" ,()=>{
-           // _machineView.selectRegister(_register);
-        });
+        this.busMatchRule = MatchRegisterWidthEnum.DontMatch;
 
     }
-
-
 
     display(){
-        const formatedValue = this.flagRegister.getTextContent();
+        const regName = this.register.name.toUpperCase();
+        const formatedValue = this.machineView.valueDisplayer.registerToString(this.register)
 
-        this.element.textContent="F: "+formatedValue;
+        this.element.innerText=regName+": "+formatedValue;
 
-        /*
-        if(this._flagRegister.wasWriten){
+        if(this.register.wasWriten){
             this.element.classList.add("reg-selected");
         }else{
             this.element.classList.remove("reg-selected");
-        }*/
+        }
 
-        const myExtFlag = this.flagRegister.getExtention();
+        const myExtFlag = this.register.getExtention();
         const allExtFlags = this.machineView.getCurentExtentions()
         
         if((myExtFlag &allExtFlags)===0){
@@ -64,13 +40,9 @@ export default class MachineViewFlagRegister extends MachineViewElement{
             this.element.classList.remove("reg-hidden");
             this.element.disabled=false;
         }
-        
-
     }
 
-    getHTMLElement(){
-        return this.element;
-    }
+
 
 
 }
