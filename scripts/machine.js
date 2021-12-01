@@ -271,6 +271,8 @@ export default class Machine{
             
         }
 
+        this.controllUnit.selectNextCycleCounter(this,this.instructionList,this.settings);
+
         this.invokeOnCycleDone();
     }
 

@@ -374,7 +374,10 @@ export default class InstrcutionParser {
                 continue;
             }
 
-
+            if(branch.instrIndex<0){
+                this.errorList.push("Instruction definition can't start with a branch statment.")
+                this.parseSuccesful = false;
+            }
 
 
             if (this.labels.hasOwnProperty(branch.label) == false) {
@@ -410,6 +413,11 @@ export default class InstrcutionParser {
             if (branch.parseSuccesful == false) {
                 this.parseSuccesful = false;
                 continue;
+            }
+
+            if(branch.instrIndex<0){
+                this.errorList.push("Instruction definition can't start with a branch statment.")
+                this.parseSuccesful = false;
             }
 
             if (this.labels.hasOwnProperty(branch.yesLabel) == false) {
@@ -558,7 +566,7 @@ export default class InstrcutionParser {
         }
 
         if(this.isBranchLine(_wordArry)){
-            this.parseBranches(_nextInstrIndex,_wordArry);
+            this.parseBranches(_nextInstrIndex-1,_wordArry);
             return _nextInstrIndex;
         }
 
@@ -566,6 +574,7 @@ export default class InstrcutionParser {
             this.labels[_wordArry[0]] = new InstructionLabel(_nextInstrIndex, _wordArry[0]);
         }
 
+        //Check if JEZELI at the end of cycle case
         let split = 0
         for (split; split < _wordArry.length; split++) {
             
@@ -579,7 +588,7 @@ export default class InstrcutionParser {
         
         if(split<_wordArry.length){
             this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry.slice(0,split)));
-            this.parseBranches(_nextInstrIndex+1,_wordArry.slice(split));
+            this.parseBranches(_nextInstrIndex,_wordArry.slice(split));
             
 
             
@@ -648,13 +657,7 @@ export default class InstrcutionParser {
             }
             
             let targetIndex = this.labels[branchLine.label].index;
-            //console.log(branchLine);
-            if (branchLine.instrIndex >= _instruction.cycles.length) {
 
-                const placeholderCycle = new InstrCycle([]);
-                placeholderCycle.isBranchPlaceholder = true;
-                _instruction.cycles.push(placeholderCycle);
-            }
             _instruction.cycles[branchLine.instrIndex].branchCondtions.push(
                 new BranchCondition(
                     branchLine.flagName,
@@ -678,7 +681,7 @@ export default class InstrcutionParser {
         this.applyBranchConditions(instruction)
 
 
-
+        console.log(instruction);
 
         return instruction;
     }

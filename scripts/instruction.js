@@ -18,7 +18,6 @@ export class InstrCycle {
         this.signals = _signals;
         this.branchCondtions = [];
         this.isFinal = false;
-        this.isPlaceholder=false;
         this.ogIndex = NaN;
     }
 }
