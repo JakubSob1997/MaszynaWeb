@@ -67,13 +67,15 @@ function main(){
         
     })
 
+
+
         
     const alertAreaELement = document.getElementById("alert-area");
     const alertWindow =  new  AlertWindow(alertAreaELement)
     const alertTerminator= new AlertTerminator();
 
 
-    Alerter.sendMessage(Translator.getTranslation("_message_welcome","Welcome in Machine W simulator!"),AlertStyleEnum.Large);
+    Alerter.sendMessage(Translator.getTranslation("_message_welcome","Welcome in the Machine W simulator!"),AlertStyleEnum.Large);
 
     const M=new Machine();
     buildMachine(M);
@@ -226,9 +228,5 @@ function main(){
 
 
 }
-
-
-
-
 
 

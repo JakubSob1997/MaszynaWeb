@@ -141,7 +141,11 @@ export default class Machine{
             }
             signal.update();
         }else{
-            Alerter.alert("Undefined signal "+ _signalName);
+            Alerter.alert(Translator.getTranslation(
+                "_alert_undefined_signal",
+                "Undefined signal: @0!",
+                [_signalName]
+            ));
         }
 
     }
@@ -157,7 +161,11 @@ export default class Machine{
             }
             signal.update();
         }else{
-            Alerter.alert("Undefined signal "+ _signalName);
+            Alerter.alert(Translator.getTranslation(
+                "_alert_undefined_signal",
+                "Undefined signal: @0!",
+                [_signalName]
+            ));
         }
 
     }

@@ -73,7 +73,7 @@ export default class RegisterInspector extends SidebarContent{
 
         this.previewButton = document.createElement("button");
         this.previewButton.classList.add("custom-btn");
-        this.previewButton.textContent="Preview";
+        this.previewButton.textContent=Translator.getTranslation("_preview","Preview");
         this.previewButton.style.display="block";
         
 

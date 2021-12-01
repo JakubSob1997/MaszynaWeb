@@ -5,6 +5,7 @@
 import MachineComponent from "./machine-component.js"
 import { ValueDisplayEnum,MatchRegisterWidthEnum,ExtnensionFlags } from "./enums.js";
 import Alerter from "./alerter.js"
+import Translator from "./translator.js";
 
 
 export default class  Register extends MachineComponent {
@@ -77,7 +78,10 @@ export default class  Register extends MachineComponent {
 
     write(_value){
         if(this.wasWriten==true){
-            Alerter.alert("Register: " + this.name +" was alredy writen into.");
+            Alerter.alert(Translator.getTranslation(
+                "_alert_register_rewrite",
+                "Register: @0 was already written into!",
+                [this.name.toUpperCase()]));
         }else{
             this.wasWriten = true;
             this.setValue(_value);
@@ -88,7 +92,11 @@ export default class  Register extends MachineComponent {
         if(_bus.hasValue()){
             this.write(_bus.getValue());
         }else{
-            Alerter.alert("No Value On Bus");
+            Alerter.alert(Translator.getTranslation(
+                "_alert_no_value_on_bus",
+                "No value on the @0 bus!",
+                [_bus.name]
+            ));
         }
     }
 

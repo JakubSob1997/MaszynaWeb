@@ -1,6 +1,55 @@
 {
+    
+    "_alert_bus_connection_both":{
+        "en":"Both connected busses are active!",
+        "pl":"Obie połączone magistrale są aktywne!"
+    },
+    "_alert_bus_multiple_source":{
+        "en":"Multiple data sources set for the @0 bus!",
+        "pl":"Więcej niż jedno źródło danych wystywione na magistrale @0!"
+    },
+    "_alert_bus_no_value":{
+        "en":"Undefined value on the @0 bus!",
+        "pl":"Niezdefiniowana wartość na magistrali @0!"
+    },
+    "_alert_undefined_instruction":{
+        "en":"Instruction with op code: @0 is undefined!",
+        "pl":"Rozkaz o kodzie @0 nie jest zdefiniowany!"
+    },
+    "_alert_undefined_io_device":{
+        "en":"Undefined I/O device at addres @0!",
+        "pl":"Pod adresem @0 nie ma urządzenia We/Wy!"
+    },
+    "_alert_io_input_nan":{
+        "en":"I/O input: @0 is not a number!",
+        "pl":"Wejście urządzenia We/Wy @0 nie jest numerem!"
+    },
+    "_alert_undefined_signal":{
+        "en":"Undefined signal: @0!",
+        "pl":"Sygnał @0 nie jest zdefiniowany!"
+    },
+    "_alert_memory_active":{
+        "en":"Memory is active already!",
+        "pl":"Pamięć operacyjna jest już aktywna!"
+    },
+    "_alert_memory_out_of_bounds":{
+        "en":"Address is out of memory bounds!",
+        "pl":"Adres jest z poza zakresu pamięci!"
+    },
+    "_alert_register_rewrite":{
+        "en":"Register: @0 was already written into!",
+        "pl":"Wartoś już została wpisana do rejestru: @0!"
+    },
+    "_alert_no_value_on_bus":{
+        "en":"No value on the @0 bus!",
+        "pl":"Brak wartości na magistrali @0!"
+    },
+    "_alert_signal_module_inactive":{
+        "en":"Module containing \"@0\" signal is inactive!",
+        "pl":"Moduł zwierający sygnał \"@0\" nie jest aktywny!"
+    },
     "_message_welcome":{
-        "en":"Welcome in Machine W simulator!",
+        "en":"Welcome in the Machine W simulator!",
         "pl":"Witaj w symulatorze Maszyny W!"
     },
     "_message_machine":{

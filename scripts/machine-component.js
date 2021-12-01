@@ -5,7 +5,7 @@ export default class MachineComponent{
 
     setDefault(){}
     update(){}
-    resetState(){}
+    resetState(){}//Resets state beetwen cycles
     onBusWidthChanged(_settings){}
     getExtention(){return ExtnensionFlags.Base}
 

@@ -69,8 +69,8 @@ export default function buildMachine(_Machine){
     
     
 
-    let S_bus = new Bus(MatchRegisterWidthEnum.ToWord);
-    let A_bus = new Bus(MatchRegisterWidthEnum.ToAdress);
+    let S_bus = new Bus(MatchRegisterWidthEnum.ToWord,"S");
+    let A_bus = new Bus(MatchRegisterWidthEnum.ToAdress,"A");
     _Machine.S_bus=S_bus;
     _Machine.A_bus=A_bus;
 

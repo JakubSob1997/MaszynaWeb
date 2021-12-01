@@ -7,6 +7,7 @@ export default class ConsoleView{
 
     constructor(_consoleDevice){
         this.wrapper;
+        this.heading;
         this.inputWrapper;
         this.asciiInputEle;
         this.numericInputEle;
@@ -22,7 +23,9 @@ export default class ConsoleView{
     }
 
     build(_consoleDevice){
+        
         this.wrapper = document.createElement("div");
+        this.heading =document.createElement("h3");
         this.inputWrapper=document.createElement("div");
         this.asciiInputEle = document.createElement("input");
         this.numericInputEle=document.createElement("input");
@@ -37,7 +40,7 @@ export default class ConsoleView{
         this.numericInputEle.setAttribute("type","number");
         this.numericInputEle.setAttribute("step","1");
 
-
+        this.heading.innerText=Translator.getTranslation("_console","Console");
         this.clrConsoleButton.innerText=Translator.getTranslation("_clear","Clear");
         this.inputLabel.innerText=Translator.getTranslation("_input","Input");
         this.outputLabel.innerText=Translator.getTranslation("_output","Output");
@@ -66,6 +69,7 @@ export default class ConsoleView{
         this.widthWrapper.appendChild(this.outputEle);
         
 
+        this.wrapper.appendChild(this.heading);
         this.wrapper.appendChild(this.widthWrapper);
         this.wrapper.appendChild(this.clrConsoleButton);
 

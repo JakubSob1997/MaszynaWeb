@@ -47,7 +47,7 @@ export default class MemorySlotInspector{
 
         this.wrapper.classList.add("generic-inspector"); 
         this.previewButton.classList.add("custom-btn");
-        this.previewButton.textContent="Preview";
+        this.previewButton.textContent=Translator.getTranslation("_preview","Preview");
 
         this.wrapper.appendChild(this.label);
         this.wrapper.appendChild(this.valueView.getHTMLElement());

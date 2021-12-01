@@ -2,6 +2,7 @@
 
 import Alerter from "./alerter.js";
 import MachineComponent from "./machine-component.js";
+import Translator from "./translator.js";
 
 
 export default class IOUnit extends MachineComponent/*extends IODriver */{
@@ -48,7 +49,11 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
     init(_adress){
         let device = this.getDevice(_adress);
         if(device==null){
-            Alerter.alert("Undefined device at adress: "+_adress);
+            Alerter.alert(Translator.getTranslation(
+                "_alert_undefined_io_device",
+                "Undefined IO device at addres @0!",
+                [_adress]
+            ));
             return;
         }
         this.G_register.setValue(0);
@@ -64,7 +69,11 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
     
     read(_value){
         if(isNaN(_value)||typeof(_value)!="number"){
-            Alerter.alert("Input: "+_value+" is not a number.");
+            Alerter.alert(Translator.getTranslation(
+                "_alert_io_input_nan",
+                "I/O input: @0 is not a number!",
+                [_value]
+            ));
             return;
         }
         this.RB_register.setValue(Math.floor(_value));

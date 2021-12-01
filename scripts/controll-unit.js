@@ -2,6 +2,7 @@
 
 import Alerter from "./alerter.js"
 import MachineComponent from "./machine-component.js";
+import Translator from "./translator.js";
 
 export default class ControllUnit extends MachineComponent{
 
@@ -26,7 +27,13 @@ export default class ControllUnit extends MachineComponent{
 
 
         if(_InstructionList.length()<=opCode){
-            Alerter.alert("Instruction with op code: "+ opCode.toString()+" undefined" );
+            Alerter.alert(
+                Translator.getTranslation(
+                    "_alert_undefined_instruction",
+                    "Instruction with op code: @0 is undefined!",
+                    [opCode]
+                    )
+            );
             return;
         }
         
@@ -77,6 +84,10 @@ export default class ControllUnit extends MachineComponent{
         this.nextInstructionFlag=forceNextInstrFlag||this.internalCycleCounter>=instruction.cycles.length;
 
         
+    }
+
+    selectNextCycleCounter(_Machine,_InstructionList,_Settings){
+
     }
 
 }

@@ -2,13 +2,15 @@
 import MachineComponent from "./machine-component.js";
 import Alerter from "./alerter.js"
 import { MatchRegisterWidthEnum } from "./enums.js";
+import Translator from "./translator.js";
 
 export default class Bus extends MachineComponent{
 
 
-    constructor(_busMathcRule){
+    constructor(_busMathcRule,_name){
         super();
 
+        this.name =_name;
         this.referenceRegister =null;
         this.bufferValue=0;
         this.hasBufferedValue=false;
@@ -74,7 +76,12 @@ export default class Bus extends MachineComponent{
         if(this.referenceRegister ==null){
             this.referenceRegister=_referenceRegister;
         }else{
-            Alerter.alert("Multiple data sources set for bus")
+            Alerter.alert(
+                Translator.getTranslation(
+                    "_alert_bus_multiple_source",
+                    "Multiple data sources set for the @0 bus!",
+                    [this.name])
+                )
         }
 
         
@@ -102,7 +109,13 @@ export default class Bus extends MachineComponent{
             
             return (this.tmpMask&this.busMask)&this.bufferValue;
         }else{
-            Alerter.alert("Undefined value on the BUS")
+            Alerter.alert(
+                Translator.getTranslation(
+                    "_alert_bus_no_value",
+                    "Undefined value on the @0 bus!",
+                    [this.name]
+                    )
+            )
         }
         
     }

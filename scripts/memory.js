@@ -1,6 +1,7 @@
 
 import MachineComponent from "./machine-component.js";
 import Alerter from "./alerter.js"
+import Translator from "./translator.js";
 
 
 export default class Mamory extends MachineComponent{
@@ -14,6 +15,7 @@ export default class Mamory extends MachineComponent{
 
         this.settings = _settings;
         this.values= new Array(arrayLength);
+        this.activeFlag = false;
 
         for (let index = 0; index < this.values.length; index++) {
             this.values[index]=0;
@@ -26,6 +28,9 @@ export default class Mamory extends MachineComponent{
 
     }
 
+    resetState(){
+        this.activeFlag = false;
+    }
 
     length(){
         return this.values.length;
@@ -103,17 +108,39 @@ export default class Mamory extends MachineComponent{
 
 
     read(_adress){
+        if(this.activeFlag){
+            Alerter.alert(Translator.getTranslation(
+                "_alert_memory_active",
+                "Memory is active already!"
+            ))
+        }
+        this.activeFlag=true;
 
         if(_adress>= this.values.length||_adress<0){
-            Alerter.alert("Memory out of bounds.");
+            Alerter.alert(Translator.getTranslation(
+                "_alert_memory_out_of_bounds",
+                "Address is out of memory bounds!"
+            ));
         }else{
             return this.values[_adress]&this.settings.getWordMask();
         }
     }
 
     write(_adress,_value){
+
+        if(this.activeFlag){
+            Alerter.alert(Translator.getTranslation(
+                "_alert_memory_active",
+                "Memory is active already!"
+            ))
+        }
+        this.activeFlag=true;
+
         if(_adress>= this.values.length||_adress<0){
-            Alerter.alert("Memory out of bounds.");
+            Alerter.alert(Translator.getTranslation(
+                "_alert_memory_out_of_bounds",
+                "Address is out of memory bounds!"
+            ));
         }else{
             this.values[_adress] =_value&this.settings.getWordMask();
             this.valueChanged(_adress);

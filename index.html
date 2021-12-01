@@ -357,8 +357,8 @@
   <template class = "info-entry" data-key="_bus" lang="en" data-default data-title="Busses">
     <p>
       <span data-key="_bus">Busses</span> are responsible for connecting  <span data-key="_register">registers</span>.
-       During a single <span data-key="_cycle">cycle</span> only one register cant output data to a bus, 
-       Multiple registers can read values from a register at the same time.
+       During a single <span data-key="_cycle">cycle</span> only one register cant output value to a bus, 
+       Multiple registers can read value from a bus at the same time.
     </p>
   </template>
 
@@ -367,6 +367,7 @@
       <span data-key="_bus">Magistrale</span> pełnią rolę połączenia pomiędzy <span data-key="_register">rejestrami</span>.
        Podczas jednego <span data-key="_cycle">taktu</span> na magistrale może wystawiać wartość tylko jeden rejestr, 
        Lecz z magistrali może odczytywać wartość wiele rejestrów jednocześnie.
+       W maszynie znajdują się dwie magistrale (A, S) i opcjonalne połączenie magistralowe.
     </p>
   </template>
 

@@ -10,6 +10,7 @@ import Translator from "./translator.js";
 
 export default class VariablesPreview{
 
+
     constructor(_valueDisplayer,_mem){
         this.inspectorManager;
         this.build(_valueDisplayer,_mem);

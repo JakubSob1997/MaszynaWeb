@@ -57,8 +57,6 @@ export default class IOInspector extends SidebarContent{
         
 
         this.header.innerText=Translator.getTranslation("_input_output","Input/Output")
-        this.showListButton.innerText=Translator.getTranslation("_list","List");
-        this.showConsoleButton.innerText=Translator.getTranslation("_console","Console");
         this.ioDeviceListLabel.innerText=Translator.getTranslation("_io_list","Lista urządzeń We/Wy")
         //this.intDeviceListLabel.innerHTML="Lista urządzeń przerywających"
         
@@ -66,20 +64,15 @@ export default class IOInspector extends SidebarContent{
         this.header.setAttribute("tabindex",-1);
 
         this.wrapper.classList.add("generic-inspector")
-        this.showListButton.classList.add("custom-btn");
-        this.showConsoleButton.classList.add("custom-btn");
 
 
         this.deviceListWrapper.appendChild(this.ioDeviceListLabel);
         this.deviceListWrapper.appendChild(this.ioDeviceList.getHTMLElement());
-        //this.deviceListWrapper.appendChild(this.intDeviceListLabel);
-        //this.deviceListWrapper.appendChild(this.interuptDeviceList.getHTMLElement());
         
         this.displayArea.appendChild(this.deviceListWrapper);
+        this.displayArea.appendChild(this.consoleView.getHTMLElement());
 
         this.wrapper.appendChild(this.header);
-        this.wrapper.appendChild(this.showListButton);
-        this.wrapper.appendChild(this.showConsoleButton)
         this.wrapper.appendChild(this.displayArea);
         
 

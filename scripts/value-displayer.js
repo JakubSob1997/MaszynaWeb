@@ -41,7 +41,7 @@ export default class ValueDisplayer{
         if(this.instructionList.hasInstruction(opcode)){
             code = this.instructionList.getInstruction(opcode).name;
         }else{
-            code="???"
+            code=`<${opcode}>`
         }           
 
         arg = (_value&this.settings.adressMask).toString(10);

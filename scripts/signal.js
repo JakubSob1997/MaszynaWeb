@@ -1,4 +1,5 @@
 import Alerter from "./alerter.js";
+import Translator from "./translator.js";
 
 
 
@@ -46,7 +47,11 @@ export default class Signal{
     executeSignal(_Machine){
         if((_Machine.settings.extentionFlags&this.extention)==0){
 
-            Alerter.alert("Moduł zwierający sygnał \""+this.name +"\" nie jest aktywny.")
+            Alerter.alert(Translator.getTranslation(
+                "_alert_signal_module_inactive",
+                "Module containing \"@0\" signal is inactive!",
+                [this.name]
+            ))
         }else{
             this.onSignal(_Machine);
         }

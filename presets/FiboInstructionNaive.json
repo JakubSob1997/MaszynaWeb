@@ -43,7 +43,7 @@
 			},
 			{
 				"name": "FIBO",
-				"sourceCode": "ROZKAZ FIBO;\n//SETUP\nczyt wys wei il;\nwyak weja ode weak;\nwyws wes as;\nwyak wex iak wyad wews;\nwyak wey;\n\n// Ws check\n@loop\nwyws as weak przep weja;\nJEZELI ZAK @end_x;\n\n// Add x\nwyy przep weak weja;\nwyx dod weak weja;\nwyak wex dws;\n\n\n// Ws check\nwyws as weak przep weja;\nJEZELI ZAK @end_y;\n\n//Add y\nwyx przep weak weja;\nwyy dod weak weja;\nwyak wey dws;\nJEZELI NIE Z @loop;\nJEZELI Z @loop;\n\n//End\n@end_x wyx weja przep weak;\nJEZELI NIE Z @end;\nJEZELI Z @end;\n@end_y wyy weja przep weak;\n\n@end\nwyl wea;\nwys as wews;\n\n\n"
+				"sourceCode": "ROZKAZ FIBO;\n//SETUP\nczyt wys wei il;\nwyak weja ode weak;\nwyws wes as;\nwyak wex iak wyad wews;\nwyak wey;\n\n// Ws check\n@loop\nwyws as weak przep weja;\nJEZELI ZAK @end_x;\n\n// Add x\nwyy przep weak weja;\nwyx dod weak weja;\nwyak wex dws;\n\n\n// Ws check\nwyws as weak przep weja;\nJEZELI ZAK @end_y;\n\n//Add y\nwyx przep weak weja;\nwyy dod weak weja;\nwyak wey dws;\nDALEJ @loop;\n\n//End\n@end_x wyx weja przep weak;\nDALEJ @end;\n@end_y wyy weja przep weak;\n\n@end\nwyl wea;\nwys as wews;\n\n\n"
 			},
 			{
 				"name": "CALL",
@@ -101,5 +101,5 @@
 			4
 		]
 	},
-	"program": "\n\n\nSOB start\nfiboARG: RST 15\ncounter: RST 0\n_0: RST 0\n_1: RST 1\n_2: RST 2\n_3: RST 3\n\n//\tclrAlerts();\n//\tfor(counter =0; counter<=fiboARG;counter++){\n//\t\talert(fiboRecursive(counter));\n//\t}\n\nstart: \n  OUT 5\n  POB counter\ncheck:\n  ODE fiboARG\n  SOM continue\n  SOZ continue\n  SOB end\n\ncontinue:\n  DOD fiboARG\n  SOB call\n\n\ncall:  \n  PSH\n  CALL fiboRecursive\n  OUT 4\n  POP\n\n  POB counter\n  DOD _1\n  LAD counter\n  SOB check\n\nend:\n  STP\n\n\n// fiboRecursive(int n){\n//  if(n<=0)return 0;\n//  if(n<3)return 1;\n//  return fiboRecursive(n-1) + fiboRecursive(n-2);\n// }\n\nfiboRecursive:\n  TOPN 1 //AK = n\n  SOM default_0 //if(n<0)\n  SOZ default_0 //if(n==0)\n  ODE _3 //AK=n-3\n  SOM default_1 //if(n<3)\n  DOD _2 //AK=n-1\n  \n  PSH //PSH n-1\n  CALL fiboRecursive //fiboRecursive(n-1)\n  POPAD tmp // tmp = n-1\n  PSH // PSH fiboRec(n-1)\n  POB tmp //AK = n-1\n  ODE _1 //AK = n-2\n  \n  PSH //PSH n-2\n  CALL fiboRecursive //fiboRec(n-2)\n  LAD tmp // tmp = fiboRec(n-2)\n  POP // n-2\n  POP // AK = fiboRec(n-1)\n  DOD tmp // AK += fiboRec(n-2)\n  RET \n\ndefault_0:\n  POB _0\n  RET\n  \ndefault_1:\n  POB _1\n  RET\n\ntmp: RPA\n//END fiboRecursive\n"
+	"program": "\n\n//Fibo Instruction Naive\nOUT 5\n\nFIBO 0  OUT 4\nFIBO 1  OUT 4\nFIBO 2  OUT 4\nFIBO 3  OUT 4\nFIBO 4  OUT 4\nFIBO 5  OUT 4\nFIBO 6  OUT 4\nFIBO 7  OUT 4\nFIBO 8  OUT 4\nFIBO 9  OUT 4\nFIBO 10 OUT 4\nFIBO 11 OUT 4\nFIBO 12 OUT 4\nFIBO 13 OUT 4\nFIBO 14 OUT 4\nFIBO 15 OUT 4\n\nSTP"
 }

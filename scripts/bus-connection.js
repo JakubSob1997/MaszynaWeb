@@ -3,6 +3,7 @@
 import MachineComponent from "./machine-component.js";
 import Alerter from "./alerter.js"
 import { ExtnensionFlags } from "./enums.js";
+import Translator from "./translator.js";
 
 export default class BusConnection extends MachineComponent{
     constructor(_busArray){
@@ -72,7 +73,12 @@ export default class BusConnection extends MachineComponent{
                     this.referenceRegister=bus.referenceRegister;
                     this.busMask=bus.busMask;
                 }else{
-                    Alerter.alert("Both connected busses active");
+                    Alerter.alert(
+                        Translator.getTranslation(
+                            "_alert_bus_connection_both",
+                            "Both connected busses are active!"
+                            )
+                    );
                     return;
                 }
             }
