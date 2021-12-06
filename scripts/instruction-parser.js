@@ -1,5 +1,6 @@
 
 import Instruction, { InstrCycle, BranchCondition } from "./instruction.js";
+import Translator from "./translator.js";
 
 
 
@@ -440,6 +441,12 @@ export default class InstrcutionParser {
     }
 
     validateSignals(_signalDictionary) {
+
+        if(this.instructionLines.length===0){
+            this.parseSuccesful = false;
+            this.errorList.push("Dfine at least one cycle!");
+        }
+
         for (let i = 0; i < this.instructionLines.length; i++) {
             const line = this.instructionLines[i];
             let used={};
@@ -468,8 +475,14 @@ export default class InstrcutionParser {
         this.validateBranches(_instructionValidator.getFlagsDictionary());
         this.validateSignals(_instructionValidator.getSignalDictionary())
         
-        if(this.name.match(/^(rpa|rst|rtb)$/i)){
-            this.errorList.push(`Instruction: ${this.name} can't be a keyword: (RPA, RST, RTB)`);
+        if(this.name&& this.name.match(/^(rpa|rst|rtb)$/i)){
+            this.errorList.push(
+                Translator.getTranslation(
+                    "_instr_validation_name_is_keyword",
+                    "Instruction name: @0 can't be a keyword: (RPA, RST, RTB)",
+                    [this.name]
+                )
+            );
             this.parseSuccesful=false;
         }
         
@@ -652,7 +665,7 @@ export default class InstrcutionParser {
             const label = this.labels[branchLine.label];
 
             if (label === undefined) {
-                console.log("Label undefined")
+                //console.log("Label undefined")
                 continue;
             }
             

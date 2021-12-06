@@ -13,6 +13,7 @@ class Word{
 
 
 class AssemblyLabel{
+    realAddres;
     constructor(_name,_instrIndex){
         this.name =_name;
         this.instrIndex = _instrIndex;
@@ -437,7 +438,9 @@ export default class AssemblyParser{
 
                 if(this.instructions[label.instrIndex]==null){continue;}
                 
+                
                 const addr  = this.instructions[label.instrIndex].addres;
+                label.realAddres = addr;
 
                 for (let r = 0; r < label.refrences.length; r++) {
                     const ref = label.refrences[r];

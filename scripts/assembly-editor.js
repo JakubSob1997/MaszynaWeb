@@ -222,8 +222,8 @@ export default class AssemblyEditor extends SidebarContent{
             for (const name in this.parser.labels) {
                 if (Object.hasOwnProperty.call(this.parser.labels, name)) {
                     const label = this.parser.labels[name];
-                    if(label.instrIndex!=null){
-                        this.variablePreview.memory.addMemorySlot(label.instrIndex,label.name);
+                    if(label.realAddres!=null){
+                        this.variablePreview.memory.addMemorySlot(label.realAddres,label.name);
                     }
                 }
             }

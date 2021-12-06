@@ -82,22 +82,22 @@ export default class MemorySlotInspector{
     }
 
     onPlusOneButton(){
-        this.memmory.write(this.currentIndex, this.memmory.read(this.currentIndex)+1);
+        this.memmory.setValue(this.currentIndex, this.memmory.read(this.currentIndex)+1);
     }
 
     onMinusOneButon(){
-        this.memmory.write(this.currentIndex, this.memmory.read(this.currentIndex)-1);
+        this.memmory.setValue(this.currentIndex, this.memmory.read(this.currentIndex)-1);
 
     }
 
     onSetZeroButton(){
-        this.memmory.write(this.currentIndex,0);
+        this.memmory.setValue(this.currentIndex,0);
     }
 
     onValueInput(){
         const intVal = this.valueView.getValue();
             if(isNaN(intVal)==false){
-                this.memmory.write(this.currentIndex,intVal);
+                this.memmory.setValue(this.currentIndex,intVal);
             }
     }
 

@@ -84,6 +84,10 @@
         "en":"Machine was stopped!",
         "pl":"Maszyna została zatrzymana!"
     },
+    "_instr_validation_name_is_keyword":{
+        "en":"Instruction name: @0 can't be a keyword: (RPA, RST, RTB)",
+        "pl":"Nazwa rozkazu: @0 nie może być pseudo rozkazem: (RPA, RST, RTB)"
+    },
     "_program":{
         "en":"Program",
         "pl":"Program"

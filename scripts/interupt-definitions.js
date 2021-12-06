@@ -1,5 +1,6 @@
 import InteruptDevice from "./interupt-device.js";
 import { InteruptEnum } from "./enums.js";
+import Translator from "./translator.js";
 
 
 
@@ -14,10 +15,10 @@ export default function buildInteruptDevices(_interuptDriver){
     let button3 = new InteruptDevice(_interuptDriver);
     let button4 = new InteruptDevice(_interuptDriver);
 
-    button1.description = "Przycisk przerwania 1";
-    button2.description = "Przycisk przerwania 2";
-    button3.description = "Przycisk przerwania 3";
-    button4.description = "Przycisk przerwania 4";
+    button1.description = Translator.getTranslation("_int_button","Interrupt Button @0",[1])
+    button2.description = Translator.getTranslation("_int_button","Interrupt Button @0",[2])
+    button3.description = Translator.getTranslation("_int_button","Interrupt Button @0",[3])
+    button4.description = Translator.getTranslation("_int_button","Interrupt Button @0",[4])
 
     button1.interuptVactor = InteruptEnum.INT1;
     button2.interuptVactor = InteruptEnum.INT2;

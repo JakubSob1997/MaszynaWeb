@@ -31,7 +31,8 @@ export default class Machine{
         this.settings;
 
         this.onManualToggleCallbacks = [];
-        this.onCycleDoneCallbacks=[]
+        this.onCycleDoneCallbacks=[];
+        this.onCycleDoneForceCallbacks=[];
         this.onMachineStartedCllbacks=[];
         this.onMachineStopedCallbacks=[];
         this.wasTerminated=true;
@@ -93,7 +94,12 @@ export default class Machine{
         this.onCycleDoneCallbacks.push(_funk);
     }
 
+    addOnCycleDoneForceCallback(_funk){
+        this.onCycleDoneForceCallbacks.push(_funk);
+    }
+
     invokeOnCycleDone(){
+        this.onCycleDoneForceCallbacks.forEach(_funk=>{_funk(this)});
         if(this.cycleDoneInvoked == false){
             this.cycleDoneInvoked=true;
         }

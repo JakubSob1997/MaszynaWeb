@@ -39,6 +39,19 @@ export default class Mamory extends MachineComponent{
     getValue(_adress){
         return this.values[_adress];
     }
+    setValue(_adress,_value){
+
+
+        if(_adress>= this.values.length||_adress<0){
+            Alerter.alert(Translator.getTranslation(
+                "_alert_memory_out_of_bounds",
+                "Address is out of memory bounds!"
+            ));
+        }else{
+            this.values[_adress] =_value&this.settings.getWordMask();
+            this.valueChanged(_adress);
+        }
+    }
 
     addOnValueChangedCallback(_funk){
         this.onValueChangedCalbacks.push(_funk);
