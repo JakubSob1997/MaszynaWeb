@@ -3,13 +3,6 @@ import Signal from "./signal.js"
 import { ExtnensionFlags, SignalOrientation,ALUOperationEnum} from "./enums.js";
 import Terminator from "./terminator.js";
 
-/*
-    It defines all the signals in a
-    nite and shrt func called addAllSignals()
-
-    I recomend Ctrl+F to navigate in this file
-*/
-
 
 
 

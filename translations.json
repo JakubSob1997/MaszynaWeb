@@ -38,7 +38,7 @@
     },
     "_alert_register_rewrite":{
         "en":"Register: @0 was already written into!",
-        "pl":"Wartoś już została wpisana do rejestru: @0!"
+        "pl":"Wartość już została wpisana do rejestru: @0!"
     },
     "_alert_no_value_on_bus":{
         "en":"No value on the @0 bus!",
@@ -499,7 +499,55 @@
     "_variable_preview":{
         "en":"Variable Preview",
         "pl":"Podgląd Zmiennych"
+    },
+    "_int":{
+        "en":"INT@0",
+        "pl":"PRZERW@0"
+    },
+    "_interrupt":{
+        "en":"Interrupt",
+        "pl":"Przerwanie"
+    },
+    "_int_list":{
+        "en":"Interrupt Device List",
+        "pl":"Lista urządzeń przerywających"
+    },
+    "_int_button":{
+        "en":"Interrupt button @0",
+        "pl":"Przycisk przerwania @0"
+    },
+    "_none":{
+        "en":"None",
+        "pl":"Brak"
+    },
+    "_interupt_cycle_timer":{
+        "en":"Cycle timer interupt",
+        "pl":"Przerwanie licznika taktów"
+    },
+    "_io_cycle_timer_start":{
+        "en":"Start cycle timer (cmd)",
+        "pl":"Uruchom licznik taktów (pol)"
+    },
+    "_cycle_timer":{
+        "en":"Cycle Timer",
+        "pl":"Licznik Taktów"
+    },
+    "_countdown":{
+        "en":"Countdown",
+        "pl":"Odliczanie"
+    },
+    "_cycles_to_wait":{
+        "en":"Cycles to count",
+        "pl":"Takty do odliczenia"
+    },
+    "_done":{
+        "en":"Done",
+        "pl":"Koniec"
     }
+
+    
+    
+
 
     
  
