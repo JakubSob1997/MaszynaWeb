@@ -181,7 +181,7 @@ export class MachineViewMemoryEntry extends MachineViewElement{
         this.element  = document.createElement("pre")
         this.element.classList.add("mem-entry");
 
-        this.element.tabIndex=this.addres===-1;
+        this.element.tabIndex=-1;
         this.element.setAttribute("data-mem-adress",this.addres.toString());
 
         this.display();

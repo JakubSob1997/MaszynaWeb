@@ -19,6 +19,8 @@
 
     transform-origin: top;
     animation: file-preview-entry 200ms cubic-bezier(.49,.38,.31,1.6);
+
+    box-shadow:  4px 4px 30px  -8px #000000;
 }
 
 @keyframes file-preview-entry{
@@ -82,6 +84,11 @@ label.file-entry{
 
     border-radius: 0.6em;
     text-align: left;
+    
+    box-shadow: 
+        2px 2px 4px  -2px #000000,
+        inset -1px 0px 3px -1px #000000;
+      
 }
 
 .file-entry:nth-of-type(even){

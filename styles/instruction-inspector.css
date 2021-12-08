@@ -26,6 +26,10 @@
 
     border-radius: 0.3em;
     min-width: min-content;
+
+    box-shadow:
+        3px 3px 4px -3px var(--contrast-font-color),
+        inset -2px -2px 5px -3px var(--contrast-font-color);
     
    
 }
@@ -43,7 +47,7 @@
 
 
 .instr-entry .instr-name{
-    border-radius: 0.5em;
+    border-radius: 0.3em;
     font-weight: 500;
     font-size: 110%;
     flex-grow:  1;;

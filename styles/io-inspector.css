@@ -24,6 +24,7 @@
 
 .io-device-list{
     min-width: min-content;
+    
 }
 
 .io-device-entry{
@@ -36,6 +37,11 @@
     min-width: min-content;
     width: 100%;
     border-radius: 0.5em;
+
+
+    box-shadow:
+    2px 2px 5px -3px var(--contrast-font-color),
+    inset -2px -2px 4px -3px var(--contrast-font-color);
 }
 
 .io-device-entry>:first-child{
@@ -81,6 +87,8 @@
     flex-basis: 0;
     width: 0;
 
+   
+
 }
 
 .console-numeric-input{
@@ -110,4 +118,5 @@
     width: 100%;
     min-height: 5em;
     min-height: 20em;
+
 }

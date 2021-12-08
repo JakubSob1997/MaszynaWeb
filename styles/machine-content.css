@@ -39,14 +39,11 @@
     border:solid;
     border-width: thin;
     border-radius: 0.5em;
+
+    box-shadow:
+    inset -3px -3px 3px -2px #00000088;;
 }
 
-
-.container{
-
-    
-    
-}
 
 
 
@@ -59,6 +56,10 @@
     
 
     height: 1em;
+
+
+    box-shadow:
+    1px 1px 3px 0px #00000088;
     
 }
 
@@ -71,6 +72,9 @@
     color: var(--font-color);
 
     height: 100%;
+
+    box-shadow:
+    1px 1px 3px 0px #00000088;
 }
 
 .bus-selected{
@@ -80,6 +84,8 @@
 .bus-hidden{
     background: transparent;
     color: transparent;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 
@@ -100,7 +106,8 @@
 
 
     
-
+    box-shadow:
+        inset -3px -3px 3px -3px #00000088;;
     
 }
 
@@ -132,6 +139,8 @@
     background: transparent;
     color: transparent;
     cursor: initial;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 
@@ -156,6 +165,7 @@
     white-space: nowrap;
     overflow: visible;
     
+    text-shadow: 1px 1px 2px var(--contrast-font-color);
 
     
 }
@@ -207,6 +217,10 @@
     background: var(--font-color);
     color: var(--contrast-font-color);
     cursor: pointer;
+
+    box-shadow:inset -3px -3px 4px -3px #00000088;
+    
+    text-shadow: none;
 }
 
 .sig:active{
@@ -238,12 +252,16 @@
 .sig-hidden{
     background: transparent;
     color: transparent;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 .sig-hidden:hover{
     background: transparent;
     color: transparent;
     cursor:default;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 
@@ -272,6 +290,9 @@
     display: fixed;
     flex-direction: column;
 
+     box-shadow:
+    inset -3px -3px 4px -3px #00000088;
+
 }
 
 .mem:focus,.mem:focus-within{
@@ -282,6 +303,8 @@
 
 .mem-entry{
     white-space: nowrap;
+
+    border-bottom:  solid 1px #00000044;
 
 }
 
@@ -333,12 +356,16 @@ span.reg-name{
 .int-button-hidden{
     background: transparent;
     color: transparent;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 .int-button-hidden:hover{
     cursor: default;
     background: transparent;
     color: transparent;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 
@@ -381,7 +408,7 @@ span.reg-name{
 }
 
 .arrow-head{
-
+    
 }
 
 .arrow-head-up{
@@ -408,6 +435,8 @@ span.reg-name{
     border-right: 0.45em solid transparent;
   
     border-top:  0.6em solid  var(--font-color);
+
+    
 }
 
 .arrow-head-down-wyak{

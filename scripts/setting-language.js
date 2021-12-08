@@ -54,7 +54,7 @@ export default  class LanguageSetting extends SettingView{
 
         this.select.value= Translator.getLanguage();
 
-        this.select.addEventListener("input",()=>{
+        this.select.addEventListener("change",()=>{
             Translator.setLanguage(this.select.value)
             location.reload();         
         })

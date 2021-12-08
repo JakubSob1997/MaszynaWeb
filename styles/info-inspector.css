@@ -4,6 +4,10 @@
 .info-inspector-entry{
     padding: 1em;
     min-width: 25em;
+
+    box-shadow:
+    2px 2px 5px -3px var(--contrast-font-color),
+    inset -2px -2px 4px -1px var(--contrast-font-color);
 }
 
 
@@ -23,6 +27,7 @@
 
 .info-inspector-entry *{
     line-height: 1.7;
+    
 }
 
 .info-inspector-entry ul{

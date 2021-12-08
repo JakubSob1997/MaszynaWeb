@@ -17,6 +17,9 @@
     min-width: max-content;
     border-radius: 0.2em;
     cursor: pointer;
+    box-shadow:
+    2px 2px 5px -3px var(--contrast-font-color),
+    inset -2px -2px 4px -3px var(--contrast-font-color);
 }
 
 .variable-preview dl>div>*{
