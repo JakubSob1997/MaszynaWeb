@@ -274,13 +274,18 @@
 
 }
 
+.mem:focus,.mem:focus-within{
+    outline: dashed var(--secondary-color) 2px;
+
+}
+
 
 .mem-entry{
     white-space: nowrap;
 
 }
 
-.mem-entry:hover{
+.mem-entry:hover,.mem-entry:focus{
     cursor: pointer;
     background: var(--primary-color);
     color: var(--font-color);

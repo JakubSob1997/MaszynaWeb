@@ -48,6 +48,10 @@ class InstructionRecord{
         this.downButton.onclick = ()=>{_inspector.onDownButton(_index)};
         this.name.onclick=()=>(_inspector.onRecordClicked(_index));
         this.removeButton.addOnClickHandler(()=>{_inspector.onDeleteButton(_index)})
+   
+        this.record.addEventListener("keydown",(ev)=>{_inspector.onNavigation(ev,this)})
+   
+   
     }
 
     getHTMLElement(){
@@ -145,6 +149,57 @@ export default class InstructionInspector extends SidebarContent{
         this.addInstructionButton.addEventListener("click",()=>{
             this.onAddButton();
         })
+
+    }
+
+    onNavigation(ev,record){
+
+        //Left
+        if(ev.keyCode===37){
+            if( ev.target.previousSibling){
+                ev.preventDefault();
+                ev.target.previousSibling.focus();
+            }else{
+                record.record.lastChild.focus();
+            }
+            return;
+        }
+
+        //Right
+        if(ev.keyCode===39){
+            if( ev.target.nextSibling){
+                ev.preventDefault();
+                ev.target.nextSibling.focus();
+            }else{
+                record.record.firstChild.focus();
+            }
+            return;
+        }
+        
+
+        const index =[...ev.target.parentNode.children].indexOf(ev.target);
+    
+        //Up
+        if(ev.keyCode===38){
+            if( record.record.previousSibling){
+                ev.preventDefault();
+                record.record.previousSibling.children[index].focus();
+            }else{
+                this.instructionListElement.lastChild.children[index].focus();
+            }
+            return;
+        }
+
+        //Down
+        if(ev.keyCode===40){
+            if( record.record.nextSibling){
+                ev.preventDefault();
+                record.record.nextSibling.children[index].focus();
+            }else{
+                this.instructionListElement.firstChild.children[index].focus();
+            }
+            return;
+        }
     }
 
     onUpButton(_index){

@@ -82,11 +82,11 @@ export default class MemorySlotInspector{
     }
 
     onPlusOneButton(){
-        this.memmory.setValue(this.currentIndex, this.memmory.read(this.currentIndex)+1);
+        this.memmory.setValue(this.currentIndex, this.memmory.getValue(this.currentIndex)+1);
     }
 
     onMinusOneButon(){
-        this.memmory.setValue(this.currentIndex, this.memmory.read(this.currentIndex)-1);
+        this.memmory.setValue(this.currentIndex, this.memmory.getValue(this.currentIndex)-1);
 
     }
 

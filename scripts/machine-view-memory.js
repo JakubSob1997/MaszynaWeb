@@ -91,6 +91,53 @@ export default class MachineViewMemory extends MachineViewElement{
             }
         })
 
+        this.element.addEventListener("keydown",(e)=>{
+
+            
+
+            if(e.target===this.element){
+                if(e.keyCode===38||e.keyCode===40){
+                    this.element.firstChild.focus();
+                }
+                
+            }else{
+
+                const adressString  =e.target.getAttribute("data-mem-adress");
+                const adressInt =parseInt(adressString);
+
+
+                  //Select
+                if(e.keyCode===13||e.keyCode===32){
+                    this.machineView.selectMemorySlot(adressInt);
+                }
+
+
+                //Up
+                if(e.keyCode===38){
+                    if( e.target.previousSibling){
+                        e.preventDefault();
+                        e.target.previousSibling.focus();
+                    }else{
+                        this.element.lastChild.focus();
+                    }
+                }
+
+                //Down
+                if(e.keyCode===40){
+                    if( e.target.nextSibling){
+                        e.preventDefault();
+                        e.target.nextSibling.focus();
+                    }else{
+                        this.element.firstChild.focus();
+                    }
+                }
+
+
+            }
+            
+        })
+        
+
         this.machineView.M.A_register.addOnUpdateCallback(_reg=>{
             const adr = _reg.getValue();
             this.setNewHighlight(adr);
@@ -132,23 +179,10 @@ export class MachineViewMemoryEntry extends MachineViewElement{
 
     build(_machineView,_register){
         this.element  = document.createElement("pre")
-        //this.adrElement = document.createElement("span");
-        //this.valElement = document.createElement("span")
-        //this.codeElement = document.createElement("span")
-
-        //this.element.appendChild(this.adrElement);
-        //this.element.appendChild(this.valElement);
-        //this.element.appendChild(this.codeElement);
-
         this.element.classList.add("mem-entry");
-        //this.adrElement.classList.add("mem-entry-addres");
-        //this.valElement.classList.add("mem-entry-value");
-        //this.codeElement.classList.add("mem-entry-code");
 
+        this.element.tabIndex=this.addres===-1;
         this.element.setAttribute("data-mem-adress",this.addres.toString());
-        //this.adrElement.setAttribute("data-mem-adress",this.addres.toString());
-        //this.valElement.setAttribute("data-mem-adress",this.addres.toString());
-        //this.codeElement.setAttribute("data-mem-adress",this.addres.toString());
 
         this.display();
         
