@@ -24,7 +24,6 @@ export class InstrCycle {
 
 
 
-
 export default class Instruction {
     constructor(_name) {
         this.name = _name?.toUpperCase();

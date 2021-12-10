@@ -58,13 +58,21 @@ class InstructionRecord{
         return this.record;
     }
 
+    addMarker(){
+        
+        this.record.classList.add("instr-selected");
+    }
+    removeMarker(){
+        this.record.classList.remove("instr-selected");
+    }
+
 
 }
 
 
 
 export default class InstructionInspector extends SidebarContent{
-    constructor(_instrList){
+    constructor(_instrList,_Machine){
         super();
         this.wrpper;
         this.heading;
@@ -77,7 +85,7 @@ export default class InstructionInspector extends SidebarContent{
 
         this.build(_instrList);
 
-        this.addCallbacks();
+        this.addCallbacks(_Machine);
         
 
 
@@ -145,11 +153,35 @@ export default class InstructionInspector extends SidebarContent{
         
     }
 
-    addCallbacks(){
+    addCallbacks(_Machine){
         this.addInstructionButton.addEventListener("click",()=>{
             this.onAddButton();
         })
 
+
+        this.prevMarker = undefined;
+        _Machine.I_register.addOnUpdateCallback((_register)=>{
+            const currentIndex = _Machine.settings.getOpcode(_register.getValue());
+            //console.log(currentIndex);
+            this.onIRegisterUpdate(currentIndex);
+        })
+
+
+    }
+
+    onIRegisterUpdate(_opCode){
+
+        const prev  =  this.recordList[this.prevMarker];
+        if(prev!==undefined)prev.removeMarker();
+
+        if(_opCode<this.recordList.length){
+            this.recordList[_opCode].addMarker()
+            
+        }else{
+            _opCode=undefined;
+        }
+
+        this.prevMarker=_opCode;
     }
 
     onNavigation(ev,record){

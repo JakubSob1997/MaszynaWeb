@@ -9,6 +9,7 @@ import ExecutionModeSetting from "./setting-execution-mode.js";
 import PerofrmanceSetting from "./setting-performance.js"
 import LanguageSetting from "./setting-language.js";
 import Translator from "./translator.js";
+import ShortcutSetting from "./setting-shortcut.js";
 
 export default class SettingsInspector extends SidebarContent{
     constructor(_Machine){
@@ -43,7 +44,7 @@ export default class SettingsInspector extends SidebarContent{
         this.extnesionPickerSetting = new MachineExtensionSetting(_Machine.settings);
         this.intAdressSetting=new InteruptAddresSetting(_Machine.settings);
         this.perofrmanceSetting = new PerofrmanceSetting(_Machine.settings);
-
+        this.shortcutSetting = new ShortcutSetting();
     
         this.settingList.appendChild(this.languageSetting.wrapper);
         this.settingList.appendChild(this.simulationLevelSetting.wrapper)
@@ -51,6 +52,8 @@ export default class SettingsInspector extends SidebarContent{
         this.settingList.appendChild(this.extnesionPickerSetting.wrapper);
         this.settingList.appendChild(this.intAdressSetting.wrapper);
         this.settingList.appendChild(this.perofrmanceSetting.wrapper);
+        this.settingList.appendChild(this.shortcutSetting.wrapper)
+
 
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.settingList);

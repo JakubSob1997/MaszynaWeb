@@ -3,10 +3,6 @@
 
 
 
-.file-inspector-content >div:first-child{
-    background: var(--even-list-color);
-    
-}
 
 .file-preview{
     

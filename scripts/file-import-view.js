@@ -44,13 +44,18 @@ export default class FileImportView extends FileViewBase{
         this.inputLabel.classList.add("file-entry");
 
         this.fileInput.addEventListener("input",()=>{
-            if(this.fileInput.files.length>0){
-                SerializerManager.readDataFromJson(this.fileInput.files[0],SerializerManager.serializers)
-                    .then((_data)=>{this.pickObject(_data)})
-                    .catch((e)=>{Alerter.sendMessage(e,AlertStyleEnum.InputError)});
-            }
+            this.handleFileInput(this.fileInput.files);
+           
         })
 
+    }
+
+    handleFileInput(_files){
+        if(_files.length>0){
+            SerializerManager.readDataFromJson(_files[0],SerializerManager.serializers)
+                .then((_data)=>{this.pickObject(_data)})
+                .catch((e)=>{Alerter.sendMessage(e,AlertStyleEnum.InputError)});
+        }
     }
 
 

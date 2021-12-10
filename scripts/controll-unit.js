@@ -68,13 +68,13 @@ export default class ControllUnit extends MachineComponent{
         let wasJumpFlag=false;
 
         if(_InstructionList.length()<=opCode){
-            Alerter.alert(
+            /*Alerter.alert(
                 Translator.getTranslation(
                     "_alert_undefined_instruction",
                     "Instruction with op code: @0 is undefined!",
                     [opCode]
                     )
-            );
+            );*/
             return;
         }
         

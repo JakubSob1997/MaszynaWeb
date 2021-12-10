@@ -17,7 +17,7 @@ export default class InsperctorManger{
         
 
         this.inspectorElement = _Element;
-        this.instructionInspector = new InstructionInspector(_Machine.instructionList);
+        this.instructionInspector = new InstructionInspector(_Machine.instructionList,_Machine);
         this.registerInspector = new RegisterInspector(_MachineView.valueDisplayer,_variablePreview);
         this.memorySlotInspector = new MemorySlotInspector(_Machine.MEM,_MachineView.valueDisplayer,_variablePreview);
         this.inputOutputInspector = new IOInspector(_Machine);
@@ -32,6 +32,34 @@ export default class InsperctorManger{
         _MachineView.addOnRegisterSelectedCallback((_reg)=>{
             this.drawInspectorForRegister(_reg);
         });
+
+        this.inspectorElement.addEventListener("dragover",(ev)=>{
+            ev.preventDefault();
+            if(ev.dataTransfer.items[0].type==="application/json"){
+                this.drawInspectorForFile();
+                
+                this.inspectorElement.classList.add("inspector-file-over");
+                
+            }
+        });
+        ["dragleave","dragend"].forEach((type)=>{
+            this.inspectorElement.addEventListener(type,(ev)=>{
+                this.inspectorElement.classList.remove("inspector-file-over");
+            })
+        });
+        this.inspectorElement.addEventListener("drop",(ev)=>{
+            ev.preventDefault();
+            this.inspectorElement.classList.remove("inspector-file-over");
+            this.fileInspector.handleFileDrop(ev.dataTransfer.files);
+            console.log(ev.dataTransfer.files);
+        })
+
+        window.addEventListener("drop",(ev)=>{
+            ev.preventDefault();
+        })
+        window.addEventListener("dragover",(ev)=>{
+            ev.preventDefault();
+        })
 
 
         this.currentInspector=this.infoInspector;

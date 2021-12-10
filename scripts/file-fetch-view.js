@@ -16,7 +16,7 @@ export default class FileFetchView extends FileViewBase{
 
         this.build();
 
-        this.fetchListing();
+        this.fetchListing(false);
     }
 
     setEntriesActive(_bool){
@@ -36,9 +36,9 @@ export default class FileFetchView extends FileViewBase{
     }
 
 
-    fetchPreset(_fileName){
+    fetchPreset(_fileName,_entry){
         this.setEntriesActive(false);
-
+        _entry.innerText=Translator.getTranslation("_loading","Loading...");
         fetch("./presets/"+_fileName)
             .then(res=>res.json())
             .then(data=>{
@@ -50,21 +50,25 @@ export default class FileFetchView extends FileViewBase{
             })
             .finally(()=>{
                 this.setEntriesActive(true);
+                _entry.innerText=_fileName;
             })
         
     }
 
 
-    fetchListing(){
+    fetchListing(_sendAlert){
+        this.refreshButton.innerText = Translator.getTranslation("_loading","Loading...");
         this.refreshButton.setAttribute("disabled",true);
         fetch("presets.json")
             .then(res=>res.json())
             .then(data=>this.setupEntries(data))
             .catch(()=>{
-                Alerter.sendMessage(Translator.getTranslation("_message_fail_load_preset_list","Failed to load the preset list."),AlertStyleEnum.InputError)
+                if(_sendAlert)
+                    Alerter.sendMessage(Translator.getTranslation("_message_fail_load_preset_list","Failed to load the preset list."),AlertStyleEnum.InputError)
             })
             .finally(()=>{
                 this.refreshButton.removeAttribute("disabled");
+                this.refreshButton.innerText = Translator.getTranslation("_refresh","Refresh");
             })
     
         
@@ -92,7 +96,7 @@ export default class FileFetchView extends FileViewBase{
         
 
         entry.addEventListener("click",()=>{
-            this.fetchPreset(_fileName);
+            this.fetchPreset(_fileName,entry);
         })
 
         this.entries[_fileName] = entry;
@@ -113,7 +117,7 @@ export default class FileFetchView extends FileViewBase{
 
         this.refreshButton.addEventListener("click",()=>{
             this.presetListElement.innerHTML="";
-            this.fetchListing();
+            this.fetchListing(true);
         })
     }
 

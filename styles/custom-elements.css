@@ -21,6 +21,10 @@
     font:inherit;
     cursor: pointer;
     outline: inherit;
+
+    box-shadow:
+        1px 2px 3px -1px var(--contrast-font-color),
+        inset -3px -3px 3px -3px var(--contrast-font-color);
  
 }
 

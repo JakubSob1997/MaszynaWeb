@@ -21,6 +21,8 @@ import Translator from "./translator.js";
 import AssemblyColorContext from "./assembly-color-context.js";
 import InstructionColorContext from "./instruction-color-context.js";
 import VariablesPreview from "./variables-preview.js";
+import ShortcutManager from "./shortcut-manager.js";
+import Shorutcut from "./shortcut.js";
 
 
 fetch("translations.json")
@@ -33,6 +35,9 @@ fetch("translations.json")
     .finally(()=>{main()})
     
 function main(){
+
+
+    
 
     const navbar =document.getElementById("navbar");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -81,7 +86,7 @@ function main(){
     buildMachine(M);
 
 
-
+    
 
     const settingsSeralzier = new SettingsSerializer(M.settings);
     const instructionListSerializer = new InstructionListSerializer(M.instructionList,M)
@@ -190,6 +195,14 @@ function main(){
         M.setManualMode(M.manualControll==false);
 
     }
+
+    ShortcutManager.addShortcut(new Shorutcut(
+        "manual",
+        Translator.getTranslation("_shrt_toggle_manual","Toggle Manual Mode"),
+        ()=>{M.setManualMode(M.manualControll==false);},
+        77,
+        true
+    ))
 
     M.addOnManualToggleCallback((_manual)=>{
         if(_manual){

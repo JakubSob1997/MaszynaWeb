@@ -543,6 +543,10 @@
     "_done":{
         "en":"Done",
         "pl":"Koniec"
+    },
+    "_loading":{
+        "en":"Loading...",
+        "pl":"Wczytywanie..."
     }
 
     

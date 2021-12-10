@@ -58,10 +58,18 @@ export default class FileSInspector extends SidebarContent{
         
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);
+
+
+
+        
     }
 
     previewObj(_obj){
         this.FilePreviewView.preview(_obj);
+    }
+
+    handleFileDrop(_files){
+        this.fileImportView.handleFileInput(_files);
     }
 
 

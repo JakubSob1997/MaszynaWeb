@@ -8,6 +8,7 @@ class InstructionLine {
     constructor(_instrIndex, _words) {
         this.words = _words;
         this.instrIndex = _instrIndex;
+        this.ogIndex=NaN;
 
         this.label = null;
         this.isBranchPlaceholder = false;
@@ -513,7 +514,7 @@ export default class InstrcutionParser {
 
 
         let newLines = _code.split(/;/);
-
+        console.log(newLines);
         for (let index = 0; index < newLines.length; index++) {
             const element = newLines[index];
             let formatedLine = element.replaceAll(/\s+/g, " ");
@@ -694,7 +695,7 @@ export default class InstrcutionParser {
         this.applyBranchConditions(instruction)
 
 
-        console.log(instruction);
+
 
         return instruction;
     }

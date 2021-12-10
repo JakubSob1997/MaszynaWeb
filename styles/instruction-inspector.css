@@ -44,6 +44,10 @@
     
 }
 
+.instr-entry.instr-selected.instr-selected.instr-selected.instr-selected{
+    background: var(--primary-color);
+}
+
 
 
 .instr-entry .instr-name{
@@ -62,6 +66,16 @@
     background: var(--primary-color);
     
 }
+
+.instr-entry.instr-selected .instr-name:hover,.instr-entry.instr-selected  .instr-name:focus {
+    background: var(--contrast-font-color);
+}
+
+.instr-entry.instr-selected .instr-name:active{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
 
 .instr-entry .instr-name:active{
     background: var(--secondary-color);

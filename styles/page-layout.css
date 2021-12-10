@@ -36,8 +36,8 @@
     outline: inherit;
 
     box-shadow:
-        3px 4px 3px -3px black,
-        inset -3px -3px 3px -2px #00000088;;
+        1px 2px 3px -1px var(--contrast-font-color),
+        inset -3px -3px 3px -3px var(--contrast-font-color);
  
 }
 
@@ -138,6 +138,8 @@ nav{
     overflow: auto;
     flex-shrink: 3;
     min-width: 20vw;
+
+    
 }
 
 .nav-button{
@@ -150,12 +152,15 @@ nav{
     font-weight: 500;
     font-size: 110%;
 
+    text-shadow: 1px 1px 1px var(--contrast-font-color);
+
     transition: padding 50ms, color 250ms,background-color 250ms,font-weight 300ms;
 
 }
 .nav-button:hover, .nav-button:focus{
     background: var(--secondary-color);
     color: var(--contrast-font-color);
+    text-shadow: none;
 }
 
 .nav-button:active{
@@ -183,6 +188,8 @@ nav{
     cursor: pointer;
     font-weight: 600;
 
+    text-shadow: 1px 1px 1px var(--contrast-font-color);
+
     transition: padding 100ms, color 250ms,background-color 100ms,font-weight 300ms;
 
 }
@@ -194,11 +201,13 @@ nav{
 .flow-button:active{
     background-color: var(--secondary-color);
     color: var(--contrast-font-color);
+    text-shadow: none;
 }
 
 .manual-selected{
     background-color: var(--secondary-color);
     color: var(--contrast-font-color);
+    text-shadow: none;
 }
 
 .manual-selected:hover, .manual-selected:focus{
@@ -436,7 +445,12 @@ nav{
     box-shadow:-3px 0px 12px -5px #000000AA;
 }
 
+#inspector.inspector-file-over{
 
+    box-shadow:
+        -3px 0px 12px -5px #000000AA,
+        inset 0px  0px 60px -15px var(--secondary-color);
+}
 
 
 
