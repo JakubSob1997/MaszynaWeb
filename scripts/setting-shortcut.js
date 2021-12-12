@@ -14,6 +14,8 @@ export class ShortcutSettingEntery{
         this.bind = document.createElement("span");
 
         this.description.innerText = _shortcut.description;
+
+        this.wrapper.classList.add("interupt-addres-setting-entry")
     
         this.bind.innerText = ShortcutData.prototype.toReadableString.call(_shortcut.binded);
 

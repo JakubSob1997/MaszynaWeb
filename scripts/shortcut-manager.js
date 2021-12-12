@@ -11,6 +11,7 @@ class ShortcutManagerSingleton{
     
         window.addEventListener("keydown",(ev)=>{
             this.shortcuts.forEach((s)=>{
+                
                 s.tryRun(ev);
             })
         })

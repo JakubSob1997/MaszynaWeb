@@ -8,9 +8,11 @@ import Terminator from "./terminator.js";
 import AssemblySerializer from "./assembly-serializer.js";
 import SerializerManager from "./serializer-manager.js";
 import AssemblyCodeMirror from "./assembly-codemirror.js";
-import {ExecutionContext,runMachine,runMachineToCurssor} from "./machine-execution.js";
+import {ExecutionContext,runCycle,runMachine,runMachineToCurssor} from "./machine-execution.js";
 import Translator from "./translator.js";
 import VariablesPreview from "./variables-preview.js";
+import ShortcutManager from "./shortcut-manager.js";
+import Shorutcut from "./shortcut.js";
 
 export default class AssemblyEditor extends SidebarContent{
     constructor(_machine,_valueDisplayer,_variablePreview){
@@ -140,7 +142,64 @@ export default class AssemblyEditor extends SidebarContent{
             }
         })
 
-       
+        const M =this.M;
+
+
+    
+        
+    
+        ShortcutManager.addShortcut(new Shorutcut(
+            "cycle",
+            Translator.getTranslation("_shrt_run_cycle","Run cycle"),
+            ()=>{if(M.isRunning()===false){ runCycle(M);}},
+            112,
+        ))
+        ShortcutManager.addShortcut(new Shorutcut(
+            "run_instruction",
+            Translator.getTranslation("_shrt_run_instruction","Run Instruction"),
+            ()=>{if(M.isRunning()===false){
+                runSingleInstruction(M);
+            }},
+            113
+        ))
+        ShortcutManager.addShortcut(new Shorutcut(
+            "run_program",
+            Translator.getTranslation("_shrt_run_program","Run Program"),
+            ()=>{if(M.isRunning()===false){
+                runMachine(M);
+            }},
+            114
+        ))
+        ShortcutManager.addShortcut(new Shorutcut(
+            "load_program",
+            Translator.getTranslation("_shrt_load_program","Load Program To Memory"),
+            ()=>{if(M.isRunning()===false){
+                this.onLoadButton();
+            }},
+            115
+        ))
+        ShortcutManager.addShortcut(new Shorutcut(
+            "run_to_cursor",
+            Translator.getTranslation("_shrt_run_to_cursor","Run To Curosr"),
+            ()=>{if(M.isRunning()===false){
+                runMachineToCurssor(M);
+            }},
+            119
+        ))
+
+        ShortcutManager.addShortcut(new Shorutcut(
+            "stop_machine",
+            Translator.getTranslation("_shrt_stop_machine","Stop Machine"),
+            ()=>{Terminator.terminate()},
+            120
+        ))
+
+        ShortcutManager.addShortcut(new Shorutcut(
+            "manual",
+            Translator.getTranslation("_shrt_toggle_manual","Toggle Manual Mode"),
+            ()=>{M.setManualMode(M.manualControll===false);},
+            121
+        ))
     
     }
 

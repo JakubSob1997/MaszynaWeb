@@ -99,13 +99,21 @@ export default class Shorutcut{
     }
 
 
-
+    
 
 
     tryRun(ev){
-        if(ShortcutData.prototype.checkEvent.call(this.binded,ev)){
-            ev.preventDefault();
-            this.funk(ev);
+        let evData = ev;
+       
+
+
+        if(ShortcutData.prototype.checkEvent.call(this.binded,evData)){
+            evData.preventDefault();
+            //Kep numpad and number bindings the same
+
+            
+
+            this.funk(evData);
             return true;
         }
         return false;
@@ -114,7 +122,17 @@ export default class Shorutcut{
 
 
 }
-
+function cloneEvent(e) {
+    if (e===undefined || e===null) return undefined;
+    function ClonedEvent() {};  
+    let clone=new ClonedEvent();
+    for (let p in e) {
+        let d=Object.getOwnPropertyDescriptor(e, p);
+        if (d && (d.get || d.set)) Object.defineProperty(clone, p, d); else clone[p] = e[p];
+    }
+    Object.setPrototypeOf(clone, e);
+    return clone;
+}
 
 
 

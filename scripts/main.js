@@ -10,7 +10,7 @@ import AlertWindow from "./alert-window.js";
 import { AlertStyleEnum } from "./enums.js";
 import Alerter from "./alerter.js";
 import AlertTerminator from "./alert-terminator.js";
-import {runMachine, runCycle, runSingleInstruction} from "./machine-execution.js";
+import {runMachine, runCycle, runSingleInstruction, runMachineToCurssor} from "./machine-execution.js";
 
 
 
@@ -298,29 +298,7 @@ function main(){
 
 
 
-    ShortcutManager.addShortcut(new Shorutcut(
-        "manual",
-        Translator.getTranslation("_shrt_toggle_manual","Toggle Manual Mode"),
-        ()=>{M.setManualMode(M.manualControll===false);},
-        "Q".charCodeAt(0),
-        true
-    ))
-    ShortcutManager.addShortcut(new Shorutcut(
-        "cycle",
-        Translator.getTranslation("_shrt_run_cycle","Run Cycle"),
-        ()=>{if(M.isRunning()===false){ runCycle(M);}},
-        "W".charCodeAt(0),
-        true
-    ))
-    ShortcutManager.addShortcut(new Shorutcut(
-        "instruction",
-        Translator.getTranslation("_shrt_run_instruction","Run Instruction"),
-        ()=>{if(M.isRunning()===false){
-            runSingleInstruction(M);
-        }},
-        "E".charCodeAt(0),
-        true
-    ))
+
 
 
     M.addOnManualToggleCallback((_manual)=>{
