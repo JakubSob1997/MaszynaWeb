@@ -178,7 +178,7 @@ function main(){
 
     ShortcutManager.addShortcut(new Shorutcut(
         "open_program",
-        Translator.getTranslation("_shrt_open_program","Open Program"),
+        Translator.getTranslation("_shrt_open_program","Open Program Panel"),
         ()=>{editorManager.drawEditorForAssembly()},
         "1".charCodeAt(0),
         false,
@@ -187,7 +187,7 @@ function main(){
     ))
     ShortcutManager.addShortcut(new Shorutcut(
         "open_instructions",
-        Translator.getTranslation("_shrt_open_instructions","Open Instructions"),
+        Translator.getTranslation("_shrt_open_instructions","Open Instructions Panel"),
         ()=>{inspectorManager.drawInspectorForInstructionList();},
         "2".charCodeAt(0),
         false,
@@ -196,7 +196,7 @@ function main(){
     ))
     ShortcutManager.addShortcut(new Shorutcut(
         "open_settings",
-        Translator.getTranslation("_shrt_open_settings","Open Settings"),
+        Translator.getTranslation("_shrt_open_settings","Open Settings Panel"),
         ()=>{inspectorManager.drawInspectorForSettings();},
         "3".charCodeAt(0),
         false,
@@ -205,7 +205,7 @@ function main(){
     ))
     ShortcutManager.addShortcut(new Shorutcut(
         "open_io",
-        Translator.getTranslation("_shrt_open_io","Open Input/Output"),
+        Translator.getTranslation("_shrt_open_io","Open Input/Output Panel"),
         ()=>{inspectorManager.drawInspectorForInputOutput()},
         "4".charCodeAt(0),
         false,
@@ -214,7 +214,7 @@ function main(){
     ))
     ShortcutManager.addShortcut(new Shorutcut(
         "open_file",
-        Translator.getTranslation("_shrt_open_file","Open File"),
+        Translator.getTranslation("_shrt_open_file","Open File Panel"),
         ()=>{inspectorManager.drawInspectorForFile()},
         "5".charCodeAt(0),
         false,
@@ -223,7 +223,7 @@ function main(){
     ))
     ShortcutManager.addShortcut(new Shorutcut(
         "open_info",
-        Translator.getTranslation("_shrt_open_info","Open Info"),
+        Translator.getTranslation("_shrt_open_info","Open Info Panel"),
         ()=>{inspectorManager.drawInspectorForInfo()},
         "6".charCodeAt(0),
         false,
@@ -276,7 +276,7 @@ function main(){
 
     ShortcutManager.addShortcut(new Shorutcut(
         "focus_left",
-        Translator.getTranslation("_shrt_focus_left","Focus left handle"),
+        Translator.getTranslation("_shrt_focus_left","Focus left Handle"),
         ()=>{leftBarHandle.focus()},
         37,
         false,
@@ -287,7 +287,7 @@ function main(){
 
     ShortcutManager.addShortcut(new Shorutcut(
         "focus_right",
-        Translator.getTranslation("_shrt_focus_right","Focus right handle"),
+        Translator.getTranslation("_shrt_focus_right","Focus right Handle"),
         ()=>{rightBarHandle.focus()},
         39,
         false,
@@ -316,7 +316,7 @@ function main(){
     runMachineButton.textContent=Translator.getTranslation("_run","Run");
     runMachineButton.addEventListener("click",()=>{
         if(M.isRunning()){
-            Terminator.terminate();
+            M.stopMachine();
         }else{
             runMachine(M);
         }

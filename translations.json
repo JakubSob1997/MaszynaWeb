@@ -547,6 +547,86 @@
     "_loading":{
         "en":"Loading...",
         "pl":"Wczytywanie..."
+    },
+    "_keyboard_shortcuts":{
+        "en":"Keyboard Shortcuts",
+        "pl":""
+    },
+    "_shrt_open_preset":{
+        "en":"Open Preset",
+        "pl":""
+    },
+    "_shrt_save_preset":{
+        "en":"Save Preset",
+        "pl":""
+    },
+    "_shrt_run_cycle":{
+        "en":"Run Cycle",
+        "pl":""
+    },
+    "_shrt_run_instruction":{
+        "en":"Run Instruction",
+        "pl":""
+    },
+    "_shrt_run_program":{
+        "en":"Run Program",
+        "pl":""
+    },
+    "_shrt_load_program":{
+        "en":"Load Program To Memory",
+        "pl":""
+    },
+    "_shrt_run_to_cursor":{
+        "en":"Run To Cursor",
+        "pl":""
+    },
+    "_shrt_stop_machine":{
+        "en":"Stop Machine",
+        "pl":""
+    },
+    "_shrt_toggle_manual":{
+        "en":"Toggle Manual Mode",
+        "pl":""
+    },
+    "_shrt_clear_alerts":{
+        "en":"Clear Notifications",
+        "pl":""
+    },
+    "_shrt_open_program":{
+        "en":"Open Program Panel",
+        "pl":""
+    },
+    "_shrt_open_instructions":{
+        "en":"Open Instructions Panel",
+        "pl":""
+    },
+    "_shrt_open_settings":{
+        "en":"Open Settings Panel",
+        "pl":""
+    },
+    "_shrt_open_io":{
+        "en":"Open Input/Output Panel",
+        "pl":""
+    },
+    "_shrt_open_file":{
+        "en":"Open File Panel",
+        "pl":""
+    },
+    "_shrt_open_info":{
+        "en":"Open Info Panel",
+        "pl":""
+    },
+    "_shrt_show_machine":{
+        "en":"Show Machine",
+        "pl":""
+    },
+    "_shrt_focus_left":{
+        "en":"Focus Left Handle",
+        "pl":""
+    },
+    "_shrt_focus_right":{
+        "en":"Focus Right Handle",
+        "pl":""
     }
 
     

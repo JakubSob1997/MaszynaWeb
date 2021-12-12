@@ -314,7 +314,7 @@ export default class Machine{
 
     setManualMode(_newValue){
         
-        Terminator.terminate();
+        this.stopMachine();
         this.resetInternalState();
 
         this.manualControll= _newValue;

@@ -78,7 +78,7 @@ export default class InsperctorManger{
 
         ShortcutManager.addShortcut(new Shorutcut(
             "open_preset",
-            Translator.getTranslation("_shrt_open_file","Open Preset"),
+            Translator.getTranslation("_shrt_open_preset","Open Preset"),
             (ev)=>{
                 this.drawInspectorForFile();
                 this.fileInspector.openFile();
