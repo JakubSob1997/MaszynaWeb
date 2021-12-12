@@ -9,6 +9,9 @@ import SettingsInspector from "./settings-inspector.js";
 import FileSInspector from "./file-inspector.js";
 import LayoutMediator from "./layout-mediator.js";
 import InfoInspector from "./info-inspector.js";
+import ShortcutManager from "./shortcut-manager.js";
+import Shorutcut from "./shortcut.js";
+import Translator from "./translator.js";
 
 
 export default class InsperctorManger{
@@ -60,6 +63,30 @@ export default class InsperctorManger{
         window.addEventListener("dragover",(ev)=>{
             ev.preventDefault();
         })
+
+        ShortcutManager.addShortcut(new Shorutcut(
+            "save_preset",
+            Translator.getTranslation("_shrt_save_preset","Save Preset"),
+            (ev)=>{
+                this.drawInspectorForFile();
+                this.fileInspector.focusSave();
+            },
+            "S".charCodeAt(0),
+            false,
+            true
+        ))
+
+        ShortcutManager.addShortcut(new Shorutcut(
+            "open_preset",
+            Translator.getTranslation("_shrt_open_file","Open Preset"),
+            (ev)=>{
+                this.drawInspectorForFile();
+                this.fileInspector.openFile();
+            },
+            "O".charCodeAt(0),
+            false,
+            true
+        ))
 
 
         this.currentInspector=this.infoInspector;

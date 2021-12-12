@@ -58,6 +58,10 @@ export default class FileImportView extends FileViewBase{
         }
     }
 
+    openFile(){
+        this.inputLabel.click();
+    }
+
 
 
 

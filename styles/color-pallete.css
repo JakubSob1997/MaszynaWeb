@@ -16,6 +16,7 @@
         
 
         --reg hover should be some shade of primary
+        -even-alert-color:  should be some shade of secondary
     
     */
 
@@ -23,7 +24,7 @@
     :root{
 
         --primary-color:#273583;
-        --secondary-color: #ff802b;
+        --secondary-color: #fa8c43;
     
         --font-color: #e4e4e4;
         --contrast-font-color: #0f0f0f;
@@ -34,7 +35,7 @@
         --even-list-color: #525050;
         --odd-list-color: #626262;
 
-        --even-alert-color: #fd9550;
+        --even-alert-color: #fb9b5b;
         
         --button-background:var(--font-color);
     

@@ -1,6 +1,9 @@
 
 import Alerter from "./alerter.js";
 import LayoutMediator from "./layout-mediator.js";
+import ShortcutManager from "./shortcut-manager.js";
+import Shorutcut from "./shortcut.js";
+import Translator from "./translator.js";
 
 /*
     This pice of code is a mess by design.
@@ -23,8 +26,6 @@ import LayoutMediator from "./layout-mediator.js";
         will set left to maz width and shrink everything else acordingly;
 
 */
-
-
 
 
 
@@ -63,6 +64,7 @@ const leftBarHandle= document.getElementById("left-handle");
 const rightBarHandle = document.getElementById("right-handle");
 
 
+
 const leftPanel = document.getElementById("left-panel");
 const rightPanel = document.getElementById("right-panel");
 const center=document.getElementById("center")
@@ -73,6 +75,7 @@ const rightWidthVar= "--inspector-width";
 
 leftBarHandle.setAttribute("tabindex",0);
 rightBarHandle.setAttribute("tabindex",0);
+
 
 
 

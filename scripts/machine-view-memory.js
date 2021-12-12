@@ -205,9 +205,6 @@ export class MachineViewMemoryEntry extends MachineViewElement{
         let code =valueDisplayer.wordToString(val,ValueDisplayEnum.OpCodeArgument);
 
 
-        //this.adrElement.textContent=this.addres+":";
-        //this.valElement.textContent=decimal;
-        //this.codeElement.textContent=code;
         
         if(addresStr.length<5){
             addresStr+="&nbsp;".repeat(5-addresStr.length);

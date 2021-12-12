@@ -1,4 +1,6 @@
 
+
+
 import Machine from "./machine.js";
 import buildMachine from"./machine-definitions.js";
 import MachineView from "./machine-view.js";
@@ -23,6 +25,7 @@ import InstructionColorContext from "./instruction-color-context.js";
 import VariablesPreview from "./variables-preview.js";
 import ShortcutManager from "./shortcut-manager.js";
 import Shorutcut from "./shortcut.js";
+import LayoutMediator from "./layout-mediator.js";
 
 
 fetch("translations.json")
@@ -132,9 +135,6 @@ function main(){
     showAsmButton.addEventListener("click",()=>{
         editorManager.drawEditorForAssembly()
     })
-    
-
-
     let showInstrInspectorButton =  document.getElementById("instruction-list-nav")
     showInstrInspectorButton.textContent=Translator.getTranslation("_instructions","Instructions");
     showInstrInspectorButton.addEventListener("click",()=>{
@@ -166,13 +166,79 @@ function main(){
     })
 
 
+    ShortcutManager.addShortcut(new Shorutcut(
+        "clear_alerts",
+        Translator.getTranslation("_shrt_clear_alerts","Clear Notifications"),
+        ()=>{Alerter.clearMessages()},
+        "C".charCodeAt(0),
+        true,
+        true,
+        false
+    ))
+
+    ShortcutManager.addShortcut(new Shorutcut(
+        "open_program",
+        Translator.getTranslation("_shrt_open_program","Open Program"),
+        ()=>{editorManager.drawEditorForAssembly()},
+        "1".charCodeAt(0),
+        false,
+        false,
+        true
+    ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "open_instructions",
+        Translator.getTranslation("_shrt_open_instructions","Open Instructions"),
+        ()=>{inspectorManager.drawInspectorForInstructionList();},
+        "2".charCodeAt(0),
+        false,
+        false,
+        true
+    ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "open_settings",
+        Translator.getTranslation("_shrt_open_settings","Open Settings"),
+        ()=>{inspectorManager.drawInspectorForSettings();},
+        "3".charCodeAt(0),
+        false,
+        false,
+        true
+    ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "open_io",
+        Translator.getTranslation("_shrt_open_io","Open Input/Output"),
+        ()=>{inspectorManager.drawInspectorForInputOutput()},
+        "4".charCodeAt(0),
+        false,
+        false,
+        true
+    ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "open_file",
+        Translator.getTranslation("_shrt_open_file","Open File"),
+        ()=>{inspectorManager.drawInspectorForFile()},
+        "5".charCodeAt(0),
+        false,
+        false,
+        true
+    ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "open_info",
+        Translator.getTranslation("_shrt_open_info","Open Info"),
+        ()=>{inspectorManager.drawInspectorForInfo()},
+        "6".charCodeAt(0),
+        false,
+        false,
+        true
+    ))
+
+
 
     let nextCycleButton = document.getElementById("next-cycle-button");
     nextCycleButton.textContent=Translator.getTranslation("_cycle","Cycle");
     nextCycleButton.onclick=function(){
 
 
-        if(M.isRunning()==false){
+        if(M.isRunning()===false){
             runCycle(M);
         }
         
@@ -182,7 +248,7 @@ function main(){
     nextInstructionButton.textContent=Translator.getTranslation("_instruction","Instruction");
     nextInstructionButton.onclick=function(){
 
-        if(M.isRunning()==false){
+        if(M.isRunning()===false){
             runSingleInstruction(M);
         }
         
@@ -192,17 +258,70 @@ function main(){
     toggleManualButton.textContent=Translator.getTranslation("_manual","Manual");
     toggleManualButton.onclick = ()=>{
 
-        M.setManualMode(M.manualControll==false);
+        M.setManualMode(M.manualControll===false);
 
     }
+
+
+    ShortcutManager.addShortcut(new Shorutcut(
+        "show_machine",
+        Translator.getTranslation("_shrt_show_machine","Show Machine"),
+        ()=>{LayoutMediator.showCenter();},
+        36
+    ))
+
+    
+    const leftBarHandle= document.getElementById("left-handle");
+    const rightBarHandle = document.getElementById("right-handle");
+
+    ShortcutManager.addShortcut(new Shorutcut(
+        "focus_left",
+        Translator.getTranslation("_shrt_focus_left","Focus left handle"),
+        ()=>{leftBarHandle.focus()},
+        37,
+        false,
+        true
+
+    ))
+
+
+    ShortcutManager.addShortcut(new Shorutcut(
+        "focus_right",
+        Translator.getTranslation("_shrt_focus_right","Focus right handle"),
+        ()=>{rightBarHandle.focus()},
+        39,
+        false,
+        true
+
+    ))
+
+
+
 
     ShortcutManager.addShortcut(new Shorutcut(
         "manual",
         Translator.getTranslation("_shrt_toggle_manual","Toggle Manual Mode"),
-        ()=>{M.setManualMode(M.manualControll==false);},
-        77,
+        ()=>{M.setManualMode(M.manualControll===false);},
+        "Q".charCodeAt(0),
         true
     ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "cycle",
+        Translator.getTranslation("_shrt_run_cycle","Run Cycle"),
+        ()=>{if(M.isRunning()===false){ runCycle(M);}},
+        "W".charCodeAt(0),
+        true
+    ))
+    ShortcutManager.addShortcut(new Shorutcut(
+        "instruction",
+        Translator.getTranslation("_shrt_run_instruction","Run Instruction"),
+        ()=>{if(M.isRunning()===false){
+            runSingleInstruction(M);
+        }},
+        "E".charCodeAt(0),
+        true
+    ))
+
 
     M.addOnManualToggleCallback((_manual)=>{
         if(_manual){
@@ -236,7 +355,6 @@ function main(){
     M.addOnMachineStopedCallback(()=>{
         runMachineButton.classList.remove("manual-selected");
     })
-
 
 
 

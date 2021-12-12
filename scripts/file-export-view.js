@@ -45,9 +45,20 @@ export default class FileExportView{
             let name = this.nameInput.value==""?null:this.nameInput.value+".json";
             SerializerManager.exportSerializers(SerializerManager.serializers,name);
         }
+        this.nameInput.addEventListener("keydown",(ev)=>{
+            if(ev.keyCode===13){
+                let name = this.nameInput.value==""?null:this.nameInput.value+".json";
+                SerializerManager.exportSerializers(SerializerManager.serializers,name);
+            }
+            
+        })
 
 
 
+    }
+
+    focus(){
+        this.nameInput.focus();
     }
 
     getHTMLElement(){

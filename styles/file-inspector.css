@@ -82,8 +82,8 @@ label.file-entry{
     text-align: left;
     
     box-shadow: 
-        2px 2px 4px  -2px #000000,
-        inset -1px 0px 3px -1px #000000;
+    2px 2px 5px -3px var(--contrast-font-color),
+    inset -2px -2px 4px -2px var(--contrast-font-color);
       
 }
 

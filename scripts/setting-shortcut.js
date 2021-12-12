@@ -33,7 +33,7 @@ export default class ShortcutSetting extends SettingView{
 
     
     constructor(){
-        super(Translator.getTranslation("_key_shortcuts","Keyboard Shortcuts"))
+        super(Translator.getTranslation("_keyboard_shortcuts","Keyboard Shortcuts"))
    
         this.entries=[]
         setTimeout(()=>{

@@ -73,6 +73,14 @@ export default class FileSInspector extends SidebarContent{
     }
 
 
+    focusSave(){
+        this.fileExportView.focus();
+    }
+
+    openFile(){
+        this.fileImportView.openFile();
+    }
+
     getHTMLElement(){
         return this.wrapper;
     }

@@ -62,12 +62,20 @@
 }
 
 
-.instr-entry .instr-name:hover,.instr-entry .instr-name:focus {
+.instr-entry .instr-name:focus{
+    outline: dashed  var(--secondary-color);
+}
+
+.instr-entry .instr-name:focus:active{
+    outline: dashed  var(--primary-color);
+}
+
+.instr-entry .instr-name:hover {
     background: var(--primary-color);
     
 }
 
-.instr-entry.instr-selected .instr-name:hover,.instr-entry.instr-selected  .instr-name:focus {
+.instr-entry.instr-selected .instr-name:hover {
     background: var(--contrast-font-color);
 }
 
