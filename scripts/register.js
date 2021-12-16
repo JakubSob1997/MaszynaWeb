@@ -114,7 +114,7 @@ export default class  Register extends MachineComponent {
             
             this.updatedFlag = true;
 
-            setTimeout(()=>{
+            requestAnimationFrame(()=>{
                 this.onUpdateCallbacks.forEach(funk => {
                     funk(this);
                 });

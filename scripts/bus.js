@@ -59,7 +59,7 @@ export default class Bus extends MachineComponent{
 
             this.wasUpdateFlag=true;
 
-            setTimeout(()=>{
+            requestAnimationFrame(()=>{
                 this.onUpdateCallbacks.forEach(element => {
                     element(this);
                 });

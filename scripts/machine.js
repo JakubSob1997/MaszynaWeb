@@ -104,7 +104,7 @@ export default class Machine{
             this.cycleDoneInvoked=true;
         }
         
-        setTimeout(()=>{
+        requestAnimationFrame(()=>{
             this.onCycleDoneCallbacks.forEach(_funk=>{_funk(this)});
             this.cycleDoneInvoked=false;
         })

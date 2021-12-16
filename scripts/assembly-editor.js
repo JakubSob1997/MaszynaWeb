@@ -184,9 +184,11 @@ export default class AssemblyEditor extends SidebarContent{
         ShortcutManager.addShortcut(new Shorutcut(
             "load_program",
             Translator.getTranslation("_shrt_load_program","Load Program To Memory"),
-            ()=>{if(M.isRunning()===false){
-                this.onLoadButton();
-            }},
+            ()=>{if(M.isRunning()===true){
+                M.stopMachine();
+            }
+            this.onLoadButton();
+            },
             115
         ))
         ShortcutManager.addShortcut(new Shorutcut(

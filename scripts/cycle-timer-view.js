@@ -83,7 +83,7 @@ export default class CycleTimerView{
 
             if(this.domUpdatedFlag===false){
                 this.domUpdatedFlag=true;   
-                setTimeout(()=>{
+                requestAnimationFrame(()=>{
                     this.stateValue.innerText = this.countdownToDisplay(_device.state)
                     this.domUpdatedFlag=false;
                 },0)

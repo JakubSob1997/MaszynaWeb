@@ -47,7 +47,7 @@ export default class BusConnection extends MachineComponent{
         if(this.wasUpdatedFlag==false){
 
             this.wasUpdatedFlag=true;
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 this.onUpdateCallbacks.forEach(element => {
                     element(this);
                 });

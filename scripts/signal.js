@@ -29,7 +29,7 @@ export default class Signal{
     update(){
         if(this.wasUpdatedFlag ==false){
             this.wasUpdatedFlag=true;
-            setTimeout(()=>{
+            requestAnimationFrame(()=>{
                 this.onUpdateCallbacks.forEach(callBack => {
                     callBack(this);
                 });

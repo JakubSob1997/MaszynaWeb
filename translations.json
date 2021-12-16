@@ -550,93 +550,85 @@
     },
     "_keyboard_shortcuts":{
         "en":"Keyboard Shortcuts",
-        "pl":""
+        "pl":"Skróty Klawiszowe"
     },
     "_shrt_open_preset":{
         "en":"Open Preset",
-        "pl":""
+        "pl":"Otwórz Preset"
     },
     "_shrt_save_preset":{
         "en":"Save Preset",
-        "pl":""
+        "pl":"Zpisz Preset"
     },
     "_shrt_run_cycle":{
         "en":"Run Cycle",
-        "pl":""
+        "pl":"Wykonaj Takt"
     },
     "_shrt_run_instruction":{
         "en":"Run Instruction",
-        "pl":""
+        "pl":"Wykonaj Rozkaz"
     },
     "_shrt_run_program":{
         "en":"Run Program",
-        "pl":""
+        "pl":"Wykonaj Program"
     },
     "_shrt_load_program":{
         "en":"Load Program To Memory",
-        "pl":""
+        "pl":"Ładuj Program Do Pamięci"
     },
     "_shrt_run_to_cursor":{
         "en":"Run To Cursor",
-        "pl":""
+        "pl":"Wykonaj Do Kursora"
     },
     "_shrt_stop_machine":{
         "en":"Stop Machine",
-        "pl":""
+        "pl":"Zatrzymaj MAszyne"
     },
     "_shrt_toggle_manual":{
         "en":"Toggle Manual Mode",
-        "pl":""
+        "pl":"Włącz Sterowanie Ręczne"
     },
     "_shrt_clear_alerts":{
         "en":"Clear Notifications",
-        "pl":""
+        "pl":"Wyczyść Powiadomienia"
     },
     "_shrt_open_program":{
         "en":"Open Program Panel",
-        "pl":""
+        "pl":"Otwórz Panel Programu"
     },
     "_shrt_open_instructions":{
         "en":"Open Instructions Panel",
-        "pl":""
+        "pl":"Otwórz Panel Rozkazów"
     },
     "_shrt_open_settings":{
         "en":"Open Settings Panel",
-        "pl":""
+        "pl":"Otwórz Panel Ustawień"
     },
     "_shrt_open_io":{
         "en":"Open Input/Output Panel",
-        "pl":""
+        "pl":"Otwórz Panel Wejścia/Wyjścia"
     },
     "_shrt_open_file":{
         "en":"Open File Panel",
-        "pl":""
+        "pl":"Otwórz Panel Pliku"
     },
     "_shrt_open_info":{
         "en":"Open Info Panel",
-        "pl":""
+        "pl":"Otwórz Panel Informacji"
     },
     "_shrt_show_machine":{
         "en":"Show Machine",
-        "pl":""
+        "pl":"Pokaż Maszyne"
     },
     "_shrt_focus_left":{
         "en":"Focus Left Handle",
-        "pl":""
+        "pl":"Wybierz Lewy Panel"
     },
     "_shrt_focus_right":{
         "en":"Focus Right Handle",
-        "pl":""
+        "pl":"Wybierz Prawy Panel"
     }
 
-    
-    
 
-
-    
- 
-
-    
-    
 
 }
