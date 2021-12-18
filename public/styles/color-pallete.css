@@ -1,0 +1,71 @@
+
+  /*
+        Styling for colors used in stylesheet
+
+        for best expirience
+
+        --primary-color
+        --contrast-font-color
+        --body-color
+        --panel-color
+
+        need to contrast with
+        
+        --secondary-color
+        --font-color
+        
+
+        --reg hover should be some shade of primary
+        -even-alert-color:  should be some shade of secondary
+    
+    */
+
+    
+    :root{
+
+        --primary-color:#273583;
+        --secondary-color: #fa8c43;
+    
+        --font-color: #e4e4e4;
+        --contrast-font-color: #0f0f0f;
+    
+        --body-color: #3b3b3b;
+        --panel-color:  #4e4d4d;
+    
+        --even-list-color: #585858;
+        --odd-list-color: #626262;
+
+        --even-alert-color: #fb9b5b;
+        
+        --button-background:var(--font-color);
+    
+    
+        --reg-hover: #212c6e;
+        
+    }
+    /*
+    :root{
+
+        --primary-color:#2741d4;
+        --secondary-color: #FFB619;
+    
+        --font-color: #e4e4e4;
+        --contrast-font-color: #0f0f0f;
+    
+        --body-color: #3b3b3b;
+        --panel-color:  #4e4d4d;
+    
+        --even-list-color: #525050;
+        --odd-list-color: #626262;
+
+        --even-alert-color: #f3c45e;
+        
+        --button-background:var(--font-color);
+    
+    
+        --reg-hover: #2c30a7;
+        
+    }
+    */
+    
+    

@@ -1,0 +1,29 @@
+{
+  "name": "maszynaweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server  --config webpack.serve.js --open",
+    "build": "webpack --config webpack.build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakubSob1997/MaszynaWeb.git"
+  },
+  "author": "Jakub Sobolewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JakubSob1997/MaszynaWeb/issues"
+  },
+  "homepage": "https://github.com/JakubSob1997/MaszynaWeb#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^10.2.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "codemirror": "^5.64.0"
+  }
+}

@@ -1,6 +1,10 @@
 
 
 import AssemblyColorContext from "./assembly-color-context.js";
+import CodeMirror from "codemirror";
+
+
+const addAssemblyFontColoring = ()=>{
 
 
 
@@ -101,3 +105,6 @@ CodeMirror.defineMIME("text/x-z80", "z80");
 CodeMirror.defineMIME("text/x-ez80", { name: "z80", ez80: true });
 */
 });
+
+}
+export default addAssemblyFontColoring;
