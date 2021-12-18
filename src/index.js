@@ -7,5 +7,4 @@ import runMain from "./scripts/main.js"
 addInstructionFontColoring();
 addAssemblyFontColoring();
 setupLayout();
-
 runMain();
