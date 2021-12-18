@@ -19,6 +19,6 @@ https://nodejs.org/en/download/
 
 npm install - installs all the required dependencies
 
-npm starts - starts local development server
+npm start - starts local development server
 
 npm run-script build - build project to dist directory
