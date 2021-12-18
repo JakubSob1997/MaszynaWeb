@@ -131,7 +131,8 @@ export default class InfoInspector extends SidebarContent{
         });
 
 
-        const currentLanguge = Translator.getLanguage();
+        const currentLanguge = Translator.language;
+
 
         this.entries={};
         for (const key of keyEntryMap.keys()) {
