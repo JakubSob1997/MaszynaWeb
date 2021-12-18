@@ -1,8 +1,16 @@
 # MaszynaWeb
-Link do symulatora:
+Github pages deployment:
+jakubsob1997.github.io/maszynaweb/
 
+## About
+Machine W is a simplified computer model. It allows execution of programs written in assembly language , with use of custom instructions.
 
+## Quick Start
+You can find example programs at:
+File => Presets => [name].json => Load
 
+Then you can execute them by:
+Program => Load To Memory => Run 
 
 ## Build Comands
 You need to downlaod node.js to run those commands
