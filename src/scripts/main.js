@@ -28,14 +28,22 @@ import Shorutcut from "./shortcut.js";
 import LayoutMediator from "./layout-mediator.js";
 
 
-fetch("translations.json")
+const runMain = ()=>{
+    fetch("translations.json")
     .then(res=>{return res.json()})
     .then(translations=>{
         Translator.translations =translations 
         Translator.language=Translator.getLanguage();
         document.documentElement.setAttribute("lang",Translator.language);
     })
+    .catch(()=>{
+        Translator.language="DEFAULT"
+        document.documentElement.setAttribute("lang","en");
+    })
     .finally(()=>{main()})
+}
+export default runMain;
+
     
 function main(){
 
@@ -44,7 +52,7 @@ function main(){
 
     const navbar =document.getElementById("navbar");
     const mobileMenu = document.getElementById("mobile-menu");
-
+    
     mobileMenu.querySelector("title").textContent=Translator.getTranslation("_nav_menu","Navigation Menu")
 
     function hideMobileMenu(){
