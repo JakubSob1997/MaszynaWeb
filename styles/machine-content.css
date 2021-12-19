@@ -319,7 +319,7 @@
     background: var(--secondary-color);
 }
 
-.mem-entry-selected:hover{
+.mem-entry-selected:hover,.mem-entry-selected:focus{
     color: var(--secondary-color);
     background: var(--primary-color);
 }
