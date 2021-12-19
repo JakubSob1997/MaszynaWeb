@@ -4,6 +4,7 @@ import Translator from "./translator.js";
 
 export default class ValueView{
     constructor(_valueDisplayer){
+        this.lockInput = false;
 
         this.valueDisplayer = _valueDisplayer;
 
@@ -43,7 +44,7 @@ export default class ValueView{
         if(this.valueDisplayer==undefined){
             return parseInt(this.valueField.value,10);
         }else{
-            return this.valueDisplayer.stringToValue(this.valueField.value);
+            return this.valueDisplayer.parseInput(this.valueField.value);
             
         }
         
@@ -82,6 +83,7 @@ export default class ValueView{
 
         this.writeButton.addEventListener("click",(e)=>{
             this.onSubmit(e);
+
         });
 
         this.valueField.addEventListener("keydown",(e)=>{
@@ -89,19 +91,33 @@ export default class ValueView{
             if (e.keyCode === 13) {
                 e.preventDefault();
                 this.onSubmit(e);
+                this.valueField.blur();
               }
            
         });
+
+
+        this.valueField.addEventListener("focus",()=>{
+            this.lockInput = true;
+        })
+        this.valueField.addEventListener("blur",()=>{
+            this.lockInput = false;
+        })
 
     }
 
 
     populateRegister(_reg){
-        if(this.valueDisplayer===undefined){
-            this.valueField.value=_reg.getValue().toString(10);
-        }else{
-            this.valueField.value=this.valueDisplayer.registerToString(_reg)
+
+        if(this.lockInput===false){
+            if(this.valueDisplayer===undefined){
+                this.valueField.value=_reg.getValue().toString(10);
+            }else{
+                this.valueField.value=this.valueDisplayer.registerToString(_reg)
+            }
         }
+
+
     }
 
     populateWord(_value){

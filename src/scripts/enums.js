@@ -48,6 +48,7 @@ export const ExtnensionFlags = {
     Interupt:1<<8,
     InputOutput:1<<9,
     Flags:1<<10,
+    T_Register:1<<11,
 
 
 }

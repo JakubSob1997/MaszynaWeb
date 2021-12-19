@@ -6,13 +6,14 @@ import Translator from "./translator.js";
 
 export default class ControllUnit extends MachineComponent{
 
-    constructor(_I_Register,_FlagUnit){
+    constructor(_I_Register,_FlagUnit,_T_Register){
         super();
 
         this.I_Register =_I_Register;
         this.FlagUnit = _FlagUnit;
 
         this.nextInstructionFlag = false;
+        this.T_Register = _T_Register;
         this.internalCycleCounter=0;
     }
 
@@ -38,24 +39,22 @@ export default class ControllUnit extends MachineComponent{
         
         let instruction = _InstructionList.getInstruction(opCode);
 
-        if(instruction.cycles.length<= this.internalCycleCounter ){
-            this.internalCycleCounter=0;
+        const cycle  =this.T_Register.getValue();
+
+        if(instruction.cycles.length<= cycle ){
+            Alerter.alert(Translator.getTranslation(
+                "_alert_undefined_cycle",
+                "Cycle: @0 is undefined for instruction @1!",
+                [cycle,instruction.name]
+            ))
+        }else{
+            const instrcycle = instruction.cycles[cycle];
+            _Machine.selectSignals(instrcycle.signals);
         }
-        
-
-
-        const instrcycle = instruction.cycles[this.internalCycleCounter];
-        
-        _Machine.selectSignals(instrcycle.signals);
-
-
-
-
-
-       
 
 
         
+
 
 
         
@@ -80,7 +79,7 @@ export default class ControllUnit extends MachineComponent{
         
         let instruction = _InstructionList.getInstruction(opCode);
 
-        const instrcycle = instruction.cycles[this.internalCycleCounter];
+        const instrcycle = instruction.cycles[this.T_Register.getValue()];
 
 
         for (let index = 0; index < instrcycle.branchCondtions.length; index++) {
@@ -92,10 +91,12 @@ export default class ControllUnit extends MachineComponent{
             if(this.FlagUnit.checkFlag(branchCondition.flagName,_Machine)!=branchCondition.negate){
                 
                 wasJumpFlag=true;
-                this.internalCycleCounter=branchCondition.targetCycle;
-                if(this.internalCycleCounter<0){
-                    this.internalCycleCounter=0;
+               
+                if(branchCondition.targetCycle<0){
+                    this.T_Register.setValue(0);
                     forceNextInstrFlag=true;
+                }else{
+                    this.T_Register.setValue(branchCondition.targetCycle);
                 }
                 
 
@@ -103,8 +104,11 @@ export default class ControllUnit extends MachineComponent{
             }
         }
 
-        if(!forceNextInstrFlag&&!wasJumpFlag)this.internalCycleCounter++;
-        this.nextInstructionFlag=forceNextInstrFlag||this.internalCycleCounter>=instruction.cycles.length;
+        if(!forceNextInstrFlag&&!wasJumpFlag)this.T_Register.setValue(this.T_Register.getValue()+1);
+        if(instruction.cycles.length<= this.T_Register.getValue() ){
+            this.T_Register.setValue(0)
+            this.nextInstructionFlag=true;
+        }
 
     }
 

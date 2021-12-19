@@ -52,7 +52,7 @@ export default  class LanguageSetting extends SettingView{
         this.content.appendChild(this.select);
         this.content.appendChild(this.readme);
 
-        this.select.value= Translator.getLanguage();
+        this.select.value= Translator.language;
 
         this.select.addEventListener("change",()=>{
             Translator.setLanguage(this.select.value)

@@ -48,6 +48,10 @@
         "en":"Module containing \"@0\" signal is inactive!",
         "pl":"Moduł zwierający sygnał \"@0\" nie jest aktywny!"
     },
+    "_alert_undefined_cycle":{
+        "en":"Cycle: @0 is undefined for instruction @1!",
+        "pl":"Takt: @0 nie jest zdefiniowany dla rozkazu @1!"
+    },
     "_message_welcome":{
         "en":"Welcome in the Machine W simulator!",
         "pl":"Witaj w symulatorze Maszyny W!"
@@ -203,6 +207,10 @@
     "_module_desc_flags":{
         "en":"Extra Flags",
         "pl":"Dodatkowe Znaczniki"
+    },
+    "_module_desc_regt":{
+        "en":"T Register",
+        "pl":"Rejestr T"
     },
     "_performance":{
         "en":"Performance",

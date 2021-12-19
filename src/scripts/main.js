@@ -95,7 +95,7 @@ function main(){
 
     const M=new Machine();
     buildMachine(M);
-
+    console.log(M);
 
     
 

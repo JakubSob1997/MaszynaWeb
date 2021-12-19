@@ -239,7 +239,7 @@ function addALU_LogicSignals(_Machine){
         false,
         (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.NEG);},
         ExtnensionFlags.ALU_Logic,
-        SignalOrientation.Left
+        SignalOrientation.Right
     )
     
     
@@ -248,7 +248,7 @@ function addALU_LogicSignals(_Machine){
         false,
         (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.LUB);},
         ExtnensionFlags.ALU_Logic,
-        SignalOrientation.Left
+        SignalOrientation.Right
     )
 
     const i = new Signal(
@@ -256,7 +256,7 @@ function addALU_LogicSignals(_Machine){
         false,
         (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.I);},
         ExtnensionFlags.ALU_Logic,
-        SignalOrientation.Left
+        SignalOrientation.Right
     )
 
     _Machine.addSignalToDictioanry(neg);
@@ -272,7 +272,7 @@ function addALU_ExtendedMathSignals(_Machine){
         false,
         (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.MNO);},
         ExtnensionFlags.ALU_ExtendedMath,
-        SignalOrientation.Right
+        SignalOrientation.Left
     )
     
     
@@ -281,7 +281,15 @@ function addALU_ExtendedMathSignals(_Machine){
         false,
         (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.DZIEL);},
         ExtnensionFlags.ALU_ExtendedMath,
-        SignalOrientation.Right
+        SignalOrientation.Left
+    )
+
+    const mod = new Signal(
+        "mod",
+        false,
+        (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.MOD);},
+        ExtnensionFlags.ALU_ExtendedMath,
+        SignalOrientation.Left
     )
 
     const shr = new Signal(
@@ -289,11 +297,12 @@ function addALU_ExtendedMathSignals(_Machine){
         false,
         (_M)=>{_M.ALU.SetOperation(ALUOperationEnum.SHR);},
         ExtnensionFlags.ALU_ExtendedMath,
-        SignalOrientation.Right
+        SignalOrientation.Left
     )
 
     _Machine.addSignalToDictioanry(mno);
     _Machine.addSignalToDictioanry(dziel);
+    _Machine.addSignalToDictioanry(mod);
     _Machine.addSignalToDictioanry(shr);
 
 

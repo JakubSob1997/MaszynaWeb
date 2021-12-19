@@ -1,10 +1,9 @@
 
 /*
   Layoutit:
-  https://grid.layoutit.com/?id=KbzzWO2
+  https://grid.layoutit.com?id=qvR88jX
 
 */
-
 .container {
   display: grid;
   grid-template-columns: 1.2fr 0.1fr 3fr;
@@ -329,13 +328,14 @@
 .i-l-area {
   display: grid;
   grid-template-columns: 1.7fr 0.1fr 0.9fr 3.2fr 1.3fr 0.1fr;
-  grid-template-rows: 0.3fr 0.3fr 3.2fr 0.3fr 0.4fr;
+  grid-template-rows: 0.4fr 0.4fr 3fr 0.4fr 0.4fr 0.4fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     ". l-sigs l-sigs l-sigs . wyad-arrow-up"
     "il-s l-r l-r l-r . wyad-arrow-up"
     ". wyls-arrow-down wyad-wyls-stop-area wyad-wyls-stop-area wyad-wyls-stop-area wyad-arrow-up"
+    ". wyls-arrow-down . t-r . wyad-arrow-up"
     ". wyls-arrow-down . i-r i-r i-r"
     ". wyls-arrow-down . i-sigs i-sigs i-sigs";
   grid-area: i-l-area;
@@ -388,7 +388,7 @@
 .wyad-wyls-stop-area {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.5fr 0.5fr 2.8fr 0.6fr 0.6fr 1fr;
+  grid-template-rows: 0.8fr 0.8fr 2fr 0.8fr 0.8fr 0.8fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -406,6 +406,8 @@
 .wyls-s { grid-area: wyls-s; }
 
 .stop-s { grid-area: stop-s; }
+
+.t-r { grid-area: t-r; }
 
 .center-area {
   display: grid;
@@ -585,13 +587,13 @@
     ". . . . wyak-arrow-hor-wyak wyak-arrow-hor-wyak wyak-arrow-hor-wyak wyak-arrow-hor-wyak ."
     ". f-r f-r . wyak-arrow-vert-wyak . . wyak-arrow-down-wyak ."
     "iak-s ak-r ak-r ak-r ak-r dak-s . wyak-arrow-down-wyak ."
-    "weak-s jal-body jal-body jal-body jal-body neg-s . wyak-arrow-down-wyak wyak-s"
-    "dod-s jal-body jal-body jal-body jal-body lub-s . wyak-arrow-down-wyak ."
-    "ode-s jal-body jal-body jal-body jal-body i-s . wyak-arrow-down-wyak ."
-    "przep-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
-    "mno-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
-    "dziel-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
-    "shr-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    "weak-s jal-body jal-body jal-body jal-body mno-s . wyak-arrow-down-wyak wyak-s"
+    "dod-s jal-body jal-body jal-body jal-body dziel-s . wyak-arrow-down-wyak ."
+    "ode-s jal-body jal-body jal-body jal-body mod-s . wyak-arrow-down-wyak ."
+    "przep-s jal-body jal-body jal-body jal-body shr-s . wyak-arrow-down-wyak ."
+    "neg-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    "lub-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
+    "i-s jal-body jal-body jal-body jal-body . . wyak-arrow-down-wyak ."
     ". weja-area weja-area weja-area weja-area . . wyak-arrow-down-wyak .";
   grid-area: jal-cener;
 }
@@ -614,11 +616,11 @@
 
 .przep-s { grid-area: przep-s; }
 
-.mno-s { grid-area: mno-s; }
+.neg-s { grid-area: neg-s; }
 
-.dziel-s { grid-area: dziel-s; }
+.lub-s { grid-area: lub-s; }
 
-.shr-s { grid-area: shr-s; }
+.i-s { grid-area: i-s; }
 
 .ak-r { grid-area: ak-r; }
 
@@ -626,11 +628,11 @@
 
 .jal-body { grid-area: jal-body; }
 
-.neg-s { grid-area: neg-s; }
+.mno-s { grid-area: mno-s; }
 
-.lub-s { grid-area: lub-s; }
+.dziel-s { grid-area: dziel-s; }
 
-.i-s { grid-area: i-s; }
+.mod-s { grid-area: mod-s; }
 
 .weja-area {
   display: grid;
@@ -648,3 +650,5 @@
 .weja-arrow-up { grid-area: weja-arrow-up; }
 
 .wyak-s { grid-area: wyak-s; }
+
+.shr-s { grid-area: shr-s; }

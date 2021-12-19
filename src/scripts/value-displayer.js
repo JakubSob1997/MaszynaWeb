@@ -70,7 +70,7 @@ export default class ValueDisplayer{
     }
 
 
-    stringToValue(_string,_bitmask){
+    stringToValue(_string){
 
         let trimed = _string.trim();
         let output = NaN;
@@ -105,6 +105,36 @@ export default class ValueDisplayer{
             default:
                 return "err";
         }
+    }
+
+    parseInput(_string){
+
+        let arr = _string.split(/(\s+)/);
+        arr = arr.filter((v)=>{return !v.match(/\s/)})
+        if(arr.length>0){
+
+            const index =this.instructionList.getInstructionIndex(arr[0])
+            if(index<0){
+                return this.stringToValue(_string);
+            }
+
+
+            let code = (index<<this.settings.adressWidth)&this.settings.codeMask;
+            let arg;
+            
+            if(arr.length===1){
+                arg=0;
+            }else{
+                arg = this.stringToValue(arr[1]);
+                if(isNaN(arg)){
+                    arg=0;
+                }
+            }
+            arg&=this.settings.adressMask;
+
+            return code|arg;
+        }
+        return this.stringToValue(_string);
     }
     
 }

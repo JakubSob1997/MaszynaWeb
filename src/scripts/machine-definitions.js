@@ -100,6 +100,8 @@ export default function buildMachine(_Machine){
 
     let RB_register=new Register("rb",ExtnensionFlags.InputOutput);
     let G_register=new Register("g",ExtnensionFlags.InputOutput);
+
+    let T_register = new Register("t",ExtnensionFlags.T_Register);
     
 
     //Set default display
@@ -108,6 +110,7 @@ export default function buildMachine(_Machine){
     RZ_register.display = ValueDisplayEnum.Binary;
     RP_register.display=   ValueDisplayEnum.Binary;
     RM_register.display = ValueDisplayEnum.Binary;
+    
 
 
     //Set bus match rule and bus width
@@ -130,10 +133,14 @@ export default function buildMachine(_Machine){
     RP_register.busMatchRule = MatchRegisterWidthEnum.DontMatch;
     RP_register.setBitWidth(4);
     AP_register.busMatchRule = MatchRegisterWidthEnum.ToAdress;
+    
 
     RB_register.busMatchRule-MatchRegisterWidthEnum.ToWord;
     G_register.busMatchRule=MatchRegisterWidthEnum.DontMatch;
     G_register.setBitWidth(1);
+
+    T_register.busMatchRule = MatchRegisterWidthEnum.DontMatch;
+    T_register.setBitWidth(24);
 
     //Set registers
     _Machine.AK_register=AK_register;
@@ -154,11 +161,13 @@ export default function buildMachine(_Machine){
     _Machine.RB_register=RB_register;
     _Machine.G_register=G_register;
 
+    _Machine.T_register = T_register;
+
     //Define Units
     let ALU = new ArythmeticLogicUnit(AK_register);
     let flagUnit = new FlagsUnit(AK_register);
     setupFlagUnit(flagUnit);
-    let CntrlUnit = new ControllUnit(I_register,flagUnit);
+    let CntrlUnit = new ControllUnit(I_register,flagUnit,T_register);
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
     let _IOUnit = new IOUnit(RB_register,G_register,I_register);
 
@@ -210,6 +219,7 @@ export default function buildMachine(_Machine){
         AP_register,
         RB_register,
         G_register,
+        T_register,
     ];
     _Machine.machineComponents= machineComponents;
 
@@ -229,6 +239,7 @@ export default function buildMachine(_Machine){
         AP_register,
         RB_register,
         G_register,
+        T_register,
     ];
 
     _Machine.registers= registers;

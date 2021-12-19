@@ -514,7 +514,6 @@ export default class InstrcutionParser {
 
 
         let newLines = _code.split(/;/);
-        console.log(newLines);
         for (let index = 0; index < newLines.length; index++) {
             const element = newLines[index];
             let formatedLine = element.replaceAll(/\s+/g, " ");

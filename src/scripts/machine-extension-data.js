@@ -21,6 +21,7 @@ export default class MachineExtensionData{
         this.Interupt;
         this.InputOutput;
         this.Flags;
+        this.T_Register;
 
         this.setProperties(_flags);
 
@@ -39,6 +40,7 @@ export default class MachineExtensionData{
         if(this.Interupt) result+=`${Translator.getTranslation("_module_short_int","Interupts")}, `
         if(this.InputOutput) result+=`${Translator.getTranslation("_module_short_io","I/O")}, `
         if(this.Flags) result+=`${Translator.getTranslation("_module_short_flags","Flags")}, `
+        if(this.T_Register) result+=`${Translator.getTranslation("_module_short_regt","T")}, `
 
         if(result!=""){
             result=result.slice(0,result.length-2);
@@ -60,6 +62,7 @@ export default class MachineExtensionData{
         this.Interupt = (_flags&ExtnensionFlags.Interupt)!=0;
         this.InputOutput = (_flags&ExtnensionFlags.InputOutput)!=0;
         this.Flags = (_flags&ExtnensionFlags.Flags)!=0;
+        this.T_Register = (_flags&ExtnensionFlags.T_Register)!=0;
     }
 
     getFlags(){
@@ -75,6 +78,8 @@ export default class MachineExtensionData{
         flag|=this.Interupt ?ExtnensionFlags.Interupt:0;
         flag|=this.InputOutput ?ExtnensionFlags.InputOutput:0;
         flag|=this.Flags ?ExtnensionFlags.Flags:0;
+        flag|=this.T_Register ?ExtnensionFlags.T_Register:0;
+        
 
         return flag;
 

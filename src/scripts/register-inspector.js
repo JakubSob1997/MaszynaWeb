@@ -114,7 +114,6 @@ export default class RegisterInspector extends SidebarContent{
         const intVal = this.valueView.getValue();
             if(isNaN(intVal)==false){
                 this.currentRegister.setValue(intVal);
-                this.currentRegister.update();
             }
     }
 

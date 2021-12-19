@@ -128,7 +128,7 @@ export default class Settings{
 
     setExtentionFlags(_flags){
         this.extentionFlags  = _flags;
-        Terminator.terminate();
+        //Terminator.terminate();
         this.save();
         this.invokeExtensionFlagsChanged();
     }
