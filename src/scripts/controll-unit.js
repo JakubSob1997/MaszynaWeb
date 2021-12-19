@@ -63,7 +63,7 @@ export default class ControllUnit extends MachineComponent{
     selectNextCycleCounter(_Machine,_InstructionList,_Settings){
 
         const opCode =  _Settings.getOpcode(this.I_Register.getValue());
-        let forceNextInstrFlag=false;
+        this.nextInstructionFlag=false;
         let wasJumpFlag=false;
 
         if(_InstructionList.length()<=opCode){
@@ -94,7 +94,7 @@ export default class ControllUnit extends MachineComponent{
                
                 if(branchCondition.targetCycle<0){
                     this.T_Register.setValue(0);
-                    forceNextInstrFlag=true;
+                    this.nextInstructionFlag=true;
                 }else{
                     this.T_Register.setValue(branchCondition.targetCycle);
                 }
@@ -104,7 +104,7 @@ export default class ControllUnit extends MachineComponent{
             }
         }
 
-        if(!forceNextInstrFlag&&!wasJumpFlag)this.T_Register.setValue(this.T_Register.getValue()+1);
+        if(!wasJumpFlag)this.T_Register.setValue(this.T_Register.getValue()+1);
         if(instruction.cycles.length<= this.T_Register.getValue() ){
             this.T_Register.setValue(0)
             this.nextInstructionFlag=true;
