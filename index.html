@@ -46,14 +46,14 @@
 
   <header>
 
-    <svg id="mobile-menu"  viewBox="0 0 100 80" width="2em" height="2em" class=mobile-menu tabindex="0">
+    <svg id="mobile-menu"  viewBox="0 0 100 80" width="2em" height="2em" class=mobile-menu tabindex="0" role="button">
       <title> Navigation Menu.</title>
       <rect width="100" height="20"></rect>
       <rect y="30" width="100" height="20"></rect>
       <rect y="60" width="100" height="20"></rect>
     </svg>
       
-    <a href="#" class="logo unselectable"><span class="logo-prefix">Maszyna W</span>eb</a>
+    <span class="logo unselectable"><span class="logo-prefix">Maszyna W</span>eb</span>
 
     <nav id="navbar">
       <button class="nav-button" id ="asm-nav">Program</button>
@@ -66,7 +66,7 @@
     </nav>
     
     <div id="flow-control">
-      <button class="flow-button " id="toggle-manual-button"> Manual</button>
+      <button class="flow-button " id="toggle-manual-button" role="checkbox"> Manual</button>
       <button class="flow-button " id="next-cycle-button">Cycle</button>
       <button class="flow-button " id="next-instruction-button">Instruction</button>
       <button class="flow-button " id="run-machine-button">Run</button>
@@ -98,8 +98,8 @@
         <div class="up-area">
           <div class="rz-area">
             <div class="rz-center">
-              <div class="rz-2"></div>
               <div class="rz-1"></div>
+              <div class="rz-2"></div>
               <div class="rz-3"></div>
               <div class="rz-4"></div>
               <div class="rz-r"></div>

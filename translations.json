@@ -92,6 +92,10 @@
         "en":"Instruction name: @0 can't be a keyword: (RPA, RST, RTB)",
         "pl":"Nazwa rozkazu: @0 nie może być pseudo rozkazem: (RPA, RST, RTB)"
     },
+    "_signal":{
+        "en":"Signal",
+        "pl":"Sygnał"
+    },
     "_program":{
         "en":"Program",
         "pl":"Program"
@@ -209,8 +213,8 @@
         "pl":"Dodatkowe Znaczniki"
     },
     "_module_desc_regt":{
-        "en":"T Register",
-        "pl":"Rejestr T"
+        "en":"Cycle Register",
+        "pl":"Rejestr Taktów"
     },
     "_performance":{
         "en":"Performance",
@@ -523,6 +527,10 @@
     "_int_button":{
         "en":"Interrupt button @0",
         "pl":"Przycisk przerwania @0"
+    },
+    "_int_button_label":{
+        "en":"Interrupt button",
+        "pl":"Przycisk przerwania"
     },
     "_none":{
         "en":"None",
