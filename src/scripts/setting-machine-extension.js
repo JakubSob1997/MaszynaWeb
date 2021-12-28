@@ -100,7 +100,7 @@ export default class MachineExtensionSetting extends SettingView{
         this.keyCheckboxDict.Flags = this.generateFlagEntry(Translator.getTranslation("_module_desc_flags","Extra Flags"),
             this.exstensionData.Flags,this.checkEntryParrent,ExtnensionFlags.Flags);
         
-        this.keyCheckboxDict.T_Register = this.generateFlagEntry(Translator.getTranslation("_module_desc_regt","Cycle Counter"),
+        this.keyCheckboxDict.T_Register = this.generateFlagEntry(Translator.getTranslation("_module_desc_regt","Cycle Register"),
             this.exstensionData.T_Register,this.checkEntryParrent,ExtnensionFlags.T_Register);
 
 

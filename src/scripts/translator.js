@@ -3,7 +3,7 @@
 const Translator = {
     translations: {},
     language: "en",
-    debugFlag:true,
+    debugFlag:false,//If tru displays lang_key if no matching translation found
     setLanguage:function(_lang){
         localStorage.setItem("lang",_lang);
     },

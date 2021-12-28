@@ -5,8 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maszyna Web</title>
+    <meta
+      name="description"
+      content="Maszyna W jest uproszczonym modelem komputera. Pozwala ona na wykonywanie programów napisanych w języku asemblera, przy pomocy zaprojektowanych rozkazów."
+    />
+    <meta name="author" content="Jakub Sobolewski">
+    <meta name="keywords" content="Assembly, Education, Computer Science, Informatyka, Maszyna W, Maszyna Web, Machine W, Machine Web, Assembler, Computer Simulator, Simulator Symulator Komputera">
+    <meta name="theme-color" content="#273583">
+
     
     <link rel="preload" href="translations.json" as="fetch" crossorigin="" type="application/json" >
+
 
     <link rel="stylesheet" href="./styles/defaults.css">
     <link rel="stylesheet" href="./styles/color-pallete.css">
@@ -46,14 +55,14 @@
 
   <header>
 
-    <svg id="mobile-menu"  viewBox="0 0 100 80" width="2em" height="2em" class=mobile-menu tabindex="0">
+    <svg id="mobile-menu"  viewBox="0 0 100 80" width="2em" height="2em" class=mobile-menu tabindex="0" role="button">
       <title> Navigation Menu.</title>
       <rect width="100" height="20"></rect>
       <rect y="30" width="100" height="20"></rect>
       <rect y="60" width="100" height="20"></rect>
     </svg>
       
-    <a href="#" class="logo unselectable"><span class="logo-prefix">Maszyna W</span>eb</a>
+    <span class="logo unselectable"><span class="logo-prefix">Maszyna W</span>eb</span>
 
     <nav id="navbar">
       <button class="nav-button" id ="asm-nav">Program</button>
@@ -66,7 +75,7 @@
     </nav>
     
     <div id="flow-control">
-      <button class="flow-button " id="toggle-manual-button"> Manual</button>
+      <button class="flow-button " id="toggle-manual-button" role="checkbox"> Manual</button>
       <button class="flow-button " id="next-cycle-button">Cycle</button>
       <button class="flow-button " id="next-instruction-button">Instruction</button>
       <button class="flow-button " id="run-machine-button">Run</button>
@@ -98,8 +107,8 @@
         <div class="up-area">
           <div class="rz-area">
             <div class="rz-center">
-              <div class="rz-2"></div>
               <div class="rz-1"></div>
+              <div class="rz-2"></div>
               <div class="rz-3"></div>
               <div class="rz-4"></div>
               <div class="rz-r"></div>

@@ -28,7 +28,7 @@ let SerializerManager={
             }
         }
 
-        const jsonString = JSON.stringify(exportOpbjject,null,"\t");
+        const jsonString = JSON.stringify(exportOpbjject,null,2);
         this.exportLocalFile(jsonString,_filename,"application/json")
     },
 

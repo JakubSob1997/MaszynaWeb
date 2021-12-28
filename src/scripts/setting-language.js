@@ -23,6 +23,11 @@ export default  class LanguageSetting extends SettingView{
         let option = document.createElement("option");
         option.value=_value;
         option.innerText=_name;
+        if(_value === "DEFAULT"||_value ==="DEBUG"){
+            option.lang="en"
+        }else{
+            option.lang=_value;
+        }
         return option;
    }
 
@@ -41,8 +46,8 @@ export default  class LanguageSetting extends SettingView{
         
 
         //this.label.setAttribute("for",id);
-        this.select.appendChild(this.generateOption("DEFAULT","Default"));
-        this.select.appendChild(this.generateOption("DEBUG","Debug"));
+        //this.select.appendChild(this.generateOption("DEFAULT","Default"));
+        //this.select.appendChild(this.generateOption("DEBUG","Debug"));
         this.select.appendChild(this.generateOption("en","English 🇬🇧"));
         this.select.appendChild(this.generateOption("pl","Polski 🇵🇱"));
 

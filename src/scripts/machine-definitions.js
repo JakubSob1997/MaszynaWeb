@@ -6,7 +6,7 @@ import Mamory from "./memory.js";
 import Register from "./register.js";
 import { ValueDisplayEnum,MatchRegisterWidthEnum,ExtnensionFlags } from "./enums.js";
 import ArythmeticLogicUnit from "./arythmetic-logic-unit.js";
-import FlagsUnit, {ConditionFlag} from "./condition-flags.js";
+import FlagsUnit, {ConditionFlag} from "./flag-unit.js";
 import ControllUnit from "./controll-unit.js";
 import InteruptUnit from "./interupt-unit.js";
 import IOUnit from "./io-unit.js";
@@ -14,47 +14,8 @@ import InstructionList from "./instruction-list.js"
 import addAllSignals from "./signal-definitions.js";
 import buildDevices from "./io-definitions.js";
 import FlagRegister from "./flag-register.js";
+import setupFlags from "./flag-definitions.js";
 
-function setupFlagUnit(_flagUnit){
-    
-
-    //Flags
-    // AK==0
-    _flagUnit.addFlag(
-        new ConditionFlag("ZAK",
-            (_Machine)=>{
-                return _Machine.AK_register.getValue()==0;
-            }
-        )
-    )
-
-    // AK sign bit is 1
-    _flagUnit.addFlag(
-        new ConditionFlag("Z",
-            (_Machine)=>{
-                return _Machine.AK_register.getSignBit()!=0;
-            }
-        )
-    )
-
-    // RP!=0
-    _flagUnit.addFlag(
-        new ConditionFlag("INT",
-            (_Machine)=>{
-                return _Machine.RP_register.getValue()!=0;
-            }
-        )
-    )
-
-    _flagUnit.addFlag(
-        new ConditionFlag("DALEJ",
-        (_Machine)=>{
-            return true;
-        }
-        )
-    )
-
-}
 
 
 export default function buildMachine(_Machine){
@@ -163,15 +124,17 @@ export default function buildMachine(_Machine){
 
     _Machine.T_register = T_register;
 
+    let flagRegister = new FlagRegister();
+
     //Define Units
-    let ALU = new ArythmeticLogicUnit(AK_register);
+    let ALU = new ArythmeticLogicUnit(AK_register,flagRegister);
     let flagUnit = new FlagsUnit(AK_register);
-    setupFlagUnit(flagUnit);
+    setupFlags(_Machine,flagUnit,flagRegister);
     let CntrlUnit = new ControllUnit(I_register,flagUnit,T_register);
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
     let _IOUnit = new IOUnit(RB_register,G_register,I_register);
 
-    let flagRegister = new FlagRegister();
+    
 
     
     //IO
@@ -179,11 +142,6 @@ export default function buildMachine(_Machine){
 
     _Machine.Devices=Devices;
     _Machine.InteruptDevices = InteruptDevices;
-
-
-
-
-
 
     _Machine.controllUnit=CntrlUnit;
     _Machine.ALU=ALU

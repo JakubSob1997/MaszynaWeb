@@ -7,6 +7,7 @@
 
 import MachineViewElement from "./machine-view-element.js";
 import { ValueDisplayEnum } from "./enums.js";
+import Translator from "./translator.js";
 
 
 export default class MachineViewMemory extends MachineViewElement{
@@ -43,6 +44,7 @@ export default class MachineViewMemory extends MachineViewElement{
         this.element  = document.createElement("div")
         this.element.classList.add("mem");
         this.element.setAttribute("tabindex","0");
+        this.element.setAttribute("aria-label",Translator.getTranslation("_memory","Memory"))
         this.populate();
     }
 
@@ -183,6 +185,8 @@ export class MachineViewMemoryEntry extends MachineViewElement{
 
         this.element.tabIndex=-1;
         this.element.setAttribute("data-mem-adress",this.addres.toString());
+        this.element.setAttribute("role","button");
+        this.element.setAttribute("aria-label",Translator.getTranslation("_memory_header","Memory [@0]",[this.addres]))
 
         this.display();
         

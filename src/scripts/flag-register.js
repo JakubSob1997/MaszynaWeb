@@ -1,43 +1,42 @@
-import { ExtnensionFlags } from "./enums.js";
+import { ExtnensionFlags, MatchRegisterWidthEnum } from "./enums.js";
 import MachineComponent from "./machine-component.js";
 import Register from "./register.js";
-
-
-class FlagState{
-    constructor(_name,_flagBit,_isActive){
-        
-        this.flagName=_name;
-        this.flagBit=_flagBit;
-        this.isActive=_isActive;
-    }
-}
 
 export default class FlagRegister extends Register{
     constructor(){
 
-        super("F");
+        super("F",ExtnensionFlags.Flags);
         this.flags = {}
 
-
-
-
-
-
+        this.busMatchRule = MatchRegisterWidthEnum.DontMatch;
     }
 
-    addFlag(_name,_flagBit){
-
+    addFlag(_conditionFlag){
+        this.flags[_conditionFlag.bit]= _conditionFlag;
     }
 
-    getTextContent(){
-        return "";
+    machineUpdate(){
+
+        for (const bit in this.flags) {
+            if (Object.hasOwnProperty.call(this.flags, bit)) {
+                const {name,isFlagActive} = this.flags[bit];
+                const mask =  1<<bit;
+
+                if(isFlagActive()){
+                    this.value |= mask;
+                }else{
+                    this.value &= (~mask);
+                }
+
+            }
+        }
+
+        
+        super.update.call(this);
     }
 
-    setDefault(){}
-    update(){}
-    resetState(){}
-    onBusWidthChanged(_settings){}
-    getExtention(){return  ExtnensionFlags.Flags;}
+
+
 }
 
 

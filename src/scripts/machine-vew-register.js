@@ -28,7 +28,8 @@ export default class MachineViewRegister extends MachineViewElement{
         this.element  = document.createElement("button")
 
         this.element.classList.add("reg");
-        
+        this.element.setAttribute("aria-label",`Register`)
+
         
         _register.addOnUpdateCallback(_reg=>{
              this.display();

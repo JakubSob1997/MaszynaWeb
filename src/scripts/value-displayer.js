@@ -1,6 +1,7 @@
 
 
 import { ValueDisplayEnum } from "./enums.js";
+import FlagRegister from "./flag-register.js";
 
 export default class ValueDisplayer{
 
@@ -51,6 +52,12 @@ export default class ValueDisplayer{
     }
 
     registerToString(_register){
+
+
+        if(_register instanceof FlagRegister){
+            return this.flagRegisterToString(_register)
+        }
+
         return this.valueToString(
             _register.getValue(),
             _register.display,
@@ -59,8 +66,36 @@ export default class ValueDisplayer{
         )
     }
 
+    flagRegisterToString(_register){
+
+        const val = _register.getValue();
+        const txt = this.valueToString(
+            val,
+            _register.display,
+            _register.width,
+            _register.bitmask
+        )
+
+        const flagnames =[]
+        
+        for (const bit in _register.flags) {
+            if (Object.hasOwnProperty.call(_register.flags, bit)) {
+                const {name,isFlagActive} = _register.flags[bit];
+                if((val&(1<<bit))!==0){
+                    flagnames.push(name);
+                }
+            }
+        }
+
+        return flagnames.length===0?txt:`${txt} (${flagnames.join(" ")})`;
+    }
+
 
     wordToString(_value,_displayMode){
+
+
+        
+
         return this.valueToString(
             _value,
             _displayMode,

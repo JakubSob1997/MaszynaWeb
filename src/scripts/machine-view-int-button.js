@@ -2,6 +2,7 @@
 
 import MachineViewElement from "./machine-view-element.js";
 import { ExtnensionFlags } from "./enums.js";
+import Translator from "./translator.js";
 
 
 export default class MachineViewIntButton extends MachineViewElement{
@@ -21,6 +22,7 @@ export default class MachineViewIntButton extends MachineViewElement{
         this.element.innerText=_label;
         this.element.classList.add("int-button");
         this.element.classList.add("custom-btn");
+        this.element.setAttribute("aria-label",Translator.getTranslation("_int_button_label","Interrupt button"))
 
         this.display();
     }

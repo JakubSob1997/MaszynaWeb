@@ -312,9 +312,11 @@ function main(){
     M.addOnManualToggleCallback((_manual)=>{
         if(_manual){
             toggleManualButton.classList.add("manual-selected")
+            toggleManualButton.ariaChecked="true";
             
         }else{
             toggleManualButton.classList.remove("manual-selected")
+            toggleManualButton.ariaChecked="false";
         }
 
     })

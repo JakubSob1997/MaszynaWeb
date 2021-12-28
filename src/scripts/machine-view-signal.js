@@ -7,6 +7,7 @@
 
 import MachineViewElement from "./machine-view-element.js";
 import { SignalOrientation } from "./enums.js";
+import Translator from "./translator.js";
 
 export default class MachineViewSignal extends MachineViewElement{
 
@@ -39,6 +40,10 @@ export default class MachineViewSignal extends MachineViewElement{
         if(_signal.isImpulse){
             this.element.classList.add("sig-impulse");
         }
+
+        this.element.setAttribute("role","checkbox")
+        this.element.setAttribute("aria-checked","false")
+        this.element.setAttribute("aria-label",Translator.getTranslation("_signal","Signal"))
         
         //Set orinetation
         if(_signal.orientation==SignalOrientation.Right){
@@ -84,14 +89,16 @@ export default class MachineViewSignal extends MachineViewElement{
 
         if(this.machineView.M.isSignalSelected(this.signal.name)){
             this.element.classList.add("sig-selected");
+            this.element.setAttribute("aria-checked","true")
         }else{
             this.element.classList.remove("sig-selected");
+            this.element.setAttribute("aria-checked","false")
         }
 
     }
 
     setEneable(_boolean){
-        this.element.toggleAttribute("disabled",_boolean==false);
+        this.element.toggleAttribute("disabled",_boolean===false);
     }
 
     getHTMLElement(){

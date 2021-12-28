@@ -13,11 +13,15 @@ export default class ArythmeticLogicUnit extends MachineComponent {
 
         this.AKRegister =_AKRegister;
 
+
         this.Operation=ALUOperationEnum.Unselected;
         
         this.BusReference = null;
         this.SetOperation(ALUOperationEnum.Unselected);
         
+
+        
+
     }
 
     resetState(){
@@ -79,6 +83,7 @@ export default class ArythmeticLogicUnit extends MachineComponent {
 
             
         this.AKRegister.write(output);
+
     }
     
 
