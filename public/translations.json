@@ -52,6 +52,18 @@
         "en":"Cycle: @0 is undefined for instruction @1!",
         "pl":"Takt: @0 nie jest zdefiniowany dla rozkazu @1!"
     },
+    "_alert_alu_no_input":{
+        "en":"Undefined Arythmetic Logic Input!",
+        "pl":"Wejście Jednostki Arytmetyczno Logicznej jest nie podane!"
+    },
+    "_alert_alu_no_operation":{
+        "en":"Unselected Arythmetic Logic Operation!",
+        "pl":"Operacja Jednostki Arytmetyczno Logicznej nie jest wybrana!"
+    },
+    "_alert_alu_operation_redefined":{
+        "en":"Arythmetic Logic Operation is already selected!",
+        "pl":"Operacja Jednostki Arytmetyczno Logicznej jest już wybrana!"
+    },
     "_message_welcome":{
         "en":"Welcome in the Machine W simulator!",
         "pl":"Witaj w symulatorze Maszyny W!"
@@ -412,6 +424,10 @@
         "en":"Cancel",
         "pl":"Cofnij"
     },
+    "_cancel_preview":{
+        "en":"Cancel",
+        "pl":"Anuluj"
+    },
     "_code_mirror_label":{
         "en":"Press the \"Esc\" key to leave editor focus.",
         "pl":"Naciśnij klawisz \"Esc\" by wyjść z edytora."
@@ -541,8 +557,8 @@
         "pl":"Przerwanie licznika taktów"
     },
     "_io_cycle_timer_start":{
-        "en":"Start cycle timer (cmd)",
-        "pl":"Uruchom licznik taktów (pol)"
+        "en":"Start cycle timer (out)",
+        "pl":"Uruchom licznik taktów (wy)"
     },
     "_cycle_timer":{
         "en":"Cycle Timer",

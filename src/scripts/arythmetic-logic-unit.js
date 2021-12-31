@@ -3,6 +3,7 @@
 import MachineComponent from "./machine-component.js";
 import { ALUOperationEnum } from "./enums.js";
 import Alerter from "./alerter.js"
+import Translator from "./translator.js";
 
 
 export default class ArythmeticLogicUnit extends MachineComponent {
@@ -32,7 +33,7 @@ export default class ArythmeticLogicUnit extends MachineComponent {
     writeOperation(){
 
         if(this.BusReference==null || this.BusReference.hasValue()==false){
-            Alerter.alert("Undefined Arythmetic Logic Input")
+            Alerter.alert(Translator.getTranslation("_alert_alu_no_input","Undefined Arythmetic Logic Input!"))
             return;
         }
 
@@ -44,7 +45,7 @@ export default class ArythmeticLogicUnit extends MachineComponent {
 
         switch (this.Operation) {
             case ALUOperationEnum.Unselected:
-                Alerter.alert("Unselected Arythmetic Logic Operation");
+                Alerter.alert(Translator.getTranslation("_alert_alu_no_operation","Unselected Arythmetic Logic Operation!"));
                 return;
             case ALUOperationEnum.PRZEP:
                  output= _inputval
@@ -77,7 +78,7 @@ export default class ArythmeticLogicUnit extends MachineComponent {
                 output = _akval%_inputval;
                 break;
             default:
-                Alerter.alert("Arethmitic Logic Operation Is Undefined")
+                Alerter.alert(Translator.getTranslation("_alert_alu_no_operation","Unselected Arythmetic Logic Operation!"));
                 return;
         }
 
@@ -94,7 +95,7 @@ export default class ArythmeticLogicUnit extends MachineComponent {
 
 
         if(this.Operation!=ALUOperationEnum.Unselected){
-            Alerter.alert("Arythmetic Logic Operation already selected");
+            Alerter.alert(Translator.getTranslation("_alert_alu_operation_redefined","Arythmetic Logic Operation is already selected!"));
             return;
         }
 

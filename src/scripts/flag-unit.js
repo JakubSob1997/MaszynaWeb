@@ -3,13 +3,6 @@ import Alerter from "./alerter.js"
 
 
 
-export class ConditionFlag{
-    constructor(_name,_bit,_flagCheckFunk){
-        this.name = _name;
-        this.bit=_bit;
-        this.isFlagActive = _flagCheckFunk;
-    }
-}
 
 export default class FlagsUnit{
 
@@ -20,16 +13,12 @@ export default class FlagsUnit{
 
     }
 
-    updateUnit(){
-        
-    }
-
     addFlag(_conditionFlag){
         this.conditionFlags[_conditionFlag.name] = _conditionFlag;
     }
 
 
-    checkFlag(_flagName,_Machine){
+    checkFlag(_flagName){
         return this.conditionFlags[_flagName].isFlagActive();
     }
 

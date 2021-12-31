@@ -128,15 +128,9 @@ export default class Mamory extends MachineComponent{
             ))
         }
         this.activeFlag=true;
+        
+        return this.getValue(_adress);
 
-        if(_adress>= this.values.length||_adress<0){
-            Alerter.alert(Translator.getTranslation(
-                "_alert_memory_out_of_bounds",
-                "Address is out of memory bounds!"
-            ));
-        }else{
-            return this.values[_adress]&this.settings.getWordMask();
-        }
     }
 
     write(_adress,_value){
@@ -149,15 +143,9 @@ export default class Mamory extends MachineComponent{
         }
         this.activeFlag=true;
 
-        if(_adress>= this.values.length||_adress<0){
-            Alerter.alert(Translator.getTranslation(
-                "_alert_memory_out_of_bounds",
-                "Address is out of memory bounds!"
-            ));
-        }else{
-            this.values[_adress] =_value&this.settings.getWordMask();
-            this.valueChanged(_adress);
-        }
+
+        this.setValue(_adress,_value);
+
     }
 
     loadMemory(_newValues){

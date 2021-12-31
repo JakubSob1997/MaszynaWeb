@@ -128,8 +128,8 @@ export default class  Register extends MachineComponent {
     }
 
 
-    setBitWidth(newWidth){
-        this.width= newWidth;
+    setBitWidth(_newWidth){
+        this.width= _newWidth;
         this.bitmask=this.getBitmask();
         this.update();
     }

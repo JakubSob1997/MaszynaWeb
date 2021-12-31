@@ -21,6 +21,14 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
 
         this.interuptDriver = this;
 
+        /*
+        this.interuptDriver={
+            handleInterupt(device){
+                console.log(device.interuptVactor.toString(2));
+            }
+        }
+        */
+
     }
 
 
@@ -29,6 +37,7 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
         let intVactor = this.RZregister.getValue();
         intVactor &= ~(this.RMregister.getValue());
         if (intVactor == 0) {
+            
             return;
         }
 
@@ -45,6 +54,7 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
             priorityBit = (priorityBit >> 1);
             interuptIndex++;
         }
+       
     }
 
     doRint() {
@@ -56,7 +66,7 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
 
 
     handleInterupt(_interuptDevice){
-        if(this.interuptDriver==this){
+        if(this.interuptDriver===this){
             this.onInterupt(_interuptDevice);
         }else{
             this.interuptDriver.handleInterupt(_interuptDevice);

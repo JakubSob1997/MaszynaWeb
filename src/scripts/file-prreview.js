@@ -36,6 +36,14 @@ export default class FilePreviewView{
             this.load();
         })
 
+        this.hideButton =document.createElement("button");
+        this.hideButton.classList.add("custom-btn");
+        this.hideButton.innerText=Translator.getTranslation("_cancel_preview","Cancel")
+        this.hideButton.addEventListener("click",()=>{
+            this.hide();
+        })
+        this.hideButton.style="margin-left: 0.2em;"
+
 
         this.previewFileName = new PreviewFileName();
         this.previewInstructionList = new PreviewInstructionList();
@@ -58,8 +66,13 @@ export default class FilePreviewView{
         this.wrapper.appendChild(this.header);
         this.wrapper.appendChild(this.content);
         this.wrapper.appendChild(this.loadButton.getHTMLElement());
+        this.wrapper.appendChild(this.hideButton);
 
+    }
 
+    hide(){
+        this.wrapper.classList.add("display-none");
+        this.object = null;
     }
 
     load(){

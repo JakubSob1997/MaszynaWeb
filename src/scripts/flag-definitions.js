@@ -1,5 +1,10 @@
-import { ConditionFlag } from "./flag-unit.js";
-
+export class ConditionFlag{
+    constructor(_name,_bit,_flagCheckFunk){
+        this.name = _name;
+        this.bit=_bit;
+        this.isFlagActive = _flagCheckFunk;
+    }
+}
 
 
 

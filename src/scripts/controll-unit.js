@@ -14,13 +14,9 @@ export default class ControllUnit extends MachineComponent{
 
         this.nextInstructionFlag = false;
         this.T_Register = _T_Register;
-        this.internalCycleCounter=0;
     }
 
-    setDefault(){
-        this.internalCycleCounter=0;
-    }
-    
+
     selectSinalsForCycle(_Machine,_InstructionList,_Settings){
        
         const opCode =  _Settings.getOpcode(this.I_Register.getValue());
@@ -87,7 +83,6 @@ export default class ControllUnit extends MachineComponent{
             
             const branchCondition= instrcycle.branchCondtions[index];
 
-            //Alerter.sendMessage(this.internalCycleCounter+" "+branchCondition.flagName + " "+branchCondition.targetCycle);
             if(this.FlagUnit.checkFlag(branchCondition.flagName,_Machine)!=branchCondition.negate){
                 
                 wasJumpFlag=true;

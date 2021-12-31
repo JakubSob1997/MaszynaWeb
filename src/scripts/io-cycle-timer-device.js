@@ -14,7 +14,7 @@ export class IOStartTimer extends IODevice{
     }
 
     start(_IODriver){
-        this.timer.start();
+        this.timer.start(_IODriver.write());
         _IODriver.confirm();
     }
 
@@ -23,7 +23,7 @@ export class IOStartTimer extends IODevice{
     }
 
     getDescription(){
-        return Translator.getTranslation("_io_cycle_timer_start","Start cycle timer (cmd)");
+        return Translator.getTranslation("_io_cycle_timer_start","Start cycle timer (out)");
     }
 }
 
@@ -57,8 +57,8 @@ export default class CycleTimerDevice{
             })
         }
 
-        start(){
-            this.state=this.cyclesToWait;
+        start(_count){
+            this.state=_count;
             this.onStateChange(this.state);
         }
 
