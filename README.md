@@ -4,7 +4,7 @@
 
 Github pages:
 
-https://jakubsob1997.github.io/maszynaweb/
+https://jakubsob1997.github.io/MaszynaWeb/
 
 ## About
 Machine W is a simplified computer model. It allows execution of programs written in assembly language , with use of custom instructions.
