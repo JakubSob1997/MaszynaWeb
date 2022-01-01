@@ -5,27 +5,6 @@ import SerializerManager from "./serializer-manager.js";
 import InteruptDevice from "./interupt-device.js";
 import { InteruptEnum } from "./enums.js";
 
-export class IOStartTimer extends IODevice{
-
-
-    constructor(_timer){
-        super();
-        this.timer=_timer;
-    }
-
-    start(_IODriver){
-        this.timer.start(_IODriver.write());
-        _IODriver.confirm();
-    }
-
-    getIOModule(){
-        return IOModuleFlags.Base;
-    }
-
-    getDescription(){
-        return Translator.getTranslation("_io_cycle_timer_start","Start cycle timer (out)");
-    }
-}
 
 
 export default class CycleTimerDevice{
@@ -47,13 +26,17 @@ export default class CycleTimerDevice{
             this.state = -1;
             _machine.addOnCycleDoneForceCallback(()=>{
                 if(this.state>=0){
+                    
+
+                    if(this.state===0){
+                        this.interupt.throwInterupt();
+                    }
+
                     this.state--;
                     this.onStateChange(this.state);
                 }
 
-                if(this.state===0){
-                    this.interupt.throwInterupt();
-                }
+                
             })
         }
 
@@ -65,5 +48,26 @@ export default class CycleTimerDevice{
 }
 
 
+export class IOStartTimer extends IODevice{
+
+
+    constructor(_timer){
+        super();
+        this.timer=_timer;
+    }
+
+    start(_IODriver){
+        this.timer.start(_IODriver.write());
+        _IODriver.confirm();
+    }
+
+    getIOModule(){
+        return IOModuleFlags.Base;
+    }
+
+    getDescription(){
+        return Translator.getTranslation("_io_cycle_timer_start","Start cycle timer (out)");
+    }
+}
 
 

@@ -7,18 +7,18 @@
 */
 
 
-let Terminator ={
+const Terminator ={
 
     terminables:[],
 
-    terminate:function(){
+    terminate(){
         this.terminables.forEach(terminable => {
             terminable.onTerminate();
         });
     },
 
 
-    addTerminable:function(_ITerminable){
+    addTerminable(_ITerminable){
         this.terminables.push(_ITerminable);
     },
 
@@ -28,9 +28,6 @@ export default Terminator;
 
 export class ITerminable{
 
-    constructor(){
-
-    }
 
     onTerminate(){
         console.log("I am terminated(overide)");

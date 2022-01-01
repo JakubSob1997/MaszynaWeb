@@ -19,10 +19,6 @@
         });
     },
 
-    alertTranslate:function(_key,_defaultMessage,_arguments){
-
-    },
-
 
     sendMessage: function(_message,_style){
         this.alertRecievers.forEach((alertReciever)=>{

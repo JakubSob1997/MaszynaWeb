@@ -21,6 +21,24 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
         this.devices={};
 
         
+        //This is am example of how you can redefine interaction wth I/O Devices
+        /*
+        this.ioDriver = {
+            buffer: this.RB_register,
+            confirm(){
+                Alerter.sendMessage("IO_CONFIRM")},
+            read(_val){
+                Alerter.sendMessage(`READ ${_val}`)
+            },
+            write(){
+                const val = this.buffer.getValue();
+                Alerter.sendMessage(`WRITE ${val}`)
+                return val;
+            }
+        }
+        */
+
+        
     }
 
 
@@ -84,7 +102,6 @@ export default class IOUnit extends MachineComponent/*extends IODriver */{
     }
 
     confirm(){
-        this.G_register.value = 1;
-        this.G_register.update();
+        this.G_register.setValue(1);
     }
 }

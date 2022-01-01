@@ -9,26 +9,26 @@ export default class ConsoleDevice{
 
     constructor(){
         this.numericInputIO=new IOConsoleNumericInput(this);
-        this.asciiInputIO = new IOConsoleASCIInput(this);
+        this.characterInputIO = new IOConsoleCharacterInput(this);
         this.consoleOutputIO = new IOConsoleOutput(this);
         this.clearConsoleIO=new IOConsoleClear(this);
 
 
-        this.asciiInputString ="";
+        this.characterInputString ="";
         this.numberInputVal =0;
         this.consoleOutputString="";
 
         this.onUpdateOutput=function(_device){(console.log("Overide Me"))};
-        this.onUpdateASCII=function(_device){(console.log("Overide Me"))};
+        this.onUpdateCharacterInput=function(_device){(console.log("Overide Me"))};
        
     }
 
 
-    setASCIIInput(_string){
-        this.asciiInputString =_string;
+    setCharacterInput(_string){
+        this.characterInputString =_string;
         if(this.waitingDriver!=null){
 
-            if(this.readASCII(this.waitingDriver)==true){
+            if(this.readCharacter(this.waitingDriver)==true){
                 this.waitingDriver=null;
             }
             
@@ -41,18 +41,18 @@ export default class ConsoleDevice{
 
 
 
-    readASCII(_IODriver){
+    readCharacter(_IODriver){
 
         
 
 
-        if(this.asciiInputString===""){
+        if(this.characterInputString===""){
             this.waitingDriver = _IODriver;
             return false;
         }else{
-            const char =this.asciiInputString.charCodeAt(0);
-            this.asciiInputString=this.asciiInputString.substring(1);
-            this.onUpdateASCII(this);
+            const char =this.characterInputString.charCodeAt(0);
+            this.characterInputString=this.characterInputString.substring(1);
+            this.onUpdateCharacterInput(this);
             _IODriver.read(char)
             _IODriver.confirm();
             return true;
@@ -83,7 +83,7 @@ export default class ConsoleDevice{
 }
 
 
-class IOConsoleNumericInput extends IODevice{
+export class IOConsoleNumericInput extends IODevice{
     constructor(_ConsoleDevice){
         super();
         this.consoleDevice=_ConsoleDevice;
@@ -100,23 +100,23 @@ class IOConsoleNumericInput extends IODevice{
     }
 }
 
-class IOConsoleASCIInput extends IODevice{
+export class IOConsoleCharacterInput extends IODevice{
     constructor(_ConsoleDevice){
         super();
         this.consoleDevice=_ConsoleDevice;
     }
 
     start(_IODriver){
-        this.consoleDevice.readASCII(_IODriver);
+        this.consoleDevice.readCharacter(_IODriver);
     }
 
     getDescription(){
-        return Translator.getTranslation("_io_console_char_in","Character (UTF-8) console input (in)");
+        return Translator.getTranslation("_io_console_char_in","Character console input (in)");
     }
 }
 
 
-class IOConsoleOutput extends IODevice{
+export class IOConsoleOutput extends IODevice{
     constructor(_ConsoleDevice){
         super();
         this.consoleDevice=_ConsoleDevice;
@@ -134,7 +134,7 @@ class IOConsoleOutput extends IODevice{
 }
 
 
-class IOConsoleClear extends IODevice{
+export class IOConsoleClear extends IODevice{
     constructor(_ConsoleDevice){
         super();
         this.consoleDevice=_ConsoleDevice;

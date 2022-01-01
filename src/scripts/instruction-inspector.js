@@ -5,7 +5,7 @@ import InstructionList from "./instruction-list.js";
 import Alerter from "./alerter.js";
 import Translator from "./translator.js";
 
-class InstructionRecord{
+export class InstructionRecord{
 
     constructor(_instruction,_inspector,_index){
         this.record = document.createElement("li");

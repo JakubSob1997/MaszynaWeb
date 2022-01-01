@@ -47,8 +47,14 @@ export default runMain;
     
 function main(){
 
+    const title = Translator.getTranslation("_title","Machine Web")
+    document.head.querySelector("title").textContent=title;
 
+    const description = Translator.getTranslation("_meta_description","Machine W is a simplified computer model. It allows execution of programs written in assembly language, with use of custom instructions.")
+    document.querySelector('meta[name="description"]').setAttribute("content", description);
     
+    document.querySelector("span.logo-prefix").textContent=Translator.getTranslation("_logo_pre","Machine W")
+    document.querySelector("span.logo-post").textContent=Translator.getTranslation("_logo_post","eb")
 
     const navbar =document.getElementById("navbar");
     const mobileMenu = document.getElementById("mobile-menu");

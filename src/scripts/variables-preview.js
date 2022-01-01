@@ -62,7 +62,7 @@ export default class VariablesPreview{
 
 }
 
-class PreviewEntry{
+export class PreviewEntry{
     constructor(_preview){
         this.build(_preview);
     }
@@ -103,7 +103,7 @@ class PreviewEntry{
 
 
 
-class Previews {
+export class Previews {
     constructor(_header){
 
 
@@ -180,7 +180,7 @@ class Previews {
 
 
 
-class RegisterPreviewEntry extends PreviewEntry{
+export class RegisterPreviewEntry extends PreviewEntry{
     constructor(_preview,_register,_valueDisplayer){
         super(_preview);
         this.valueDisplayer=_valueDisplayer;
@@ -205,7 +205,7 @@ class RegisterPreviewEntry extends PreviewEntry{
 
 
 }
-class RegisterPreviews extends Previews{
+export class RegisterPreviews extends Previews{
     constructor(_parent,_valueDisplayer){
         super(Translator.getTranslation("_registers","Registers"));
         this.valueDisplayer = _valueDisplayer;
@@ -234,7 +234,7 @@ class RegisterPreviews extends Previews{
 
 
 
-class MemoryPreviewEntry extends PreviewEntry{
+export class MemoryPreviewEntry extends PreviewEntry{
     constructor(_preview,_valueDisplayer,_addres,_value,_label){
 
         super(_preview);
@@ -262,7 +262,7 @@ class MemoryPreviewEntry extends PreviewEntry{
 
 }
 
-class MemoryPreviews extends Previews{
+export class MemoryPreviews extends Previews{
     constructor(_parent,_valueDisplayer,_mem){
         super(Translator.getTranslation("_memory","Memory"));
         this.valueDisplayer = _valueDisplayer;

@@ -16,7 +16,7 @@ export default class ValueDisplayer{
 
 
     toSignedDecimal(_value,_bitWidth,_bitmask){
-        if(this.getSignBit(_value,_bitWidth)==0){
+        if(this.getSignBit(_value,_bitWidth)===0){
             return _value.toString(10);
         }else{
             let neg = ((~_value)+1)&_bitmask;

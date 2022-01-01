@@ -2,7 +2,7 @@
 
 const Translator = {
     translations: {},
-    language: "en",
+    language: "en", // If DEBUG it will desplay keys if DEFAULT it will dipsplay default
     debugFlag:false,//If tru displays lang_key if no matching translation found
     setLanguage:function(_lang){
         localStorage.setItem("lang",_lang);

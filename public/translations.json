@@ -1,5 +1,20 @@
 {
-    
+    "_title":{
+        "en":"Machine Web",
+        "pl":"Maszyna Web"        
+    },
+    "_logo_pre":{
+        "en":"Machine W",
+        "pl":"Maszyna W"
+    },
+    "_logo_post":{
+        "en":"eb",
+        "pl":"eb"
+    },
+    "_meta_description":{
+        "en":"Machine W is a simplified computer model. It allows execution of programs written in assembly language, with use of custom instructions.",
+        "pl":"Maszyna W jest uproszczonym modelem komputera. Pozwala ona na wykonywanie programów napisanych w języku asemblera, przy pomocy zaprojektowanych rozkazów."
+    },
     "_alert_bus_connection_both":{
         "en":"Both connected busses are active!",
         "pl":"Obie połączone magistrale są aktywne!"
@@ -226,7 +241,7 @@
     },
     "_module_desc_regt":{
         "en":"Cycle Register",
-        "pl":"Rejestr Taktów"
+        "pl":"Rejestr Taktu"
     },
     "_performance":{
         "en":"Performance",
@@ -261,8 +276,8 @@
         "pl":"Wejście numeryczne konsoli (we)"
     },
     "_io_console_char_in":{
-        "en":"Character (UTF-8) console input (in)",
-        "pl":"Wejście znakowe (UTF-8) konsoli (we)"
+        "en":"Character console input (in)",
+        "pl":"Wejście znakowe konsoli (we)"
     },
     "_io_console_out":{
         "en":"Console output (out)",

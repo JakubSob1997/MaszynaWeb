@@ -5,7 +5,7 @@ import Register from "./register.js";
 export default class FlagRegister extends Register{
     constructor(){
 
-        super("F",ExtnensionFlags.Flags);
+        super("f",ExtnensionFlags.Flags);
         this.flags = {}
 
         this.busMatchRule = MatchRegisterWidthEnum.DontMatch;

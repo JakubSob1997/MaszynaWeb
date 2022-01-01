@@ -139,8 +139,8 @@ export default class  Register extends MachineComponent {
     }
 
 
-    setValue(newValue){
-        this.value = newValue & this.bitmask;
+    setValue(_newValue){
+        this.value = _newValue & this.bitmask;
         this.update();
     }
 

@@ -1,4 +1,3 @@
-import { IOModuleFlags } from "./enums.js";
 
 
 
@@ -25,9 +24,7 @@ export default class InteruptDevice{
         this.interuptDriver.handleInterupt(this);
     }
 
-    getIOModule(){
-        return IOModuleFlags.Base;
-    }
+
 
     getDescription(){
         return this.description;

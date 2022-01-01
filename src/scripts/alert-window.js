@@ -10,7 +10,7 @@ import Translator from "./translator.js";
 
 /*
     This is the window responsible for
-    making all of those anoyig pop-ups
+    making all of those pop-ups
     that tell you usefull stuff
 */
 
@@ -67,11 +67,11 @@ export default class AlertWindow extends IAlertReciever{
 
 
 /*
-    This is the code behind a single anoying pop-up
+    This is the code behind a single pop-up
 */
 
 
-class AlertEntry{
+export class AlertEntry{
     constructor(_window,_messageString,_alertStyle){
 
         this.wrapper= document.createElement("div");

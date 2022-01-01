@@ -236,6 +236,7 @@ leftPanel.addEventListener("touchstart",(e)=>{
     let offset = (e.touches[0].clientX*100)/window.innerWidth;
     let oldWidth=leftWidth;
     let isStickyBroken =false;
+    showLeftPanel();
 
     function leftBarTouchMove(e){
         
@@ -277,6 +278,7 @@ rightPanel.addEventListener("touchstart",(e)=>{
     let offset = ((window.innerWidth-e.touches[0].clientX)*100)/window.innerWidth;
     let oldWidth=rightWidth;
     let isStickyBroken =false;
+    showRightPanel();
 
     function rightBarTouchMove(e){
         

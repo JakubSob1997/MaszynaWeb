@@ -122,14 +122,15 @@ export default function buildMachine(_Machine){
     _Machine.RB_register=RB_register;
     _Machine.G_register=G_register;
 
+    
     _Machine.T_register = T_register;
 
-    let flagRegister = new FlagRegister();
-
+    let F_register = new FlagRegister();
+    _Machine.F_register = F_register;
     //Define Units
-    let ALU = new ArythmeticLogicUnit(AK_register,flagRegister);
+    let ALU = new ArythmeticLogicUnit(AK_register,F_register);
     let flagUnit = new FlagsUnit(AK_register);
-    setupFlags(_Machine,flagUnit,flagRegister);
+    setupFlags(_Machine,flagUnit,F_register);
     let CntrlUnit = new ControllUnit(I_register,flagUnit,T_register);
     let InteruptUnt = new InteruptUnit(RZ_register,RM_register,RP_register,AP_register,_Machine.settings);
     let _IOUnit = new IOUnit(RB_register,G_register,I_register);
@@ -148,7 +149,7 @@ export default function buildMachine(_Machine){
     _Machine.flagUnit=flagUnit;
     _Machine.interuptUnit = InteruptUnt;
     _Machine.IOUnit = _IOUnit;
-    _Machine.FlagRegister = flagRegister;
+    
 
 
     let machineComponents = [
@@ -157,7 +158,6 @@ export default function buildMachine(_Machine){
         InteruptUnt,
         CntrlUnit,
         _IOUnit,
-        flagRegister,
 
         S_bus,
         A_bus,
@@ -177,6 +177,7 @@ export default function buildMachine(_Machine){
         AP_register,
         RB_register,
         G_register,
+        F_register,
         T_register,
     ];
     _Machine.machineComponents= machineComponents;
@@ -197,6 +198,7 @@ export default function buildMachine(_Machine){
         AP_register,
         RB_register,
         G_register,
+        F_register,
         T_register,
     ];
 

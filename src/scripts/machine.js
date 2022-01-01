@@ -201,14 +201,14 @@ export default class Machine{
 
 
         for(const signal in this.selectedLongSignals){
-            let sig = this.selectedLongSignals[signal];
+            const sig = this.selectedLongSignals[signal];
             delete this.selectedLongSignals[signal];
             sig.update();
 
         }
 
         for(const signal in this.slectedImpulseSignals){
-            let sig = this.slectedImpulseSignals[signal];
+            const sig = this.slectedImpulseSignals[signal];
             delete this.slectedImpulseSignals[signal];
             sig.update();
         }
@@ -289,16 +289,7 @@ export default class Machine{
         return this.controllUnit.nextInstructionFlag;
     }
 
-    doInstruction(){
-        if(this.manualControll == true){
-            return;
-        }
 
-        do {
-            this.doCycle();
-        } while (this.controllUnit.nextInstructionFlag==false);
-
-    }
 
 
     setSettings(_settingsSerializer){

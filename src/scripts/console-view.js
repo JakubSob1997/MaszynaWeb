@@ -27,7 +27,7 @@ export default class ConsoleView{
         this.wrapper = document.createElement("div");
         this.heading =document.createElement("h3");
         this.inputWrapper=document.createElement("div");
-        this.asciiInputEle = document.createElement("input");
+        this.characterInputEle = document.createElement("input");
         this.numericInputEle=document.createElement("input");
         this.widthWrapper=document.createElement("div");
         this.outputEle=document.createElement("textarea");
@@ -51,7 +51,7 @@ export default class ConsoleView{
         this.outputEle.classList.add("console-output");
 
         this.inputWrapper.classList.add("console-input-wrapper");
-        this.asciiInputEle.classList.add("console-ascii-input");
+        this.characterInputEle.classList.add("console-character-input");
         this.numericInputEle.classList.add("console-numeric-input");
 
 
@@ -60,7 +60,7 @@ export default class ConsoleView{
         this.outputEle.setAttribute("readonly","true");
 
 
-        this.inputWrapper.appendChild(this.asciiInputEle);
+        this.inputWrapper.appendChild(this.characterInputEle);
         this.inputWrapper.appendChild(this.numericInputEle);
 
         this.widthWrapper.appendChild(this.inputLabel);
@@ -82,16 +82,16 @@ export default class ConsoleView{
             this.onUpdateOutput(d);
         }
 
-        _device.onUpdateASCII = (d)=>{
-            this.onUpdateASCIIInput(d);
+        _device.onUpdateCharacterInput = (d)=>{
+            this.onUpdateCharacterInput(d);
         }
 
         this.clrConsoleButton.addEventListener("click",()=>{
             _device.clearConsole();
         })
 
-        this.asciiInputEle.addEventListener("input",(e)=>{
-            _device.setASCIIInput(e.target.value);
+        this.characterInputEle.addEventListener("input",(e)=>{
+            _device.setCharacterInput(e.target.value);
         })
 
         this.numericInputEle.addEventListener("input",(e)=>{
@@ -102,11 +102,25 @@ export default class ConsoleView{
 
 
     onUpdateOutput(_device){
-        this.outputEle.value=_device.consoleOutputString;
+        if(!!this.updateOutputFlag ===false){
+            requestAnimationFrame(()=>{
+                this.outputEle.value=_device.consoleOutputString;
+                this.updateOutputFlag =false;
+            })
+            this.updateOutputFlag =true;
+        }
+       
     }
 
-    onUpdateASCIIInput(_device){
-        this.asciiInputEle.value=_device.asciiInputString;
+    onUpdateCharacterInput(_device){
+        if(!!this.updateCharacterInputFlag ===false){
+            requestAnimationFrame(()=>{
+                this.characterInputEle.value=_device.characterInputString;
+                this.updateCharacterInputFlag =false;
+            })
+            this.updateCharacterInputFlag =true;
+        }
+        
     }
 
 

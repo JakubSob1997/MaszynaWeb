@@ -1,12 +1,10 @@
 import ValueDisplayer from "./value-displayer.js"
-import { SignalOrientation,ValueDisplayEnum } from "./enums.js";
 import MachineViewRegister from "./machine-vew-register.js";
 import MachineViewSignal from "./machine-view-signal.js";
 import MachineViewMemory from "./machine-view-memory.js";
 import MachineViewIntButton from "./machine-view-int-button.js"
 import MachineViewBus from "./machine-view-bus.js";
 import NachineViewArrow from "./machine-view-arrow.js";
-import MachineViewFlagRegister from "./machine-view-flag-register.js";
 
 
 
@@ -80,7 +78,7 @@ export default class MachineView{
         this.setupArrowViews(this.M.singnalDictionary);
         this.setupSignalViews(this.M.singnalDictionary);
         this.setupRegisterViews(this.M.registers);
-        this.setupFlagRegister(this.M.FlagRegister);
+
         
 
 
@@ -105,24 +103,7 @@ export default class MachineView{
 
     }
 
-    setupFlagRegister(_flagRegister){
-        let regWrappers = document.getElementsByClassName("f-r");
-        
-
-        console.log(regWrappers);
-
-            for (let i = 0; i < regWrappers.length; i++) {
-                const wrapper = regWrappers[i];
-                const regView = new MachineViewFlagRegister(this,_flagRegister);
-                
-                this.registerViews.push(regView);
-                const ele =regView.getHTMLElement()
-                console.log(regView);
-
-                wrapper.appendChild(regView.getHTMLElement());
-                
-            }   
-    }
+  
 
     setupRegisterViews(_registers){
         _registers.forEach(reg => {

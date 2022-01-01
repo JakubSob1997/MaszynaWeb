@@ -7,7 +7,7 @@ export const  ValueDisplayEnum = {
     "HexaDecimal":4,
     "OpCodeArgument":5,
 }
-Object.freeze(ValueDisplayEnum);
+
 
 export const  MatchRegisterWidthEnum = {
     "ToAdress":1,
@@ -15,7 +15,7 @@ export const  MatchRegisterWidthEnum = {
     "ToWord":3,
     "DontMatch":4,
 }
-Object.freeze(MatchRegisterWidthEnum);
+
 
 
 
@@ -32,7 +32,7 @@ export const ALUOperationEnum = {
     SHR:9,    //bitshift 1 right
     MOD:10,   //modulo
 }
-Object.freeze(ALUOperationEnum);
+
 
 
 
@@ -52,25 +52,14 @@ export const ExtnensionFlags = {
 
 
 }
-Object.freeze(ExtnensionFlags);
 
 
-export const IOModuleFlags={
-    Base:1<<0,
-    ConsoleExteneded:1<<1,
-    Notificatior:1<<2,
-    RNG:1<<3,
-    Timer1:1<<4,
-    Timer2:1<<5,
-
-}
-Object.freeze(IOModuleFlags);
 
 export const ExtentionPresets = {
     "W":0b1,
     "W+":0b11,
     "L":0b11111111,
-    "EW":0b11111111111,
+    "EW":0b111111111111,
 }
 
 
@@ -79,8 +68,6 @@ export const SignalOrientation ={
     "Left" : 2,
     "Right": 3,
 }
-Object.freeze(SignalOrientation);
-
 
 
 export const AlertStyleEnum={
@@ -94,8 +81,6 @@ export const AlertStyleEnum={
     InputSucces:"alert-execution",//"alert-input-succes",
     InputError:"alert-syntax-error",//"alert-input-error"
 }
-Object.freeze(AlertStyleEnum);
-
 
 export const InteruptEnum={
     None:0,
@@ -104,7 +89,6 @@ export const InteruptEnum={
     INT3:0b0010,
     INT4:0b0001,
 }
-Object.freeze(InteruptEnum)
 
 
 export const ExecutionMode ={
@@ -112,4 +96,3 @@ export const ExecutionMode ={
     Instruction:2,
     Program:3,
 }
-Object.freeze(ExecutionMode)

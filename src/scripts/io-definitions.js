@@ -29,7 +29,7 @@ export default function buildDevices(_Machine,_IOUnit,_interuptDriver){
         
     
         _IOUnit.addIODevice(consoleDevice.numericInputIO,0);
-        _IOUnit.addIODevice(consoleDevice.asciiInputIO,1);
+        _IOUnit.addIODevice(consoleDevice.characterInputIO,1);
         _IOUnit.addIODevice(consoleDevice.consoleOutputIO,2);
         _IOUnit.addIODevice(consoleDevice.clearConsoleIO,3);
         _IOUnit.addIODevice(alerterDevice.printDevice,4);
