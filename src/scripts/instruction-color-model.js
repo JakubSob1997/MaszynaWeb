@@ -1,7 +1,7 @@
 import InstructionColorContext from "./instruction-color-context.js";
 import CodeMirror from "codemirror";
 
-const addInstructionFontColoring = ()=>{
+export default function addInstructionFontColoring(){
 
 
 (function(mod) {
@@ -249,4 +249,3 @@ CodeMirror.defineMIME("text/x-ez80", { name: "z80", ez80: true });
 */
 });
 }
-export default addInstructionFontColoring;

@@ -32,7 +32,8 @@ export class InstrCycle {
     constructor(_signals) {
         this.signals = _signals;
         this.branchCondtions = [];
-        this.ogIndex = NaN;
+        this.ogStart = NaN;
+        this.ogEnd = NaN;
     }
 }
 

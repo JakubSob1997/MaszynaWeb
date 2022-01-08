@@ -1,6 +1,6 @@
 # MaszynaWeb
 
-![Test Image 7](https://raw.githubusercontent.com/JakubSob1997/MaszynaWeb/main/public/logo/logo_64.png)
+![Logo](https://raw.githubusercontent.com/JakubSob1997/MaszynaWeb/main/public/logo/logo_64.png)
 
 Github pages:
 

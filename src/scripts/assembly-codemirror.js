@@ -41,7 +41,8 @@ export default class AssemblyCodeMirror extends CustomCodemMirror{
         
         if(this.highlightIndex>=0){
            
-            this.cm.removeLineClass( this.highlightIndex,"background");
+            //this.cm.removeLineClass( this.highlightIndex,"background");
+            this.clearHiglight();
         }
 
         if(_index>=0){
@@ -55,7 +56,7 @@ export default class AssemblyCodeMirror extends CustomCodemMirror{
         const count = this.cm.lineCount();
         
         for (let i = 0; i < count; i++) {
-            this.cm.removeLineClass( this.highlightIndex,"background");
+            this.cm.removeLineClass( i,"background");
 
         }
     }

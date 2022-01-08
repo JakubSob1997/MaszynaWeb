@@ -27,7 +27,7 @@ import Translator from "./translator.js";
 
 */
 
-const setupLayout = ()=>{
+export default  function setupLayout(){
 
 
 const minBarWidth = 8;
@@ -420,4 +420,3 @@ rightBarHandle.addEventListener("mousedown",(e)=>{
 
     
 }
-export default setupLayout;

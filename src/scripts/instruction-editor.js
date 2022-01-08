@@ -26,7 +26,7 @@ export default class InstructionEditor extends SidebarContent{
         this.deleteButon;
 
         this.changesChache =  new InstructionChangesCache();
-
+        this.M = _Machine;
 
         this.buildEditor();
         this.addCallbacks(_Machine);
@@ -90,6 +90,33 @@ export default class InstructionEditor extends SidebarContent{
         }
     }
 
+    updateHighlight(){
+
+        const currentCode =this.M.getCurrentInstruction()
+        const cycle = this.M.getCurrentCycle()
+        const currentInstr  =this.instructionList.getInstruction(currentCode);
+        const curentName = currentInstr?.name;
+
+        
+
+        if(curentName===this.instrName){
+
+            const start = currentInstr.cycles[cycle]?.ogStart;
+            const end = currentInstr.cycles[cycle]?.ogEnd;
+
+            if(start!==undefined &&end!==undefined){
+                this.codeMirror.highlightArea(start,end)
+            }else{
+                this.codeMirror.clearAll();
+            }
+            
+        }else{
+            this.codeMirror.clearAll();
+        }
+
+        this.codeMirror
+    }
+
     populateEditor(_instruction){
 
         this.instrName=_instruction.name;
@@ -108,7 +135,7 @@ export default class InstructionEditor extends SidebarContent{
         }
 
         
-
+        this.updateHighlight();
         
 
     }
@@ -155,6 +182,15 @@ export default class InstructionEditor extends SidebarContent{
                     this.onInstrListChanged();
                 }
             )
+
+            _Machine.I_register.addOnUpdateCallback(()=>{
+                this.updateHighlight();
+            })
+
+            _Machine.T_register.addOnUpdateCallback(()=>{
+                this.updateHighlight();
+            })
+
 
 
             this.codeMirror.cm.on("change",(update)=>{

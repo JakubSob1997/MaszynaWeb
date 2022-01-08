@@ -91,7 +91,7 @@ export default class ValueView{
             if (e.keyCode === 13) {
                 e.preventDefault();
                 this.onSubmit(e);
-                this.valueField.blur();
+                
               }
            
         });
@@ -114,6 +114,10 @@ export default class ValueView{
                 this.valueField.value=_reg.getValue().toString(10);
             }else{
                 this.valueField.value=this.valueDisplayer.registerToString(_reg)
+            }
+            
+            if(this.valueField===document.activeElement){
+                this.lockInput=true;
             }
         }
 

@@ -69,7 +69,7 @@ export default class CycleTimerView{
         this.inputWrapper.appendChild(this.setButton);
         
         this.content.appendChild(this.stateWrapper)
-        //this.content.appendChild(this.inputWrapper)
+        //this.content.appendChild(this.inputWrapper) I should probalby remove all refrences to input wrapper and its children
 
         this.wrapper.appendChild(this.heading);
         this.wrapper.appendChild(this.content);

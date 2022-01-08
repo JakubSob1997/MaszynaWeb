@@ -5,10 +5,11 @@ import Translator from "./translator.js";
 
 
 class InstructionLine {
-    constructor(_instrIndex, _words) {
+    constructor(_instrIndex, _words,_ogStart,_ogEnd) {
         this.words = _words;
         this.instrIndex = _instrIndex;
-        this.ogIndex=NaN;
+        this.ogStart=_ogStart;
+        this.ogEnd=_ogEnd;
 
         this.label = null;
         this.isBranchPlaceholder = false;
@@ -513,8 +514,34 @@ export default class InstrcutionParser {
     splitIntoLines(_code) {
 
 
+        let lastColon = -1;
+        let nextColon=-1;
+        
+
+
         let newLines = _code.split(/;/);
         for (let index = 0; index < newLines.length; index++) {
+
+            nextColon = _code.indexOf(";",lastColon+1);
+
+            let preLines =_code.substring(0,lastColon+1).match(/(\r\n|\r|\n)/g)?.length;
+            let leadingLines =_code.substring(lastColon+1,nextColon).trimEnd().match(/(\r\n|\r|\n)/g)?.length; 
+            let innerLines =_code.substring(lastColon+1,nextColon).trim().match(/(\r\n|\r|\n)/g)?.length; 
+
+            
+            
+
+            if(preLines==null)preLines=0;
+            if(leadingLines==null)leadingLines=0;
+            if(innerLines==null)innerLines=0;
+            
+
+
+            leadingLines-=innerLines;
+
+            const startIndex = preLines+leadingLines;
+            const endIndex = preLines+leadingLines+innerLines
+
             const element = newLines[index];
             let formatedLine = element.replaceAll(/\s+/g, " ");
             let newWords = formatedLine.split(/\s/);
@@ -528,9 +555,15 @@ export default class InstrcutionParser {
                 }
             }
 
+
+            
+
             if (wordArr.length > 0) {
-                this.wordLines.push(wordArr);
+
+                this.wordLines.push([wordArr,startIndex,endIndex]);
             }
+            
+            lastColon= nextColon;
 
         }
 
@@ -571,7 +604,7 @@ export default class InstrcutionParser {
 
 
 
-    parseLine(_wordArry, _nextInstrIndex) {
+    parseLine(_wordArry, _nextInstrIndex,_ogStart,_ogEnd) {
 
         if (this.isSettingsLine(_wordArry)) {
             this.settingLines.push(new SettingsLine(_wordArry));
@@ -600,13 +633,13 @@ export default class InstrcutionParser {
         
         
         if(split<_wordArry.length){
-            this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry.slice(0,split)));
+            this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry.slice(0,split),_ogStart,_ogEnd));
             this.parseBranches(_nextInstrIndex,_wordArry.slice(split));
             
 
             
         }else{
-            this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry));
+            this.instructionLines.push(new InstructionLine(_nextInstrIndex, _wordArry,_ogStart,_ogEnd));
         }
 
         
@@ -624,8 +657,8 @@ export default class InstrcutionParser {
     parseLines() {
         let nextInstrIndex = 0;
         for (let index = 0; index < this.wordLines.length; index++) {
-            const element = this.wordLines[index];
-            nextInstrIndex = this.parseLine(element, nextInstrIndex);
+            const [words,ogStart,ogEnd] = this.wordLines[index];
+            nextInstrIndex = this.parseLine(words, nextInstrIndex,ogStart,ogEnd);
         }
     }
 
@@ -651,7 +684,8 @@ export default class InstrcutionParser {
         for (let index = 0; index < this.instructionLines.length; index++) {
             const line = this.instructionLines[index];
             _instruction.cycles[index] = new InstrCycle(line.signals);
-            _instruction.cycles[index].isFinal = line.isFinal;
+            _instruction.cycles[index].ogStart= line.ogStart;
+            _instruction.cycles[index].ogEnd= line.ogEnd;
 
         }
 
@@ -692,7 +726,6 @@ export default class InstrcutionParser {
         this.applySettings(instruction);
         this.applyCycles(instruction)
         this.applyBranchConditions(instruction)
-
 
 
 

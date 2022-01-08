@@ -1,21 +1,21 @@
 
 
-let SerializerManager={
+const SerializerManager={
     serializers:{},
 
-    addSerializer:function(_serializer){
+    addSerializer(_serializer){
         this.serializers[_serializer.getKeyName()]=_serializer;
     },
 
-    exportLocalFile:function (content, fileName, contentType) {
-        var a = document.createElement("a");
-        var file = new Blob([content], {type: contentType});
+    exportLocalFile (content, fileName, contentType) {
+        const a = document.createElement("a");
+        const file = new Blob([content], {type: contentType});
         a.href = URL.createObjectURL(file);
         a.download = fileName;
         a.click();
     },
 
-    exportSerializers:function(_serializerList,_filename){
+    exportSerializers(_serializerList,_filename){
         let exportOpbjject={}
         if(_filename==null){
             _filename="W_Preset.json";
@@ -47,8 +47,8 @@ let SerializerManager={
     },
    
 
-    readDataFromJson:function(_fileObject,_serializerList){
-        let promise = new Promise((resolve,reject)=>{
+    readDataFromJson(_fileObject,_serializerList){
+        const promise = new Promise((resolve,reject)=>{
             let reader = new FileReader();
         reader.onload=(e)=>{
             const content = e.target.result;

@@ -48,6 +48,14 @@ export default class Machine{
         return this.A_register.getValue();
     }
 
+    getCurrentCycle(){
+        return this.T_register.getValue();
+    }
+
+    getCurrentInstruction(){
+        return  this.settings.getOpcode(this.I_register.getValue());
+    }
+
     getSignalDictionary(){
         return this.singnalDictionary;
     }

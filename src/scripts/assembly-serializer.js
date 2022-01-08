@@ -11,7 +11,7 @@ export default class AssemblySerializer extends SerializerBase{
 
 
     getDefault(){
-        return "//Write your code here\n";
+        return "//Write your code here\n//Tutaj napisz swój program\n";
     }
 
     getKeyName(){
