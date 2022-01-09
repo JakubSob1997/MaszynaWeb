@@ -23,15 +23,27 @@
 }
 
 
-.alert-warning{
+.alert-alert{
     font-weight: bold;
     color: var(--primary-color);
 }
 
-.alert-warning::before{
+.alert-alert::before{
     content: "❗";
     font-size: 130%;
     padding-right: 0.5em;
+}
+
+.alert-warning{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.alert-warning::before{
+    content: "⚠️";
+    font-size: 130%;
+    padding-right: 0.5em;
+    font-style: normal;
 }
 
 

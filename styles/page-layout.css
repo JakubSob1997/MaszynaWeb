@@ -22,7 +22,6 @@
 
 
 
-
 .custom-btn{
     border-style: none;
     padding-left: 0.4em;
@@ -119,7 +118,6 @@ header{
     stroke-width: 0.5em;
     stroke: var(--font-color);
 }
-
 
 .logo{
     font-weight: 700;

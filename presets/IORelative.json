@@ -1,0 +1,78 @@
+{
+	"instructionList": {
+		"instructionDataArray": [
+			{
+				"name": "STP",
+				"sourceCode": "ROZKAZ STP;\nARGUMENTY 0;\nczyt wys wei il;\nstop;\n"
+			},
+			{
+				"name": "DOD",
+				"sourceCode": "ROZKAZ DOD;\nczyt wys wei il;\nwyad wea;\nwyl wea czyt wys weja dod weak;\n"
+			},
+			{
+				"name": "ODE",
+				"sourceCode": "ROZKAZ ODE;\nczyt wys wei il;\nwyad wea;\nwyl wea czyt wys weja ode weak;\n"
+			},
+			{
+				"name": "POB",
+				"sourceCode": "ROZKAZ POB;\nczyt wys wei il;\nwyad wea;\nwyl wea czyt wys weja przep weak;\n"
+			},
+			{
+				"name": "LAD",
+				"sourceCode": "ROZKAZ LAD;\nczyt wys wei il;\nwyad wea wyak wes;\npisz wyl wea;\n"
+			},
+			{
+				"name": "SOB",
+				"sourceCode": "ROZKAZ SOB;\nczyt wys wei il;\nwyad wea wel;\n"
+			},
+			{
+				"name": "SOM",
+				"sourceCode": "ROZKAZ SOM;\nczyt wys wei il;\nJEZELI Z @skok;\nwyl wea KONIEC;\n@skok wyad wea wel;\n"
+			},
+			{
+				"name": "SOZ",
+				"sourceCode": "ROZKAZ SOZ;\nczyt wys wei il;\nJEZELI ZAK @skok;\nwyl wea KONIEC;\n@skok wyad wea wel;\n"
+			},
+			{
+				"name": "IN",
+				"sourceCode": "ROZKAZ IN;\nczyt wys wei il;\nwyak weja ode weak start;\n@wait wyg weja ode weak;\nJEzELI Z TO @done GDY NIE @wait;\n@done wyrb weja przep weak wyl wea;"
+			},
+			{
+				"name": "OUT",
+				"sourceCode": "ROZKAZ OUT;\nczyt wys wei il;\nwyak werb wes weja ode weak start;\n@wait wyg weja ode weak;\nJezeli z to @done gdy nie @wait;\n@done wys weja przep weak wyl wea;"
+			},
+			{
+				"name": "INREL",
+				"sourceCode": "ROZKAZ INREL;\nczyt wys wei il;\nwys weja przep weak wyad wea;\nwyad as weja ode weak;\nczyt wys weja dod weak;\nwyak wei weja ode weak;\nstart;\n@wait wyg weja ode weak;\nJEzELI Z TO @done GDY NIE @wait;\n@done wyrb weja przep weak wyl wea;"
+			},
+			{
+				"name": "OUTREL",
+				"sourceCode": "ROZKAZ OUTREL;\nczyt wys wei il;\nwyak werb wyad wea;\nwys weja przep weak;\nwyad as weja ode weak;\nczyt wys weja dod weak;\nwyrb wes;\nwyak wei weja ode weak start;\n@wait wyg weja ode weak;\nJezeli z to @done gdy nie @wait;\n@done wys weja przep weak wyl wea;"
+			}
+		]
+	},
+	"settings": {
+		"codeWidth": 5,
+		"adressWidth": 6,
+		"extensionData": {
+			"BusConnection": true,
+			"AK_Increment": true,
+			"ALU_Logic": true,
+			"ALU_ExtendedMath": true,
+			"Stack": true,
+			"X_Register": true,
+			"Y_Register": true,
+			"Interupt": true,
+			"InputOutput": true,
+			"Flags": true,
+			"T_Register": true
+		},
+		"intAdressList": [
+			1,
+			2,
+			3,
+			4
+		]
+	},
+	"program": "\nINREL inAdr\nOUTREL outAdr\nSOB 0\noutAdr: RST 4\ninAdr: RST 6"
+}

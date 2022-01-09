@@ -75,7 +75,7 @@
     width: 100%;
 }
 
-.console-ascii-input{
+.console-character-input{
     font-family: 'Inconsolata', monospace;
     background-color: var(--contrast-font-color);
     color: var(--font-color);

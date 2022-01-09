@@ -1,5 +1,20 @@
 {
-    
+    "_title":{
+        "en":"Machine Web",
+        "pl":"Maszyna Web"        
+    },
+    "_logo_pre":{
+        "en":"Machine W",
+        "pl":"Maszyna W"
+    },
+    "_logo_post":{
+        "en":"eb",
+        "pl":"eb"
+    },
+    "_meta_description":{
+        "en":"Machine W is a simplified computer model. It allows execution of programs written in assembly language, with use of custom instructions.",
+        "pl":"Maszyna W jest uproszczonym modelem komputera. Pozwala ona na wykonywanie programów napisanych w języku asemblera, przy pomocy zaprojektowanych rozkazów."
+    },
     "_alert_bus_connection_both":{
         "en":"Both connected busses are active!",
         "pl":"Obie połączone magistrale są aktywne!"
@@ -52,6 +67,22 @@
         "en":"Cycle: @0 is undefined for instruction @1!",
         "pl":"Takt: @0 nie jest zdefiniowany dla rozkazu @1!"
     },
+    "_alert_alu_no_input":{
+        "en":"Undefined Arythmetic Logic Input!",
+        "pl":"Wejście Jednostki Arytmetyczno Logicznej jest nie podane!"
+    },
+    "_alert_alu_no_operation":{
+        "en":"Unselected Arythmetic Logic Operation!",
+        "pl":"Operacja Jednostki Arytmetyczno Logicznej nie jest wybrana!"
+    },
+    "_alert_alu_operation_redefined":{
+        "en":"Arythmetic Logic Operation is already selected!",
+        "pl":"Operacja Jednostki Arytmetyczno Logicznej jest już wybrana!"
+    },
+    "_alert_interrupt_active":{
+        "en":"Interrupt unit is already active!",
+        "pl":"Układ przerwań jest już aktywny!"
+    },
     "_message_welcome":{
         "en":"Welcome in the Machine W simulator!",
         "pl":"Witaj w symulatorze Maszyny W!"
@@ -80,6 +111,10 @@
         "en":"Instruction @0 already exsists in instruction list!",
         "pl":"Już istnieje rozkaz @0 w liście instrukcji!"
     },
+    "_message_program_overflow":{
+        "en":"Program didn't fit fully in the memory, consider increasing address bit count.",
+        "pl":"Program nie został w pełni załadowany do pamięci, rozważ zwiększenie ilości bitów adresu."
+    },
     "_message_program_loaded":{
         "en":"Program was loaded to memory!",
         "pl":"Program został załadowany do pamięci!"
@@ -87,6 +122,58 @@
     "_message_machine_stopped":{
         "en":"Machine was stopped!",
         "pl":"Maszyna została zatrzymana!"
+    },
+    "_instr_validation_continue_invalid":{
+        "en":"Invalid continue statment.",
+        "pl":"Nieproawidłowe użycie słowa DALEJ."
+    },
+    "_instr_validation_finish_invalid":{
+        "en":"Invalid finish statment.",
+        "pl":"Nieproawidłowe użycie słowa KONIEC."
+    },
+    "_instr_validation_branch_invalid":{
+        "en":"Invalid branch statment.",
+        "pl":"Nieprawidłowe rozgałęzienie."
+    },
+    "_instr_validation_label_invalid":{
+        "en":"Invalid label syntax expected: @[label_name], @0",
+        "pl":"Nieprawidłowa składnia etykietu wymagana: @[nazwa_etykiety], @0"
+    },
+    "_instr_validation_count_invalid":{
+        "en":"Argument count must be a positive Inteager: @0",
+        "pl":"Liczba argumentów musi być llczbą dodatnią: @0"
+    },
+    "_instr_validation_no_count":{
+        "en":"Expected argument count after: @0",
+        "pl":"Wymagana liczba argumentów po: @0"
+    },
+    "_instr_validation_no_name":{
+        "en":"Expected instruction name after: @0",
+        "pl":"Wymagana nazwa rozkazu po: @0"
+    },
+    "_instr_validation_expected_name":{
+        "en":"Expected instruction name: ROZKAZ (name)",
+        "pl":"Brakuje nazwy rozkazu: ROZKAZ (nazwa)"
+    },
+    "_instr_validation_branch_start":{
+        "en":"Instruction definition can't start with a branch statment.",
+        "pl":"Definicja rozkazu nie może zaczynać się od rozgałęzienia."
+    },
+    "_instr_validation_label_undefined":{
+        "en":"Undefined label: @0 - @1",
+        "pl":"Nieznana etykieta: @0 - @1"
+    },
+    "_instr_validation_flag_undefined":{
+        "en":"Undefined flag: @0 - @1",
+        "pl":"Nieznany znacznik: @0 - @1"
+    },
+    "_instr_validation_signal_undefined":{
+        "en":"Undefined signal: @0 - @1",
+        "pl":"Nieznany sygnał: @0 - @1"
+    },
+    "_instr_validation_signal_redefined":{
+        "en":"Signal redefined: @0 - @1",
+        "pl":"Sygnał został już wymieniony: @0 - @1"
     },
     "_instr_validation_name_is_keyword":{
         "en":"Instruction name: @0 can't be a keyword: (RPA, RST, RTB)",
@@ -214,7 +301,7 @@
     },
     "_module_desc_regt":{
         "en":"Cycle Register",
-        "pl":"Rejestr Taktów"
+        "pl":"Rejestr Taktu"
     },
     "_performance":{
         "en":"Performance",
@@ -249,8 +336,8 @@
         "pl":"Wejście numeryczne konsoli (we)"
     },
     "_io_console_char_in":{
-        "en":"Character (UTF-8) console input (in)",
-        "pl":"Wejście znakowe (UTF-8) konsoli (we)"
+        "en":"Character console input (in)",
+        "pl":"Wejście znakowe konsoli (we)"
     },
     "_io_console_out":{
         "en":"Console output (out)",
@@ -412,6 +499,10 @@
         "en":"Cancel",
         "pl":"Cofnij"
     },
+    "_cancel_preview":{
+        "en":"Cancel",
+        "pl":"Anuluj"
+    },
     "_code_mirror_label":{
         "en":"Press the \"Esc\" key to leave editor focus.",
         "pl":"Naciśnij klawisz \"Esc\" by wyjść z edytora."
@@ -420,9 +511,17 @@
         "en":"Load to memory",
         "pl":"Ładuj do pamięci"
     },
+    "_value":{
+        "en":"Value",
+        "pl":"Wartość"
+    },
     "_write":{
         "en":"Write",
         "pl":"Pisz"
+    },
+    "_display_mode":{
+        "en":"Display mode",
+        "pl":"Tryb wyświetlania"
     },
     "_display_unsigned":{
         "en":"Unsigned Decimal",
@@ -445,12 +544,12 @@
         "pl":"Instrukcja"
     },
     "_assembly_parser_error_format":{
-        "en":"@0 - @1 Line:@2 Character:@3",
-        "pl":"@0 - @1 Linia:@2 Znak:@3"
+        "en":"@0 - @1 Line: @2 Character: @3",
+        "pl":"@0 - @1 Linia: @2 Znak: @3"
     },
     "_assembly_mapper_error_format":{
-        "en":"@0 Instruction:@1 Argumenty:@2 Line:@3 Character:@4",
-        "pl":"@0 Rozkaz:@1 Argumenty:@2 Linia:@3 Znak:@4"
+        "en":"@0 Instruction: @1 Argumenty: @2 Line: @3 Character: @4",
+        "pl":"@0 Rozkaz: @1 Argumenty: @2 Linia: @3 Znak: @4"
     },
     "_asm_err_label_redefinition":{
         "en":"Label redefinition.",
@@ -541,8 +640,8 @@
         "pl":"Przerwanie licznika taktów"
     },
     "_io_cycle_timer_start":{
-        "en":"Start cycle timer (cmd)",
-        "pl":"Uruchom licznik taktów (pol)"
+        "en":"Start cycle timer (out)",
+        "pl":"Uruchom licznik taktów (wy)"
     },
     "_cycle_timer":{
         "en":"Cycle Timer",
