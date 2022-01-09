@@ -5,7 +5,10 @@ import Terminator from "./terminator.js";
 
 export const ExecutionContext ={
     curssorAddres: 0,
-    breakPoints:{}
+    breakPoints:{},
+    instructionBreakpoints:{},
+    editorManager:undefined,
+
 }
 
 
@@ -16,7 +19,26 @@ function breakpointCheck(_M){
     const hasBreakPoint = Object.values(ExecutionContext.breakPoints).indexOf(addres) > -1;
 
 
-    if(hasBreakPoint&&newinstr)_M.stopMachine();
+    if(hasBreakPoint&&newinstr){
+        _M.stopMachine();
+        ExecutionContext.editorManager.drawEditorForAssembly();
+        return;
+    }
+
+    const instrName = _M.getCurrentInstructionName()
+    const cycle = _M.getCurrentCycle()
+
+    if(ExecutionContext.instructionBreakpoints[instrName]){
+        const hasInstrBreakPoint = Object.values(ExecutionContext.instructionBreakpoints[instrName]).indexOf(cycle)>-1;
+        if(hasInstrBreakPoint){
+            if(ExecutionContext.editorManager){
+                ExecutionContext.editorManager.drawEditorForInstruction(_M.instructionList.getInstruction(instrName))
+            }
+            _M.stopMachine();
+            return;
+        }
+    }
+    
 }
 
 

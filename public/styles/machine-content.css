@@ -314,6 +314,11 @@
     color: var(--font-color);
 }
 
+.mem-entry:active{
+    background: var(--secondary-color);
+    color: var(--contrast-font-color);
+}
+
 .mem-entry-selected{
     
     background: var(--secondary-color);
@@ -323,6 +328,12 @@
     color: var(--secondary-color);
     background: var(--primary-color);
 }
+
+.mem-entry-selected:active{
+    color: var(--primary-color);
+    background: var(--secondary-color);
+}
+
 
 .mem-entry>span{
     display: inline-block;

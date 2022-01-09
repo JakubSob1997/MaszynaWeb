@@ -1,8 +1,13 @@
 [
-    "DodajDwa.json",
-    "Fibo16.json",
-    "Losowa_NWD.json",
-    "FiboInstr.json",
+    "5+8.json",
+    "NWD.json",
+    "FiboSimple.json",
+    "FiboInstructionNaive.json",
+    "FiboCodeModification.json",
     "FiboRecursive.json",
-    "PrzerwaniaPrzyklad.json"
+    "Interrupts.json",
+    "Multithreading.json",
+    "IORelative.json",
+    "CopyMemory.json"
+    
 ]

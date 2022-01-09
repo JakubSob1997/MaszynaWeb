@@ -104,20 +104,21 @@ export default class MachineViewMemory extends MachineViewElement{
                 
             }else{
 
-                const adressString  =e.target.getAttribute("data-mem-adress");
-                const adressInt =parseInt(adressString);
+                
 
 
                   //Select
                 if(e.keyCode===13||e.keyCode===32){
+                    const adressString  =e.target.getAttribute("data-mem-adress");
+                    const adressInt =parseInt(adressString);
                     this.machineView.selectMemorySlot(adressInt);
                 }
 
 
                 //Up
                 if(e.keyCode===38){
+                    e.preventDefault();
                     if( e.target.previousSibling){
-                        e.preventDefault();
                         e.target.previousSibling.focus();
                     }else{
                         this.element.lastChild.focus();
@@ -126,8 +127,8 @@ export default class MachineViewMemory extends MachineViewElement{
 
                 //Down
                 if(e.keyCode===40){
+                    e.preventDefault();
                     if( e.target.nextSibling){
-                        e.preventDefault();
                         e.target.nextSibling.focus();
                     }else{
                         this.element.firstChild.focus();

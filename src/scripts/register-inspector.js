@@ -47,13 +47,20 @@ export default class RegisterInspector extends SidebarContent{
         this.binary=document.createElement("option");
         this.hexaDecimal=document.createElement("option");
         this.instruction=document.createElement("option");
+        
+        const selectId= "_reg_select"
+        this.selectLabel = document.createElement("label");
+        this.selectLabel.textContent=Translator.getTranslation("_display_mode","Display mode")
+        this.selectLabel.style="display: block"
+        this.selectLabel.setAttribute("for",selectId);
+        this.displaySelect.id=selectId;
 
 
         this.unsignedDecimal.innerText = Translator.getTranslation("_display_unsigned","Unsigned Decimal")
         this.unsignedDecimal.value=ValueDisplayEnum.UnsignedDecimal;
         this.displaySelect.appendChild(this.unsignedDecimal);
 
-        this.signedDecimal.innerText = Translator.getTranslation("_display_signed","Dziesiętny Ze Znakiem")
+        this.signedDecimal.innerText = Translator.getTranslation("_display_signed","Signed Decimal")
         this.signedDecimal.value=ValueDisplayEnum.SignedDecimal;
         this.displaySelect.appendChild(this.signedDecimal);
 
@@ -76,9 +83,9 @@ export default class RegisterInspector extends SidebarContent{
         this.previewButton.textContent=Translator.getTranslation("_preview","Preview");
         this.previewButton.style.display="block";
         
-
+        this.wrapper.appendChild(this.selectLabel)
         this.wrapper.appendChild(this.displaySelect);
-
+        
         this.wrapper.appendChild(this.previewButton);
     }
 

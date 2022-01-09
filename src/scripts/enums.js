@@ -71,6 +71,7 @@ export const SignalOrientation ={
 
 
 export const AlertStyleEnum={
+    Alert:"alert-alert",
     Warning:"alert-warning",
     SyntaxError:"alert-syntax-error",
     Succes:"alert-succes",

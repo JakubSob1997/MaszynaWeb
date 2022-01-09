@@ -10,7 +10,7 @@ import AlertWindow from "./alert-window.js";
 import { AlertStyleEnum } from "./enums.js";
 import Alerter from "./alerter.js";
 import AlertTerminator from "./alert-terminator.js";
-import {runMachine, runCycle, runSingleInstruction, runMachineToCurssor} from "./machine-execution.js";
+import {runMachine, runCycle, runSingleInstruction, runMachineToCurssor, ExecutionContext} from "./machine-execution.js";
 
 
 
@@ -137,6 +137,9 @@ function main(){
 
     const editorElement = document.getElementById("editor");
     const editorManager = new EditorManager(editorElement,M,MView,variablePreview);
+
+    ExecutionContext.editorManager=editorManager;
+
 
     inspectorManager.instructionInspector.addInstructionSelectedCallback((_instruction)=>{
         editorManager.drawEditorForInstruction(_instruction);

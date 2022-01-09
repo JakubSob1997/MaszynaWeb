@@ -9,6 +9,28 @@ import { AlertStyleEnum } from "./enums.js";
 import InstructionChangesCache from "./instruction-changes-cache.js"
 import InstructionCodeMirror from "./instruction-codemirror.js";
 import Translator from "./translator.js";
+import { ExecutionContext } from "./machine-execution.js";
+
+
+
+
+ 
+
+function getCycleByIndex(_instruction,_index){
+    let stopCycle = -1;
+    for (let i = 0; i < _instruction.cycles.length; i++) {
+        const instrCycle = _instruction.cycles[i];
+        if(_index <=instrCycle.ogEnd){
+            stopCycle=i;
+            break;
+        }
+    
+    }
+    return stopCycle;
+}
+
+
+
 
 export default class InstructionEditor extends SidebarContent{
 
@@ -136,11 +158,13 @@ export default class InstructionEditor extends SidebarContent{
 
         
         this.updateHighlight();
+        this.codeMirror.fixMarkers(ExecutionContext.instructionBreakpoints[this.instrName])
         
 
     }
 
     onInstrDeleted(_name,_index){
+        ExecutionContext.instructionBreakpoints[_name]={};
         this.changesChache.clearCache(_name);
         if(_name===this.instrName){
             this.hackParentContainer.hideContent(this);
@@ -148,6 +172,7 @@ export default class InstructionEditor extends SidebarContent{
     }
 
     onInstrChanged(_old,_new,_index,_list){
+        ExecutionContext.instructionBreakpoints[_old]={};
         this.changesChache.clearCache(_old);
         if(_old===this.instrName){
             this.populateEditor(_list.getInstruction(_index));
@@ -157,6 +182,7 @@ export default class InstructionEditor extends SidebarContent{
     onInstrListChanged(list){
         this.changesChache.clearAll();
         this.hackParentContainer.hideContent(this);
+        ExecutionContext.instructionBreakpoints={};
     }
 
     addCallbacks(_Machine){
@@ -213,12 +239,12 @@ export default class InstructionEditor extends SidebarContent{
                 const parser = new InstrcutionParser(this.codeMirror.cm.getValue());
                 parser.validate(_Machine);
 
-                console.log(parser);
+                
 
                 if(parser.parseSuccesful===true){
 
                     const instr = parser.toInstruction();//instr.name+
-                    console.log(instr);
+                    
                     
 
 
@@ -241,12 +267,30 @@ export default class InstructionEditor extends SidebarContent{
             }
 
 
-
+            this.codeMirror.onGutterClick=(_wasSet,_line)=>{this.onGutterClick(_wasSet,_line)}
+            
 
         }
 
 
        
+    }
+
+    onGutterClick(_wasSet,_line){
+        if(ExecutionContext.instructionBreakpoints[this.instrName]===undefined){
+            ExecutionContext.instructionBreakpoints[this.instrName]={}
+        }
+
+        if(_wasSet){
+            ExecutionContext.instructionBreakpoints[this.instrName][_line]=
+                getCycleByIndex(this.instructionList.getInstruction(this.instrName),_line)
+        }else{
+            delete ExecutionContext.instructionBreakpoints[this.instrName][_line];
+        }
+        
+
+
+        
     }
 
     getHTMLElement(){

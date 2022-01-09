@@ -56,6 +56,10 @@ export default class Machine{
         return  this.settings.getOpcode(this.I_register.getValue());
     }
 
+    getCurrentInstructionName(){
+        return this.instructionList.getInstruction(this.getCurrentInstruction()).name;
+    }
+
     getSignalDictionary(){
         return this.singnalDictionary;
     }

@@ -54,7 +54,7 @@ export default class InsperctorManger{
             ev.preventDefault();
             this.inspectorElement.classList.remove("inspector-file-over");
             this.fileInspector.handleFileDrop(ev.dataTransfer.files);
-            console.log(ev.dataTransfer.files);
+            
         })
 
         window.addEventListener("drop",(ev)=>{

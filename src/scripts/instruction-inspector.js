@@ -162,7 +162,7 @@ export default class InstructionInspector extends SidebarContent{
         this.prevMarker = undefined;
         _Machine.I_register.addOnUpdateCallback((_register)=>{
             const currentIndex = _Machine.settings.getOpcode(_register.getValue());
-            //console.log(currentIndex);
+            
             this.onIRegisterUpdate(currentIndex);
         })
 

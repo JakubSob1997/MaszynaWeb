@@ -76,7 +76,10 @@ class LongBranchLine {
 
     parseBranch(_words) {
         if (_words.length != 7) {
-            this.warning = "Invalid long branch sattment"
+            this.warning = Translator.getTranslation(
+                "_instr_validation_branch_invalid",
+                "Invalid branch statment."
+            )
             return false;
         }
 
@@ -148,7 +151,12 @@ class BranchLine {
 
     parseContinue(_words){
         if(_words.length !=2){
-            this.logWarning("Invalid continue statment")
+            this.logWarning(
+                Translator.getTranslation(
+                    "_instr_validation_continue_invalid",
+                    "Invalid continue statment."
+                )
+            )
             return false;
         }
 
@@ -156,7 +164,13 @@ class BranchLine {
         this.label = _words[1];
 
         if(InstructionLabel.isLabel(this.label)===false){
-            this.logWarning("Invalid label syntax expected @[label name]")
+            this.logWarning(
+                Translator.getTranslation(
+                    "_instr_validation_label_invalid",
+                    "Invalid label syntax expected: @[label_name], @0",
+                    [this.label]
+                )
+            )
             return false;
         }
 
@@ -165,7 +179,12 @@ class BranchLine {
 
     parseEnd(_words){
         if(_words.length !=1){
-            this.logWarning("Invalid branch statment")
+            this.logWarning(
+                Translator.getTranslation(
+                    "_instr_validation_finish_invalid",
+                    "Invalid finish statment."
+                )
+            )
             return false;
         }
 
@@ -180,14 +199,24 @@ class BranchLine {
     parseBranch(_words) {
 
         if (_words.length < 3) {
-            this.logWarning("Invalid branch statment")
+            this.logWarning(
+                Translator.getTranslation(
+                    "_instr_validation_branch_invalid",
+                    "Invalid branch statment."
+                )
+            )
             return false;
         }
 
 
         let wordIndex = 0;
         if (_words[wordIndex].toUpperCase() != "JEZELI") {
-            this.logWarning("Invalid branch statment")
+            this.logWarning(
+                Translator.getTranslation(
+                    "_instr_validation_branch_invalid",
+                    "Invalid branch statment."
+                )
+            )
             return false;
         }
         wordIndex++;
@@ -195,7 +224,12 @@ class BranchLine {
 
         if (_words[wordIndex].toUpperCase() == "NIE") {
             if (_words.length != 4) {
-                this.logWarning("Invalid branch statment")
+                this.logWarning(
+                    Translator.getTranslation(
+                        "_instr_validation_branch_invalid",
+                        "Invalid branch statment."
+                    )
+                )
                 return false;
             }
             this.negate = true;
@@ -203,7 +237,12 @@ class BranchLine {
 
         } else {
             if (_words.length != 3) {
-                this.logWarning("Invalid branch statment")
+                this.logWarning(
+                    Translator.getTranslation(
+                        "_instr_validation_branch_invalid",
+                        "Invalid branch statment."
+                    )
+                )
                 return false;
             }
 
@@ -216,7 +255,13 @@ class BranchLine {
 
         this.label = _words[wordIndex];
         if(InstructionLabel.isLabel(this.label)===false){
-            this.logWarning("Invalid label syntax expected @[label name]")
+            this.logWarning(
+                Translator.getTranslation(
+                    "_instr_validation_label_invalid",
+                    "Invalid label syntax expected: @[label_name], @0",
+                    [this.label]
+                )
+            )
             return false;
         }
 
@@ -250,12 +295,23 @@ class SettingsLine {
             if (_words.length == 2) {
                 this.argCount = parseInt(_words[1])
                 if(isNaN(this.argCount)|| this.argCount<0){
-                    this.logWarning("Argument count must be a positive Inteager: " + _words[1])
+                    this.logWarning(
+                        Translator.getTranslation(
+                            "_instr_validation_count_invalid",
+                            "Argument count must be a positive Inteager: @0",
+                            [_words[1]])
+                    )
                     this.parseSuccesful=false;
                 }
 
             } else {
-                this.logWarning("Expected argument count after: " + _words[0])
+                this.logWarning(
+                    Translator.getTranslation(
+                        "_instr_validation_no_count",
+                        "Expected argument count after: @0",
+                        [_words[0]]
+                        )
+                )
                 this.parseSuccesful=false;
             }
             
@@ -265,7 +321,14 @@ class SettingsLine {
             if (_words.length == 2) {
                 this.name = _words[1].toUpperCase();
             } else {
-                this.logWarning("Expected instruction name after: " + _words[0])
+                this.logWarning(
+                    Translator.getTranslation(
+                        "_instr_validation_no_name",
+                        "Expected instruction name after: @0",
+                        [_words[0]]
+                        )
+                )
+                
                 this.parseSuccesful=false;
             }
         }
@@ -349,7 +412,7 @@ export default class InstrcutionParser {
 
         }
         if (expectedName == null) {
-            this.errorList.push("Expected: ROZKAZ (name)");
+            this.errorList.push(Translator.getTranslation("_instr_validation_expected_name","Expected instruction name: ROZKAZ (name)"));
             this.parseSuccesful = false;
         }
 
@@ -378,21 +441,38 @@ export default class InstrcutionParser {
             }
 
             if(branch.instrIndex<0){
-                this.errorList.push("Instruction definition can't start with a branch statment.")
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_branch_start",
+                        "Instruction definition can't start with a branch statment."
+                        ))
                 this.parseSuccesful = false;
             }
 
 
             if (this.labels.hasOwnProperty(branch.label) == false) {
                 this.parseSuccesful = false;
-                this.errorList.push("Undefined label: " + branch.label + " - " + branch.words.join(" "));
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_label_undefined",
+                        "Undefined label: @0 - @1",
+                        [branch.label,branch.words.join(" ")]
+                        )
+                    );
+                
             }
 
            
 
             if (_flagDictionary.hasOwnProperty(branch.flagName) == false) {
                 this.parseSuccesful = false;
-                this.errorList.push("Undefined flag: " + branch.flagName + " - " + branch.words.join(" "));
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_flag_undefined",
+                        "Undefined flag: @0 - @1",
+                        [branch.flagName,branch.words.join(" ")]
+                        )
+                    );
             }
 
             
@@ -419,23 +499,45 @@ export default class InstrcutionParser {
             }
 
             if(branch.instrIndex<0){
-                this.errorList.push("Instruction definition can't start with a branch statment.")
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_branch_start",
+                        "Instruction definition can't start with a branch statment."
+                        ))
                 this.parseSuccesful = false;
             }
 
             if (this.labels.hasOwnProperty(branch.yesLabel) == false) {
                 this.parseSuccesful = false;
-                this.errorList.push("Undefined label: " + branch.label + " - " + branch.words.join(" "));
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_label_undefined",
+                        "Undefined label: @0 - @1",
+                        [branch.yesLabel,branch.words.join(" ")]
+                        )
+                    );
             }
 
             if (this.labels.hasOwnProperty(branch.noLabel) == false) {
                 this.parseSuccesful = false;
-                this.errorList.push("Undefined label: " + branch.label + " - " + branch.words.join(" "));
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_label_undefined",
+                        "Undefined label: @0 - @1",
+                        [branch.noLabel,branch.words.join(" ")]
+                        )
+                    );
             }
 
             if (_flagDictionary.hasOwnProperty(branch.flagName) == false||branch.flagName==="DALEJ") {
                 this.parseSuccesful = false;
-                this.errorList.push("Undefined flag: " + branch.flagName + " - " + branch.words.join(" "));
+                this.errorList.push(
+                    Translator.getTranslation(
+                        "_instr_validation_flag_undefined",
+                        "Undefined flag: @0 - @1",
+                        [branch.flagName,branch.words.join(" ")]
+                        )
+                    );
             }
 
 
@@ -443,11 +545,6 @@ export default class InstrcutionParser {
     }
 
     validateSignals(_signalDictionary) {
-
-        if(this.instructionLines.length===0){
-            this.parseSuccesful = false;
-            this.errorList.push("Dfine at least one cycle!");
-        }
 
         for (let i = 0; i < this.instructionLines.length; i++) {
             const line = this.instructionLines[i];
@@ -458,11 +555,23 @@ export default class InstrcutionParser {
                 const signal = line.signals[j];
                 if (_signalDictionary.hasOwnProperty(signal) == false) {
                     this.parseSuccesful = false;
-                    this.errorList.push("Undefined signal: " + signal + " - " + line.words.join(" "));
+                    this.errorList.push(
+                        Translator.getTranslation(
+                            "_instr_validation_signal_undefined",
+                            "Undefined signal: @0 - @1",
+                            [signal,line.words.join(" ")]
+                            )
+                        );
                 }
                 if(used[signal]===true){
                     this.parseSuccesful = false;
-                    this.errorList.push("Signal redefined: " + signal + " - " + line.words.join(" "));
+                    this.errorList.push(
+                        Translator.getTranslation(
+                            "_instr_validation_signal_redefined",
+                            "Signal redefined: @0 - @1",
+                            [signal,line.words.join(" ")]
+                            )
+                        );
                 }
                 used[signal]=true;
             }
@@ -699,7 +808,7 @@ export default class InstrcutionParser {
             const label = this.labels[branchLine.label];
 
             if (label === undefined) {
-                //console.log("Label undefined")
+                
                 continue;
             }
             

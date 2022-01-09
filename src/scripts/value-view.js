@@ -11,13 +11,7 @@ export default class ValueView{
         this.submitFunks=[];
 
 
-        this.mainWrapper=document.createElement("div");
-        this.valueField=document.createElement("input");
-        this.buttonWrapper=document.createElement("div");
-        this.writeButton=document.createElement("button");
-        this.plusOneButton=document.createElement("button");
-        this.minusOneButton=document.createElement("button");
-        this.setZeroButton=document.createElement("button");
+        
         this.build();
     }
 
@@ -53,6 +47,18 @@ export default class ValueView{
 
 
     build(){
+
+
+        this.mainWrapper=document.createElement("div");
+        this.valueLabel=document.createElement("label");
+        this.valueField=document.createElement("input");
+        this.buttonWrapper=document.createElement("div");
+        this.writeButton=document.createElement("button");
+        this.plusOneButton=document.createElement("button");
+        this.minusOneButton=document.createElement("button");
+        this.setZeroButton=document.createElement("button");
+
+        this.mainWrapper.appendChild(this.valueLabel);
         this.mainWrapper.appendChild(this.valueField);
         this.mainWrapper.appendChild(this.writeButton);
         
@@ -61,13 +67,18 @@ export default class ValueView{
         this.buttonWrapper.appendChild(this.plusOneButton);
         this.mainWrapper.appendChild(this.buttonWrapper);
 
+        const inputId = "_value_view_input"
 
+        this.valueLabel.setAttribute("for",inputId);
+        this.valueField.id=inputId;
+
+        this.valueLabel.innerText = Translator.getTranslation("_value","Value")
         this.writeButton.innerText=Translator.getTranslation("_write","Write");
         this.plusOneButton.innerText="+1";
         this.minusOneButton.innerText="-1";
         this.setZeroButton.innerText="0";
 
-        
+        this.valueLabel.style.display="block"
         this.valueField.style.height="2.5em"
         this.valueField.style.width="10em"
 

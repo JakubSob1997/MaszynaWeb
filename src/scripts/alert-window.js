@@ -27,7 +27,7 @@ export default class AlertWindow extends IAlertReciever{
     }
 
     alert(_message){
-        this.createMessage(_message,AlertStyleEnum.Warning);
+        this.createMessage(_message,AlertStyleEnum.Alert);
     }
 
     sendMessage(_message,_style){

@@ -3,7 +3,9 @@
 
 
 
+import Alerter from "./alerter.js";
 import MachineComponent from "./machine-component.js";
+import Translator from "./translator.js";
 
 
 
@@ -21,6 +23,8 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
 
         this.interuptDriver = this;
 
+        this.isActive = false;
+
         /*
         this.interuptDriver={
             handleInterupt(device){
@@ -31,8 +35,22 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
 
     }
 
+    setDefault(){
+        this.isActive=false;
+    }
+
+    resetState(){
+        this.isActive=false;
+    }
 
     doEni() {
+
+        if(this.isActive){
+            Alerter.alert(Translator.getTranslation("_alert_interrupt_active","Interrupt Unit is already active!"))
+            return;
+        }
+        this.isActive=true;
+
 
         let intVactor = this.RZregister.getValue();
         intVactor &= ~(this.RMregister.getValue());
@@ -58,6 +76,14 @@ export default class InteruptUnit extends MachineComponent/* extends InteruptDri
     }
 
     doRint() {
+
+        if(this.isActive){
+            Alerter.alert(Translator.getTranslation("_alert_interrupt_active","Interrupt Unit is already active!"))
+            return;
+        }
+        this.isActive=true;
+
+
         this.RZregister.write(this.RZregister.getValue() & ~this.RPregister.getValue())
         this.APregister.write(0);
         this.RPregister.write(0);

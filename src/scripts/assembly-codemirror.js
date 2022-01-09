@@ -61,6 +61,17 @@ export default class AssemblyCodeMirror extends CustomCodemMirror{
         }
     }
 
+    fixMarkers(_breakPoints){
+        if(!_breakPoints)_breakPoints={}
+        for (let i = 0; i < this.cm.lineCount(); i++) {
+            if(Object.hasOwnProperty.call(_breakPoints,i)){
+                this.cm.setGutterMarker(i, "breakpoints",  this.makeMarker());
+            } else{
+                this.cm.setGutterMarker(i, "breakpoints",  null );
+            }     
+        }
+    }
+
 
     makeMarker() {
         var marker = document.createElement("div");

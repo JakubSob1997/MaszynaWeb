@@ -22,7 +22,7 @@ export default class CustomCodemMirror{
 
         });
 
-        console.log(this.cm);
+        
 
 
         this.cm.setOption("extraKeys",{

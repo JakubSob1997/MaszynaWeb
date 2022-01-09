@@ -230,7 +230,7 @@ export default class AssemblyEditor extends SidebarContent{
         }else{
             delete ExecutionContext.breakPoints[_line];
         }
-        console.log(ExecutionContext.breakPoints);
+        
     }
 
     recalcBreakpointAddreses(){
@@ -287,9 +287,11 @@ export default class AssemblyEditor extends SidebarContent{
             this.M.setComponentsDefault();
             this.M.resetInternalState();
             this.M.MEM.loadMemory( this.parser.values);
+            const overflow = this.parser.values.length> this.M.MEM.length();
             this.recalcBreakpointAddreses();
             this.codeMirror.clearHiglight();
             this.codeMirror.highlightLine(this.parser.getLineByAddres(0));
+            this.codeMirror.fixMarkers(ExecutionContext.breakPoints);
 
             this.variablePreview.memory.clearPreviews();
 
@@ -303,9 +305,11 @@ export default class AssemblyEditor extends SidebarContent{
             }
 
             this.variablePreview.memory.buildList();
-
-
+            
             Alerter.sendMessage(Translator.getTranslation("_message_program_loaded","Program was loaded to memory!"),AlertStyleEnum.Succes);
+            if(overflow){
+                Alerter.sendMessage(Translator.getTranslation("_message_program_overflow","Program didn't fit fully in the memory, consider increasing address bit count."),AlertStyleEnum.Warning)
+            }
         }else{
 
             Alerter.sendMessage(this.parser.errorMessage,AlertStyleEnum.SyntaxError);

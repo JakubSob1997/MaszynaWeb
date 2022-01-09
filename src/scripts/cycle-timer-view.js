@@ -42,7 +42,7 @@ export default class CycleTimerView{
        
         this.stateValue.innerText = this.countdownToDisplay(_cycleTimerDevice.state)
         this.stateLabel.innerText=Translator.getTranslation("_countdown","Countdown: ")
-       
+        this.stateValue.setAttribute("role","marquee")
        
         this.inputLabel.innerText = Translator.getTranslation("_cycles_to_wait","Cycles to wait:")
         this.cyclesInput.value=(_cycleTimerDevice.cyclesToWait);

@@ -92,7 +92,8 @@
 			"Y_Register": true,
 			"Interupt": true,
 			"InputOutput": true,
-			"Flags": true
+			"Flags": true,
+			"T_Register": true
 		},
 		"intAdressList": [
 			1,
@@ -101,5 +102,5 @@
 			4
 		]
 	},
-	"program": "\n\n//Fibo Instruction Naive\nOUT 5\n\nFIBO 0  OUT 4\nFIBO 1  OUT 4\nFIBO 2  OUT 4\nFIBO 3  OUT 4\nFIBO 4  OUT 4\nFIBO 5  OUT 4\nFIBO 6  OUT 4\nFIBO 7  OUT 4\nFIBO 8  OUT 4\nFIBO 9  OUT 4\nFIBO 10 OUT 4\nFIBO 11 OUT 4\nFIBO 12 OUT 4\nFIBO 13 OUT 4\nFIBO 14 OUT 4\nFIBO 15 OUT 4\n\nSTP"
+	"program": "\n\n//Fibo Instruction Naive\n\nFIBO 0\nOUT 4\nFIBO 1\nOUT 4\nFIBO 2\nOUT 4\nFIBO 3\nOUT 4\nFIBO 4\nOUT 4\nFIBO 5\nOUT 4\nFIBO 6\nOUT 4\nFIBO 7\nOUT 4\nFIBO 8\nOUT 4\nFIBO 9\nOUT 4\nFIBO 10\nOUT 4\nFIBO 11\nOUT 4\nFIBO 12\nOUT 4\nFIBO 13\nOUT 4\nFIBO 14\nOUT 4\nFIBO 15\nOUT 4\n\nSTP"
 }

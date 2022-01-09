@@ -56,6 +56,24 @@ export default class ConsoleView{
 
 
 
+        this.characterInputEle.setAttribute("aria-label",Translator.getTranslation(
+            "_io_console_char_in",
+            "Character console input (in)"
+        ))
+        this.numericInputEle.setAttribute("aria-label",Translator.getTranslation(
+            "_io_console_num_in",
+            "Numeric console input (in)"
+        ))
+        this.outputEle.setAttribute("aria-label",Translator.getTranslation(
+            "_io_console_out",
+            "Console output (out)"
+        ))
+        this.clrConsoleButton.setAttribute("aria-label",Translator.getTranslation(
+            "_io_console_clear_cmd",
+            "Clear console (cmd)"
+        ))
+
+
         this.numericInputEle.setAttribute("value","0");
         this.outputEle.setAttribute("readonly","true");
 
