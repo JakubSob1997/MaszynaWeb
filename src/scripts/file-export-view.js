@@ -26,6 +26,7 @@ export default class FileExportView{
         this.saveButton.classList.add("custom-btn");
         this.nameInput.classList.add("file-name-input");
         this.jsonSpan.classList.add("file-json-span");
+        this.wrapper.classList.add("file-view-wrapper");
 
 
         this.nameInput.ariaLabel=Translator.getTranslation("_file_name_to_save","Name of the file to save.")
