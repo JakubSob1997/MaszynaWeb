@@ -284,10 +284,14 @@ export default class AssemblyEditor extends SidebarContent{
         this.parser = new AssemblyParser(this.getCode(),this.M.settings,this.M.instructionList,this.valueDisplayer);
 
         if( this.parser.parseSuccesful){
+
+            const overflow = this.parser.values.length> this.M.MEM.length();
+            const notEnoughCodeBits= this.parser.didInstructionsFit===false;
+
             this.M.setComponentsDefault();
             this.M.resetInternalState();
             this.M.MEM.loadMemory( this.parser.values);
-            const overflow = this.parser.values.length> this.M.MEM.length();
+            
             this.recalcBreakpointAddreses();
             this.codeMirror.clearHiglight();
             this.codeMirror.highlightLine(this.parser.getLineByAddres(0));
@@ -307,8 +311,12 @@ export default class AssemblyEditor extends SidebarContent{
             this.variablePreview.memory.buildList();
             
             Alerter.sendMessage(Translator.getTranslation("_message_program_loaded","Program was loaded to memory!"),AlertStyleEnum.Succes);
+            if(notEnoughCodeBits){
+                Alerter.sendMessage(Translator.getTranslation("_warning_instruction_overflow","Not enough instruction code values are avilable for used instructions, consider increasing code bit count."),AlertStyleEnum.Warning)
+            }
+            
             if(overflow){
-                Alerter.sendMessage(Translator.getTranslation("_message_program_overflow","Program didn't fit fully in the memory, consider increasing address bit count."),AlertStyleEnum.Warning)
+                Alerter.sendMessage(Translator.getTranslation("_warning_program_overflow","Program didn't fit fully in the memory, consider increasing address bit count."),AlertStyleEnum.Warning)
             }
         }else{
 

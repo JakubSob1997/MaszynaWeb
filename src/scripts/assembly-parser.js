@@ -98,6 +98,8 @@ export default class AssemblyParser{
         this.parseSuccesful = false;
         this.parseSuccesful=true;
 
+        this.didInstructionsFit=true;
+
         try {
             let codeWithNoComents = this.removeComents(_assemblyCode);
             this.splitIntoWords(codeWithNoComents);
@@ -395,7 +397,12 @@ export default class AssemblyParser{
             const instructionRefrence= _instructionList.getInstruction(opcode);
 
             opcode=opcode<<_settings.adressWidth;
+            const oldOpcode = opcode;
             opcode=opcode&_settings.codeMask;
+            if(oldOpcode!==opcode){
+                this.didInstructionsFit=false;
+            }
+
 
             if(instructionRefrence.argCount==0){
                 instr.addres=addres;
