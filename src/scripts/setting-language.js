@@ -45,12 +45,15 @@ export default  class LanguageSetting extends SettingView{
         this.select.id=id;
         
 
-        //this.label.setAttribute("for",id);
-        //this.select.appendChild(this.generateOption("DEFAULT","Default"));
-        //this.select.appendChild(this.generateOption("DEBUG","Debug"));
+        this.label.setAttribute("for",id);
+        if(Translator.debugFlag){
+            this.select.appendChild(this.generateOption("DEFAULT","Default"));
+            this.select.appendChild(this.generateOption("DEBUG","Debug"));
+        }
+        
         this.select.appendChild(this.generateOption("en","English 🇬🇧"));
         this.select.appendChild(this.generateOption("pl","Polski 🇵🇱"));
-        //this.select.appendChild(this.generateOption("de","Deutche"));
+        //this.select.appendChild(this.generateOption("de","Deutsche 🇩🇪"));
 
 
         this.content.appendChild(this.label);
