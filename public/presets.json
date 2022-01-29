@@ -8,6 +8,6 @@
     "Interrupts.json",
     "Multithreading.json",
     "IORelative.json",
-    "CopyMemory.json"
-    
+    "CopyMemory.json",
+	"BrainFuck.json"
 ]
