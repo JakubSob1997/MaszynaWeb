@@ -94,16 +94,19 @@ label.file-entry{
     background: var(--odd-list-color);
 }
 
-.file-entry:hover, .file-entry:focus{
+.file-entry:hover:not(:disabled), .file-entry:focus:not(:disabled){
     background: var(--primary-color);
 }
 
-.file-entry:active{
+.file-entry:active:not(:disabled){
     color: var(--contrast-font-color);
     background: var(--secondary-color);
 }
 
-
+.file-entry:disabled{
+    cursor:progress;
+    opacity: 0.85;
+}
 
 
 

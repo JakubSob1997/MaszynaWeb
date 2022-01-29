@@ -111,10 +111,7 @@
         "en":"Instruction @0 already exsists in instruction list!",
         "pl":"Już istnieje rozkaz @0 w liście instrukcji!"
     },
-    "_message_program_overflow":{
-        "en":"Program didn't fit fully in the memory, consider increasing address bit count.",
-        "pl":"Program nie został w pełni załadowany do pamięci, rozważ zwiększenie ilości bitów adresu."
-    },
+
     "_message_program_loaded":{
         "en":"Program was loaded to memory!",
         "pl":"Program został załadowany do pamięci!"
@@ -122,6 +119,14 @@
     "_message_machine_stopped":{
         "en":"Machine was stopped!",
         "pl":"Maszyna została zatrzymana!"
+    },
+    "_warning_instruction_overflow":{
+        "en":"Not enough instruction code values are avilable for used instructions, consider increasing code bit count.",
+        "pl":"Liczba bitów kodu słowa maszynowego nie pozawala na poprawne załadowanie wykorztstanych rozkazów, rozważ zwiększenie ilości bitów kodu."
+    },
+    "_warning_program_overflow":{
+        "en":"Program didn't fit fully in the memory, consider increasing address bit count.",
+        "pl":"Program nie został w pełni załadowany do pamięci, rozważ zwiększenie ilości bitów adresu."
     },
     "_instr_validation_continue_invalid":{
         "en":"Invalid continue statment.",
